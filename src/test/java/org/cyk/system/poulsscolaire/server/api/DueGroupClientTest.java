@@ -57,7 +57,7 @@ class DueGroupClientTest {
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
     Mockito.when(response.readEntity(DueGroupDto.class))
         .thenReturn(new DueGroupDto());
-    Mockito.when(service.getOne(any())).thenReturn(response);
+    Mockito.when(service.getByIdentifier(any())).thenReturn(response);
     assertInstanceOf(DueGroupDto.class, client.getByIdentifier(null, null, null, null));
   }
 

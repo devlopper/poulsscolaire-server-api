@@ -4,19 +4,19 @@ import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.FieldDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
-import ci.gouv.dgbf.extension.server.service.api.request.FilterDto.CriteriaDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
-import java.util.Set;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.DueGroupService.DueGroupCreateRequestDto;
@@ -24,7 +24,7 @@ import org.cyk.system.poulsscolaire.server.api.DueGroupService.DueGroupUpdateReq
 import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDto;
 
 /**
- * Cette classe représente un client du service DueGroupService.
+ * Cette classe représente un client de {@link DueGroupService}.
  *
  * @author Christian
  *
@@ -32,8 +32,10 @@ import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDt
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class DueGroupClient extends AbstractClient<DueGroupService> {
-  
+public class DueGroupClient extends AbstractClient<DueGroupService>
+    implements GetByIdentifier<DueGroupDto>, GetMany<GetManyResponseDto>,
+    DeleteByIdentifier<IdentifiableResponseDto> {
+
   @Override
   public DueGroupClient service(DueGroupService service) {
     return (DueGroupClient) super.service(service);
@@ -119,7 +121,19 @@ public class DueGroupClient extends AbstractClient<DueGroupService> {
   }
 
   /**
-   * Cette méthode permet d'obtenir un groupe d'échéance.
+   * Cette méthode permet d'obtenir par identifiant un groupe d'échéance.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public DueGroupDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<DueGroupDto>(DueGroupDto.class,
+        DueGroupService.GET_BY_IDENTIFIER_IDENTIFIER)
+            .execute(() -> service().getByIdentifier(request));
+  }
+
+  /**
+   * Cette méthode permet d'obtenir par identifiant un groupe d'échéance.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -127,19 +141,15 @@ public class DueGroupClient extends AbstractClient<DueGroupService> {
    * @param auditSession audit session
    * @return réponse
    */
+  @Override
   public DueGroupDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
-    GetOneRequestDto request = new GetOneRequestDto();
+    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
+    request.setIdentifier(identifier);
     request.setProjection(projection);
-    request.setFilter(new FilterDto());
-    CriteriaDto criteria = new CriteriaDto();
-    criteria.setField(new FieldDto());
-    criteria.getField().setName(AbstractIdentifiableDto.JSON_IDENTIFIER);
-    criteria.getField().setValueAsString(identifier);
-    request.getFilter().setCriterias(Set.of(criteria));
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
-    return getOne(request);
+    return getByIdentifier(request);
   }
 
   public IdentifiableResponseDto update(DueGroupUpdateRequestDto request) {
