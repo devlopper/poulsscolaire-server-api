@@ -77,7 +77,7 @@ public interface StudentService extends SpecificService {
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class StudentCreateRequestDto extends AbstractAuditedRequestJsonDto
-      implements IdentityService.IdentityCreation {
+      implements IdentityService.IdentityData {
     @JsonbProperty(JSON_REGISTRATION_NUMBER)
     private String registrationNumber;
 
@@ -178,7 +178,8 @@ public interface StudentService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractCodableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class StudentUpdateRequestDto extends ByIdentifierRequestDto {
+  class StudentUpdateRequestDto extends ByIdentifierRequestDto
+      implements IdentityService.IdentityData {
     @JsonbProperty(JSON_REGISTRATION_NUMBER)
     private String registrationNumber;
 
@@ -205,11 +206,6 @@ public interface StudentService extends SpecificService {
     public static final String FIELD_GENDER_IDENTIFIER = "genderIdentifier";
 
     public static final String JSON_REGISTRATION_NUMBER = StudentDto.JSON_REGISTRATION_NUMBER;
-    public static final String JSON_FIRST_NAME = StudentDto.JSON_FIRST_NAME;
-    public static final String JSON_LAST_NAMES = StudentDto.JSON_LAST_NAMES;
-    public static final String JSON_EMAIL_ADDRESS = StudentDto.JSON_EMAIL_ADDRESS;
-    public static final String JSON_PHONE_NUMBER = StudentDto.JSON_PHONE_NUMBER;
-    public static final String JSON_GENDER_IDENTIFIER = StudentDto.JSON_GENDER_IDENTIFIER;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_ELEVE";

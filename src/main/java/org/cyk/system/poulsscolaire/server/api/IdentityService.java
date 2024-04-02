@@ -73,7 +73,7 @@ public interface IdentityService extends SpecificService {
       IdentityCreateRequestDto.FIELD_LAST_NAMES, IdentityCreateRequestDto.FIELD_EMAIL_ADDRESS,
       IdentityCreateRequestDto.FIELD_PHONE_NUMBER, IdentityCreateRequestDto.FIELD_GENDER_IDENTIFIER,
       AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class IdentityCreateRequestDto extends AbstractAuditedRequestJsonDto implements IdentityCreation {
+  class IdentityCreateRequestDto extends AbstractAuditedRequestJsonDto implements IdentityData {
     @JsonbProperty(JSON_FIRST_NAME)
     private String firstName;
 
@@ -97,12 +97,12 @@ public interface IdentityService extends SpecificService {
   }
 
   /**
-   * Cette interface représente les informations de création d'identité.
+   * Cette interface représente les informations d'identité.
    *
    * @author Christian
    *
    */
-  interface IdentityCreation {
+  interface IdentityData {
     String getFirstName();
 
     String getLastNames();
@@ -195,7 +195,7 @@ public interface IdentityService extends SpecificService {
       IdentityUpdateRequestDto.FIELD_EMAIL_ADDRESS, IdentityUpdateRequestDto.FIELD_PHONE_NUMBER,
       IdentityUpdateRequestDto.FIELD_GENDER_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class IdentityUpdateRequestDto extends ByIdentifierRequestDto {
+  class IdentityUpdateRequestDto extends ByIdentifierRequestDto implements IdentityData {
     @JsonbProperty(JSON_FIRST_NAME)
     private String firstName;
 
@@ -216,12 +216,6 @@ public interface IdentityService extends SpecificService {
     public static final String FIELD_EMAIL_ADDRESS = "emailAddress";
     public static final String FIELD_PHONE_NUMBER = "phoneNumber";
     public static final String FIELD_GENDER_IDENTIFIER = "genderIdentifier";
-
-    public static final String JSON_FIRST_NAME = IdentityDto.JSON_FIRST_NAME;
-    public static final String JSON_LAST_NAMES = IdentityDto.JSON_LAST_NAMES;
-    public static final String JSON_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS;
-    public static final String JSON_PHONE_NUMBER = IdentityDto.JSON_PHONE_NUMBER;
-    public static final String JSON_GENDER_IDENTIFIER = IdentityDto.JSON_GENDER_IDENTIFIER;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_IDENTITE";
