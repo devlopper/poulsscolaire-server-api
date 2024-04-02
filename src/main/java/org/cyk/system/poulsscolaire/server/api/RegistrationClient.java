@@ -19,12 +19,12 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.DueGroupCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.DueGroupUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.RegistrationService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.RegistrationService.RegistrationCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.RegistrationService.RegistrationUpdateRequestDto;
 
 /**
- * Cette classe représente un client de {@link DueGroupService}.
+ * Cette classe représente un client de {@link RegistrationService}.
  *
  * @author Christian
  *
@@ -32,28 +32,28 @@ import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDt
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class DueGroupClient extends AbstractClient<DueGroupService>
-    implements GetByIdentifier<DueGroupDto>, GetMany<GetManyResponseDto>,
+public class RegistrationClient extends AbstractClient<RegistrationService>
+    implements GetByIdentifier<RegistrationDto>, GetMany<GetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public DueGroupClient service(DueGroupService service) {
-    return (DueGroupClient) super.service(service);
+  public RegistrationClient service(RegistrationService service) {
+    return (RegistrationClient) super.service(service);
   }
 
   /**
-   * {@link DueGroupService#create}.
+   * {@link RegistrationService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(DueGroupCreateRequestDto request) {
-    return new CreateExecutor(DueGroupService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(RegistrationCreateRequestDto request) {
+    return new CreateExecutor(RegistrationService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link DueGroupService#create}.
+   * {@link RegistrationService#create}.
    *
    * @param code code
    * @param name nom
@@ -62,7 +62,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    * @return réponse
    */
   public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
-    DueGroupCreateRequestDto request = new DueGroupCreateRequestDto();
+    RegistrationCreateRequestDto request = new RegistrationCreateRequestDto();
     request.setCode(code);
     request.setName(name);
     request.setAuditWho(auditWho);
@@ -72,11 +72,11 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
 
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        DueGroupService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
+        RegistrationService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link DueGroupService#getMany}.
+   * {@link RegistrationService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -96,13 +96,13 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
     return getMany(request);
   }
 
-  public DueGroupDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<DueGroupDto>(DueGroupDto.class, DueGroupService.GET_ONE_IDENTIFIER)
-        .execute(() -> service().getOne(request));
+  public RegistrationDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<RegistrationDto>(RegistrationDto.class,
+        RegistrationService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link DueGroupService#getOne}.
+   * {@link RegistrationService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -110,7 +110,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    * @param auditSession audit session
    * @return réponse
    */
-  public DueGroupDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+  public RegistrationDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -121,19 +121,19 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
   }
 
   /**
-   * {@link DueGroupService#getByIdentifier}.
+   * {@link RegistrationService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public DueGroupDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<DueGroupDto>(DueGroupDto.class,
-        DueGroupService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public RegistrationDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<RegistrationDto>(RegistrationDto.class,
+        RegistrationService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
   /**
-   * {@link DueGroupService#getByIdentifier}.
+   * {@link RegistrationService#getByIdentifier}.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -142,8 +142,8 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    * @return réponse
    */
   @Override
-  public DueGroupDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
-      String auditSession) {
+  public RegistrationDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
     request.setProjection(projection);
@@ -152,13 +152,13 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(DueGroupUpdateRequestDto request) {
-    return new IdentifiableExecutor(DueGroupService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(RegistrationUpdateRequestDto request) {
+    return new IdentifiableExecutor(RegistrationService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   /**
-   * {@link DueGroupService#update}.
+   * {@link RegistrationService#update}.
    *
    * @param identifier identifiant
    * @param code code
@@ -169,7 +169,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    */
   public IdentifiableResponseDto update(String identifier, String code, String name,
       String auditWho, String auditSession) {
-    DueGroupUpdateRequestDto request = new DueGroupUpdateRequestDto();
+    RegistrationUpdateRequestDto request = new RegistrationUpdateRequestDto();
     request.setIdentifier(identifier);
     request.setCode(code);
     request.setName(name);
@@ -179,12 +179,12 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(DueGroupService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(RegistrationService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link DueGroupService#delete}.
+   * {@link RegistrationService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur

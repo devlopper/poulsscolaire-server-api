@@ -19,12 +19,12 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.DueGroupCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.DueGroupUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.StudentService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.StudentService.StudentCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.StudentService.StudentUpdateRequestDto;
 
 /**
- * Cette classe représente un client de {@link DueGroupService}.
+ * Cette classe représente un client de {@link StudentService}.
  *
  * @author Christian
  *
@@ -32,39 +32,42 @@ import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDt
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class DueGroupClient extends AbstractClient<DueGroupService>
-    implements GetByIdentifier<DueGroupDto>, GetMany<GetManyResponseDto>,
+public class StudentClient extends AbstractClient<StudentService>
+    implements GetByIdentifier<StudentDto>, GetMany<GetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public DueGroupClient service(DueGroupService service) {
-    return (DueGroupClient) super.service(service);
+  public StudentClient service(StudentService service) {
+    return (StudentClient) super.service(service);
   }
 
   /**
-   * {@link DueGroupService#create}.
+   * {@link StudentService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(DueGroupCreateRequestDto request) {
-    return new CreateExecutor(DueGroupService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(StudentCreateRequestDto request) {
+    return new CreateExecutor(StudentService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link DueGroupService#create}.
+   * {@link StudentService#create}.
    *
-   * @param code code
-   * @param name nom
+   * @param registrationNumber matricule
+   * @param firstName nom
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
-    DueGroupCreateRequestDto request = new DueGroupCreateRequestDto();
-    request.setCode(code);
-    request.setName(name);
+  public CreateResponseDto create(String registrationNumber, String firstName, String lastNames,
+      String genderIdentifier, String auditWho, String auditSession) {
+    StudentCreateRequestDto request = new StudentCreateRequestDto();
+    request.setRegistrationNumber(registrationNumber);
+    request.setFirstName(firstName);
+    request.setLastNames(lastNames);
+    request.setGenderIdentifier(genderIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return create(request);
@@ -72,11 +75,11 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
 
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        DueGroupService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
+        StudentService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link DueGroupService#getMany}.
+   * {@link StudentService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -96,13 +99,13 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
     return getMany(request);
   }
 
-  public DueGroupDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<DueGroupDto>(DueGroupDto.class, DueGroupService.GET_ONE_IDENTIFIER)
+  public StudentDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<StudentDto>(StudentDto.class, StudentService.GET_ONE_IDENTIFIER)
         .execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link DueGroupService#getOne}.
+   * {@link StudentService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -110,7 +113,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    * @param auditSession audit session
    * @return réponse
    */
-  public DueGroupDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+  public StudentDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -121,19 +124,19 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
   }
 
   /**
-   * {@link DueGroupService#getByIdentifier}.
+   * {@link StudentService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public DueGroupDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<DueGroupDto>(DueGroupDto.class,
-        DueGroupService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public StudentDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<StudentDto>(StudentDto.class,
+        StudentService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
   /**
-   * {@link DueGroupService#getByIdentifier}.
+   * Cette méthode permet d'obtenir par identifiant un groupe d'échéance.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -142,7 +145,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    * @return réponse
    */
   @Override
-  public DueGroupDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+  public StudentDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
@@ -152,39 +155,42 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(DueGroupUpdateRequestDto request) {
-    return new IdentifiableExecutor(DueGroupService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(StudentUpdateRequestDto request) {
+    return new IdentifiableExecutor(StudentService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   /**
-   * {@link DueGroupService#update}.
+   * {@link StudentService#update}.
    *
    * @param identifier identifiant
-   * @param code code
-   * @param name nom
+   * @param registrationNumber matricule
+   * @param firstName nom
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public IdentifiableResponseDto update(String identifier, String code, String name,
-      String auditWho, String auditSession) {
-    DueGroupUpdateRequestDto request = new DueGroupUpdateRequestDto();
+  public IdentifiableResponseDto update(String identifier, String registrationNumber,
+      String firstName, String lastNames, String genderIdentifier, String auditWho,
+      String auditSession) {
+    StudentUpdateRequestDto request = new StudentUpdateRequestDto();
     request.setIdentifier(identifier);
-    request.setCode(code);
-    request.setName(name);
+    request.setRegistrationNumber(registrationNumber);
+    request.setFirstName(firstName);
+    request.setLastNames(lastNames);
+    request.setGenderIdentifier(genderIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return update(request);
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(DueGroupService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(StudentService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link DueGroupService#delete}.
+   * {@link StudentService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur

@@ -19,12 +19,12 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.DueGroupCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.DueGroupUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.GenderService.GenderCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.GenderService.GenderUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.GenderService.GetManyResponseDto;
 
 /**
- * Cette classe représente un client de {@link DueGroupService}.
+ * Cette classe représente un client de {@link GenderService}.
  *
  * @author Christian
  *
@@ -32,28 +32,28 @@ import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDt
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class DueGroupClient extends AbstractClient<DueGroupService>
-    implements GetByIdentifier<DueGroupDto>, GetMany<GetManyResponseDto>,
+public class GenderClient extends AbstractClient<GenderService>
+    implements GetByIdentifier<GenderDto>, GetMany<GetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public DueGroupClient service(DueGroupService service) {
-    return (DueGroupClient) super.service(service);
+  public GenderClient service(GenderService service) {
+    return (GenderClient) super.service(service);
   }
 
   /**
-   * {@link DueGroupService#create}.
+   * {@link GenderService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(DueGroupCreateRequestDto request) {
-    return new CreateExecutor(DueGroupService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(GenderCreateRequestDto request) {
+    return new CreateExecutor(GenderService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link DueGroupService#create}.
+   * {@link GenderService#create}.
    *
    * @param code code
    * @param name nom
@@ -62,7 +62,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    * @return réponse
    */
   public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
-    DueGroupCreateRequestDto request = new DueGroupCreateRequestDto();
+    GenderCreateRequestDto request = new GenderCreateRequestDto();
     request.setCode(code);
     request.setName(name);
     request.setAuditWho(auditWho);
@@ -72,11 +72,11 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
 
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        DueGroupService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
+        GenderService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link DueGroupService#getMany}.
+   * {@link GenderService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -96,13 +96,13 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
     return getMany(request);
   }
 
-  public DueGroupDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<DueGroupDto>(DueGroupDto.class, DueGroupService.GET_ONE_IDENTIFIER)
+  public GenderDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<GenderDto>(GenderDto.class, GenderService.GET_ONE_IDENTIFIER)
         .execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link DueGroupService#getOne}.
+   * {@link GenderService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -110,7 +110,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    * @param auditSession audit session
    * @return réponse
    */
-  public DueGroupDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+  public GenderDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -121,19 +121,19 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
   }
 
   /**
-   * {@link DueGroupService#getByIdentifier}.
+   * {@link GenderService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public DueGroupDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<DueGroupDto>(DueGroupDto.class,
-        DueGroupService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public GenderDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<GenderDto>(GenderDto.class,
+        GenderService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
   /**
-   * {@link DueGroupService#getByIdentifier}.
+   * {@link GenderService#getByIdentifier}.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -142,7 +142,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    * @return réponse
    */
   @Override
-  public DueGroupDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+  public GenderDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
@@ -152,13 +152,13 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(DueGroupUpdateRequestDto request) {
-    return new IdentifiableExecutor(DueGroupService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(GenderUpdateRequestDto request) {
+    return new IdentifiableExecutor(GenderService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   /**
-   * {@link DueGroupService#update}.
+   * {@link GenderService#update}.
    *
    * @param identifier identifiant
    * @param code code
@@ -169,7 +169,7 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
    */
   public IdentifiableResponseDto update(String identifier, String code, String name,
       String auditWho, String auditSession) {
-    DueGroupUpdateRequestDto request = new DueGroupUpdateRequestDto();
+    GenderUpdateRequestDto request = new GenderUpdateRequestDto();
     request.setIdentifier(identifier);
     request.setCode(code);
     request.setName(name);
@@ -179,12 +179,12 @@ public class DueGroupClient extends AbstractClient<DueGroupService>
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(DueGroupService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(GenderService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link DueGroupService#delete}.
+   * {@link GenderService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur
