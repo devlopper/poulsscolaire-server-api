@@ -73,9 +73,22 @@ public interface BranchService extends SpecificService {
   @Getter
   @Setter
   @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
+      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME,
+      BranchCreateRequestDto.FIELD_SCHOOL_IDENTIFIER,
+      BranchCreateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class BranchCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+
+    @JsonbProperty(JSON_PERIOD_IDENTIFIER)
+    private String periodIdentifier;
+
+    public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
+    public static final String FIELD_PERIOD_IDENTIFIER = "periodIdentifier";
+
+    public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+    public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_BRANCHE";
@@ -149,9 +162,22 @@ public interface BranchService extends SpecificService {
   @Getter
   @Setter
   @JsonbPropertyOrder(value = {AbstractCodableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
+      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME,
+      BranchUpdateRequestDto.FIELD_SCHOOL_IDENTIFIER,
+      BranchUpdateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class BranchUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+
+    @JsonbProperty(JSON_PERIOD_IDENTIFIER)
+    private String periodIdentifier;
+
+    public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
+    public static final String FIELD_PERIOD_IDENTIFIER = "periodIdentifier";
+
+    public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+    public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_BRANCHE";

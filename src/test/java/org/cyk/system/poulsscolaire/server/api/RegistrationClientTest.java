@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class RegistrationClientTest {
-  
+
   RegistrationService service;
   RegistrationClient client;
 
@@ -21,14 +21,15 @@ class RegistrationClientTest {
     service = Mockito.mock(RegistrationService.class);
     client = new RegistrationClient().service(service);
   }
-  
+
   @Test
   void create() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.CREATED.getStatusCode());
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
-    assertInstanceOf(CreateResponseDto.class, client.create(null, null, null, null));
+    assertInstanceOf(CreateResponseDto.class,
+        client.create(null, null, null, null, null, null, null));
   }
 
   @Test
@@ -45,8 +46,7 @@ class RegistrationClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(RegistrationDto.class))
-        .thenReturn(new RegistrationDto());
+    Mockito.when(response.readEntity(RegistrationDto.class)).thenReturn(new RegistrationDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
     assertInstanceOf(RegistrationDto.class, client.getOne(null, null, null, null));
   }
@@ -55,8 +55,7 @@ class RegistrationClientTest {
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(RegistrationDto.class))
-        .thenReturn(new RegistrationDto());
+    Mockito.when(response.readEntity(RegistrationDto.class)).thenReturn(new RegistrationDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
     assertInstanceOf(RegistrationDto.class, client.getByIdentifier(null, null, null, null));
   }
@@ -68,7 +67,8 @@ class RegistrationClientTest {
     Mockito.when(response.readEntity(IdentifiableResponseDto.class))
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
-    assertInstanceOf(IdentifiableResponseDto.class, client.update(null, null, null, null, null));
+    assertInstanceOf(IdentifiableResponseDto.class,
+        client.update(null, null, null, null, null, null, null));
   }
 
   @Test

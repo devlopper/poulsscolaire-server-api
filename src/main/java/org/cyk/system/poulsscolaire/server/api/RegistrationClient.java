@@ -55,16 +55,20 @@ public class RegistrationClient extends AbstractClient<RegistrationService>
   /**
    * {@link RegistrationService#create}.
    *
-   * @param code code
-   * @param name nom
+   * @param studentIdentifier identifiant élève
+   * @param branchIdentifier identifiant branche
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
+  public CreateResponseDto create(String studentIdentifier, String branchIdentifier,
+      String assignmentTypeIdentifier, String seniorityIdenfier, String name, String auditWho,
+      String auditSession) {
     RegistrationCreateRequestDto request = new RegistrationCreateRequestDto();
-    request.setCode(code);
-    request.setName(name);
+    request.setStudentIdentifier(studentIdentifier);
+    request.setBranchIdentifier(branchIdentifier);
+    request.setAssignmnetTypeIdentifier(assignmentTypeIdentifier);
+    request.setSeniorityIdentifier(seniorityIdenfier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return create(request);
@@ -161,18 +165,21 @@ public class RegistrationClient extends AbstractClient<RegistrationService>
    * {@link RegistrationService#update}.
    *
    * @param identifier identifiant
-   * @param code code
-   * @param name nom
+   * @param studentIdentifier identifiant élève
+   * @param branchIdentifier identifiant branche
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public IdentifiableResponseDto update(String identifier, String code, String name,
+  public IdentifiableResponseDto update(String identifier, String studentIdentifier,
+      String branchIdentifier, String assignmentTypeIdentifier, String seniorityIdenfier,
       String auditWho, String auditSession) {
     RegistrationUpdateRequestDto request = new RegistrationUpdateRequestDto();
     request.setIdentifier(identifier);
-    request.setCode(code);
-    request.setName(name);
+    request.setStudentIdentifier(studentIdentifier);
+    request.setBranchIdentifier(branchIdentifier);
+    request.setAssignmnetTypeIdentifier(assignmentTypeIdentifier);
+    request.setSeniorityIdentifier(seniorityIdenfier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return update(request);

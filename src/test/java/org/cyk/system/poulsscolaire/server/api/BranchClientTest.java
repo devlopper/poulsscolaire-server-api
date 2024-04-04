@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class BranchClientTest {
-  
+
   BranchService service;
   BranchClient client;
 
@@ -21,14 +21,14 @@ class BranchClientTest {
     service = Mockito.mock(BranchService.class);
     client = new BranchClient().service(service);
   }
-  
+
   @Test
   void create() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.CREATED.getStatusCode());
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
-    assertInstanceOf(CreateResponseDto.class, client.create(null, null, null, null));
+    assertInstanceOf(CreateResponseDto.class, client.create(null, null, null, null, null, null));
   }
 
   @Test
@@ -45,8 +45,7 @@ class BranchClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(BranchDto.class))
-        .thenReturn(new BranchDto());
+    Mockito.when(response.readEntity(BranchDto.class)).thenReturn(new BranchDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
     assertInstanceOf(BranchDto.class, client.getOne(null, null, null, null));
   }
@@ -55,8 +54,7 @@ class BranchClientTest {
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(BranchDto.class))
-        .thenReturn(new BranchDto());
+    Mockito.when(response.readEntity(BranchDto.class)).thenReturn(new BranchDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
     assertInstanceOf(BranchDto.class, client.getByIdentifier(null, null, null, null));
   }
@@ -68,7 +66,8 @@ class BranchClientTest {
     Mockito.when(response.readEntity(IdentifiableResponseDto.class))
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
-    assertInstanceOf(IdentifiableResponseDto.class, client.update(null, null, null, null, null));
+    assertInstanceOf(IdentifiableResponseDto.class,
+        client.update(null, null, null, null, null, null, null));
   }
 
   @Test

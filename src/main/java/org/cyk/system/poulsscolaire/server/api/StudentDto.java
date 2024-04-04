@@ -1,6 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class StudentDto extends AbstractIdentifiableAuditableDto {
+public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   
   @JsonbProperty(JSON_REGISTRATION_NUMBER)
   private String registrationNumber;

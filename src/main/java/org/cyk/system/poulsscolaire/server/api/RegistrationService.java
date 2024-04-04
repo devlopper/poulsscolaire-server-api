@@ -2,11 +2,8 @@ package org.cyk.system.poulsscolaire.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -72,10 +69,33 @@ public interface RegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
+  @JsonbPropertyOrder(value = {RegistrationCreateRequestDto.FIELD_STUDENT_IDENTIFIER,
+      RegistrationCreateRequestDto.FIELD_BRANCH_IDENTIFIER,
+      RegistrationCreateRequestDto.FIELD_ASSIGNMNET_TYPE_IDENTIFIER,
+      RegistrationCreateRequestDto.FIELD_SENIORITY_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class RegistrationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
+  class RegistrationCreateRequestDto extends AbstractAuditedRequestJsonDto {
+    @JsonbProperty(JSON_STUDENT_IDENTIFIER)
+    private String studentIdentifier;
+
+    @JsonbProperty(JSON_BRANCH_IDENTIFIER)
+    private String branchIdentifier;
+
+    @JsonbProperty(JSON_ASSIGNMNET_TYPE_IDENTIFIER)
+    private String assignmnetTypeIdentifier;
+
+    @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
+    private String seniorityIdentifier;
+
+    public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
+    public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
+    public static final String FIELD_ASSIGNMNET_TYPE_IDENTIFIER = "assignmnetTypeIdentifier";
+    public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
+
+    public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
+    public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
+    public static final String JSON_ASSIGNMNET_TYPE_IDENTIFIER = "idTypeAffectation";
+    public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_INSCRIPTION";
@@ -148,10 +168,33 @@ public interface RegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
+  @JsonbPropertyOrder(value = {RegistrationUpdateRequestDto.FIELD_STUDENT_IDENTIFIER,
+      RegistrationUpdateRequestDto.FIELD_BRANCH_IDENTIFIER,
+      RegistrationUpdateRequestDto.FIELD_ASSIGNMNET_TYPE_IDENTIFIER,
+      RegistrationUpdateRequestDto.FIELD_SENIORITY_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class RegistrationUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
+  class RegistrationUpdateRequestDto extends ByIdentifierRequestDto {
+    @JsonbProperty(JSON_STUDENT_IDENTIFIER)
+    private String studentIdentifier;
+
+    @JsonbProperty(JSON_BRANCH_IDENTIFIER)
+    private String branchIdentifier;
+
+    @JsonbProperty(JSON_ASSIGNMNET_TYPE_IDENTIFIER)
+    private String assignmnetTypeIdentifier;
+
+    @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
+    private String seniorityIdentifier;
+
+    public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
+    public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
+    public static final String FIELD_ASSIGNMNET_TYPE_IDENTIFIER = "assignmnetTypeIdentifier";
+    public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
+
+    public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
+    public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
+    public static final String JSON_ASSIGNMNET_TYPE_IDENTIFIER = "idTypeAffectation";
+    public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_INSCRIPTION";

@@ -61,10 +61,13 @@ public class BranchClient extends AbstractClient<BranchService>
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
+  public CreateResponseDto create(String code, String name, String schoolIdentifier,
+      String periodIdentifier, String auditWho, String auditSession) {
     BranchCreateRequestDto request = new BranchCreateRequestDto();
     request.setCode(code);
     request.setName(name);
+    request.setSchoolIdentifier(schoolIdentifier);
+    request.setPeriodIdentifier(periodIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return create(request);
@@ -97,8 +100,8 @@ public class BranchClient extends AbstractClient<BranchService>
   }
 
   public BranchDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<BranchDto>(BranchDto.class,
-        BranchService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
+    return new GetOneExecutor<BranchDto>(BranchDto.class, BranchService.GET_ONE_IDENTIFIER)
+        .execute(() -> service().getOne(request));
   }
 
   /**
@@ -142,8 +145,8 @@ public class BranchClient extends AbstractClient<BranchService>
    * @return réponse
    */
   @Override
-  public BranchDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
+  public BranchDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
     request.setProjection(projection);
@@ -168,11 +171,13 @@ public class BranchClient extends AbstractClient<BranchService>
    * @return réponse
    */
   public IdentifiableResponseDto update(String identifier, String code, String name,
-      String auditWho, String auditSession) {
+      String schoolIdentifier, String periodIdentifier, String auditWho, String auditSession) {
     BranchUpdateRequestDto request = new BranchUpdateRequestDto();
     request.setIdentifier(identifier);
     request.setCode(code);
     request.setName(name);
+    request.setSchoolIdentifier(schoolIdentifier);
+    request.setPeriodIdentifier(periodIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return update(request);
