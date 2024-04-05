@@ -19,12 +19,12 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.BranchService.BranchCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.BranchService.BranchUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.BranchService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.SchoolingService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.SchoolingService.SchoolingCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.SchoolingService.SchoolingUpdateRequestDto;
 
 /**
- * Cette classe représente un client de {@link BranchService}.
+ * Cette classe représente un client de {@link SchoolingService}.
  *
  * @author Christian
  *
@@ -32,28 +32,28 @@ import org.cyk.system.poulsscolaire.server.api.BranchService.GetManyResponseDto;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class BranchClient extends AbstractClient<BranchService>
-    implements GetByIdentifier<BranchDto>, GetMany<GetManyResponseDto>,
+public class SchoolingClient extends AbstractClient<SchoolingService>
+    implements GetByIdentifier<SchoolingDto>, GetMany<GetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public BranchClient service(BranchService service) {
-    return (BranchClient) super.service(service);
+  public SchoolingClient service(SchoolingService service) {
+    return (SchoolingClient) super.service(service);
   }
 
   /**
-   * {@link BranchService#create}.
+   * {@link SchoolingService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(BranchCreateRequestDto request) {
-    return new CreateExecutor(BranchService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(SchoolingCreateRequestDto request) {
+    return new CreateExecutor(SchoolingService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link BranchService#create}.
+   * {@link SchoolingService#create}.
    *
    * @param code code
    * @param name nom
@@ -63,7 +63,7 @@ public class BranchClient extends AbstractClient<BranchService>
    */
   public CreateResponseDto create(String code, String name, String schoolIdentifier,
       String periodIdentifier, String auditWho, String auditSession) {
-    BranchCreateRequestDto request = new BranchCreateRequestDto();
+    SchoolingCreateRequestDto request = new SchoolingCreateRequestDto();
     request.setCode(code);
     request.setName(name);
     request.setSchoolIdentifier(schoolIdentifier);
@@ -75,11 +75,11 @@ public class BranchClient extends AbstractClient<BranchService>
 
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        BranchService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
+        SchoolingService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link BranchService#getMany}.
+   * {@link SchoolingService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -99,13 +99,13 @@ public class BranchClient extends AbstractClient<BranchService>
     return getMany(request);
   }
 
-  public BranchDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<BranchDto>(BranchDto.class, BranchService.GET_ONE_IDENTIFIER)
+  public SchoolingDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<SchoolingDto>(SchoolingDto.class, SchoolingService.GET_ONE_IDENTIFIER)
         .execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link BranchService#getOne}.
+   * {@link SchoolingService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -113,7 +113,7 @@ public class BranchClient extends AbstractClient<BranchService>
    * @param auditSession audit session
    * @return réponse
    */
-  public BranchDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+  public SchoolingDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -124,14 +124,14 @@ public class BranchClient extends AbstractClient<BranchService>
   }
 
   /**
-   * {@link BranchService#getByIdentifier}.
+   * {@link SchoolingService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public BranchDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<BranchDto>(BranchDto.class,
-        BranchService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public SchoolingDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<SchoolingDto>(SchoolingDto.class,
+        SchoolingService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
@@ -145,7 +145,7 @@ public class BranchClient extends AbstractClient<BranchService>
    * @return réponse
    */
   @Override
-  public BranchDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+  public SchoolingDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
@@ -155,13 +155,13 @@ public class BranchClient extends AbstractClient<BranchService>
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(BranchUpdateRequestDto request) {
-    return new IdentifiableExecutor(BranchService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(SchoolingUpdateRequestDto request) {
+    return new IdentifiableExecutor(SchoolingService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   /**
-   * {@link BranchService#update}.
+   * {@link SchoolingService#update}.
    *
    * @param identifier identifiant
    * @param code code
@@ -172,7 +172,7 @@ public class BranchClient extends AbstractClient<BranchService>
    */
   public IdentifiableResponseDto update(String identifier, String code, String name,
       String schoolIdentifier, String periodIdentifier, String auditWho, String auditSession) {
-    BranchUpdateRequestDto request = new BranchUpdateRequestDto();
+    SchoolingUpdateRequestDto request = new SchoolingUpdateRequestDto();
     request.setIdentifier(identifier);
     request.setCode(code);
     request.setName(name);
@@ -184,12 +184,12 @@ public class BranchClient extends AbstractClient<BranchService>
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(BranchService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(SchoolingService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link BranchService#delete}.
+   * {@link SchoolingService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur

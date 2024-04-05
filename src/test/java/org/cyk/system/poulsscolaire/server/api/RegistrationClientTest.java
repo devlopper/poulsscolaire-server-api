@@ -29,7 +29,7 @@ class RegistrationClientTest {
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
     assertInstanceOf(CreateResponseDto.class,
-        client.create(null, null, null, null, null, null, null));
+        client.create(null, null, null, null, null, null));
   }
 
   @Test

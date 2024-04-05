@@ -70,7 +70,7 @@ public interface RegistrationService extends SpecificService {
   @Getter
   @Setter
   @JsonbPropertyOrder(value = {RegistrationCreateRequestDto.FIELD_STUDENT_IDENTIFIER,
-      RegistrationCreateRequestDto.FIELD_BRANCH_IDENTIFIER,
+      RegistrationCreateRequestDto.FIELD_SCHOOLING_IDENTIFIER,
       RegistrationCreateRequestDto.FIELD_ASSIGNMNET_TYPE_IDENTIFIER,
       RegistrationCreateRequestDto.FIELD_SENIORITY_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
@@ -78,8 +78,8 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_STUDENT_IDENTIFIER)
     private String studentIdentifier;
 
-    @JsonbProperty(JSON_BRANCH_IDENTIFIER)
-    private String branchIdentifier;
+    @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
+    private String schoolingIdentifier;
 
     @JsonbProperty(JSON_ASSIGNMNET_TYPE_IDENTIFIER)
     private String assignmnetTypeIdentifier;
@@ -88,12 +88,12 @@ public interface RegistrationService extends SpecificService {
     private String seniorityIdentifier;
 
     public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
-    public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
+    public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
     public static final String FIELD_ASSIGNMNET_TYPE_IDENTIFIER = "assignmnetTypeIdentifier";
     public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
 
     public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
-    public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
+    public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
     public static final String JSON_ASSIGNMNET_TYPE_IDENTIFIER = "idTypeAffectation";
     public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   }
@@ -169,7 +169,7 @@ public interface RegistrationService extends SpecificService {
   @Getter
   @Setter
   @JsonbPropertyOrder(value = {RegistrationUpdateRequestDto.FIELD_STUDENT_IDENTIFIER,
-      RegistrationUpdateRequestDto.FIELD_BRANCH_IDENTIFIER,
+      RegistrationUpdateRequestDto.FIELD_SCHOOLING_IDENTIFIER,
       RegistrationUpdateRequestDto.FIELD_ASSIGNMNET_TYPE_IDENTIFIER,
       RegistrationUpdateRequestDto.FIELD_SENIORITY_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
@@ -177,8 +177,8 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_STUDENT_IDENTIFIER)
     private String studentIdentifier;
 
-    @JsonbProperty(JSON_BRANCH_IDENTIFIER)
-    private String branchIdentifier;
+    @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
+    private String schoolingIdentifier;
 
     @JsonbProperty(JSON_ASSIGNMNET_TYPE_IDENTIFIER)
     private String assignmnetTypeIdentifier;
@@ -187,12 +187,12 @@ public interface RegistrationService extends SpecificService {
     private String seniorityIdentifier;
 
     public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
-    public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
+    public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
     public static final String FIELD_ASSIGNMNET_TYPE_IDENTIFIER = "assignmnetTypeIdentifier";
     public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
 
     public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
-    public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
+    public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
     public static final String JSON_ASSIGNMNET_TYPE_IDENTIFIER = "idTypeAffectation";
     public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   }

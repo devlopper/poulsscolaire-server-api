@@ -2,10 +2,8 @@ package org.cyk.system.poulsscolaire.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -33,23 +31,23 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link BranchDto}.
+ * Cette interface représente les services de {@link SchoolingDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = BranchService.PATH)
-@Tag(name = "Gestion des branches")
-public interface BranchService extends SpecificService {
+@Path(value = SchoolingService.PATH)
+@Tag(name = "Gestion des scolarités")
+public interface SchoolingService extends SpecificService {
 
-  String PATH = "branches";
+  String PATH = "scolarites";
 
-  String CREATE_IDENTIFIER = "CREATION_BRANCHE";
+  String CREATE_IDENTIFIER = "CREATION_SCOLARITE";
 
   String CREATE_PATH = "";
 
   /**
-   * Cette méthode permet de créer une branche.
+   * Cette méthode permet de créer une scolarité.
    *
    * @param request requête
    * @return réponse
@@ -58,11 +56,11 @@ public interface BranchService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = CREATE_IDENTIFIER, summary = "Création d'une branche",
-      description = "Ce service permet de créer une branche")
+  @Operation(operationId = CREATE_IDENTIFIER, summary = "Création d'une scolarité",
+      description = "Ce service permet de créer une scolarité")
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(BranchCreateRequestDto request);
+  Response create(SchoolingCreateRequestDto request);
 
   /**
    * Cette classe représente la requête de création.
@@ -72,26 +70,30 @@ public interface BranchService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME,
-      BranchCreateRequestDto.FIELD_SCHOOL_IDENTIFIER,
-      BranchCreateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
+  @JsonbPropertyOrder(value = {SchoolingCreateRequestDto.FIELD_SCHOOL_IDENTIFIER,
+      SchoolingCreateRequestDto.FIELD_BRANCH_IDENTIFIER,
+      SchoolingCreateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class BranchCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
+  class SchoolingCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
+
+    @JsonbProperty(JSON_BRANCH_IDENTIFIER)
+    private String branchIdentifier;
 
     @JsonbProperty(JSON_PERIOD_IDENTIFIER)
     private String periodIdentifier;
 
     public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
+    public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
     public static final String FIELD_PERIOD_IDENTIFIER = "periodIdentifier";
 
     public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+    public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
     public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
   }
 
-  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_BRANCHE";
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_SCOLARITE";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
@@ -100,7 +102,7 @@ public interface BranchService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = "Ce service permet d'obtenir des branches")
+      description = "Ce service permet d'obtenir des scolarités")
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -111,13 +113,13 @@ public interface BranchService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<BranchDto> {
+  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<SchoolingDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<BranchDto> datas;
+    private List<SchoolingDto> datas;
   }
 
-  String GET_ONE_IDENTIFIER = "OBTENTION_UN_BRANCHE";
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_SCOLARITE";
 
   String GET_ONE_PATH = "obtention/un";
 
@@ -126,10 +128,10 @@ public interface BranchService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = "Ce service permet d'obtenir une branche")
+      description = "Ce service permet d'obtenir une scolarité")
   Response getOne(GetOneRequestDto request);
 
-  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_BRANCHE";
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_SCOLARITE";
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
@@ -138,10 +140,10 @@ public interface BranchService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
-      description = "Ce service permet d'obtenir par identifiant une branche")
+      description = "Ce service permet d'obtenir par identifiant une scolarité")
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
-  String UPDATE_IDENTIFIER = "MISE_A_JOUR_BRANCHE";
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_SCOLARITE";
 
   String UPDATE_PATH = "";
 
@@ -150,8 +152,8 @@ public interface BranchService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER,
-      description = "Ce service permet de mettre à jour une branche")
-  Response update(BranchUpdateRequestDto request);
+      description = "Ce service permet de mettre à jour une scolarité")
+  Response update(SchoolingUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -161,26 +163,30 @@ public interface BranchService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME,
-      BranchUpdateRequestDto.FIELD_SCHOOL_IDENTIFIER,
-      BranchUpdateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
+  @JsonbPropertyOrder(value = {SchoolingUpdateRequestDto.FIELD_SCHOOL_IDENTIFIER,
+      SchoolingUpdateRequestDto.FIELD_BRANCH_IDENTIFIER,
+      SchoolingUpdateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class BranchUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
+  class SchoolingUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
+
+    @JsonbProperty(JSON_BRANCH_IDENTIFIER)
+    private String branchIdentifier;
 
     @JsonbProperty(JSON_PERIOD_IDENTIFIER)
     private String periodIdentifier;
 
     public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
+    public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
     public static final String FIELD_PERIOD_IDENTIFIER = "periodIdentifier";
 
     public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+    public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
     public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
   }
 
-  String DELETE_IDENTIFIER = "SUPPRESSION_BRANCHE";
+  String DELETE_IDENTIFIER = "SUPPRESSION_SCOLARITE";
 
   String DELETE_PATH = "";
 
@@ -189,6 +195,6 @@ public interface BranchService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER,
-      description = "Ce service permet de supprimer une branche")
+      description = "Ce service permet de supprimer une scolarité")
   Response delete(DeleteOneRequestDto request);
 }

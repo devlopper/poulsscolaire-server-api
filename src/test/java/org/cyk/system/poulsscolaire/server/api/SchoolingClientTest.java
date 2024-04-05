@@ -6,20 +6,20 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.BranchService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.SchoolingService.GetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class BranchClientTest {
+class SchoolingClientTest {
 
-  BranchService service;
-  BranchClient client;
+  SchoolingService service;
+  SchoolingClient client;
 
   @BeforeEach
   void listenBeforeEach() {
-    service = Mockito.mock(BranchService.class);
-    client = new BranchClient().service(service);
+    service = Mockito.mock(SchoolingService.class);
+    client = new SchoolingClient().service(service);
   }
 
   @Test
@@ -45,18 +45,18 @@ class BranchClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(BranchDto.class)).thenReturn(new BranchDto());
+    Mockito.when(response.readEntity(SchoolingDto.class)).thenReturn(new SchoolingDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
-    assertInstanceOf(BranchDto.class, client.getOne(null, null, null, null));
+    assertInstanceOf(SchoolingDto.class, client.getOne(null, null, null, null));
   }
 
   @Test
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(BranchDto.class)).thenReturn(new BranchDto());
+    Mockito.when(response.readEntity(SchoolingDto.class)).thenReturn(new SchoolingDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
-    assertInstanceOf(BranchDto.class, client.getByIdentifier(null, null, null, null));
+    assertInstanceOf(SchoolingDto.class, client.getByIdentifier(null, null, null, null));
   }
 
   @Test
