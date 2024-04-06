@@ -55,18 +55,17 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
   /**
    * {@link SchoolingService#create}.
    *
-   * @param code code
-   * @param name nom
+   * @param schoolIdentifier identifiant école
+   * @param branchIdentifier identifiant branche
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String code, String name, String schoolIdentifier,
+  public CreateResponseDto create(String schoolIdentifier, String branchIdentifier,
       String periodIdentifier, String auditWho, String auditSession) {
     SchoolingCreateRequestDto request = new SchoolingCreateRequestDto();
-    request.setCode(code);
-    request.setName(name);
     request.setSchoolIdentifier(schoolIdentifier);
+    request.setBranchIdentifier(branchIdentifier);
     request.setPeriodIdentifier(periodIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
@@ -164,19 +163,18 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
    * {@link SchoolingService#update}.
    *
    * @param identifier identifiant
-   * @param code code
-   * @param name nom
+   * @param schoolIdentifier identifiant école
+   * @param branchIdentifier identifiant branche
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public IdentifiableResponseDto update(String identifier, String code, String name,
-      String schoolIdentifier, String periodIdentifier, String auditWho, String auditSession) {
+  public IdentifiableResponseDto update(String identifier, String schoolIdentifier,
+      String branchIdentifier, String periodIdentifier, String auditWho, String auditSession) {
     SchoolingUpdateRequestDto request = new SchoolingUpdateRequestDto();
     request.setIdentifier(identifier);
-    request.setCode(code);
-    request.setName(name);
     request.setSchoolIdentifier(schoolIdentifier);
+    request.setBranchIdentifier(branchIdentifier);
     request.setPeriodIdentifier(periodIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);

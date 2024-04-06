@@ -2,9 +2,8 @@ package org.cyk.system.poulsscolaire.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -74,7 +73,7 @@ public interface SchoolingService extends SpecificService {
       SchoolingCreateRequestDto.FIELD_BRANCH_IDENTIFIER,
       SchoolingCreateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class SchoolingCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
+  class SchoolingCreateRequestDto extends AbstractAuditedRequestJsonDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
 
@@ -167,7 +166,7 @@ public interface SchoolingService extends SpecificService {
       SchoolingUpdateRequestDto.FIELD_BRANCH_IDENTIFIER,
       SchoolingUpdateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class SchoolingUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
+  class SchoolingUpdateRequestDto extends ByIdentifierRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
 
