@@ -6,20 +6,20 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.DeadlineService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.AmountService.GetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class DeadlineClientTest {
+class AmountClientTest {
 
-  DeadlineService service;
-  DeadlineClient client;
+  AmountService service;
+  AmountClient client;
 
   @BeforeEach
   void listenBeforeEach() {
-    service = Mockito.mock(DeadlineService.class);
-    client = new DeadlineClient().service(service);
+    service = Mockito.mock(AmountService.class);
+    client = new AmountClient().service(service);
   }
 
   @Test
@@ -28,7 +28,8 @@ class DeadlineClientTest {
     Mockito.when(response.getStatus()).thenReturn(Response.Status.CREATED.getStatusCode());
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
-    assertInstanceOf(CreateResponseDto.class, client.create(null, null, null, null, null, null));
+    assertInstanceOf(CreateResponseDto.class,
+        client.create(null, null, null, null, null, null, null));
   }
 
   @Test
@@ -45,18 +46,18 @@ class DeadlineClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(DeadlineDto.class)).thenReturn(new DeadlineDto());
+    Mockito.when(response.readEntity(AmountDto.class)).thenReturn(new AmountDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
-    assertInstanceOf(DeadlineDto.class, client.getOne(null, null, null, null));
+    assertInstanceOf(AmountDto.class, client.getOne(null, null, null, null));
   }
 
   @Test
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(DeadlineDto.class)).thenReturn(new DeadlineDto());
+    Mockito.when(response.readEntity(AmountDto.class)).thenReturn(new AmountDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
-    assertInstanceOf(DeadlineDto.class, client.getByIdentifier(null, null, null, null));
+    assertInstanceOf(AmountDto.class, client.getByIdentifier(null, null, null, null));
   }
 
   @Test
@@ -67,7 +68,7 @@ class DeadlineClientTest {
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class,
-        client.update(null, null, null, null, null, null, null));
+        client.update(null, null, null, null, null, null, null, null));
   }
 
   @Test

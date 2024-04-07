@@ -2,6 +2,8 @@ package org.cyk.system.poulsscolaire.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
@@ -73,7 +75,7 @@ public interface DeadlineService extends SpecificService {
   @JsonbPropertyOrder(
       value = {DeadlineCreateRequestDto.FIELD_GROUP_IDENTIFIER, DeadlineCreateRequestDto.FIELD_DATE,
           AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class DeadlineCreateRequestDto extends AbstractAuditedRequestJsonDto {
+  class DeadlineCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
 
@@ -160,7 +162,7 @@ public interface DeadlineService extends SpecificService {
   @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
       DeadlineUpdateRequestDto.FIELD_GROUP_IDENTIFIER, DeadlineUpdateRequestDto.FIELD_DATE,
       AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class DeadlineUpdateRequestDto extends ByIdentifierRequestDto {
+  class DeadlineUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
 

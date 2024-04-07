@@ -17,15 +17,14 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
-import java.time.LocalDateTime;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.DeadlineService.DeadlineCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DeadlineService.DeadlineUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DeadlineService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.AmountService.AmountCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.AmountService.AmountUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.AmountService.GetManyResponseDto;
 
 /**
- * Cette classe représente un client de {@link DeadlineService}.
+ * Cette classe représente un client de {@link AmountService}.
  *
  * @author Christian
  *
@@ -33,40 +32,41 @@ import org.cyk.system.poulsscolaire.server.api.DeadlineService.GetManyResponseDt
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class DeadlineClient extends AbstractClient<DeadlineService>
-    implements GetByIdentifier<DeadlineDto>, GetMany<GetManyResponseDto>,
+public class AmountClient extends AbstractClient<AmountService>
+    implements GetByIdentifier<AmountDto>, GetMany<GetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public DeadlineClient service(DeadlineService service) {
-    return (DeadlineClient) super.service(service);
+  public AmountClient service(AmountService service) {
+    return (AmountClient) super.service(service);
   }
 
   /**
-   * {@link DeadlineService#create}.
+   * {@link AmountService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(DeadlineCreateRequestDto request) {
-    return new CreateExecutor(DeadlineService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(AmountCreateRequestDto request) {
+    return new CreateExecutor(AmountService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link DeadlineService#create}.
+   * {@link AmountService#create}.
    *
-   * @param groupIdentifier identifiant groupe
-   * @param date date
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String code, String name, String groupIdentifier,
-      LocalDateTime date, String auditWho, String auditSession) {
-    DeadlineCreateRequestDto request = new DeadlineCreateRequestDto();
-    request.setGroupIdentifier(groupIdentifier);
-    request.setDate(date);
+  public CreateResponseDto create(Long value, Long registrationValuePart, Boolean optional,
+      Integer paymentOrderNumber, Boolean renewable, String auditWho, String auditSession) {
+    AmountCreateRequestDto request = new AmountCreateRequestDto();
+    request.setValue(value);
+    request.setRegistrationValuePart(registrationValuePart);
+    request.setOptional(optional);
+    request.setPaymentOrderNumber(paymentOrderNumber);
+    request.setRenewable(renewable);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return create(request);
@@ -74,11 +74,11 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
 
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        DeadlineService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
+        AmountService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link DeadlineService#getMany}.
+   * {@link AmountService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -98,13 +98,13 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
     return getMany(request);
   }
 
-  public DeadlineDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<DeadlineDto>(DeadlineDto.class, DeadlineService.GET_ONE_IDENTIFIER)
+  public AmountDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<AmountDto>(AmountDto.class, AmountService.GET_ONE_IDENTIFIER)
         .execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link DeadlineService#getOne}.
+   * {@link AmountService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -112,7 +112,7 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
    * @param auditSession audit session
    * @return réponse
    */
-  public DeadlineDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+  public AmountDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -123,19 +123,19 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
   }
 
   /**
-   * {@link DeadlineService#getByIdentifier}.
+   * {@link AmountService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public DeadlineDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<DeadlineDto>(DeadlineDto.class,
-        DeadlineService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public AmountDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<AmountDto>(AmountDto.class,
+        AmountService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
   /**
-   * {@link DeadlineService#getByIdentifier}.
+   * Cette méthode permet d'obtenir par identifiant un groupe d'échéance.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -144,7 +144,7 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
    * @return réponse
    */
   @Override
-  public DeadlineDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+  public AmountDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
@@ -154,39 +154,41 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(DeadlineUpdateRequestDto request) {
-    return new IdentifiableExecutor(DeadlineService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(AmountUpdateRequestDto request) {
+    return new IdentifiableExecutor(AmountService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   /**
-   * {@link DeadlineService#update}.
+   * {@link AmountService#update}.
    *
    * @param identifier identifiant
-   * @param groupIdentifier identifiant groupe
-   * @param date date
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public IdentifiableResponseDto update(String identifier, String code, String name,
-      String groupIdentifier, LocalDateTime date, String auditWho, String auditSession) {
-    DeadlineUpdateRequestDto request = new DeadlineUpdateRequestDto();
+  public IdentifiableResponseDto update(String identifier, Long value, Long registrationValuePart,
+      Boolean optional, Integer paymentOrderNumber, Boolean renewable, String auditWho,
+      String auditSession) {
+    AmountUpdateRequestDto request = new AmountUpdateRequestDto();
     request.setIdentifier(identifier);
-    request.setGroupIdentifier(groupIdentifier);
-    request.setDate(date);
+    request.setValue(value);
+    request.setRegistrationValuePart(registrationValuePart);
+    request.setOptional(optional);
+    request.setPaymentOrderNumber(paymentOrderNumber);
+    request.setRenewable(renewable);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return update(request);
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(DeadlineService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(AmountService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link DeadlineService#delete}.
+   * {@link AmountService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur
