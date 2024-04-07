@@ -1,6 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class DeadlineDto extends AbstractIdentifiableAuditableDto {
+public class DeadlineDto extends AbstractIdentifiableCodableNamableAuditableDto {
   
   @JsonbProperty(JSON_GROUP_IDENTIFIER)
   private String groupIdentifier;

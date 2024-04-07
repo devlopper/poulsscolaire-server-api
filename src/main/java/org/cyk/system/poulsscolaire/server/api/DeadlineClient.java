@@ -65,6 +65,8 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
   public CreateResponseDto create(String code, String name, String groupIdentifier,
       LocalDateTime date, String auditWho, String auditSession) {
     DeadlineCreateRequestDto request = new DeadlineCreateRequestDto();
+    request.setCode(code);
+    request.setName(name);
     request.setGroupIdentifier(groupIdentifier);
     request.setDate(date);
     request.setAuditWho(auditWho);
@@ -173,6 +175,8 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
       String groupIdentifier, LocalDateTime date, String auditWho, String auditSession) {
     DeadlineUpdateRequestDto request = new DeadlineUpdateRequestDto();
     request.setIdentifier(identifier);
+    request.setCode(code);
+    request.setName(name);
     request.setGroupIdentifier(groupIdentifier);
     request.setDate(date);
     request.setAuditWho(auditWho);
