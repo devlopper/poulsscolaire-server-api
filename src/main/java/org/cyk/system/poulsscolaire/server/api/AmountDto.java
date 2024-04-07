@@ -39,7 +39,7 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
   private Integer paymentOrderNumber;
 
   @JsonbProperty(JSON_PAYMENT_ORDER_NUMBER_AS_STRING)
-  private Boolean paymentOrderNumberAsString;
+  private String paymentOrderNumberAsString;
 
   @JsonbProperty(JSON_RENEWABLE)
   private Boolean renewable;
@@ -67,16 +67,16 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
   public static final String FIELD_DEADLINE_IDENTIFIER = "deadline";
   public static final String FIELD_DEADLINE_AS_STRING = "deadlineAsString";
   
-  public static final String JSON_VALUE = "matricule";
-  public static final String JSON_VALUE_AS_STRING = "nom";
-  public static final String JSON_REGISTRATION_VALUE_PART = "prenoms";
-  public static final String JSON_REGISTRATION_VALUE_PART_AS_STRING = "adresseEmail";
-  public static final String JSON_OPTIONAL = "numeroTelephone";
-  public static final String JSON_OPTIONAL_AS_STRING = "idGenre";
-  public static final String JSON_PAYMENT_ORDER_NUMBER = "genreChaine";
-  public static final String JSON_PAYMENT_ORDER_NUMBER_AS_STRING = "estMasculin";
-  public static final String JSON_RENEWABLE = "pereChaine";
-  public static final String JSON_RENEWABLE_AS_STRING = "mereChaine";
+  public static final String JSON_VALUE = "valeur";
+  public static final String JSON_VALUE_AS_STRING = "valeurChaine";
+  public static final String JSON_REGISTRATION_VALUE_PART = "partValeurInscription";
+  public static final String JSON_REGISTRATION_VALUE_PART_AS_STRING = "partValeurInscriptionChaine";
+  public static final String JSON_OPTIONAL = "facultatif";
+  public static final String JSON_OPTIONAL_AS_STRING = "facultatifChaine";
+  public static final String JSON_PAYMENT_ORDER_NUMBER = "numeroOrdrePaiement";
+  public static final String JSON_PAYMENT_ORDER_NUMBER_AS_STRING = "numeroOrdrePaiementChaine";
+  public static final String JSON_RENEWABLE = "reconductible";
+  public static final String JSON_RENEWABLE_AS_STRING = "reconductibleChaine";
   public static final String JSON_DEADLINE_IDENTIFIER = "idEcheance";
   public static final String JSON_DEADLINE_AS_STRING = "echeanceChaine";
 }
