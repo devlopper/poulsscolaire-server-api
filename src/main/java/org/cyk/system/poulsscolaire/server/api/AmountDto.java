@@ -47,6 +47,12 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_RENEWABLE_AS_STRING)
   private String renewableAsString;
 
+  @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
+  private String deadlineIdentifier;
+  
+  @JsonbProperty(JSON_DEADLINE_AS_STRING)
+  private String deadlineAsString;
+  
   public static final String FIELD_VALUE = "value";
   public static final String FIELD_VALUE_AS_STRING = "valueAsString";
   public static final String FIELD_REGISTRATION_VALUE_PART = "registrationValuePart";
@@ -58,7 +64,9 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
   public static final String FIELD_PAYMENT_ORDER_NUMBER_AS_STRING = "paymentOrderNumberAsString";
   public static final String FIELD_RENEWABLE = "renewable";
   public static final String FIELD_RENEWABLE_AS_STRING = "renewableAsString";
-
+  public static final String FIELD_DEADLINE_IDENTIFIER = "deadline";
+  public static final String FIELD_DEADLINE_AS_STRING = "deadlineAsString";
+  
   public static final String JSON_VALUE = "matricule";
   public static final String JSON_VALUE_AS_STRING = "nom";
   public static final String JSON_REGISTRATION_VALUE_PART = "prenoms";
@@ -69,4 +77,6 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_PAYMENT_ORDER_NUMBER_AS_STRING = "estMasculin";
   public static final String JSON_RENEWABLE = "pereChaine";
   public static final String JSON_RENEWABLE_AS_STRING = "mereChaine";
+  public static final String JSON_DEADLINE_IDENTIFIER = "idEcheance";
+  public static final String JSON_DEADLINE_AS_STRING = "echeanceChaine";
 }
