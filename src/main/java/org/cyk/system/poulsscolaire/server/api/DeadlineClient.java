@@ -20,12 +20,12 @@ import jakarta.enterprise.context.ApplicationScoped;
 import java.time.LocalDateTime;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.DueDateService.DueDateCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DueDateService.DueDateUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.DueDateService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.DeadlineService.DeadlineCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.DeadlineService.DeadlineUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.DeadlineService.GetManyResponseDto;
 
 /**
- * Cette classe représente un client de {@link DueDateService}.
+ * Cette classe représente un client de {@link DeadlineService}.
  *
  * @author Christian
  *
@@ -33,28 +33,28 @@ import org.cyk.system.poulsscolaire.server.api.DueDateService.GetManyResponseDto
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class DueDateClient extends AbstractClient<DueDateService>
-    implements GetByIdentifier<DueDateDto>, GetMany<GetManyResponseDto>,
+public class DeadlineClient extends AbstractClient<DeadlineService>
+    implements GetByIdentifier<DeadlineDto>, GetMany<GetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public DueDateClient service(DueDateService service) {
-    return (DueDateClient) super.service(service);
+  public DeadlineClient service(DeadlineService service) {
+    return (DeadlineClient) super.service(service);
   }
 
   /**
-   * {@link DueDateService#create}.
+   * {@link DeadlineService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(DueDateCreateRequestDto request) {
-    return new CreateExecutor(DueDateService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(DeadlineCreateRequestDto request) {
+    return new CreateExecutor(DeadlineService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link DueDateService#create}.
+   * {@link DeadlineService#create}.
    *
    * @param groupIdentifier identifiant groupe
    * @param date date
@@ -64,7 +64,7 @@ public class DueDateClient extends AbstractClient<DueDateService>
    */
   public CreateResponseDto create(String groupIdentifier, LocalDateTime date, String auditWho,
       String auditSession) {
-    DueDateCreateRequestDto request = new DueDateCreateRequestDto();
+    DeadlineCreateRequestDto request = new DeadlineCreateRequestDto();
     request.setGroupIdentifier(groupIdentifier);
     request.setDate(date);
     request.setAuditWho(auditWho);
@@ -74,11 +74,11 @@ public class DueDateClient extends AbstractClient<DueDateService>
 
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        DueDateService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
+        DeadlineService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link DueDateService#getMany}.
+   * {@link DeadlineService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -98,13 +98,13 @@ public class DueDateClient extends AbstractClient<DueDateService>
     return getMany(request);
   }
 
-  public DueDateDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<DueDateDto>(DueDateDto.class, DueDateService.GET_ONE_IDENTIFIER)
+  public DeadlineDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<DeadlineDto>(DeadlineDto.class, DeadlineService.GET_ONE_IDENTIFIER)
         .execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link DueDateService#getOne}.
+   * {@link DeadlineService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -112,7 +112,7 @@ public class DueDateClient extends AbstractClient<DueDateService>
    * @param auditSession audit session
    * @return réponse
    */
-  public DueDateDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+  public DeadlineDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -123,19 +123,19 @@ public class DueDateClient extends AbstractClient<DueDateService>
   }
 
   /**
-   * {@link DueDateService#getByIdentifier}.
+   * {@link DeadlineService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public DueDateDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<DueDateDto>(DueDateDto.class,
-        DueDateService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public DeadlineDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<DeadlineDto>(DeadlineDto.class,
+        DeadlineService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
   /**
-   * {@link DueDateService#getByIdentifier}.
+   * {@link DeadlineService#getByIdentifier}.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -144,7 +144,7 @@ public class DueDateClient extends AbstractClient<DueDateService>
    * @return réponse
    */
   @Override
-  public DueDateDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+  public DeadlineDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
@@ -154,13 +154,13 @@ public class DueDateClient extends AbstractClient<DueDateService>
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(DueDateUpdateRequestDto request) {
-    return new IdentifiableExecutor(DueDateService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(DeadlineUpdateRequestDto request) {
+    return new IdentifiableExecutor(DeadlineService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   /**
-   * {@link DueDateService#update}.
+   * {@link DeadlineService#update}.
    *
    * @param identifier identifiant
    * @param groupIdentifier identifiant groupe
@@ -171,7 +171,7 @@ public class DueDateClient extends AbstractClient<DueDateService>
    */
   public IdentifiableResponseDto update(String identifier, String groupIdentifier,
       LocalDateTime date, String auditWho, String auditSession) {
-    DueDateUpdateRequestDto request = new DueDateUpdateRequestDto();
+    DeadlineUpdateRequestDto request = new DeadlineUpdateRequestDto();
     request.setIdentifier(identifier);
     request.setGroupIdentifier(groupIdentifier);
     request.setDate(date);
@@ -181,12 +181,12 @@ public class DueDateClient extends AbstractClient<DueDateService>
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(DueDateService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(DeadlineService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link DueDateService#delete}.
+   * {@link DeadlineService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur

@@ -5,13 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente le filtre de {@link DueDateDto}.
+ * Cette classe représente le filtre de {@link DeadlineDto}.
  *
  * @author Christian
  *
  */
 @Getter
 @Setter
-public class DueDateFilter extends AbstractIdentifiableFilter {
+public class DeadlineFilter extends AbstractIdentifiableFilter {
   
 }

@@ -6,20 +6,20 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.DueGroupService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.DeadlineGroupService.GetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class DueGroupClientTest {
+class DeadlineGroupClientTest {
   
-  DueGroupService service;
-  DueGroupClient client;
+  DeadlineGroupService service;
+  DeadlineGroupClient client;
 
   @BeforeEach
   void listenBeforeEach() {
-    service = Mockito.mock(DueGroupService.class);
-    client = new DueGroupClient().service(service);
+    service = Mockito.mock(DeadlineGroupService.class);
+    client = new DeadlineGroupClient().service(service);
   }
   
   @Test
@@ -45,20 +45,20 @@ class DueGroupClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(DueGroupDto.class))
-        .thenReturn(new DueGroupDto());
+    Mockito.when(response.readEntity(DeadlineGroupDto.class))
+        .thenReturn(new DeadlineGroupDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
-    assertInstanceOf(DueGroupDto.class, client.getOne(null, null, null, null));
+    assertInstanceOf(DeadlineGroupDto.class, client.getOne(null, null, null, null));
   }
 
   @Test
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(DueGroupDto.class))
-        .thenReturn(new DueGroupDto());
+    Mockito.when(response.readEntity(DeadlineGroupDto.class))
+        .thenReturn(new DeadlineGroupDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
-    assertInstanceOf(DueGroupDto.class, client.getByIdentifier(null, null, null, null));
+    assertInstanceOf(DeadlineGroupDto.class, client.getByIdentifier(null, null, null, null));
   }
 
   @Test

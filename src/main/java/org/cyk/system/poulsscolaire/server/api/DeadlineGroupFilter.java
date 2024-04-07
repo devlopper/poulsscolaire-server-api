@@ -5,13 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente le filtre de {@link DueGroupDto}.
+ * Cette classe représente le filtre de {@link DeadlineGroupDto}.
  *
  * @author Christian
  *
  */
 @Getter
 @Setter
-public class DueGroupFilter extends AbstractIdentifiableFilter {
+public class DeadlineGroupFilter extends AbstractIdentifiableFilter {
   
 }

@@ -8,6 +8,6 @@ import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCoda
  * @author Christian
  *
  */
-public class DueGroupDto extends AbstractIdentifiableCodableNamableAuditableDto {
+public class DeadlineGroupDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
 }

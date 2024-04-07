@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import org.junit.jupiter.api.Test;
 
-class DueDateFilterTest {
+class DeadlineFilterTest {
   
   @Test
   void toDto() {
-    DueDateFilter filter = new DueDateFilter();
+    DeadlineFilter filter = new DeadlineFilter();
     FilterDto dto = filter.toDto();
     assertNotNull(dto);
   }

@@ -33,14 +33,14 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link DueGroupDto}.
+ * Cette interface représente les services de {@link DeadlineGroupDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = DueGroupService.PATH)
+@Path(value = DeadlineGroupService.PATH)
 @Tag(name = "Gestion des groupes d'échéance")
-public interface DueGroupService extends SpecificService {
+public interface DeadlineGroupService extends SpecificService {
 
   String PATH = "groupes-echeances";
 
@@ -62,7 +62,7 @@ public interface DueGroupService extends SpecificService {
       description = "Ce service permet de créer un groupe d'échéance")
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(DueGroupCreateRequestDto request);
+  Response create(DeadlineGroupCreateRequestDto request);
 
   /**
    * Cette classe représente la requête de création.
@@ -75,7 +75,7 @@ public interface DueGroupService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class DueGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
+  class DeadlineGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_GROUPE_ECHEANCE";
@@ -98,10 +98,10 @@ public interface DueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<DueGroupDto> {
+  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<DeadlineGroupDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<DueGroupDto> datas;
+    private List<DeadlineGroupDto> datas;
   }
 
   String GET_ONE_IDENTIFIER = "OBTENTION_UN_GROUPE_ECHEANCE";
@@ -138,7 +138,7 @@ public interface DueGroupService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER,
       description = "Ce service permet de mettre à jour un groupe d'échéance")
-  Response update(DueGroupUpdateRequestDto request);
+  Response update(DeadlineGroupUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -151,7 +151,7 @@ public interface DueGroupService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractCodableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class DueGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
+  class DeadlineGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_GROUPE_ECHEANCE";

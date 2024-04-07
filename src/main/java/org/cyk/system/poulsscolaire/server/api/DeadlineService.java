@@ -31,23 +31,23 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link DueDateDto}.
+ * Cette interface représente les services de {@link DeadlineDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = DueDateService.PATH)
-@Tag(name = "Gestion des dates d'échéances")
-public interface DueDateService extends SpecificService {
+@Path(value = DeadlineService.PATH)
+@Tag(name = "Gestion des échéances")
+public interface DeadlineService extends SpecificService {
 
-  String PATH = "dates-echeance";
+  String PATH = "echeances";
 
-  String CREATE_IDENTIFIER = "CREATION_DATE_ECHEANCE";
+  String CREATE_IDENTIFIER = "CREATION_ECHEANCE";
 
   String CREATE_PATH = "";
 
   /**
-   * Cette méthode permet de créer une date d'échéance.
+   * Cette méthode permet de créer une échéance.
    *
    * @param request requête
    * @return réponse
@@ -56,11 +56,11 @@ public interface DueDateService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = CREATE_IDENTIFIER, summary = "Création d'une date d'échéance",
-      description = "Ce service permet de créer une date d'échéance")
+  @Operation(operationId = CREATE_IDENTIFIER, summary = "Création d'une échéance",
+      description = "Ce service permet de créer une échéance")
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(DueDateCreateRequestDto request);
+  Response create(DeadlineCreateRequestDto request);
 
   /**
    * Cette classe représente la requête de création.
@@ -71,9 +71,9 @@ public interface DueDateService extends SpecificService {
   @Getter
   @Setter
   @JsonbPropertyOrder(
-      value = {DueDateCreateRequestDto.FIELD_GROUP_IDENTIFIER, DueDateCreateRequestDto.FIELD_DATE,
+      value = {DeadlineCreateRequestDto.FIELD_GROUP_IDENTIFIER, DeadlineCreateRequestDto.FIELD_DATE,
           AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class DueDateCreateRequestDto extends AbstractAuditedRequestJsonDto {
+  class DeadlineCreateRequestDto extends AbstractAuditedRequestJsonDto {
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
 
@@ -87,7 +87,7 @@ public interface DueDateService extends SpecificService {
     public static final String JSON_DATE = "date";
   }
 
-  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_DATE_ECHEANCE";
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_ECHEANCE";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
@@ -96,7 +96,7 @@ public interface DueDateService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = "Ce service permet d'obtenir des dates d'échéance")
+      description = "Ce service permet d'obtenir des échéances")
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -107,13 +107,13 @@ public interface DueDateService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<DueDateDto> {
+  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<DeadlineDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<DueDateDto> datas;
+    private List<DeadlineDto> datas;
   }
 
-  String GET_ONE_IDENTIFIER = "OBTENTION_UN_DATE_ECHEANCE";
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_ECHEANCE";
 
   String GET_ONE_PATH = "obtention/un";
 
@@ -122,10 +122,10 @@ public interface DueDateService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = "Ce service permet d'obtenir une date d'échéance")
+      description = "Ce service permet d'obtenir une échéance")
   Response getOne(GetOneRequestDto request);
 
-  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_DATE_ECHEANCE";
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_ECHEANCE";
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
@@ -134,10 +134,10 @@ public interface DueDateService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
-      description = "Ce service permet d'obtenir par identifiant une date d'échéance")
+      description = "Ce service permet d'obtenir par identifiant une échéance")
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
-  String UPDATE_IDENTIFIER = "MISE_A_JOUR_DATE_ECHEANCE";
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_ECHEANCE";
 
   String UPDATE_PATH = "";
 
@@ -146,8 +146,8 @@ public interface DueDateService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER,
-      description = "Ce service permet de mettre à jour une date d'échéance")
-  Response update(DueDateUpdateRequestDto request);
+      description = "Ce service permet de mettre à jour une échéance")
+  Response update(DeadlineUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -158,9 +158,9 @@ public interface DueDateService extends SpecificService {
   @Getter
   @Setter
   @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      DueDateUpdateRequestDto.FIELD_GROUP_IDENTIFIER, DueDateUpdateRequestDto.FIELD_DATE,
+      DeadlineUpdateRequestDto.FIELD_GROUP_IDENTIFIER, DeadlineUpdateRequestDto.FIELD_DATE,
       AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class DueDateUpdateRequestDto extends ByIdentifierRequestDto {
+  class DeadlineUpdateRequestDto extends ByIdentifierRequestDto {
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
 
@@ -174,7 +174,7 @@ public interface DueDateService extends SpecificService {
     public static final String JSON_DATE = "date";
   }
 
-  String DELETE_IDENTIFIER = "SUPPRESSION_DATE_ECHEANCE";
+  String DELETE_IDENTIFIER = "SUPPRESSION_ECHEANCE";
 
   String DELETE_PATH = "";
 
@@ -183,6 +183,6 @@ public interface DueDateService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER,
-      description = "Ce service permet de supprimer une date d'échéance")
+      description = "Ce service permet de supprimer une échéance")
   Response delete(DeleteOneRequestDto request);
 }

@@ -6,20 +6,20 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.DueDateService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.DeadlineService.GetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class DueDateClientTest {
+class DeadlineClientTest {
   
-  DueDateService service;
-  DueDateClient client;
+  DeadlineService service;
+  DeadlineClient client;
 
   @BeforeEach
   void listenBeforeEach() {
-    service = Mockito.mock(DueDateService.class);
-    client = new DueDateClient().service(service);
+    service = Mockito.mock(DeadlineService.class);
+    client = new DeadlineClient().service(service);
   }
   
   @Test
@@ -45,20 +45,20 @@ class DueDateClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(DueDateDto.class))
-        .thenReturn(new DueDateDto());
+    Mockito.when(response.readEntity(DeadlineDto.class))
+        .thenReturn(new DeadlineDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
-    assertInstanceOf(DueDateDto.class, client.getOne(null, null, null, null));
+    assertInstanceOf(DeadlineDto.class, client.getOne(null, null, null, null));
   }
 
   @Test
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(DueDateDto.class))
-        .thenReturn(new DueDateDto());
+    Mockito.when(response.readEntity(DeadlineDto.class))
+        .thenReturn(new DeadlineDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
-    assertInstanceOf(DueDateDto.class, client.getByIdentifier(null, null, null, null));
+    assertInstanceOf(DeadlineDto.class, client.getByIdentifier(null, null, null, null));
   }
 
   @Test

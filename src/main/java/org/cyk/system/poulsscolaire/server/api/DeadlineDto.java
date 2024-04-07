@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente une date d'échéance.
+ * Cette classe représente une échéance.
  *
  * @author Christian
  *
@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class DueDateDto extends AbstractIdentifiableAuditableDto {
+public class DeadlineDto extends AbstractIdentifiableAuditableDto {
   
   @JsonbProperty(JSON_GROUP_IDENTIFIER)
   private String groupIdentifier;
