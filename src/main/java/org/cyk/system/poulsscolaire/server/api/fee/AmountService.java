@@ -79,16 +79,16 @@ public interface AmountService extends SpecificService {
     private long value;
 
     @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
-    private long registrationValuePart;
+    private Long registrationValuePart;
 
     @JsonbProperty(JSON_OPTIONAL)
-    private boolean optional;
+    private Boolean optional;
 
     @JsonbProperty(JSON_PAYMENT_ORDER_NUMBER)
-    private int paymentOrderNumber;
+    private Integer paymentOrderNumber;
 
     @JsonbProperty(JSON_RENEWABLE)
-    private boolean renewable;
+    private Boolean renewable;
 
     @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
     private String deadlineIdentifier;
@@ -110,13 +110,13 @@ public interface AmountService extends SpecificService {
   interface AmountSaveData {
     long getValue();
 
-    long getRegistrationValuePart();
+    Long getRegistrationValuePart();
 
-    boolean isOptional();
+    Boolean getOptional();
 
-    int getPaymentOrderNumber();
+    Integer getPaymentOrderNumber();
 
-    boolean isRenewable();
+    Boolean getRenewable();
 
     String getDeadlineIdentifier();
 
@@ -208,16 +208,16 @@ public interface AmountService extends SpecificService {
     private long value;
 
     @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
-    private long registrationValuePart;
+    private Long registrationValuePart;
 
     @JsonbProperty(JSON_OPTIONAL)
-    private boolean optional;
+    private Boolean optional;
 
     @JsonbProperty(JSON_PAYMENT_ORDER_NUMBER)
-    private int paymentOrderNumber;
+    private Integer paymentOrderNumber;
 
     @JsonbProperty(JSON_RENEWABLE)
-    private boolean renewable;
+    private Boolean renewable;
 
     @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
     private String deadlineIdentifier;

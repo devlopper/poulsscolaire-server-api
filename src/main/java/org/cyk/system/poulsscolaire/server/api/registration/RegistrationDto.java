@@ -41,9 +41,13 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_SENIORITY_AS_STRING)
   private String seniorityAsString;
   
+  public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
   public static final String FIELD_STUDENT_AS_STRING = "studentAsString";
+  public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
   public static final String FIELD_SCHOOLING_AS_STRING = "schoolingAsString";
+  public static final String FIELD_ASSIGNMENT_TYPE_IDENTIFIER = "assignmentTypeIdentifier";
   public static final String FIELD_ASSIGNMENT_TYPE_AS_STRING = "assignmentTypeAsString";
+  public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
   public static final String FIELD_SENIORITY_AS_STRING = "seniorityAsString";
   
   public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
