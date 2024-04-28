@@ -22,10 +22,7 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   
   @JsonbProperty(JSON_MODE_AS_STRING)
   private String modeAsString;
-  
-  @JsonbProperty(JSON_AMOUNT)
-  private Long amount;
-  
+    
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
   
@@ -34,7 +31,6 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   
   public static final String FIELD_MODE_IDENTIFIER = "modeIdentifier";
   public static final String FIELD_MODE_AS_STRING = "modeAsString";
-  public static final String FIELD_AMOUNT = "amount";
   public static final String FIELD_AMOUNT_AS_STRING = "amountAsString";
   public static final String FIELD_DATE_AS_STRING = "dateAsString";
   

@@ -75,7 +75,7 @@ public interface PaymentAdjustedFeeService extends SpecificService {
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class PaymentAdjustedFeeCreateRequestDto extends AbstractAuditedRequestJsonDto {
     @JsonbProperty(JSON_PAYMENT_IDENTIFIER)
-    private String modeIdentifier;
+    private String paymentIdentifier;
 
     @JsonbProperty(JSON_ADJUSTED_FEE_IDENTIFIER)
     private String adjustedFeeIdentifier;
