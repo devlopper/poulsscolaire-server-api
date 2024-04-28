@@ -52,6 +52,27 @@ public class PaymentAdjustedFeeClient extends AbstractClient<PaymentAdjustedFeeS
         .execute(() -> service().create(request));
   }
 
+  /**
+   * {@link PaymentService#create}.
+   *
+   * @param paymentIdentifier identifiant paiement
+   * @param adjustedFeeIdentifier identifiant frais ajusté
+   * @param amount montant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public CreateResponseDto create(String paymentIdentifier, String adjustedFeeIdentifier,
+      int amount, String auditWho, String auditSession) {
+    PaymentAdjustedFeeCreateRequestDto request = new PaymentAdjustedFeeCreateRequestDto();
+    request.setPaymentIdentifier(paymentIdentifier);
+    request.setAdjustedFeeIdentifier(adjustedFeeIdentifier);
+    request.setAmount(amount);
+    request.setAuditWho(auditWho);
+    request.setAuditSession(auditSession);
+    return create(request);
+  }
+
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
         PaymentAdjustedFeeService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
@@ -137,6 +158,28 @@ public class PaymentAdjustedFeeClient extends AbstractClient<PaymentAdjustedFeeS
   public IdentifiableResponseDto update(PaymentAdjustedFeeUpdateRequestDto request) {
     return new IdentifiableExecutor(PaymentAdjustedFeeService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
+  }
+
+  /**
+   * {@link PaymentService#update}.
+   *
+   * @param paymentIdentifier identifiant paiement
+   * @param adjustedFeeIdentifier identifiant frais ajusté
+   * @param amount montant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(String identifier, String paymentIdentifier,
+      String adjustedFeeIdentifier, int amount, String auditWho, String auditSession) {
+    PaymentAdjustedFeeUpdateRequestDto request = new PaymentAdjustedFeeUpdateRequestDto();
+    request.setIdentifier(identifier);
+    request.setPaymentIdentifier(paymentIdentifier);
+    request.setAdjustedFeeIdentifier(adjustedFeeIdentifier);
+    request.setAmount(amount);
+    request.setAuditWho(auditWho);
+    request.setAuditSession(auditSession);
+    return update(request);
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {

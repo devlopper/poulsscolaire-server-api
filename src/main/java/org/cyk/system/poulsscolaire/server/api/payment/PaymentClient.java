@@ -52,6 +52,25 @@ public class PaymentClient extends AbstractClient<PaymentService>
         .execute(() -> service().create(request));
   }
 
+  /**
+   * {@link PaymentService#create}.
+   *
+   * @param modeIdentifier identifiant mode
+   * @param amount montant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public CreateResponseDto create(String modeIdentifier, int amount, String auditWho,
+      String auditSession) {
+    PaymentCreateRequestDto request = new PaymentCreateRequestDto();
+    request.setModeIdentifier(modeIdentifier);
+    request.setAmount(amount);
+    request.setAuditWho(auditWho);
+    request.setAuditSession(auditSession);
+    return create(request);
+  }
+
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
         PaymentService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
@@ -79,8 +98,8 @@ public class PaymentClient extends AbstractClient<PaymentService>
   }
 
   public PaymentDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<PaymentDto>(PaymentDto.class,
-        PaymentService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
+    return new GetOneExecutor<PaymentDto>(PaymentDto.class, PaymentService.GET_ONE_IDENTIFIER)
+        .execute(() -> service().getOne(request));
   }
 
   /**
@@ -124,8 +143,8 @@ public class PaymentClient extends AbstractClient<PaymentService>
    * @return réponse
    */
   @Override
-  public PaymentDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
+  public PaymentDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
     request.setProjection(projection);
@@ -137,6 +156,27 @@ public class PaymentClient extends AbstractClient<PaymentService>
   public IdentifiableResponseDto update(PaymentUpdateRequestDto request) {
     return new IdentifiableExecutor(PaymentService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
+  }
+  
+  /**
+   * {@link PaymentService#update}.
+   *
+   * @param identifier identifiant
+   * @param modeIdentifier identifiant mode
+   * @param amount montant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(String identifier, String modeIdentifier, int amount,
+      String auditWho, String auditSession) {
+    PaymentUpdateRequestDto request = new PaymentUpdateRequestDto();
+    request.setIdentifier(identifier);
+    request.setModeIdentifier(modeIdentifier);
+    request.setAmount(amount);
+    request.setAuditWho(auditWho);
+    request.setAuditSession(auditSession);
+    return update(request);
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {

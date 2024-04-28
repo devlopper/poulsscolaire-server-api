@@ -28,7 +28,10 @@ public class PaymentAdjustedFeeDto extends AbstractIdentifiableAuditableDto {
   
   @JsonbProperty(JSON_ADJUSTED_FEE_AS_STRING)
   private String adjustedFeeAsString;
-    
+  
+  @JsonbProperty(JSON_AMOUNT)
+  private Integer amount;
+  
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
   

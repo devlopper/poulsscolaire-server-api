@@ -7,8 +7,6 @@ import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
 import org.cyk.system.poulsscolaire.server.api.payment.PaymentAdjustedFeeService.GetManyResponseDto;
-import org.cyk.system.poulsscolaire.server.api.payment.PaymentAdjustedFeeService.PaymentAdjustedFeeCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.payment.PaymentAdjustedFeeService.PaymentAdjustedFeeUpdateRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -30,8 +28,7 @@ class PaymentAdjustedFeeClientTest {
     Mockito.when(response.getStatus()).thenReturn(Response.Status.CREATED.getStatusCode());
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
-    assertInstanceOf(CreateResponseDto.class,
-        client.create(new PaymentAdjustedFeeCreateRequestDto()));
+    assertInstanceOf(CreateResponseDto.class, client.create(null, null, 0, null, null));
   }
 
   @Test
@@ -71,8 +68,7 @@ class PaymentAdjustedFeeClientTest {
     Mockito.when(response.readEntity(IdentifiableResponseDto.class))
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
-    assertInstanceOf(IdentifiableResponseDto.class,
-        client.update(new PaymentAdjustedFeeUpdateRequestDto()));
+    assertInstanceOf(IdentifiableResponseDto.class, client.update(null, null, null, 0, null, null));
   }
 
   @Test
