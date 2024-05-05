@@ -9,6 +9,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestD
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.json.bind.annotation.JsonbPropertyOrder;
@@ -92,6 +93,47 @@ public interface SchoolingService extends SpecificService {
     public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
   }
 
+  String GENERATE_IDENTIFIER = "GENERATION_SCOLARITE";
+
+  String GENERATE_PATH = "generation";
+
+  @Path(GENERATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = GENERATE_IDENTIFIER,
+      description = "Ce service permet de générer les scolarités")
+  Response generate(SchoolingGenerateRequestDto request);
+  
+  /**
+   * Cette classe représente la requête de génération.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  @JsonbPropertyOrder(value = {AbstractRequestDto.FIELD_AUDIT_WHO,
+      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
+  class SchoolingGenerateRequestDto extends AbstractAuditedRequestJsonDto {
+    
+  }
+  
+  /**
+   * Cette classe représente la réponse de génération.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  @JsonbPropertyOrder(value = {AbstractRequestDto.FIELD_AUDIT_WHO,
+      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
+  class SchoolingGenerateResponseDto extends AbstractResponseDto {
+    @JsonbProperty("nombre")
+    int count;
+  }
+  
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_SCOLARITE";
 
   String GET_MANY_PATH = "obtention/plusieurs";

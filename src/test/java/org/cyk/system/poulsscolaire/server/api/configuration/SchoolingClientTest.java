@@ -7,6 +7,7 @@ import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGenerateResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -78,5 +79,15 @@ class SchoolingClientTest {
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.delete(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class, client.deleteByIdentifier(null, null, null));
+  }
+
+  @Test
+  void generate() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(SchoolingGenerateResponseDto.class))
+        .thenReturn(new SchoolingGenerateResponseDto());
+    Mockito.when(service.generate(any())).thenReturn(response);
+    assertInstanceOf(SchoolingGenerateResponseDto.class, client.generate(null, null));
   }
 }

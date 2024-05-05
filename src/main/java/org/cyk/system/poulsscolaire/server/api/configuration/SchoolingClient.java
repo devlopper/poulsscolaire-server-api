@@ -21,6 +21,8 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.GetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGenerateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGenerateResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingUpdateRequestDto;
 
 /**
@@ -70,6 +72,25 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return create(request);
+  }
+
+  public SchoolingGenerateResponseDto generate(SchoolingGenerateRequestDto request) {
+    return new GetOneExecutor<SchoolingGenerateResponseDto>(SchoolingGenerateResponseDto.class,
+        SchoolingService.GENERATE_IDENTIFIER).execute(() -> service().generate(request));
+  }
+
+  /**
+   * {@link SchoolingService#generate}.
+   *
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public SchoolingGenerateResponseDto generate(String auditWho, String auditSession) {
+    SchoolingGenerateRequestDto request = new SchoolingGenerateRequestDto();
+    request.setAuditWho(auditWho);
+    request.setAuditSession(auditSession);
+    return generate(request);
   }
 
   public GetManyResponseDto getMany(GetManyRequestDto request) {
