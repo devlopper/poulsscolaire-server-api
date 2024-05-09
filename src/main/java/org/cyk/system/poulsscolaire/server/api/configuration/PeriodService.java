@@ -32,7 +32,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 @Tag(name = "Gestion des périodes")
 public interface PeriodService extends SpecificService {
 
-  String PATH = "ecoles";
+  String PATH = "periodes";
 
   String REPATRIATE_IDENTIFIER = "RAPATRIEMENT_PERIODE";
 

@@ -32,7 +32,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 @Tag(name = "Gestion des branches")
 public interface BranchService extends SpecificService {
 
-  String PATH = "ecoles";
+  String PATH = "branches";
 
   String REPATRIATE_IDENTIFIER = "RAPATRIEMENT_BRANCHE";
 
