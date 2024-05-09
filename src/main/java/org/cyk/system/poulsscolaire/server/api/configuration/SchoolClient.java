@@ -14,6 +14,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolService.SchoolRepatriateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolService.SchoolRepatriateResponseDto;
 
 /**
  * Cette classe représente un client de {@link SchoolService}.
@@ -32,6 +34,25 @@ public class SchoolClient extends AbstractClient<SchoolService>
     return (SchoolClient) super.service(service);
   }
 
+  public SchoolRepatriateResponseDto repatriate(SchoolRepatriateRequestDto request) {
+    return new GetOneExecutor<SchoolRepatriateResponseDto>(SchoolRepatriateResponseDto.class,
+        SchoolService.REPATRIATE_IDENTIFIER).execute(() -> service().repatriate(request));
+  }
+
+  /**
+   * {@link SchoolService#repatriate}.
+   *
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public SchoolRepatriateResponseDto repatriate(String auditWho, String auditSession) {
+    SchoolRepatriateRequestDto request = new SchoolRepatriateRequestDto();
+    request.setAuditWho(auditWho);
+    request.setAuditSession(auditSession);
+    return repatriate(request);
+  }
+  
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
         SchoolService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
