@@ -1,11 +1,15 @@
 package org.cyk.system.poulsscolaire.server.api.configuration;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -30,6 +34,47 @@ public interface PeriodService extends SpecificService {
 
   String PATH = "ecoles";
 
+  String REPATRIATE_IDENTIFIER = "RAPATRIEMENT_PERIODE";
+
+  String REPATRIATE_PATH = "rapatriement";
+
+  @Path(REPATRIATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = REPATRIATE_IDENTIFIER,
+      description = "Ce service permet de rapatrier des périodes")
+  Response repatriate(PeriodRepatriateRequestDto request);
+  
+  /**
+   * Cette classe représente la requête de rapatriement.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  @JsonbPropertyOrder(value = {AbstractRequestDto.FIELD_AUDIT_WHO,
+      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
+  class PeriodRepatriateRequestDto extends AbstractAuditedRequestJsonDto {
+    
+  }
+  
+  /**
+   * Cette classe représente la réponse de génération.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  @JsonbPropertyOrder(value = {AbstractRequestDto.FIELD_AUDIT_WHO,
+      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
+  class PeriodRepatriateResponseDto extends AbstractResponseDto {
+    @JsonbProperty("nombre")
+    int count;
+  }
+  
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_PERIODE";
 
   String GET_MANY_PATH = "obtention/plusieurs";

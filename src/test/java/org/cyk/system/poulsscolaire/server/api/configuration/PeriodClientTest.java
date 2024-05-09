@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 
 import jakarta.ws.rs.core.Response;
 import org.cyk.system.poulsscolaire.server.api.configuration.PeriodService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.PeriodService.PeriodRepatriateResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -20,6 +21,16 @@ class PeriodClientTest {
     client = new PeriodClient().service(service);
   }
 
+  @Test
+  void repatriate() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(PeriodRepatriateResponseDto.class))
+        .thenReturn(new PeriodRepatriateResponseDto());
+    Mockito.when(service.repatriate(any())).thenReturn(response);
+    assertInstanceOf(PeriodRepatriateResponseDto.class, client.repatriate(null, null));
+  }
+  
   @Test
   void getMany() {
     Response response = Mockito.mock(Response.class);
