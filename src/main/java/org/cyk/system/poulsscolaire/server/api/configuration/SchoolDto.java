@@ -1,6 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.configuration;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableDto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +14,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class SchoolDto extends AbstractIdentifiableCodableNamableDto {
+public class SchoolDto extends AbstractIdentifiableNamableDto {
   
 }
