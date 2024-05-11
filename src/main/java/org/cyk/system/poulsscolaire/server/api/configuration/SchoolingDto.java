@@ -41,11 +41,23 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_FEE_AMOUNT_VALUE_AS_STRING)
   private String feeAmountValueAsString;
 
+  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE)
+  private Long notOptionalFeeAmountValue;
+
+  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE_AS_STRING)
+  private String notOptionalFeeAmountValueAsString;
+
   @JsonbProperty(JSON_FEE_AMOUNT_REGISTRATION_VALUE_PART)
   private Long feeAmountRegistrationValuePart;
 
   @JsonbProperty(JSON_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
   private String feeAmountRegistrationValuePartAsString;
+
+  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART)
+  private Long notOptionalFeeAmountRegistrationValuePart;
+
+  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
+  private String notOptionalFeeAmountRegistrationValuePartAsString;
 
   public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
   public static final String FIELD_SCHOOL_AS_STRING = "schoolAsString";
@@ -55,17 +67,31 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String FIELD_PERIOD_AS_STRING = "periodAsString";
   public static final String FIELD_FEE_AMOUNT_VALUE = "feeAmountValue";
   public static final String FIELD_FEE_AMOUNT_VALUE_AS_STRING = "feeAmountValueAsString";
+  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "notOptionalFeeAmountValue";
+  public static final String FIELDT_NOT_OPTIONAL_FEE_AMOUN_VALUE_AS_STRING =
+      "notOptionalFeeAmountValueAsString";
   public static final String FIELD_FEE_AMOUNT_REGISTRATION_VALUE_PART =
       "feeAmountRegistrationValuePart";
   public static final String FIELD_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
       "feeAmountRegistrationValuePartAsString";
+  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART =
+      "notOptionalFeeAmountRegistrationValuePart";
+  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
+      "notOptionalFeeAmountRegistrationValuePartAsString";
 
   public static final String JSON_FEE_AMOUNT_VALUE = "montantFrais";
   public static final String JSON_FEE_AMOUNT_VALUE_AS_STRING = "montantFraisChaine";
+  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "montantFraisNonFacultatif";
+  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE_AS_STRING =
+      "montantFraisNonFacultatifChaine";
   public static final String JSON_FEE_AMOUNT_REGISTRATION_VALUE_PART =
       "montantFraisPartValeurInscription";
   public static final String JSON_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
       "montantFraisPartValeurInscriptionChaine";
+  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART =
+      "montantFraisPartValeurInscriptionNonFacultatif";
+  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
+      "montantFraisPartValeurInscriptionNonFacultatifChaine";
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
   public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
