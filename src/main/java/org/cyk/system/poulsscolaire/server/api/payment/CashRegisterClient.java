@@ -57,14 +57,17 @@ public class CashRegisterClient extends AbstractClient<CashRegisterService>
    *
    * @param code code
    * @param name nom
+   * @param schoolIdentifier identifiant école
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
+  public CreateResponseDto create(String code, String name, String schoolIdentifier,
+      String auditWho, String auditSession) {
     CashRegisterCreateRequestDto request = new CashRegisterCreateRequestDto();
     request.setCode(code);
     request.setName(name);
+    request.setSchoolIdentifier(schoolIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return create(request);
@@ -163,16 +166,18 @@ public class CashRegisterClient extends AbstractClient<CashRegisterService>
    * @param identifier identifiant
    * @param code code
    * @param name nom
+   * @param schoolIdentifier identifiant école
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public IdentifiableResponseDto update(String identifier, String code, String name,
-      String auditWho, String auditSession) {
+      String schoolIdentifier, String auditWho, String auditSession) {
     CashRegisterUpdateRequestDto request = new CashRegisterUpdateRequestDto();
     request.setIdentifier(identifier);
     request.setCode(code);
     request.setName(name);
+    request.setSchoolIdentifier(schoolIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return update(request);

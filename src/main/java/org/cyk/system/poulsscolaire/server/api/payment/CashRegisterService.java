@@ -76,6 +76,12 @@ public interface CashRegisterService extends SpecificService {
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class CashRegisterCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+
+    public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
+
+    public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_CAISSE_ENREGISTREUSE";
@@ -152,6 +158,12 @@ public interface CashRegisterService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class CashRegisterUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+
+    public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
+
+    public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_CAISSE_ENREGISTREUSE";
