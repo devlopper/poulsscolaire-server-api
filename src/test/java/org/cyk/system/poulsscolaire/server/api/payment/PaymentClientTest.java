@@ -28,7 +28,7 @@ class PaymentClientTest {
     Mockito.when(response.getStatus()).thenReturn(Response.Status.CREATED.getStatusCode());
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
-    assertInstanceOf(CreateResponseDto.class, client.create(null, 0, null, null));
+    assertInstanceOf(CreateResponseDto.class, client.create(null, null, 0, null, null));
   }
 
   @Test

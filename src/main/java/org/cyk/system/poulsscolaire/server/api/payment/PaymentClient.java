@@ -55,15 +55,17 @@ public class PaymentClient extends AbstractClient<PaymentService>
   /**
    * {@link PaymentService#create}.
    *
+   * @param registrationIdentifier identifiant inscription
    * @param modeIdentifier identifiant mode
    * @param amount montant
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String modeIdentifier, int amount, String auditWho,
-      String auditSession) {
+  public CreateResponseDto create(String registrationIdentifier, String modeIdentifier, int amount,
+      String auditWho, String auditSession) {
     PaymentCreateRequestDto request = new PaymentCreateRequestDto();
+    request.setRegistrationIdentifier(registrationIdentifier);
     request.setModeIdentifier(modeIdentifier);
     request.setAmount(amount);
     request.setAuditWho(auditWho);
@@ -157,7 +159,7 @@ public class PaymentClient extends AbstractClient<PaymentService>
     return new IdentifiableExecutor(PaymentService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
-  
+
   /**
    * {@link PaymentService#update}.
    *

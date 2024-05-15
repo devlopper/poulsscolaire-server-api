@@ -17,6 +17,9 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   
+  @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
+  private String registrationIdentifier;
+  
   @JsonbProperty(JSON_MODE_IDENTIFIER)
   private String modeIdentifier;
   
@@ -32,12 +35,14 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_DATE_AS_STRING)
   private String dateAsString;
   
+  public static final String FIELD_REGISTRATION_IDENTIFIER = "registrationIdentifier";
   public static final String FIELD_MODE_IDENTIFIER = "modeIdentifier";
   public static final String FIELD_MODE_AS_STRING = "modeAsString";
   public static final String FIELD_AMOUNT = "amount";
   public static final String FIELD_AMOUNT_AS_STRING = "amountAsString";
   public static final String FIELD_DATE_AS_STRING = "dateAsString";
   
+  public static final String JSON_REGISTRATION_IDENTIFIER = "idInscription";
   public static final String JSON_MODE_IDENTIFIER = "idMode";
   public static final String JSON_MODE_AS_STRING = "modeChaine";
   public static final String JSON_AMOUNT = "montant";

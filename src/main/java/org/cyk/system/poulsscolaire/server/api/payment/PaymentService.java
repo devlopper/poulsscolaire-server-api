@@ -69,19 +69,25 @@ public interface PaymentService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(
-      value = {PaymentCreateRequestDto.FIELD_MODE_IDENTIFIER, PaymentCreateRequestDto.FIELD_AMOUNT,
-          AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
+  @JsonbPropertyOrder(value = {PaymentCreateRequestDto.FIELD_REGISTRATION_IDENTIFIER,
+      PaymentCreateRequestDto.FIELD_MODE_IDENTIFIER, PaymentCreateRequestDto.FIELD_AMOUNT,
+      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class PaymentCreateRequestDto extends AbstractAuditedRequestJsonDto {
+    @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
+    private String registrationIdentifier;
+
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private int amount;
 
+    public static final String FIELD_REGISTRATION_IDENTIFIER = "registrationIdentifier";
     public static final String FIELD_MODE_IDENTIFIER = "modeIdentifier";
     public static final String FIELD_AMOUNT = "amount";
 
+    public static final String JSON_REGISTRATION_IDENTIFIER =
+        PaymentDto.JSON_REGISTRATION_IDENTIFIER;
     public static final String JSON_MODE_IDENTIFIER = PaymentDto.JSON_MODE_IDENTIFIER;
     public static final String JSON_AMOUNT = PaymentDto.JSON_AMOUNT;
   }
