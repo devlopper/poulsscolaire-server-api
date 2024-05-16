@@ -24,7 +24,7 @@ public abstract class AbstractAmountContainerDto extends AbstractIdentifiableAud
   private String amountAsString;
   
   @JsonbProperty(JSON_AMOUNT_VALUE)
-  private long amountValue;
+  private int amountValue;
 
   @JsonbProperty(JSON_AMOUNT_VALUE_AS_STRING)
   private String amountValueAsString;

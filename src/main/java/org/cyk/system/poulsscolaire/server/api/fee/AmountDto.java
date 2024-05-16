@@ -18,7 +18,7 @@ import lombok.Setter;
 public class AmountDto extends AbstractIdentifiableAuditableDto {
 
   @JsonbProperty(JSON_VALUE)
-  private long value;
+  private int value;
 
   @JsonbProperty(JSON_VALUE_AS_STRING)
   private String valueAsString;

@@ -76,7 +76,7 @@ public interface AmountService extends SpecificService {
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class AmountCreateRequestDto extends AbstractAuditedRequestJsonDto implements AmountSaveData {
     @JsonbProperty(JSON_VALUE)
-    private long value;
+    private int value;
 
     @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
     private Long registrationValuePart;
@@ -108,7 +108,7 @@ public interface AmountService extends SpecificService {
    *
    */
   interface AmountSaveData {
-    long getValue();
+    int getValue();
 
     Long getRegistrationValuePart();
 
@@ -205,7 +205,7 @@ public interface AmountService extends SpecificService {
       AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class AmountUpdateRequestDto extends ByIdentifierRequestDto implements AmountSaveData {
     @JsonbProperty(JSON_VALUE)
-    private long value;
+    private int value;
 
     @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
     private Long registrationValuePart;
