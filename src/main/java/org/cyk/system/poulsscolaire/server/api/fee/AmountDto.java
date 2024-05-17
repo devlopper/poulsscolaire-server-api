@@ -24,7 +24,7 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
   private String valueAsString;
 
   @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
-  private Long registrationValuePart;
+  private Integer registrationValuePart;
 
   @JsonbProperty(JSON_REGISTRATION_VALUE_PART_AS_STRING)
   private String registrationValuePartAsString;

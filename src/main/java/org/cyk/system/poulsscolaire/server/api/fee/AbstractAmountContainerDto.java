@@ -30,7 +30,7 @@ public abstract class AbstractAmountContainerDto extends AbstractIdentifiableAud
   private String amountValueAsString;
 
   @JsonbProperty(JSON_AMOUNT_REGISTRATION_VALUE_PART)
-  private Long amountRegistrationValuePart;
+  private Integer amountRegistrationValuePart;
 
   @JsonbProperty(JSON_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
   private String amountRegistrationValuePartAsString;

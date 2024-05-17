@@ -79,7 +79,7 @@ public interface AmountService extends SpecificService {
     private int value;
 
     @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
-    private Long registrationValuePart;
+    private Integer registrationValuePart;
 
     @JsonbProperty(JSON_OPTIONAL)
     private Boolean optional;
@@ -110,7 +110,7 @@ public interface AmountService extends SpecificService {
   interface AmountSaveData {
     int getValue();
 
-    Long getRegistrationValuePart();
+    Integer getRegistrationValuePart();
 
     Boolean getOptional();
 
@@ -208,7 +208,7 @@ public interface AmountService extends SpecificService {
     private int value;
 
     @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
-    private Long registrationValuePart;
+    private Integer registrationValuePart;
 
     @JsonbProperty(JSON_OPTIONAL)
     private Boolean optional;

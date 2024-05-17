@@ -59,7 +59,7 @@ public class AmountClient extends AbstractClient<AmountService>
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(int value, long registrationValuePart, boolean optional,
+  public CreateResponseDto create(int value, int registrationValuePart, boolean optional,
       int paymentOrderNumber, boolean renewable, String deadlineIdentifier, String auditWho,
       String auditSession) {
     AmountCreateRequestDto request = new AmountCreateRequestDto();
@@ -169,7 +169,7 @@ public class AmountClient extends AbstractClient<AmountService>
    * @param auditSession audit session
    * @return réponse
    */
-  public IdentifiableResponseDto update(String identifier, int value, long registrationValuePart,
+  public IdentifiableResponseDto update(String identifier, int value, int registrationValuePart,
       boolean optional, int paymentOrderNumber, boolean renewable, String deadlineIdentifier,
       String auditWho, String auditSession) {
     AmountUpdateRequestDto request = new AmountUpdateRequestDto();
