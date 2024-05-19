@@ -64,6 +64,7 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String FIELD_LAST_NAMES = "lastNames";
   public static final String FIELD_EMAIL_ADDRESS = "emailAddress";
   public static final String FIELD_PHONE_NUMBER = "phoneNumber";
+  public static final String FIELD_GENDER_IDENTIFIER = "genderIdentifier";
   public static final String FIELD_GENDER_AS_STRING = "genderAsString";
   public static final String FIELD_IS_MASCULINE = "isMasculine";
   public static final String FIELD_FATHER_AS_STRING = "fatherAsString";
@@ -87,4 +88,14 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_BRANCH_AS_STRING = "brancheChaine";
   public static final String JSON_ASSIGNMENT_TYPE_AS_STRING = "typeAffectationChaine";
   public static final String JSON_SENIORITY_AS_STRING = "ancienneteChaine";
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "élève";
+  
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + "s";
 }

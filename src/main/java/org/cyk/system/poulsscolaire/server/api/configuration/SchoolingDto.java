@@ -98,4 +98,14 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_BRANCH_AS_STRING = "brancheChaine";
   public static final String JSON_PERIOD_IDENTIFIER = "idPeriode";
   public static final String JSON_PERIOD_AS_STRING = "periodeChaine";
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "scolarité";
+  
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + "s";
 }
