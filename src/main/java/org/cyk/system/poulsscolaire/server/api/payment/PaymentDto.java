@@ -48,4 +48,14 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_AMOUNT = "montant";
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
   public static final String JSON_DATE_AS_STRING = "dateChaine";
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "paiement";
+  
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + "s";
 }

@@ -65,6 +65,7 @@ public class FeeDto extends AbstractAmountContainerDto {
   public static final String JSON_SCHOOLING_SCHOOL_AS_STRING = "ecoleScolariteChaine";
   public static final String JSON_SCHOOLING_PERIOD_AS_STRING = "periodeScolariteChaine";
   public static final String JSON_SCHOOLING_BRANCH_AS_STRING = "brancheScolariteChaine";
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

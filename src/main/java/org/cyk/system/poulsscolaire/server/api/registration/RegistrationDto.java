@@ -41,6 +41,18 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_SENIORITY_AS_STRING)
   private String seniorityAsString;
   
+  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE)
+  private Integer notOptionalFeeAmountValue;
+
+  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE_AS_STRING)
+  private String notOptionalFeeAmountValueAsString;
+
+  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART)
+  private Integer notOptionalFeeAmountRegistrationValuePart;
+
+  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
+  private String notOptionalFeeAmountRegistrationValuePartAsString;
+  
   public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
   public static final String FIELD_STUDENT_AS_STRING = "studentAsString";
   public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
@@ -49,6 +61,13 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String FIELD_ASSIGNMENT_TYPE_AS_STRING = "assignmentTypeAsString";
   public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
   public static final String FIELD_SENIORITY_AS_STRING = "seniorityAsString";
+  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "notOptionalFeeAmountValue";
+  public static final String FIELDT_NOT_OPTIONAL_FEE_AMOUN_VALUE_AS_STRING =
+      "notOptionalFeeAmountValueAsString";
+  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART =
+      "notOptionalFeeAmountRegistrationValuePart";
+  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
+      "notOptionalFeeAmountRegistrationValuePartAsString";
   
   public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
   public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
@@ -58,6 +77,13 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_ASSIGNMENT_TYPE_AS_STRING = "typeAffectationChaine";
   public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   public static final String JSON_SENIORITY_AS_STRING = "ancienneteChaine";
+  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "montantFraisNonFacultatif";
+  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE_AS_STRING =
+      "montantFraisNonFacultatifChaine";
+  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART =
+      "montantFraisPartValeurInscriptionNonFacultatif";
+  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
+      "montantFraisPartValeurInscriptionNonFacultatifChaine";
   
   /**
    * Nom pour lecture humaine de la classe.

@@ -36,25 +36,25 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   private String periodAsString;
 
   @JsonbProperty(JSON_FEE_AMOUNT_VALUE)
-  private Long feeAmountValue;
+  private Integer feeAmountValue;
 
   @JsonbProperty(JSON_FEE_AMOUNT_VALUE_AS_STRING)
   private String feeAmountValueAsString;
 
   @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE)
-  private Long notOptionalFeeAmountValue;
+  private Integer notOptionalFeeAmountValue;
 
   @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE_AS_STRING)
   private String notOptionalFeeAmountValueAsString;
 
   @JsonbProperty(JSON_FEE_AMOUNT_REGISTRATION_VALUE_PART)
-  private Long feeAmountRegistrationValuePart;
+  private Integer feeAmountRegistrationValuePart;
 
   @JsonbProperty(JSON_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
   private String feeAmountRegistrationValuePartAsString;
 
   @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART)
-  private Long notOptionalFeeAmountRegistrationValuePart;
+  private Integer notOptionalFeeAmountRegistrationValuePart;
 
   @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
   private String notOptionalFeeAmountRegistrationValuePartAsString;
