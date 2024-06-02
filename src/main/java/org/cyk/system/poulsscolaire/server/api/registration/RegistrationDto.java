@@ -16,43 +16,55 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
-  
+
   @JsonbProperty(JSON_STUDENT_IDENTIFIER)
   private String studentIdentifier;
-  
+
   @JsonbProperty(JSON_STUDENT_AS_STRING)
   private String studentAsString;
-  
+
   @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
   private String schoolingIdentifier;
-  
+
   @JsonbProperty(JSON_SCHOOLING_AS_STRING)
   private String schoolingAsString;
-  
+
   @JsonbProperty(JSON_ASSIGNMENT_TYPE_IDENTIFIER)
   private String assignmentTypeIdentifier;
-  
+
   @JsonbProperty(JSON_ASSIGNMENT_TYPE_AS_STRING)
   private String assignmentTypeAsString;
-  
+
   @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
   private String seniorityIdentifier;
-  
+
   @JsonbProperty(JSON_SENIORITY_AS_STRING)
   private String seniorityAsString;
-  
-  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE)
-  private Integer notOptionalFeeAmountValue;
 
-  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE_AS_STRING)
-  private String notOptionalFeeAmountValueAsString;
+  /*
+   * Amount
+   */
+  @JsonbProperty(JSON_TOTAL_AMOUNT_AS_STRING)
+  private String totalAmountAsString;
 
-  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART)
-  private Integer notOptionalFeeAmountRegistrationValuePart;
+  @JsonbProperty(JSON_PAID_AMOUNT_AS_STRING)
+  private String paidAmountAsString;
 
-  @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
-  private String notOptionalFeeAmountRegistrationValuePartAsString;
-  
+  @JsonbProperty(JSON_PAYABLE_AMOUNT_AS_STRING)
+  private String payableAmountAsString;
+
+  /*
+   * Registration amount
+   */
+  @JsonbProperty(JSON_TOTAL_REGISTRATION_AMOUNT_AS_STRING)
+  private String totalRegistrationAmountAsString;
+
+  @JsonbProperty(JSON_PAID_REGISTRATION_AMOUNT_AS_STRING)
+  private String paidRegistrationAmountAsString;
+
+  @JsonbProperty(JSON_PAYABLE_REGISTRATION_AMOUNT_AS_STRING)
+  private String payableRegistrationAmountAsString;
+
   public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
   public static final String FIELD_STUDENT_AS_STRING = "studentAsString";
   public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
@@ -61,14 +73,21 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String FIELD_ASSIGNMENT_TYPE_AS_STRING = "assignmentTypeAsString";
   public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
   public static final String FIELD_SENIORITY_AS_STRING = "seniorityAsString";
-  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "notOptionalFeeAmountValue";
-  public static final String FIELDT_NOT_OPTIONAL_FEE_AMOUN_VALUE_AS_STRING =
-      "notOptionalFeeAmountValueAsString";
-  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART =
-      "notOptionalFeeAmountRegistrationValuePart";
-  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
-      "notOptionalFeeAmountRegistrationValuePartAsString";
   
+  public static final String FIELD_TOTAL_AMOUNT_AS_STRING =
+      "totalAmountAsString";
+  public static final String FIELD_PAID_AMOUNT_AS_STRING =
+      "paidAmountAsString";
+  public static final String FIELD_PAYABLE_AMOUNT_AS_STRING =
+      "payableAmountAsString";
+  
+  public static final String FIELD_TOTAL_REGISTRATION_AMOUNT_AS_STRING =
+      "totalRegistrationAmountAsString";
+  public static final String FIELD_PAID_REGISTRATION_AMOUNT_AS_STRING =
+      "paidRegistrationAmountAsString";
+  public static final String FIELD_PAYABLE_REGISTRATION_AMOUNT_AS_STRING =
+      "payableRegistrationAmountAsString";
+
   public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
   public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
   public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
@@ -77,19 +96,26 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_ASSIGNMENT_TYPE_AS_STRING = "typeAffectationChaine";
   public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   public static final String JSON_SENIORITY_AS_STRING = "ancienneteChaine";
-  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "montantFraisNonFacultatif";
-  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE_AS_STRING =
-      "montantFraisNonFacultatifChaine";
-  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART =
-      "montantFraisPartValeurInscriptionNonFacultatif";
-  public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
-      "montantFraisPartValeurInscriptionNonFacultatifChaine";
   
+  public static final String JSON_TOTAL_AMOUNT_AS_STRING =
+      "montantTotalChaine";
+  public static final String JSON_PAID_AMOUNT_AS_STRING =
+      "montantPayeChaine";
+  public static final String JSON_PAYABLE_AMOUNT_AS_STRING =
+      "montantPayableChaine";
+  
+  public static final String JSON_TOTAL_REGISTRATION_AMOUNT_AS_STRING =
+      "montantInscriptionTotalChaine";
+  public static final String JSON_PAID_REGISTRATION_AMOUNT_AS_STRING =
+      "montantInscriptionPayeChaine";
+  public static final String JSON_PAYABLE_REGISTRATION_AMOUNT_AS_STRING =
+      "montantInscriptionPayableChaine";
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = "inscription";
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
