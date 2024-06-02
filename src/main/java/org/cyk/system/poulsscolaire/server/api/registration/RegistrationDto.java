@@ -73,14 +73,11 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String FIELD_ASSIGNMENT_TYPE_AS_STRING = "assignmentTypeAsString";
   public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
   public static final String FIELD_SENIORITY_AS_STRING = "seniorityAsString";
-  
-  public static final String FIELD_TOTAL_AMOUNT_AS_STRING =
-      "totalAmountAsString";
-  public static final String FIELD_PAID_AMOUNT_AS_STRING =
-      "paidAmountAsString";
-  public static final String FIELD_PAYABLE_AMOUNT_AS_STRING =
-      "payableAmountAsString";
-  
+
+  public static final String FIELD_TOTAL_AMOUNT_AS_STRING = "totalAmountAsString";
+  public static final String FIELD_PAID_AMOUNT_AS_STRING = "paidAmountAsString";
+  public static final String FIELD_PAYABLE_AMOUNT_AS_STRING = "payableAmountAsString";
+
   public static final String FIELD_TOTAL_REGISTRATION_AMOUNT_AS_STRING =
       "totalRegistrationAmountAsString";
   public static final String FIELD_PAID_REGISTRATION_AMOUNT_AS_STRING =
@@ -96,14 +93,11 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_ASSIGNMENT_TYPE_AS_STRING = "typeAffectationChaine";
   public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   public static final String JSON_SENIORITY_AS_STRING = "ancienneteChaine";
-  
-  public static final String JSON_TOTAL_AMOUNT_AS_STRING =
-      "montantTotalChaine";
-  public static final String JSON_PAID_AMOUNT_AS_STRING =
-      "montantPayeChaine";
-  public static final String JSON_PAYABLE_AMOUNT_AS_STRING =
-      "montantPayableChaine";
-  
+
+  public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
+  public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
+  public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";
+
   public static final String JSON_TOTAL_REGISTRATION_AMOUNT_AS_STRING =
       "montantInscriptionTotalChaine";
   public static final String JSON_PAID_REGISTRATION_AMOUNT_AS_STRING =
