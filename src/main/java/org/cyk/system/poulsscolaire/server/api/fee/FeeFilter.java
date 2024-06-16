@@ -1,6 +1,5 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
-import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +12,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class FeeFilter extends AbstractIdentifiableFilter {
+public class FeeFilter extends AbstractAmountContainerFilter {
 
   String schoolingIdentifier;
 
