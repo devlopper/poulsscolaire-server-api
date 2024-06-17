@@ -42,7 +42,7 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   @JsonbProperty(JSON_AMOUNT_VALUE_LEFT_TO_PAY_AS_STRING)
   private String amountValueLeftToPayAsString;
-
+  
   public static final String FIELD_FEE_IDENTIFIER = "feeIdentifier";
   public static final String FIELD_FEE_OPTIONAL = "feeOptional";
   public static final String FIELD_FEE_AS_STRING = "feeAsString";

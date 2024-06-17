@@ -59,6 +59,9 @@ public abstract class AbstractAmountContainerDto extends AbstractIdentifiableAud
   @JsonbProperty(JSON_AMOUNT_DEADLINE_AS_STRING)
   private String amountDeadlineAsString;
 
+  @JsonbProperty(JSON_AMOUNT_DEADLINE_OVER)
+  private Boolean amountDeadlineOver;
+  
   public static final String FIELD_AMOUNT_IDENTIFIER = "amountIdentifier";
   public static final String FIELD_AMOUNT_AS_STRING = "amountAsString";
   public static final String FIELD_AMOUNT_VALUE = "amountValue";
@@ -91,5 +94,6 @@ public abstract class AbstractAmountContainerDto extends AbstractIdentifiableAud
   public static final String JSON_AMOUNT_RENEWABLE = "reconductibleMontant";
   public static final String JSON_AMOUNT_RENEWABLE_AS_STRING = "reconductibleMontantChaine";
   public static final String JSON_AMOUNT_DEADLINE_IDENTIFIER = "idEcheanceMontant";
+  public static final String JSON_AMOUNT_DEADLINE_OVER = "echeanceDepassee";
   public static final String JSON_AMOUNT_DEADLINE_AS_STRING = "echeanceMontantChaine";
 }
