@@ -19,9 +19,12 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   @JsonbProperty(JSON_FEE_IDENTIFIER)
   private String feeIdentifier;
 
+  @JsonbProperty(JSON_FEE_OPTIONAL)
+  private Boolean feeOptional;
+  
   @JsonbProperty(JSON_FEE_AS_STRING)
   private String feeAsString;
-
+  
   @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
   private String registrationIdentifier;
 
@@ -41,6 +44,7 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   private String amountValueLeftToPayAsString;
 
   public static final String FIELD_FEE_IDENTIFIER = "feeIdentifier";
+  public static final String FIELD_FEE_OPTIONAL = "feeOptional";
   public static final String FIELD_FEE_AS_STRING = "feeAsString";
   public static final String FIELD_REGISTRATION_IDENTIFIER = "registrationIdentifier";
   public static final String FIELD_REGISTRATION_AS_STRING = "registrationAsString";
@@ -52,6 +56,7 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   public static final String JSON_FEE_IDENTIFIER = "idFrais";
   public static final String JSON_FEE_AS_STRING = "fraisChaine";
+  public static final String JSON_FEE_OPTIONAL = "fraisFacultatif";
   public static final String JSON_REGISTRATION_IDENTIFIER = "idInscription";
   public static final String JSON_REGISTRATION_AS_STRING = "inscriptionChaine";
   public static final String JSON_AMOUNT_VALUE_PAID = "valeurPayeMontant";
