@@ -30,18 +30,24 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   @JsonbProperty(JSON_REGISTRATION_AS_STRING)
   private String registrationAsString;
+  
+  @JsonbProperty(JSON_REGISTRATION_STUDENT_AS_STRING)
+  private String registrationStudentAsString;
+  
+  @JsonbProperty(JSON_REGISTRATION_SCHOOLING_AS_STRING)
+  private String registrationSchoolingAsString;
 
   @JsonbProperty(JSON_AMOUNT_VALUE_PAID)
-  private Integer amountValuePaid;
+  private Long amountValuePaid;
 
   @JsonbProperty(JSON_AMOUNT_VALUE_PAID_AS_STRING)
   private String amountValuePaidAsString;
 
-  @JsonbProperty(JSON_AMOUNT_VALUE_LEFT_TO_PAY)
-  private Integer amountValueLeftToPay;
+  @JsonbProperty(JSON_AMOUNT_VALUE_PAYABLE)
+  private Long amountValuePayable;
 
-  @JsonbProperty(JSON_AMOUNT_VALUE_LEFT_TO_PAY_AS_STRING)
-  private String amountValueLeftToPayAsString;
+  @JsonbProperty(JSON_AMOUNT_VALUE_PAYABLE_AS_STRING)
+  private String amountValuePayableAsString;
   
   public static final String FIELD_FEE_IDENTIFIER = "feeIdentifier";
   public static final String FIELD_FEE_OPTIONAL = "feeOptional";
@@ -50,20 +56,25 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String FIELD_REGISTRATION_AS_STRING = "registrationAsString";
   public static final String FIELD_AMOUNT_VALUE_PAID = "amountValuePaid";
   public static final String FIELD_AMOUNT_VALUE_PAID_AS_STRING = "amountValuePaidAsString";
-  public static final String FIELD_AMOUNT_VALUE_LEFT_TO_PAY = "amountValueLeftToPay";
-  public static final String FIELD_AMOUNT_VALUE_LEFT_TO_PAY_AS_STRING =
-      "amountValueLeftToPayAsString";
+  public static final String FIELD_AMOUNT_VALUE_PAYABLE = "amountValuePayable";
+  public static final String FIELD_AMOUNT_VALUE_PAYABLE_AS_STRING =
+      "amountValuePayableAsString";
 
+  /* Fee */
   public static final String JSON_FEE_IDENTIFIER = "idFrais";
   public static final String JSON_FEE_AS_STRING = "fraisChaine";
   public static final String JSON_FEE_OPTIONAL = "fraisFacultatif";
+  /* Registration */
   public static final String JSON_REGISTRATION_IDENTIFIER = "idInscription";
   public static final String JSON_REGISTRATION_AS_STRING = "inscriptionChaine";
+  public static final String JSON_REGISTRATION_STUDENT_AS_STRING = "inscriptionEleveChaine";
+  public static final String JSON_REGISTRATION_SCHOOLING_AS_STRING = "inscriptionScolariteChaine";
+  /* Amount */
   public static final String JSON_AMOUNT_VALUE_PAID = "valeurPayeMontant";
   public static final String JSON_AMOUNT_VALUE_PAID_AS_STRING = "valeurPayeMontantChaine";
-  public static final String JSON_AMOUNT_VALUE_LEFT_TO_PAY = "valeurResteAPayerMontant";
-  public static final String JSON_AMOUNT_VALUE_LEFT_TO_PAY_AS_STRING =
-      "valeurResteAPayerMontantChaine";
+  public static final String JSON_AMOUNT_VALUE_PAYABLE = "montantValeurPayable";
+  public static final String JSON_AMOUNT_VALUE_PAYABLE_AS_STRING =
+      JSON_AMOUNT_VALUE_PAYABLE + "Chaine";
 
   /**
    * Nom pour lecture humaine de la classe.
