@@ -15,5 +15,13 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 public class BranchDto extends AbstractIdentifiableNamableDto {
-  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "branche";
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + "s";
 }

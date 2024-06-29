@@ -15,7 +15,13 @@ import lombok.Setter;
 public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
 
   String registrationIdentifier;
+  String registrationSchoolingSchoolIdentifier;
+  String registrationSchoolingBranchIdentifier;
+  String registrationSchoolingPeriodIdentifier;
+  String registrationStudentIdentifier;
+
   String feeIdentifier;
+  String feeCategoryIdentifier;
 
   public AdjustedFeeFilter(FilterDto dto) {
     super(dto);
@@ -27,14 +33,24 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   protected void doInitialize(FilterDto filter) {
     super.doInitialize(filter);
     registrationIdentifier = getRegistrationIdentifier(filter);
+    registrationSchoolingSchoolIdentifier = getRegistrationSchoolingSchoolIdentifier(filter);
+    registrationSchoolingBranchIdentifier = getRegistrationSchoolingBranchIdentifier(filter);
+    registrationSchoolingPeriodIdentifier = getRegistrationSchoolingPeriodIdentifier(filter);
+    registrationStudentIdentifier = getRegistrationStudentIdentifier(filter);
     feeIdentifier = getFeeIdentifier(filter);
+    feeCategoryIdentifier = getFeeCategoryIdentifier(filter);
   }
 
   @Override
   protected void toDto(FilterDto filter) {
     super.toDto(filter);
     setRegistrationIdentifier(filter, registrationIdentifier);
+    setRegistrationSchoolingSchoolIdentifier(filter, registrationSchoolingSchoolIdentifier);
+    setRegistrationSchoolingBranchIdentifier(filter, registrationSchoolingBranchIdentifier);
+    setRegistrationSchoolingPeriodIdentifier(filter, registrationSchoolingPeriodIdentifier);
+    setRegistrationStudentIdentifier(filter, registrationStudentIdentifier);
     setFeeIdentifier(filter, feeIdentifier);
+    setFeeCategoryIdentifier(filter, feeCategoryIdentifier);
   }
 
   public static void setRegistrationIdentifier(FilterDto filter, String identifier) {
@@ -46,6 +62,45 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_REGISTRATION_IDENTIFIER));
   }
 
+  public static void setRegistrationSchoolingSchoolIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getRegistrationSchoolingSchoolIdentifier(FilterDto filter) {
+    return get(filter,
+        d -> d.getFieldValueAsStringByName(JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER));
+  }
+
+  public static void setRegistrationSchoolingBranchIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_REGISTRATION_SCHOOLING_BRANCH_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getRegistrationSchoolingBranchIdentifier(FilterDto filter) {
+    return get(filter,
+        d -> d.getFieldValueAsStringByName(JSON_REGISTRATION_SCHOOLING_BRANCH_IDENTIFIER));
+  }
+
+  public static void setRegistrationSchoolingPeriodIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_REGISTRATION_SCHOOLING_PERIOD_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getRegistrationSchoolingPeriodIdentifier(FilterDto filter) {
+    return get(filter,
+        d -> d.getFieldValueAsStringByName(JSON_REGISTRATION_SCHOOLING_PERIOD_IDENTIFIER));
+  }
+
+  public static void setRegistrationStudentIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_REGISTRATION_STUDENT_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getRegistrationStudentIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_REGISTRATION_STUDENT_IDENTIFIER));
+  }
+
   public static void setFeeIdentifier(FilterDto filter, String identifier) {
     set(filter, JSON_FEE_IDENTIFIER, f -> f.getValueAsString(),
         f -> f.setValueAsString(identifier));
@@ -55,8 +110,31 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_FEE_IDENTIFIER));
   }
 
+  public static void setFeeCategoryIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_FEE_CATEGORY_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getFeeCategoryIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_FEE_CATEGORY_IDENTIFIER));
+  }
+
   public static final String JSON_REGISTRATION_IDENTIFIER =
       AdjustedFeeDto.JSON_REGISTRATION_IDENTIFIER;
+  public static final String JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER =
+      AdjustedFeeDto.JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER;
+
+  public static final String JSON_REGISTRATION_SCHOOLING_BRANCH_IDENTIFIER =
+      AdjustedFeeDto.JSON_REGISTRATION_SCHOOLING_BRANCH_IDENTIFIER;
+
+  public static final String JSON_REGISTRATION_SCHOOLING_PERIOD_IDENTIFIER =
+      AdjustedFeeDto.JSON_REGISTRATION_SCHOOLING_PERIOD_IDENTIFIER;
+
+  public static final String JSON_REGISTRATION_STUDENT_IDENTIFIER =
+      AdjustedFeeDto.JSON_REGISTRATION_STUDENT_IDENTIFIER;
 
   public static final String JSON_FEE_IDENTIFIER = AdjustedFeeDto.JSON_FEE_IDENTIFIER;
+
+  public static final String JSON_FEE_CATEGORY_IDENTIFIER =
+      AdjustedFeeDto.JSON_FEE_CATEGORY_IDENTIFIER;
 }
