@@ -5,6 +5,7 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountStatisticable;
 
 /**
  * Cette classe représente une inscription.
@@ -15,7 +16,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto {
+public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
+    implements AmountStatisticable {
 
   @JsonbProperty(JSON_STUDENT_IDENTIFIER)
   private String studentIdentifier;

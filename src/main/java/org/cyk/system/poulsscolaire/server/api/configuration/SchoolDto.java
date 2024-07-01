@@ -5,6 +5,7 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountStatisticable;
 
 /**
  * Cette classe représente une école.
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class SchoolDto extends AbstractIdentifiableNamableDto {
+public class SchoolDto extends AbstractIdentifiableNamableDto implements AmountStatisticable {
   
   /*
    * Amount
