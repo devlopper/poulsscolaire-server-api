@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 class FeeCategoryFilterTest {
   
   @Test
+  void doInitialize() {
+    FeeCategoryFilter filter = new FeeCategoryFilter(null);
+    filter.doInitialize(new FilterDto());
+    FilterDto dto = filter.toDto();
+    assertNotNull(dto);
+  }
+  
+  @Test
   void toDto() {
     FeeCategoryFilter filter = new FeeCategoryFilter();
     FilterDto dto = filter.toDto();
