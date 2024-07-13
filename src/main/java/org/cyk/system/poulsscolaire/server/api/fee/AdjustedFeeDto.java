@@ -61,6 +61,12 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   /* From Amount */
 
+  @JsonbProperty(JSON_AMOUNT_VALUE_TO_PAY)
+  private Long amountValueToPay;
+
+  @JsonbProperty(JSON_AMOUNT_VALUE_TO_PAY_AS_STRING)
+  private String amountValueToPayAsString;
+  
   @JsonbProperty(JSON_AMOUNT_VALUE_PAID)
   private Long amountValuePaid;
 
@@ -72,16 +78,6 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   @JsonbProperty(JSON_AMOUNT_VALUE_PAYABLE_AS_STRING)
   private String amountValuePayableAsString;
-
-  public static final String FIELD_FEE_IDENTIFIER = "feeIdentifier";
-  public static final String FIELD_FEE_OPTIONAL = "feeOptional";
-  public static final String FIELD_FEE_AS_STRING = "feeAsString";
-  public static final String FIELD_REGISTRATION_IDENTIFIER = "registrationIdentifier";
-  public static final String FIELD_REGISTRATION_AS_STRING = "registrationAsString";
-  public static final String FIELD_AMOUNT_VALUE_PAID = "amountValuePaid";
-  public static final String FIELD_AMOUNT_VALUE_PAID_AS_STRING = "amountValuePaidAsString";
-  public static final String FIELD_AMOUNT_VALUE_PAYABLE = "amountValuePayable";
-  public static final String FIELD_AMOUNT_VALUE_PAYABLE_AS_STRING = "amountValuePayableAsString";
 
   /* Fee */
   public static final String JSON_FEE_IDENTIFIER = "idFrais";
@@ -112,6 +108,8 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
       "inscriptionTypeAffectationChaine";
 
   /* Amount */
+  public static final String JSON_AMOUNT_VALUE_TO_PAY = "valeurAPayerMontant";
+  public static final String JSON_AMOUNT_VALUE_TO_PAY_AS_STRING = "valeurAPayerMontantChaine";
   public static final String JSON_AMOUNT_VALUE_PAID = "valeurPayeMontant";
   public static final String JSON_AMOUNT_VALUE_PAID_AS_STRING = "valeurPayeMontantChaine";
   public static final String JSON_AMOUNT_VALUE_PAYABLE = "montantValeurPayable";
