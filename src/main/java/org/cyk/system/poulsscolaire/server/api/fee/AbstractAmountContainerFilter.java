@@ -17,6 +17,7 @@ public abstract class AbstractAmountContainerFilter extends AbstractIdentifiable
 
   Boolean amountOptional;
   Boolean amountValuePayableEqualsZero;
+  Boolean amountValuePayableLessThanOrEqualsZero;
   Boolean amountDeadlineDateOver;
 
   protected AbstractAmountContainerFilter(FilterDto dto) {
@@ -30,6 +31,7 @@ public abstract class AbstractAmountContainerFilter extends AbstractIdentifiable
     super.doInitialize(filter);
     amountOptional = getAmountOptional(filter);
     amountValuePayableEqualsZero = getAmountValuePayableEqualsZero(filter);
+    amountValuePayableLessThanOrEqualsZero = getAmountValuePayableLessThanOrEqualsZero(filter);
     amountDeadlineDateOver = getAmountDeadlineDateOver(filter);
   }
 
@@ -38,6 +40,7 @@ public abstract class AbstractAmountContainerFilter extends AbstractIdentifiable
     super.toDto(filter);
     setAmountOptional(filter, amountOptional);
     setAmountValuePayableEqualsZero(filter, amountValuePayableEqualsZero);
+    setAmountValuePayableLessThanOrEqualsZero(filter, amountValuePayableLessThanOrEqualsZero);
     setAmountDeadlineDateOver(filter, amountDeadlineDateOver);
   }
 
@@ -58,6 +61,16 @@ public abstract class AbstractAmountContainerFilter extends AbstractIdentifiable
     return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_AMOUNT_VALUE_PAYABLE_EQUALS_ZERO));
   }
 
+  public static void setAmountValuePayableLessThanOrEqualsZero(FilterDto filter, Boolean value) {
+    set(filter, JSON_AMOUNT_VALUE_PAYABLE_LESS_THAN_OR_EQUALS_ZERO, f -> f.getValueAsString(),
+        f -> f.setValueAsBoolean(value));
+  }
+
+  public static Boolean getAmountValuePayableLessThanOrEqualsZero(FilterDto filter) {
+    return get(filter,
+        d -> d.getFieldValueAsBooleanByName(JSON_AMOUNT_VALUE_PAYABLE_LESS_THAN_OR_EQUALS_ZERO));
+  }
+
   public static void setAmountDeadlineDateOver(FilterDto filter, Boolean value) {
     set(filter, JSON_AMOUNT_DEADLINE_DATE_OVER, f -> f.getValueAsString(),
         f -> f.setValueAsBoolean(value));
@@ -70,6 +83,8 @@ public abstract class AbstractAmountContainerFilter extends AbstractIdentifiable
   public static final String JSON_AMOUNT_OPTIONAL = AmountDto.JSON_OPTIONAL;
   public static final String JSON_AMOUNT_VALUE_PAYABLE_EQUALS_ZERO =
       AmountDto.JSON_VALUE_PAYABLE_EQUALS_ZERO;
+  public static final String JSON_AMOUNT_VALUE_PAYABLE_LESS_THAN_OR_EQUALS_ZERO =
+      "resteAPayerInferieurOuEgaleZero";
   public static final String JSON_AMOUNT_DEADLINE_DATE_OVER = AmountDto.JSON_DEADLINE_DATE_OVER;
 
 }
