@@ -2,7 +2,6 @@ package org.cyk.system.poulsscolaire.server.api.registration;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -11,7 +10,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -62,6 +60,40 @@ public interface RegistrationService extends SpecificService {
   Response create(RegistrationCreateRequestDto request);
 
   /**
+   * Cette classe représente la requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveRequestDto {
+    String getStudentIdentifier();
+
+    void setStudentIdentifier(String studentIdentifier);
+
+    String getSchoolingIdentifier();
+
+    void setSchoolingIdentifier(String schoolingIdentifier);
+
+    String getAssignmnetTypeIdentifier();
+
+    void setAssignmnetTypeIdentifier(String assignmnetTypeIdentifier);
+
+    String getSeniorityIdentifier();
+
+    void setSeniorityIdentifier(String seniorityIdentifier);
+
+    int getPreRegistrationAmount();
+
+    void setPreRegistrationAmount(int preRegistrationAmount);
+
+    String JSON_STUDENT_IDENTIFIER = "idEleve";
+    String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
+    String JSON_ASSIGNMNET_TYPE_IDENTIFIER = "idTypeAffectation";
+    String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
+    String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -69,12 +101,8 @@ public interface RegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {RegistrationCreateRequestDto.FIELD_STUDENT_IDENTIFIER,
-      RegistrationCreateRequestDto.FIELD_SCHOOLING_IDENTIFIER,
-      RegistrationCreateRequestDto.FIELD_ASSIGNMNET_TYPE_IDENTIFIER,
-      RegistrationCreateRequestDto.FIELD_SENIORITY_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class RegistrationCreateRequestDto extends AbstractAuditedRequestJsonDto {
+  class RegistrationCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements SaveRequestDto {
     @JsonbProperty(JSON_STUDENT_IDENTIFIER)
     private String studentIdentifier;
 
@@ -87,15 +115,8 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
     private String seniorityIdentifier;
 
-    public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
-    public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
-    public static final String FIELD_ASSIGNMNET_TYPE_IDENTIFIER = "assignmnetTypeIdentifier";
-    public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
-
-    public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
-    public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
-    public static final String JSON_ASSIGNMNET_TYPE_IDENTIFIER = "idTypeAffectation";
-    public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
+    @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
+    private int preRegistrationAmount;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_INSCRIPTION";
@@ -168,12 +189,7 @@ public interface RegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {RegistrationUpdateRequestDto.FIELD_STUDENT_IDENTIFIER,
-      RegistrationUpdateRequestDto.FIELD_SCHOOLING_IDENTIFIER,
-      RegistrationUpdateRequestDto.FIELD_ASSIGNMNET_TYPE_IDENTIFIER,
-      RegistrationUpdateRequestDto.FIELD_SENIORITY_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class RegistrationUpdateRequestDto extends ByIdentifierRequestDto {
+  class RegistrationUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {
     @JsonbProperty(JSON_STUDENT_IDENTIFIER)
     private String studentIdentifier;
 
@@ -186,15 +202,8 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
     private String seniorityIdentifier;
 
-    public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
-    public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
-    public static final String FIELD_ASSIGNMNET_TYPE_IDENTIFIER = "assignmnetTypeIdentifier";
-    public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
-
-    public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
-    public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
-    public static final String JSON_ASSIGNMNET_TYPE_IDENTIFIER = "idTypeAffectation";
-    public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
+    @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
+    private int preRegistrationAmount;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_INSCRIPTION";

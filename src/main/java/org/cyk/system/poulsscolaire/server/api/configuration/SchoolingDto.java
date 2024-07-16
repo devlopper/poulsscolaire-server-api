@@ -35,6 +35,12 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_PERIOD_AS_STRING)
   private String periodAsString;
 
+  @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
+  private Integer preRegistrationAmount;
+
+  @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT_AS_STRING)
+  private String preRegistrationAmountAsString;
+
   @JsonbProperty(JSON_FEE_AMOUNT_VALUE)
   private Integer feeAmountValue;
 
@@ -59,26 +65,8 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
   private String notOptionalFeeAmountRegistrationValuePartAsString;
 
-  public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
-  public static final String FIELD_SCHOOL_AS_STRING = "schoolAsString";
-  public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
-  public static final String FIELD_BRANCH_AS_STRING = "branchAsString";
-  public static final String FIELD_PERIOD_IDENTIFIER = "periodIdentifier";
-  public static final String FIELD_PERIOD_AS_STRING = "periodAsString";
-  public static final String FIELD_FEE_AMOUNT_VALUE = "feeAmountValue";
-  public static final String FIELD_FEE_AMOUNT_VALUE_AS_STRING = "feeAmountValueAsString";
-  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "notOptionalFeeAmountValue";
-  public static final String FIELDT_NOT_OPTIONAL_FEE_AMOUN_VALUE_AS_STRING =
-      "notOptionalFeeAmountValueAsString";
-  public static final String FIELD_FEE_AMOUNT_REGISTRATION_VALUE_PART =
-      "feeAmountRegistrationValuePart";
-  public static final String FIELD_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
-      "feeAmountRegistrationValuePartAsString";
-  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART =
-      "notOptionalFeeAmountRegistrationValuePart";
-  public static final String FIELD_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING =
-      "notOptionalFeeAmountRegistrationValuePartAsString";
-
+  public static final String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
+  public static final String JSON_PRE_REGISTRATION_AMOUNT_AS_STRING = "montantPreInscriptionChaine";
   public static final String JSON_FEE_AMOUNT_VALUE = "montantFrais";
   public static final String JSON_FEE_AMOUNT_VALUE_AS_STRING = "montantFraisChaine";
   public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "montantFraisNonFacultatif";
@@ -98,12 +86,12 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_BRANCH_AS_STRING = "brancheChaine";
   public static final String JSON_PERIOD_IDENTIFIER = "idPeriode";
   public static final String JSON_PERIOD_AS_STRING = "periodeChaine";
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = "scolarité";
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */

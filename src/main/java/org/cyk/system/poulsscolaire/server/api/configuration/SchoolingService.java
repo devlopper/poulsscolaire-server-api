@@ -63,6 +63,35 @@ public interface SchoolingService extends SpecificService {
   Response create(SchoolingCreateRequestDto request);
 
   /**
+   * Cette classe représente la requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveRequestDto {
+    String getSchoolIdentifier();
+
+    void setSchoolIdentifier(String schoolIdentifier);
+
+    String getBranchIdentifier();
+
+    void setBranchIdentifier(String branchIdentifier);
+
+    String getPeriodIdentifier();
+
+    void setPeriodIdentifier(String periodIdentifier);
+
+    int getPreRegistrationAmount();
+
+    void setPreRegistrationAmount(int preRegistrationAmount);
+
+    String JSON_SCHOOL_IDENTIFIER = "idEcole";
+    String JSON_BRANCH_IDENTIFIER = "idBranche";
+    String JSON_PERIOD_IDENTIFIER = "idPeriod";
+    String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -70,11 +99,7 @@ public interface SchoolingService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {SchoolingCreateRequestDto.FIELD_SCHOOL_IDENTIFIER,
-      SchoolingCreateRequestDto.FIELD_BRANCH_IDENTIFIER,
-      SchoolingCreateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class SchoolingCreateRequestDto extends AbstractAuditedRequestJsonDto {
+  class SchoolingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
 
@@ -83,14 +108,9 @@ public interface SchoolingService extends SpecificService {
 
     @JsonbProperty(JSON_PERIOD_IDENTIFIER)
     private String periodIdentifier;
-
-    public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
-    public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
-    public static final String FIELD_PERIOD_IDENTIFIER = "periodIdentifier";
-
-    public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
-    public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
-    public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
+    
+    @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
+    private int preRegistrationAmount;
   }
 
   String GENERATE_IDENTIFIER = "GENERATION_SCOLARITE";
@@ -104,7 +124,7 @@ public interface SchoolingService extends SpecificService {
   @Operation(operationId = GENERATE_IDENTIFIER,
       description = "Ce service permet de générer les scolarités")
   Response generate(SchoolingGenerateRequestDto request);
-  
+
   /**
    * Cette classe représente la requête de génération.
    *
@@ -116,9 +136,9 @@ public interface SchoolingService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class SchoolingGenerateRequestDto extends AbstractAuditedRequestJsonDto {
-    
+
   }
-  
+
   /**
    * Cette classe représente la réponse de génération.
    *
@@ -133,7 +153,7 @@ public interface SchoolingService extends SpecificService {
     @JsonbProperty("nombre")
     int count;
   }
-  
+
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_SCOLARITE";
 
   String GET_MANY_PATH = "obtention/plusieurs";
@@ -204,11 +224,7 @@ public interface SchoolingService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {SchoolingUpdateRequestDto.FIELD_SCHOOL_IDENTIFIER,
-      SchoolingUpdateRequestDto.FIELD_BRANCH_IDENTIFIER,
-      SchoolingUpdateRequestDto.FIELD_PERIOD_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class SchoolingUpdateRequestDto extends ByIdentifierRequestDto {
+  class SchoolingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
 
@@ -217,14 +233,9 @@ public interface SchoolingService extends SpecificService {
 
     @JsonbProperty(JSON_PERIOD_IDENTIFIER)
     private String periodIdentifier;
-
-    public static final String FIELD_SCHOOL_IDENTIFIER = "schoolIdentifier";
-    public static final String FIELD_BRANCH_IDENTIFIER = "branchIdentifier";
-    public static final String FIELD_PERIOD_IDENTIFIER = "periodIdentifier";
-
-    public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
-    public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
-    public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
+    
+    @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
+    private int preRegistrationAmount;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_SCOLARITE";

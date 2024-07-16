@@ -43,6 +43,12 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   @JsonbProperty(JSON_SENIORITY_AS_STRING)
   private String seniorityAsString;
 
+  @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
+  private Integer preRegistrationAmount;
+
+  @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT_AS_STRING)
+  private String preRegistrationAmountAsString;
+  
   /*
    * Amount
    */
@@ -96,6 +102,9 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   public static final String JSON_SENIORITY_AS_STRING = "ancienneteChaine";
 
+  public static final String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
+  public static final String JSON_PRE_REGISTRATION_AMOUNT_AS_STRING = "montantPreInscriptionChaine";
+  
   public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
   public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";
