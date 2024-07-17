@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 class PaymentFilterTest {
   
   @Test
+  void doInitialize() {
+    PaymentFilter filter = new PaymentFilter(null);
+    filter.doInitialize(new FilterDto());
+    FilterDto dto = filter.toDto();
+    assertNotNull(dto);
+  }
+  
+  @Test
   void toDto() {
     PaymentFilter filter = new PaymentFilter();
     FilterDto dto = filter.toDto();
