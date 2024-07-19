@@ -53,27 +53,13 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
     return new CreateExecutor(SchoolingService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
-
+  
   /**
-   * {@link SchoolingService#create}.
+   * {@link SchoolingService#generate}.
    *
-   * @param schoolIdentifier identifiant école
-   * @param branchIdentifier identifiant branche
-   * @param auditWho audit acteur
-   * @param auditSession audit session
+   * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(String schoolIdentifier, String branchIdentifier,
-      String periodIdentifier, String auditWho, String auditSession) {
-    SchoolingCreateRequestDto request = new SchoolingCreateRequestDto();
-    request.setSchoolIdentifier(schoolIdentifier);
-    request.setBranchIdentifier(branchIdentifier);
-    request.setPeriodIdentifier(periodIdentifier);
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return create(request);
-  }
-
   public SchoolingGenerateResponseDto generate(SchoolingGenerateRequestDto request) {
     return new GetOneExecutor<SchoolingGenerateResponseDto>(SchoolingGenerateResponseDto.class,
         SchoolingService.GENERATE_IDENTIFIER).execute(() -> service().generate(request));
@@ -178,28 +164,6 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
   public IdentifiableResponseDto update(SchoolingUpdateRequestDto request) {
     return new IdentifiableExecutor(SchoolingService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
-  }
-
-  /**
-   * {@link SchoolingService#update}.
-   *
-   * @param identifier identifiant
-   * @param schoolIdentifier identifiant école
-   * @param branchIdentifier identifiant branche
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public IdentifiableResponseDto update(String identifier, String schoolIdentifier,
-      String branchIdentifier, String periodIdentifier, String auditWho, String auditSession) {
-    SchoolingUpdateRequestDto request = new SchoolingUpdateRequestDto();
-    request.setIdentifier(identifier);
-    request.setSchoolIdentifier(schoolIdentifier);
-    request.setBranchIdentifier(branchIdentifier);
-    request.setPeriodIdentifier(periodIdentifier);
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return update(request);
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
