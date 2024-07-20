@@ -88,4 +88,14 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_DEADLINE_IDENTIFIER = "idEcheance";
   public static final String JSON_DEADLINE_AS_STRING = "echeanceChaine";
   public static final String JSON_DEADLINE_DATE_OVER = "dateEcheancePassee";
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "montant";
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + "s";
 }

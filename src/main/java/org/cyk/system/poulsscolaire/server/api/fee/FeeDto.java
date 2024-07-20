@@ -45,15 +45,9 @@ public class FeeDto extends AbstractAmountContainerDto {
 
   @JsonbProperty(JSON_SCHOOLING_BRANCH_AS_STRING)
   private String schoolingBranchAsString;
-
-  public static final String FIELD_CATEGORY_IDENTIFIER = "categoryIdentifier";
-  public static final String FIELD_CATEGORY_AS_STRING = "categoryAsString";
-  public static final String FIELD_ASSIGNMENT_IDENTIFIER = "assignmentTypeIdentifier";
-  public static final String FIELD_ASSIGNMENT_TYPE_AS_STRING = "assignmentTypeAsString";
-  public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
-  public static final String FIELD_SENIORITY_AS_STRING = "seniorityAsString";
-  public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
-  public static final String FIELD_SCHOOLING_AS_STRING = "schoolingAsString";
+  
+  @JsonbProperty(JSON_AMOUNT_DEADLINE_COUNT_AS_STRING)
+  private String amountDeadlineCountAsString;
 
   public static final String JSON_CATEGORY_IDENTIFIER = "idCategorie";
   public static final String JSON_CATEGORY_AS_STRING = "categorieChaine";
@@ -65,6 +59,7 @@ public class FeeDto extends AbstractAmountContainerDto {
   public static final String JSON_SCHOOLING_SCHOOL_AS_STRING = "ecoleScolariteChaine";
   public static final String JSON_SCHOOLING_PERIOD_AS_STRING = "periodeScolariteChaine";
   public static final String JSON_SCHOOLING_BRANCH_AS_STRING = "brancheScolariteChaine";
+  public static final String JSON_AMOUNT_DEADLINE_COUNT_AS_STRING = "nombreEcheanceChaine";
 
   /**
    * Nom pour lecture humaine de la classe.

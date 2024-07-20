@@ -54,6 +54,11 @@ public class AmountDeadlineDto extends AbstractIdentifiableAuditableDto {
   private String paymentAsString;
   
   public static final String JSON_AMOUNT_IDENTIFIER = "idMontant";
+  
+  /* From Fee */
+  
+  /* From Adjusted Fee */
+  
   public static final String JSON_ADJUSTED_FEE_IDENTIFIER = "idFraisAjuste";
   public static final String JSON_ADJUSTED_FEE_AS_STRING = "fraisAjusteChaine";
   public static final String JSON_FEE_IDENTIFIER = "idFrais";
