@@ -19,12 +19,12 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeePaymentDeadlineService.AdjustedFeePaymentDeadlineCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeePaymentDeadlineService.AdjustedFeePaymentDeadlineUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeePaymentDeadlineService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountDeadlineService.AmountDeadlineCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountDeadlineService.AmountDeadlineUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountDeadlineService.GetManyResponseDto;
 
 /**
- * Cette classe représente un client de {@link AdjustedFeePaymentDeadlineService}.
+ * Cette classe représente un client de {@link AmountDeadlineService}.
  *
  * @author Christian
  *
@@ -32,41 +32,41 @@ import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeePaymentDeadlineSer
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class AdjustedFeePaymentDeadlineClient
-    extends AbstractClient<AdjustedFeePaymentDeadlineService>
-    implements GetByIdentifier<AdjustedFeePaymentDeadlineDto>, GetMany<GetManyResponseDto>,
+public class AmountDeadlineClient
+    extends AbstractClient<AmountDeadlineService>
+    implements GetByIdentifier<AmountDeadlineDto>, GetMany<GetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public AdjustedFeePaymentDeadlineClient service(AdjustedFeePaymentDeadlineService service) {
-    return (AdjustedFeePaymentDeadlineClient) super.service(service);
+  public AmountDeadlineClient service(AmountDeadlineService service) {
+    return (AmountDeadlineClient) super.service(service);
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#create}.
+   * {@link AmountDeadlineService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(AdjustedFeePaymentDeadlineCreateRequestDto request) {
-    return new CreateExecutor(AdjustedFeePaymentDeadlineService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(AmountDeadlineCreateRequestDto request) {
+    return new CreateExecutor(AmountDeadlineService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#getMany}.
+   * {@link AmountDeadlineService#getMany}.
    *
    * @param request requête
    * @return réponse
    */
   public GetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        AdjustedFeePaymentDeadlineService.GET_MANY_IDENTIFIER)
+        AmountDeadlineService.GET_MANY_IDENTIFIER)
             .execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#getMany}.
+   * {@link AmountDeadlineService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -87,19 +87,19 @@ public class AdjustedFeePaymentDeadlineClient
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#getOne}.
+   * {@link AmountDeadlineService#getOne}.
    *
    * @param request requête
    * @return réponse
    */
-  public AdjustedFeePaymentDeadlineDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<AdjustedFeePaymentDeadlineDto>(AdjustedFeePaymentDeadlineDto.class,
-        AdjustedFeePaymentDeadlineService.GET_ONE_IDENTIFIER)
+  public AmountDeadlineDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<AmountDeadlineDto>(AmountDeadlineDto.class,
+        AmountDeadlineService.GET_ONE_IDENTIFIER)
             .execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#getOne}.
+   * {@link AmountDeadlineService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -107,7 +107,7 @@ public class AdjustedFeePaymentDeadlineClient
    * @param auditSession audit session
    * @return réponse
    */
-  public AdjustedFeePaymentDeadlineDto getOne(ProjectionDto projection, FilterDto filter,
+  public AmountDeadlineDto getOne(ProjectionDto projection, FilterDto filter,
       String auditWho, String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -118,14 +118,14 @@ public class AdjustedFeePaymentDeadlineClient
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#getByIdentifier}.
+   * {@link AmountDeadlineService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public AdjustedFeePaymentDeadlineDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<AdjustedFeePaymentDeadlineDto>(AdjustedFeePaymentDeadlineDto.class,
-        AdjustedFeePaymentDeadlineService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public AmountDeadlineDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<AmountDeadlineDto>(AmountDeadlineDto.class,
+        AmountDeadlineService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
@@ -139,7 +139,7 @@ public class AdjustedFeePaymentDeadlineClient
    * @return réponse
    */
   @Override
-  public AdjustedFeePaymentDeadlineDto getByIdentifier(String identifier, ProjectionDto projection,
+  public AmountDeadlineDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
@@ -150,29 +150,29 @@ public class AdjustedFeePaymentDeadlineClient
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#update}.
+   * {@link AmountDeadlineService#update}.
    *
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto update(AdjustedFeePaymentDeadlineUpdateRequestDto request) {
-    return new IdentifiableExecutor(AdjustedFeePaymentDeadlineService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(AmountDeadlineUpdateRequestDto request) {
+    return new IdentifiableExecutor(AmountDeadlineService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#delete}.
+   * {@link AmountDeadlineService#delete}.
    *
    * @param request requête
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(AdjustedFeePaymentDeadlineService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(AmountDeadlineService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link AdjustedFeePaymentDeadlineService#delete}.
+   * {@link AmountDeadlineService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur

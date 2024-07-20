@@ -39,4 +39,14 @@ public class DeadlineDto extends AbstractIdentifiableCodableNamableAuditableDto 
   public static final String JSON_GROUP_AS_STRING = "groupeChaine";
   public static final String JSON_DATE = "date";
   public static final String JSON_DATE_AS_STRING = "dateChaine";
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "échéance";
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + "s";
 }

@@ -28,23 +28,23 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link AdjustedFeePaymentDeadlineDto}.
+ * Cette interface représente les services de {@link AmountDeadlineDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = AdjustedFeePaymentDeadlineService.PATH)
-@Tag(name = "Gestion des échéances de paiement des frais ajustés")
-public interface AdjustedFeePaymentDeadlineService extends SpecificService {
+@Path(value = AmountDeadlineService.PATH)
+@Tag(name = "Gestion des échéances de montant")
+public interface AmountDeadlineService extends SpecificService {
 
-  String PATH = "echeances-paiements-frais-ajustes";
+  String PATH = "echeances-montants";
 
-  String CREATE_IDENTIFIER = "CREATION_ECHEANCE_PAIEMENT_FRAIS_AJUSTE";
+  String CREATE_IDENTIFIER = "CREATION_ECHEANCE_MONTANT";
 
   String CREATE_PATH = "";
 
   /**
-   * Cette méthode permet de créer une échéance de paiement de frais ajusté.
+   * Cette méthode permet de créer une échéance de montant.
    *
    * @param request requête
    * @return réponse
@@ -54,11 +54,11 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(operationId = CREATE_IDENTIFIER,
-      summary = "Création d'une échéance de paiement de frais ajusté",
-      description = "Ce service permet de créer une échéance de paiement de frais ajusté")
+      summary = "Création d'une échéance de montant",
+      description = "Ce service permet de créer une échéance de montant")
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(AdjustedFeePaymentDeadlineCreateRequestDto request);
+  Response create(AmountDeadlineCreateRequestDto request);
 
   /**
    * Cette classe représente la requête d'enregistrement.
@@ -67,21 +67,21 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
    *
    */
   interface SaveRequestDto {
-    String getAdjustedFeeIdentifier();
+    String getAmountIdentifier();
 
-    void setAdjustedFeeIdentifier(String identifier);
+    void setAmountIdentifier(String identifier);
 
     String getDeadlineIdentifier();
 
     void setDeadlineIdentifier(String identifier);
 
-    int getAmount();
+    int getPayment();
 
-    void setAmount(int amount);
+    void setPayment(int payment);
 
-    String JSON_ADJUSTED_FEE_IDENTIFIER = "idFraisAjuste";
+    String JSON_AMOUNT_IDENTIFIER = "idMontant";
     String JSON_DEADLINE_IDENTIFIER = "idEcheance";
-    String JSON_AMOUNT = "montant";
+    String JSON_PAYMENT = "paiement";
   }
 
   /**
@@ -92,19 +92,19 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
    */
   @Getter
   @Setter
-  class AdjustedFeePaymentDeadlineCreateRequestDto extends AbstractAuditedRequestJsonDto
+  class AmountDeadlineCreateRequestDto extends AbstractAuditedRequestJsonDto
       implements SaveRequestDto {
-    @JsonbProperty(JSON_ADJUSTED_FEE_IDENTIFIER)
-    private String adjustedFeeIdentifier;
+    @JsonbProperty(JSON_AMOUNT_IDENTIFIER)
+    private String amountIdentifier;
 
     @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
     private String deadlineIdentifier;
 
-    @JsonbProperty(JSON_AMOUNT)
-    private int amount;
+    @JsonbProperty(JSON_PAYMENT)
+    private int payment;
   }
 
-  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_ECHEANCE_PAIEMENT_FRAIS_AJUSTE";
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_ECHEANCE_MONTANT";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
@@ -113,7 +113,7 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = "Ce service permet d'obtenir des échéances de paiements de frais ajustés")
+      description = "Ce service permet d'obtenir des échéances de montants")
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -125,13 +125,13 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
   @Getter
   @Setter
   public static class GetManyResponseDto
-      extends AbstractGetByPageResponseDto<AdjustedFeePaymentDeadlineDto> {
+      extends AbstractGetByPageResponseDto<AmountDeadlineDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<AdjustedFeePaymentDeadlineDto> datas;
+    private List<AmountDeadlineDto> datas;
   }
 
-  String GET_ONE_IDENTIFIER = "OBTENTION_UN_ECHEANCE_PAIEMENT_FRAIS_AJUSTE";
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_ECHEANCE_MONTANT";
 
   String GET_ONE_PATH = "obtention/un";
 
@@ -140,10 +140,10 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = "Ce service permet d'obtenir une échéance de paiement de frais ajusté")
+      description = "Ce service permet d'obtenir une échéance de montant")
   Response getOne(GetOneRequestDto request);
 
-  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_ECHEANCE_PAIEMENT_FRAIS_AJUSTE";
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_ECHEANCE_MONTANT";
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
@@ -153,10 +153,10 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
       description = "Ce service permet d'obtenir par identifiant une échéance "
-          + "de paiement de frais ajusté")
+          + "de montant")
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
-  String UPDATE_IDENTIFIER = "MISE_A_JOUR_ECHEANCE_PAIEMENT_FRAIS_AJUSTE";
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_ECHEANCE_MONTANT";
 
   String UPDATE_PATH = "";
 
@@ -165,8 +165,8 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER,
-      description = "Ce service permet de mettre à jour une échéance de paiement de frais ajusté")
-  Response update(AdjustedFeePaymentDeadlineUpdateRequestDto request);
+      description = "Ce service permet de mettre à jour une échéance de montant")
+  Response update(AmountDeadlineUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -176,19 +176,19 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
    */
   @Getter
   @Setter
-  class AdjustedFeePaymentDeadlineUpdateRequestDto extends ByIdentifierRequestDto
+  class AmountDeadlineUpdateRequestDto extends ByIdentifierRequestDto
       implements SaveRequestDto {
-    @JsonbProperty(JSON_ADJUSTED_FEE_IDENTIFIER)
-    private String adjustedFeeIdentifier;
+    @JsonbProperty(JSON_AMOUNT_IDENTIFIER)
+    private String amountIdentifier;
 
     @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
     private String deadlineIdentifier;
 
-    @JsonbProperty(JSON_AMOUNT)
-    private int amount;
+    @JsonbProperty(JSON_PAYMENT)
+    private int payment;
   }
 
-  String DELETE_IDENTIFIER = "SUPPRESSION_ECHEANCE_PAIEMENT_FRAIS_AJUSTE";
+  String DELETE_IDENTIFIER = "SUPPRESSION_ECHEANCE_MONTANT";
 
   String DELETE_PATH = "";
 
@@ -197,6 +197,6 @@ public interface AdjustedFeePaymentDeadlineService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER,
-      description = "Ce service permet de supprimer une échéance de paiement de frais ajusté")
+      description = "Ce service permet de supprimer une échéance de montant")
   Response delete(DeleteOneRequestDto request);
 }

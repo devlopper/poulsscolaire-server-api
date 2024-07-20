@@ -6,22 +6,22 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeePaymentDeadlineService.AdjustedFeePaymentDeadlineCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeePaymentDeadlineService.AdjustedFeePaymentDeadlineUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeePaymentDeadlineService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountDeadlineService.AmountDeadlineCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountDeadlineService.AmountDeadlineUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountDeadlineService.GetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class AdjustedFeePaymentDeadlineClientTest {
+class AmountPaymentDeadlineClientTest {
 
-  AdjustedFeePaymentDeadlineService service;
-  AdjustedFeePaymentDeadlineClient client;
+  AmountDeadlineService service;
+  AmountDeadlineClient client;
 
   @BeforeEach
   void listenBeforeEach() {
-    service = Mockito.mock(AdjustedFeePaymentDeadlineService.class);
-    client = new AdjustedFeePaymentDeadlineClient().service(service);
+    service = Mockito.mock(AmountDeadlineService.class);
+    client = new AmountDeadlineClient().service(service);
   }
 
   @Test
@@ -31,7 +31,7 @@ class AdjustedFeePaymentDeadlineClientTest {
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
     assertInstanceOf(CreateResponseDto.class,
-        client.create(new AdjustedFeePaymentDeadlineCreateRequestDto()));
+        client.create(new AmountDeadlineCreateRequestDto()));
   }
 
   @Test
@@ -48,20 +48,20 @@ class AdjustedFeePaymentDeadlineClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(AdjustedFeePaymentDeadlineDto.class))
-        .thenReturn(new AdjustedFeePaymentDeadlineDto());
+    Mockito.when(response.readEntity(AmountDeadlineDto.class))
+        .thenReturn(new AmountDeadlineDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
-    assertInstanceOf(AdjustedFeePaymentDeadlineDto.class, client.getOne(null, null, null, null));
+    assertInstanceOf(AmountDeadlineDto.class, client.getOne(null, null, null, null));
   }
 
   @Test
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(AdjustedFeePaymentDeadlineDto.class))
-        .thenReturn(new AdjustedFeePaymentDeadlineDto());
+    Mockito.when(response.readEntity(AmountDeadlineDto.class))
+        .thenReturn(new AmountDeadlineDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
-    assertInstanceOf(AdjustedFeePaymentDeadlineDto.class,
+    assertInstanceOf(AmountDeadlineDto.class,
         client.getByIdentifier(null, null, null, null));
   }
 
@@ -73,7 +73,7 @@ class AdjustedFeePaymentDeadlineClientTest {
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class,
-        client.update(new AdjustedFeePaymentDeadlineUpdateRequestDto()));
+        client.update(new AmountDeadlineUpdateRequestDto()));
   }
 
   @Test
