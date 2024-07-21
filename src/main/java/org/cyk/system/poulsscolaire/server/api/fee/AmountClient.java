@@ -60,15 +60,13 @@ public class AmountClient extends AbstractClient<AmountService>
    * @return réponse
    */
   public CreateResponseDto create(int value, int registrationValuePart, boolean optional,
-      int paymentOrderNumber, boolean renewable, String deadlineIdentifier, String auditWho,
-      String auditSession) {
+      int paymentOrderNumber, boolean renewable, String auditWho, String auditSession) {
     AmountCreateRequestDto request = new AmountCreateRequestDto();
     request.setValue(value);
     request.setRegistrationValuePart(registrationValuePart);
     request.setOptional(optional);
     request.setPaymentOrderNumber(paymentOrderNumber);
     request.setRenewable(renewable);
-    request.setDeadlineIdentifier(deadlineIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return create(request);
@@ -170,8 +168,8 @@ public class AmountClient extends AbstractClient<AmountService>
    * @return réponse
    */
   public IdentifiableResponseDto update(String identifier, int value, int registrationValuePart,
-      boolean optional, int paymentOrderNumber, boolean renewable, String deadlineIdentifier,
-      String auditWho, String auditSession) {
+      boolean optional, int paymentOrderNumber, boolean renewable, String auditWho,
+      String auditSession) {
     AmountUpdateRequestDto request = new AmountUpdateRequestDto();
     request.setIdentifier(identifier);
     request.setValue(value);
@@ -179,7 +177,6 @@ public class AmountClient extends AbstractClient<AmountService>
     request.setOptional(optional);
     request.setPaymentOrderNumber(paymentOrderNumber);
     request.setRenewable(renewable);
-    request.setDeadlineIdentifier(deadlineIdentifier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return update(request);

@@ -1,9 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -11,7 +8,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -69,16 +65,6 @@ public interface FeeService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {FeeCreateRequestDto.FIELD_SCHOOLING_IDENTIFIER,
-      FeeCreateRequestDto.FIELD_ASSIGNMENT_IDENTIFIER,
-      FeeCreateRequestDto.FIELD_SENIORITY_IDENTIFIER, FeeCreateRequestDto.FIELD_CATEGORY_IDENTIFIER,
-      AmountService.AmountCreateRequestDto.FIELD_VALUE,
-      AmountService.AmountCreateRequestDto.FIELD_REGISTRATION_VALUE_PART,
-      AmountService.AmountCreateRequestDto.FIELD_OPTIONAL,
-      AmountService.AmountCreateRequestDto.FIELD_PAYMENT_ORDER_NUMBER,
-      AmountService.AmountCreateRequestDto.FIELD_RENEWABLE,
-      AmountService.AmountCreateRequestDto.FIELD_DEADLINE_IDENTIFIER,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class FeeCreateRequestDto extends AmountService.AmountCreateRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;
@@ -172,17 +158,6 @@ public interface FeeService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      FeeUpdateRequestDto.FIELD_SCHOOLING_IDENTIFIER,
-      FeeUpdateRequestDto.FIELD_ASSIGNMENT_IDENTIFIER,
-      FeeUpdateRequestDto.FIELD_SENIORITY_IDENTIFIER, FeeUpdateRequestDto.FIELD_CATEGORY_IDENTIFIER,
-      AmountService.AmountUpdateRequestDto.FIELD_VALUE,
-      AmountService.AmountUpdateRequestDto.FIELD_REGISTRATION_VALUE_PART,
-      AmountService.AmountUpdateRequestDto.FIELD_OPTIONAL,
-      AmountService.AmountUpdateRequestDto.FIELD_PAYMENT_ORDER_NUMBER,
-      AmountService.AmountUpdateRequestDto.FIELD_RENEWABLE,
-      AmountService.AmountUpdateRequestDto.FIELD_DEADLINE_IDENTIFIER,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class FeeUpdateRequestDto extends AmountService.AmountUpdateRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;

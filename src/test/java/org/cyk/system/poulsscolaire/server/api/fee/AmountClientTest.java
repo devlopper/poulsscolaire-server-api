@@ -29,7 +29,7 @@ class AmountClientTest {
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
     assertInstanceOf(CreateResponseDto.class,
-        client.create(0, 0, true, 0, true, null, null, null));
+        client.create(0, 0, true, 0, true, null, null));
   }
 
   @Test
@@ -68,7 +68,7 @@ class AmountClientTest {
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class,
-        client.update(null, 0, 0, true, 0, true, null, null, null));
+        client.update(null, 0, 0, true, 0, true, null, null));
   }
 
   @Test

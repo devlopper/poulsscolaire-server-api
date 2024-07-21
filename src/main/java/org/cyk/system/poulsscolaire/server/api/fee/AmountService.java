@@ -2,7 +2,6 @@ package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -11,7 +10,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -69,11 +67,6 @@ public interface AmountService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AmountCreateRequestDto.FIELD_VALUE,
-      AmountCreateRequestDto.FIELD_REGISTRATION_VALUE_PART, AmountCreateRequestDto.FIELD_OPTIONAL,
-      AmountCreateRequestDto.FIELD_PAYMENT_ORDER_NUMBER, AmountCreateRequestDto.FIELD_RENEWABLE,
-      AmountCreateRequestDto.FIELD_DEADLINE_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class AmountCreateRequestDto extends AbstractAuditedRequestJsonDto implements AmountSaveData {
     @JsonbProperty(JSON_VALUE)
     private int value;
@@ -90,15 +83,11 @@ public interface AmountService extends SpecificService {
     @JsonbProperty(JSON_RENEWABLE)
     private Boolean renewable;
 
-    @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
-    private String deadlineIdentifier;
-
     public static final String FIELD_VALUE = "value";
     public static final String FIELD_REGISTRATION_VALUE_PART = "registrationValuePart";
     public static final String FIELD_OPTIONAL = "optional";
     public static final String FIELD_PAYMENT_ORDER_NUMBER = "paymentOrderNumber";
     public static final String FIELD_RENEWABLE = "renewable";
-    public static final String FIELD_DEADLINE_IDENTIFIER = "deadlineIdentifier";
   }
 
   /**
@@ -118,14 +107,11 @@ public interface AmountService extends SpecificService {
 
     Boolean getRenewable();
 
-    String getDeadlineIdentifier();
-
     String JSON_VALUE = AmountDto.JSON_VALUE;
     String JSON_REGISTRATION_VALUE_PART = AmountDto.JSON_REGISTRATION_VALUE_PART;
     String JSON_OPTIONAL = AmountDto.JSON_OPTIONAL;
     String JSON_PAYMENT_ORDER_NUMBER = AmountDto.JSON_PAYMENT_ORDER_NUMBER;
     String JSON_RENEWABLE = AmountDto.JSON_RENEWABLE;
-    String JSON_DEADLINE_IDENTIFIER = AmountDto.JSON_DEADLINE_IDENTIFIER;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_MONTANT";
@@ -198,11 +184,6 @@ public interface AmountService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      AmountUpdateRequestDto.FIELD_VALUE, AmountUpdateRequestDto.FIELD_REGISTRATION_VALUE_PART,
-      AmountUpdateRequestDto.FIELD_OPTIONAL, AmountUpdateRequestDto.FIELD_PAYMENT_ORDER_NUMBER,
-      AmountUpdateRequestDto.FIELD_RENEWABLE, AmountUpdateRequestDto.FIELD_DEADLINE_IDENTIFIER,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class AmountUpdateRequestDto extends ByIdentifierRequestDto implements AmountSaveData {
     @JsonbProperty(JSON_VALUE)
     private int value;
@@ -219,15 +200,11 @@ public interface AmountService extends SpecificService {
     @JsonbProperty(JSON_RENEWABLE)
     private Boolean renewable;
 
-    @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
-    private String deadlineIdentifier;
-
     public static final String FIELD_VALUE = "value";
     public static final String FIELD_REGISTRATION_VALUE_PART = "registrationValuePart";
     public static final String FIELD_OPTIONAL = "optional";
     public static final String FIELD_PAYMENT_ORDER_NUMBER = "paymentOrderNumber";
     public static final String FIELD_RENEWABLE = "renewable";
-    public static final String FIELD_DEADLINE_IDENTIFIER = "deadlineIdentifier";
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_MONTANT";

@@ -1,9 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -11,7 +8,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -69,15 +65,6 @@ public interface AdjustedFeeService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AdjustedFeeCreateRequestDto.FIELD_REGISTRATION_IDENTIFIER,
-      AdjustedFeeCreateRequestDto.FIELD_FEE_IDENTIFIER,
-      AmountService.AmountCreateRequestDto.FIELD_VALUE,
-      AmountService.AmountCreateRequestDto.FIELD_REGISTRATION_VALUE_PART,
-      AmountService.AmountCreateRequestDto.FIELD_OPTIONAL,
-      AmountService.AmountCreateRequestDto.FIELD_PAYMENT_ORDER_NUMBER,
-      AmountService.AmountCreateRequestDto.FIELD_RENEWABLE,
-      AmountService.AmountCreateRequestDto.FIELD_DEADLINE_IDENTIFIER,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class AdjustedFeeCreateRequestDto extends AmountService.AmountCreateRequestDto {
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
@@ -161,16 +148,6 @@ public interface AdjustedFeeService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      AdjustedFeeUpdateRequestDto.FIELD_REGISTRATION_IDENTIFIER,
-      AdjustedFeeUpdateRequestDto.FIELD_FEE_IDENTIFIER,
-      AmountService.AmountUpdateRequestDto.FIELD_VALUE,
-      AmountService.AmountUpdateRequestDto.FIELD_REGISTRATION_VALUE_PART,
-      AmountService.AmountUpdateRequestDto.FIELD_OPTIONAL,
-      AmountService.AmountUpdateRequestDto.FIELD_PAYMENT_ORDER_NUMBER,
-      AmountService.AmountUpdateRequestDto.FIELD_RENEWABLE,
-      AmountService.AmountUpdateRequestDto.FIELD_DEADLINE_IDENTIFIER,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class AdjustedFeeUpdateRequestDto extends AmountService.AmountUpdateRequestDto {
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;

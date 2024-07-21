@@ -47,11 +47,19 @@ public class AmountDeadlineDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_DEADLINE_AS_STRING)
   private String deadlineAsString;
   
+  @JsonbProperty(JSON_DEADLINE_PASSED)
+  private Boolean deadlinePassed;
+  
+  @JsonbProperty(JSON_DEADLINE_RUNNING)
+  private Boolean deadlineRunning;
+  
   @JsonbProperty(JSON_PAYMENT)
   private Integer payment;
   
   @JsonbProperty(JSON_PAYMENT_AS_STRING)
   private String paymentAsString;
+  
+  
   
   public static final String JSON_AMOUNT_IDENTIFIER = "idMontant";
   
@@ -69,6 +77,8 @@ public class AmountDeadlineDto extends AbstractIdentifiableAuditableDto {
   
   public static final String JSON_DEADLINE_IDENTIFIER = "idEcheance";
   public static final String JSON_DEADLINE_AS_STRING = "echeanceChaine";
+  public static final String JSON_DEADLINE_PASSED = "echeancePassee";
+  public static final String JSON_DEADLINE_RUNNING = "echeanceEnCours";
   
   public static final String JSON_PAYMENT = "paiement";
   public static final String JSON_PAYMENT_AS_STRING = "paiementChaine";

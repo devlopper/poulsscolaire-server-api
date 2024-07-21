@@ -49,9 +49,6 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
 
   @JsonbProperty(JSON_RENEWABLE_AS_STRING)
   private String renewableAsString;
-
-  @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
-  private String deadlineIdentifier;
   
   @JsonbProperty(JSON_DEADLINE_AS_STRING)
   private String deadlineAsString;
@@ -85,7 +82,6 @@ public class AmountDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_PAYMENT_ORDER_NUMBER_AS_STRING = "numeroOrdrePaiementChaine";
   public static final String JSON_RENEWABLE = "reconductible";
   public static final String JSON_RENEWABLE_AS_STRING = "reconductibleChaine";
-  public static final String JSON_DEADLINE_IDENTIFIER = "idEcheance";
   public static final String JSON_DEADLINE_AS_STRING = "echeanceChaine";
   public static final String JSON_DEADLINE_DATE_OVER = "dateEcheancePassee";
   
