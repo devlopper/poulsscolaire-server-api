@@ -23,6 +23,8 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   String feeIdentifier;
   String feeCategoryIdentifier;
 
+  Boolean latePayment;
+
   public AdjustedFeeFilter(FilterDto dto) {
     super(dto);
   }
@@ -39,6 +41,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     registrationStudentIdentifier = getRegistrationStudentIdentifier(filter);
     feeIdentifier = getFeeIdentifier(filter);
     feeCategoryIdentifier = getFeeCategoryIdentifier(filter);
+    latePayment = getLatePayment(filter);
   }
 
   @Override
@@ -51,6 +54,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     setRegistrationStudentIdentifier(filter, registrationStudentIdentifier);
     setFeeIdentifier(filter, feeIdentifier);
     setFeeCategoryIdentifier(filter, feeCategoryIdentifier);
+    setLatePayment(filter, latePayment);
   }
 
   public static void setRegistrationIdentifier(FilterDto filter, String identifier) {
@@ -119,6 +123,14 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_FEE_CATEGORY_IDENTIFIER));
   }
 
+  public static void setLatePayment(FilterDto filter, Boolean value) {
+    set(filter, JSON_LATE_PAYMENT, f -> f.getValueAsString(), f -> f.setValueAsBoolean(value));
+  }
+
+  public static Boolean getLatePayment(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_LATE_PAYMENT));
+  }
+
   public static final String JSON_REGISTRATION_IDENTIFIER =
       AdjustedFeeDto.JSON_REGISTRATION_IDENTIFIER;
   public static final String JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER =
@@ -137,4 +149,6 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
 
   public static final String JSON_FEE_CATEGORY_IDENTIFIER =
       AdjustedFeeDto.JSON_FEE_CATEGORY_IDENTIFIER;
+
+  public static final String JSON_LATE_PAYMENT = "paiementEnRetard";
 }
