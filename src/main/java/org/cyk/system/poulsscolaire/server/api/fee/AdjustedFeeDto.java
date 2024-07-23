@@ -66,7 +66,7 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   @JsonbProperty(JSON_AMOUNT_VALUE_TO_PAY_AS_STRING)
   private String amountValueToPayAsString;
-  
+
   @JsonbProperty(JSON_AMOUNT_VALUE_PAID)
   private Long amountValuePaid;
 
@@ -78,6 +78,12 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   @JsonbProperty(JSON_AMOUNT_VALUE_PAYABLE_AS_STRING)
   private String amountValuePayableAsString;
+
+  @JsonbProperty(JSON_EXPECTED_PAYMENT_AS_STRING)
+  private String expectedPaymentAsString;
+
+  @JsonbProperty(JSON_LATE_PAYMENT)
+  private Boolean latePayment;
 
   /* Fee */
   public static final String JSON_FEE_IDENTIFIER = "idFrais";
@@ -93,16 +99,13 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String JSON_REGISTRATION_SCHOOLING_AS_STRING = "inscriptionScolariteChaine";
   public static final String JSON_REGISTRATION_SCHOOLING_SCHOOL_AS_STRING =
       "inscriptionScolariteEcoleChaine";
-  public static final String JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER =
-      "idEcole";
+  public static final String JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER = "idEcole";
   public static final String JSON_REGISTRATION_SCHOOLING_BRANCH_AS_STRING =
       "inscriptionScolariteBrancheChaine";
-  public static final String JSON_REGISTRATION_SCHOOLING_BRANCH_IDENTIFIER =
-      "idBranche";
+  public static final String JSON_REGISTRATION_SCHOOLING_BRANCH_IDENTIFIER = "idBranche";
   public static final String JSON_REGISTRATION_SCHOOLING_PERIOD_AS_STRING =
       "inscriptionScolaritePeriodeChaine";
-  public static final String JSON_REGISTRATION_SCHOOLING_PERIOD_IDENTIFIER =
-      "idPeriode";
+  public static final String JSON_REGISTRATION_SCHOOLING_PERIOD_IDENTIFIER = "idPeriode";
   public static final String JSON_REGISTRATION_SENIORITY_AS_STRING = "inscriptionAncienneteChaine";
   public static final String JSON_REGISTRATION_ASSIGNMENT_TYPE_AS_STRING =
       "inscriptionTypeAffectationChaine";
@@ -115,6 +118,9 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String JSON_AMOUNT_VALUE_PAYABLE = "montantValeurPayable";
   public static final String JSON_AMOUNT_VALUE_PAYABLE_AS_STRING =
       JSON_AMOUNT_VALUE_PAYABLE + "Chaine";
+
+  public static final String JSON_EXPECTED_PAYMENT_AS_STRING = "paiementAttenduChaine";
+  public static final String JSON_LATE_PAYMENT = "enRetardDePaiement";
 
   /**
    * Nom pour lecture humaine de la classe.
