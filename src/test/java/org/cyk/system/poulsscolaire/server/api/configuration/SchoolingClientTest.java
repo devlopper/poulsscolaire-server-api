@@ -6,9 +6,9 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.GetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGenerateResponseDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingUpdateRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,10 +38,11 @@ class SchoolingClientTest {
   void getMany() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(GetManyResponseDto.class))
-        .thenReturn(new GetManyResponseDto());
+    Mockito.when(response.readEntity(SchoolingGetManyResponseDto.class))
+        .thenReturn(new SchoolingGetManyResponseDto());
     Mockito.when(service.getMany(any())).thenReturn(response);
-    assertInstanceOf(GetManyResponseDto.class, client.getMany(null, null, null, null, null));
+    assertInstanceOf(SchoolingGetManyResponseDto.class,
+        client.getMany(null, null, null, null, null));
   }
 
   @Test

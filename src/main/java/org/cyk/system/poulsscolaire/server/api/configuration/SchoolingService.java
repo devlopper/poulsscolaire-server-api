@@ -108,7 +108,7 @@ public interface SchoolingService extends SpecificService {
 
     @JsonbProperty(JSON_PERIOD_IDENTIFIER)
     private String periodIdentifier;
-    
+
     @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
     private int preRegistrationAmount;
   }
@@ -174,7 +174,8 @@ public interface SchoolingService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<SchoolingDto> {
+  public static class SchoolingGetManyResponseDto
+      extends AbstractGetByPageResponseDto<SchoolingDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<SchoolingDto> datas;
@@ -233,7 +234,7 @@ public interface SchoolingService extends SpecificService {
 
     @JsonbProperty(JSON_PERIOD_IDENTIFIER)
     private String periodIdentifier;
-    
+
     @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
     private int preRegistrationAmount;
   }

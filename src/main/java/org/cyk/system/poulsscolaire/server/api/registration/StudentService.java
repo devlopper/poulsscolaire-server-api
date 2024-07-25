@@ -2,11 +2,6 @@ package org.cyk.system.poulsscolaire.server.api.registration;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -15,7 +10,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -24,6 +18,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -66,6 +61,23 @@ public interface StudentService extends SpecificService {
   Response create(StudentCreateRequestDto request);
 
   /**
+   * Cette classe représente la requete d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveRequestDto extends IdentityService.IdentityData {
+
+    String getRegistrationNumber();
+    
+    String getSchoolIdentifier();
+
+    String JSON_REGISTRATION_NUMBER = StudentDto.JSON_REGISTRATION_NUMBER;
+    
+    String JSON_SCHOOL_IDENTIFIER = StudentDto.JSON_SCHOOL_IDENTIFIER;
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -73,11 +85,7 @@ public interface StudentService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class StudentCreateRequestDto extends AbstractAuditedRequestJsonDto
-      implements IdentityService.IdentityData {
+  class StudentCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {
     @JsonbProperty(JSON_REGISTRATION_NUMBER)
     private String registrationNumber;
 
@@ -95,15 +103,15 @@ public interface StudentService extends SpecificService {
 
     @JsonbProperty(JSON_GENDER_IDENTIFIER)
     private String genderIdentifier;
-
-    public static final String FIELD_REGISTRATION_NUMBER = "registrationNumber";
-    public static final String FIELD_FIRST_NAME = "firstName";
-    public static final String FIELD_LAST_NAMES = "lastNames";
-    public static final String FIELD_EMAIL_ADDRESS = "emailAddress";
-    public static final String FIELD_PHONE_NUMBER = "phoneNumber";
-    public static final String FIELD_GENDER_IDENTIFIER = "genderIdentifier";
-
-    public static final String JSON_REGISTRATION_NUMBER = StudentDto.JSON_REGISTRATION_NUMBER;
+    
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+    
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+    
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_ELEVE";
@@ -126,7 +134,7 @@ public interface StudentService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<StudentDto> {
+  public static class StudentGetManyResponseDto extends AbstractGetByPageResponseDto<StudentDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<StudentDto> datas;
@@ -175,11 +183,7 @@ public interface StudentService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class StudentUpdateRequestDto extends ByIdentifierRequestDto
-      implements IdentityService.IdentityData {
+  class StudentUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {
     @JsonbProperty(JSON_REGISTRATION_NUMBER)
     private String registrationNumber;
 
@@ -197,15 +201,15 @@ public interface StudentService extends SpecificService {
 
     @JsonbProperty(JSON_GENDER_IDENTIFIER)
     private String genderIdentifier;
-
-    public static final String FIELD_REGISTRATION_NUMBER = "firstName";
-    public static final String FIELD_FIRST_NAME = "firstName";
-    public static final String FIELD_LAST_NAMES = "lastNames";
-    public static final String FIELD_EMAIL_ADDRESS = "emailAddress";
-    public static final String FIELD_PHONE_NUMBER = "phoneNumber";
-    public static final String FIELD_GENDER_IDENTIFIER = "genderIdentifier";
-
-    public static final String JSON_REGISTRATION_NUMBER = StudentDto.JSON_REGISTRATION_NUMBER;
+    
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+    
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+    
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_ELEVE";

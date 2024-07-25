@@ -2,6 +2,7 @@ package org.cyk.system.poulsscolaire.server.api.registration;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,12 +39,11 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_IS_MASCULINE)
   private Boolean isMasculine;
   
-  public static final String FIELD_FIRST_NAME = "firstName";
-  public static final String FIELD_LAST_NAMES = "lastNames";
-  public static final String FIELD_EMAIL_ADDRESS = "emailAddress";
-  public static final String FIELD_PHONE_NUMBER = "phoneNumber";
-  public static final String FIELD_GENDER_AS_STRING = "genderAsString";
-  public static final String FIELD_IS_MASCULINE = "isMasculine";
+  @JsonbProperty(JSON_BIRTH_DATE)
+  private LocalDateTime birthDate;
+  
+  @JsonbProperty(JSON_BIRTH_PLACE)
+  private String birthPlace;
   
   public static final String JSON_FIRST_NAME = "nom";
   public static final String JSON_LAST_NAMES = "prenoms";
@@ -52,4 +52,6 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_GENDER_IDENTIFIER = "idGenre";
   public static final String JSON_GENDER_AS_STRING = "genreChaine";
   public static final String JSON_IS_MASCULINE = "estMasculin";
+  public static final String JSON_BIRTH_DATE = "dateNaissance";
+  public static final String JSON_BIRTH_PLACE = "lieuNaissance";
 }

@@ -19,10 +19,10 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.GetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGenerateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGenerateResponseDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingUpdateRequestDto;
 
 /**
@@ -35,7 +35,7 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.Sc
 @Setter
 @Accessors(chain = true, fluent = true)
 public class SchoolingClient extends AbstractClient<SchoolingService>
-    implements GetByIdentifier<SchoolingDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<SchoolingDto>, GetMany<SchoolingGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -53,7 +53,7 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
     return new CreateExecutor(SchoolingService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
-  
+
   /**
    * {@link SchoolingService#generate}.
    *
@@ -79,8 +79,8 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
     return generate(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public SchoolingGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<SchoolingGetManyResponseDto>(SchoolingGetManyResponseDto.class,
         SchoolingService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -94,8 +94,8 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public SchoolingGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);

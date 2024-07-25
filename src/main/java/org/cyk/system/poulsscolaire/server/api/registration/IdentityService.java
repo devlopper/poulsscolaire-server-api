@@ -2,7 +2,6 @@ package org.cyk.system.poulsscolaire.server.api.registration;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -11,7 +10,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -20,6 +18,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -69,10 +68,6 @@ public interface IdentityService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {IdentityCreateRequestDto.FIELD_FIRST_NAME,
-      IdentityCreateRequestDto.FIELD_LAST_NAMES, IdentityCreateRequestDto.FIELD_EMAIL_ADDRESS,
-      IdentityCreateRequestDto.FIELD_PHONE_NUMBER, IdentityCreateRequestDto.FIELD_GENDER_IDENTIFIER,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class IdentityCreateRequestDto extends AbstractAuditedRequestJsonDto implements IdentityData {
     @JsonbProperty(JSON_FIRST_NAME)
     private String firstName;
@@ -89,11 +84,11 @@ public interface IdentityService extends SpecificService {
     @JsonbProperty(JSON_GENDER_IDENTIFIER)
     private String genderIdentifier;
 
-    public static final String FIELD_FIRST_NAME = "firstName";
-    public static final String FIELD_LAST_NAMES = "lastNames";
-    public static final String FIELD_EMAIL_ADDRESS = "emailAddress";
-    public static final String FIELD_PHONE_NUMBER = "phoneNumber";
-    public static final String FIELD_GENDER_IDENTIFIER = "genderIdentifier";
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+    
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
   }
 
   /**
@@ -113,11 +108,17 @@ public interface IdentityService extends SpecificService {
 
     String getGenderIdentifier();
 
+    LocalDateTime getBirthDate();
+    
+    String getBirthPlace();
+    
     String JSON_FIRST_NAME = IdentityDto.JSON_FIRST_NAME;
     String JSON_LAST_NAMES = IdentityDto.JSON_LAST_NAMES;
     String JSON_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS;
     String JSON_PHONE_NUMBER = IdentityDto.JSON_PHONE_NUMBER;
     String JSON_GENDER_IDENTIFIER = IdentityDto.JSON_GENDER_IDENTIFIER;
+    String JSON_BIRTH_DATE = IdentityDto.JSON_BIRTH_DATE;
+    String JSON_BIRTH_PLACE = IdentityDto.JSON_BIRTH_PLACE;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_IDENTITE";
@@ -190,11 +191,6 @@ public interface IdentityService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      IdentityUpdateRequestDto.FIELD_FIRST_NAME, IdentityUpdateRequestDto.FIELD_LAST_NAMES,
-      IdentityUpdateRequestDto.FIELD_EMAIL_ADDRESS, IdentityUpdateRequestDto.FIELD_PHONE_NUMBER,
-      IdentityUpdateRequestDto.FIELD_GENDER_IDENTIFIER, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class IdentityUpdateRequestDto extends ByIdentifierRequestDto implements IdentityData {
     @JsonbProperty(JSON_FIRST_NAME)
     private String firstName;
@@ -210,12 +206,12 @@ public interface IdentityService extends SpecificService {
 
     @JsonbProperty(JSON_GENDER_IDENTIFIER)
     private String genderIdentifier;
-
-    public static final String FIELD_FIRST_NAME = "firstName";
-    public static final String FIELD_LAST_NAMES = "lastNames";
-    public static final String FIELD_EMAIL_ADDRESS = "emailAddress";
-    public static final String FIELD_PHONE_NUMBER = "phoneNumber";
-    public static final String FIELD_GENDER_IDENTIFIER = "genderIdentifier";
+    
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+    
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_IDENTITE";

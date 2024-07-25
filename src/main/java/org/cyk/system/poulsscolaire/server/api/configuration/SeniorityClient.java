@@ -19,8 +19,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.configuration.SeniorityService.GetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SeniorityService.SeniorityCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SeniorityService.SeniorityGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SeniorityService.SeniorityUpdateRequestDto;
 
 /**
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SeniorityService.Se
 @Setter
 @Accessors(chain = true, fluent = true)
 public class SeniorityClient extends AbstractClient<SeniorityService>
-    implements GetByIdentifier<SeniorityDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<SeniorityDto>, GetMany<SeniorityGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -70,8 +70,8 @@ public class SeniorityClient extends AbstractClient<SeniorityService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public SeniorityGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<SeniorityGetManyResponseDto>(SeniorityGetManyResponseDto.class,
         SeniorityService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -85,8 +85,8 @@ public class SeniorityClient extends AbstractClient<SeniorityService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public SeniorityGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);
@@ -97,8 +97,8 @@ public class SeniorityClient extends AbstractClient<SeniorityService>
   }
 
   public SeniorityDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<SeniorityDto>(SeniorityDto.class,
-        SeniorityService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
+    return new GetOneExecutor<SeniorityDto>(SeniorityDto.class, SeniorityService.GET_ONE_IDENTIFIER)
+        .execute(() -> service().getOne(request));
   }
 
   /**
@@ -142,8 +142,8 @@ public class SeniorityClient extends AbstractClient<SeniorityService>
    * @return réponse
    */
   @Override
-  public SeniorityDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
+  public SeniorityDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
     request.setProjection(projection);

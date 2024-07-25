@@ -98,7 +98,8 @@ public interface AssignmentTypeService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<AssignmentTypeDto> {
+  public static class AssignmentTypeGetManyResponseDto
+      extends AbstractGetByPageResponseDto<AssignmentTypeDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<AssignmentTypeDto> datas;

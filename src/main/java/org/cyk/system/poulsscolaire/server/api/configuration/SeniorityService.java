@@ -98,7 +98,8 @@ public interface SeniorityService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<SeniorityDto> {
+  public static class SeniorityGetManyResponseDto
+      extends AbstractGetByPageResponseDto<SeniorityDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<SeniorityDto> datas;

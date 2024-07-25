@@ -2,6 +2,7 @@ package org.cyk.system.poulsscolaire.server.api.registration;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,12 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
+  
+  @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+  private String schoolIdentifier;
+  
+  @JsonbProperty(JSON_SCHOOL_AS_STRING)
+  private String schoolAsString;
   
   @JsonbProperty(JSON_REGISTRATION_NUMBER)
   private String registrationNumber;
@@ -41,6 +48,15 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_IS_MASCULINE)
   private Boolean isMasculine;
   
+  @JsonbProperty(JSON_BIRTH_DATE)
+  private LocalDateTime birthDate;
+  
+  @JsonbProperty(JSON_BIRTH_DATE_AS_STRING)
+  private String birthDateAsString;
+  
+  @JsonbProperty(JSON_BIRTH_PLACE)
+  private String birthPlace;
+  
   @JsonbProperty(JSON_FATHER_AS_STRING)
   private String fatherAsString;
   
@@ -59,21 +75,8 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_SENIORITY_AS_STRING)
   private String seniorityAsString;
   
-  public static final String FIELD_REGISTRATION_NUMBER = "registrationNumber";
-  public static final String FIELD_FIRST_NAME = "firstName";
-  public static final String FIELD_LAST_NAMES = "lastNames";
-  public static final String FIELD_EMAIL_ADDRESS = "emailAddress";
-  public static final String FIELD_PHONE_NUMBER = "phoneNumber";
-  public static final String FIELD_GENDER_IDENTIFIER = "genderIdentifier";
-  public static final String FIELD_GENDER_AS_STRING = "genderAsString";
-  public static final String FIELD_IS_MASCULINE = "isMasculine";
-  public static final String FIELD_FATHER_AS_STRING = "fatherAsString";
-  public static final String FIELD_MOTHER_AS_STRING = "motherAsString";
-  public static final String FIELD_TUTOR_AS_STRING = "tutorAsString";
-  public static final String FIELD_BRANCH_AS_STRING = "branchAsString";
-  public static final String FIELD_ASSIGNMENT_TYPE_AS_STRING = "assignmentTypeAsString";
-  public static final String FIELD_SENIORITY_AS_STRING = "seniorityAsString";
-  
+  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
   public static final String JSON_REGISTRATION_NUMBER = "matricule";
   public static final String JSON_FIRST_NAME = "nom";
   public static final String JSON_LAST_NAMES = "prenoms";
@@ -82,6 +85,10 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_GENDER_IDENTIFIER = "idGenre";
   public static final String JSON_GENDER_AS_STRING = "genreChaine";
   public static final String JSON_IS_MASCULINE = "estMasculin";
+  public static final String JSON_BIRTH_DATE = "dateNaissance";
+  public static final String JSON_BIRTH_DATE_AS_STRING = "dateNaissanceChaine";
+  public static final String JSON_BIRTH_PLACE = "lieuNaissance";
+  public static final String JSON_BIRTH_PLACE_AS_STRING = "lieuNaissanceChaine";
   public static final String JSON_FATHER_AS_STRING = "pereChaine";
   public static final String JSON_MOTHER_AS_STRING = "mereChaine";
   public static final String JSON_TUTOR_AS_STRING = "tuteurChaine";

@@ -20,8 +20,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.configuration.AssignmentTypeService.AssignmentTypeCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.AssignmentTypeService.AssignmentTypeGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.AssignmentTypeService.AssignmentTypeUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.AssignmentTypeService.GetManyResponseDto;
 
 /**
  * Cette classe représente un client de {@link AssignmentTypeService}.
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.configuration.AssignmentTypeServi
 @Setter
 @Accessors(chain = true, fluent = true)
 public class AssignmentTypeClient extends AbstractClient<AssignmentTypeService>
-    implements GetByIdentifier<AssignmentTypeDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<AssignmentTypeDto>, GetMany<AssignmentTypeGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -70,9 +70,16 @@ public class AssignmentTypeClient extends AbstractClient<AssignmentTypeService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        AssignmentTypeService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
+  /**
+   * {@link AssignmentTypeService#getMany}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public AssignmentTypeGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<AssignmentTypeGetManyResponseDto>(
+        AssignmentTypeGetManyResponseDto.class, AssignmentTypeService.GET_MANY_IDENTIFIER)
+            .execute(() -> service().getMany(request));
   }
 
   /**
@@ -85,8 +92,8 @@ public class AssignmentTypeClient extends AbstractClient<AssignmentTypeService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public AssignmentTypeGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);

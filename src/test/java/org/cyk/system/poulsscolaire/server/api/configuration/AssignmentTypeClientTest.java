@@ -6,13 +6,13 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.configuration.AssignmentTypeService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.AssignmentTypeService.AssignmentTypeGetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class AssignmentTypeClientTest {
-  
+
   AssignmentTypeService service;
   AssignmentTypeClient client;
 
@@ -21,7 +21,7 @@ class AssignmentTypeClientTest {
     service = Mockito.mock(AssignmentTypeService.class);
     client = new AssignmentTypeClient().service(service);
   }
-  
+
   @Test
   void create() {
     Response response = Mockito.mock(Response.class);
@@ -35,18 +35,18 @@ class AssignmentTypeClientTest {
   void getMany() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(GetManyResponseDto.class))
-        .thenReturn(new GetManyResponseDto());
+    Mockito.when(response.readEntity(AssignmentTypeGetManyResponseDto.class))
+        .thenReturn(new AssignmentTypeGetManyResponseDto());
     Mockito.when(service.getMany(any())).thenReturn(response);
-    assertInstanceOf(GetManyResponseDto.class, client.getMany(null, null, null, null, null));
+    assertInstanceOf(AssignmentTypeGetManyResponseDto.class,
+        client.getMany(null, null, null, null, null));
   }
 
   @Test
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(AssignmentTypeDto.class))
-        .thenReturn(new AssignmentTypeDto());
+    Mockito.when(response.readEntity(AssignmentTypeDto.class)).thenReturn(new AssignmentTypeDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
     assertInstanceOf(AssignmentTypeDto.class, client.getOne(null, null, null, null));
   }
@@ -55,8 +55,7 @@ class AssignmentTypeClientTest {
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(AssignmentTypeDto.class))
-        .thenReturn(new AssignmentTypeDto());
+    Mockito.when(response.readEntity(AssignmentTypeDto.class)).thenReturn(new AssignmentTypeDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
     assertInstanceOf(AssignmentTypeDto.class, client.getByIdentifier(null, null, null, null));
   }
