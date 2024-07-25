@@ -16,4 +16,13 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 public class AssignmentTypeDto extends AbstractIdentifiableCodableNamableAuditableDto {
   
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "type d'affectation";
+  
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = "types d'affectation";
 }
