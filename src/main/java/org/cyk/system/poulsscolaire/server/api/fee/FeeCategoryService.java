@@ -98,7 +98,8 @@ public interface FeeCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<FeeCategoryDto> {
+  public static class FeeCategoryGetManyResponseDto
+      extends AbstractGetByPageResponseDto<FeeCategoryDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<FeeCategoryDto> datas;

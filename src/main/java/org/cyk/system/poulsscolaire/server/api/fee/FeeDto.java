@@ -48,6 +48,12 @@ public class FeeDto extends AbstractAmountContainerDto {
   
   @JsonbProperty(JSON_AMOUNT_DEADLINE_COUNT_AS_STRING)
   private String amountDeadlineCountAsString;
+  
+  @JsonbProperty(JSON_AMOUNT_VALUE_SUM_AS_STRING)
+  private String amountValueSumAsString;
+  
+  @JsonbProperty(JSON_AMOUNT_REGISTRATION_SUM_AS_STRING)
+  private String amountRegistrationSumAsString;
 
   public static final String JSON_CATEGORY_IDENTIFIER = "idCategorie";
   public static final String JSON_CATEGORY_AS_STRING = "categorieChaine";
@@ -60,6 +66,8 @@ public class FeeDto extends AbstractAmountContainerDto {
   public static final String JSON_SCHOOLING_PERIOD_AS_STRING = "periodeScolariteChaine";
   public static final String JSON_SCHOOLING_BRANCH_AS_STRING = "brancheScolariteChaine";
   public static final String JSON_AMOUNT_DEADLINE_COUNT_AS_STRING = "nombreEcheanceChaine";
+  public static final String JSON_AMOUNT_VALUE_SUM_AS_STRING = "sommeMontantChaine";
+  public static final String JSON_AMOUNT_REGISTRATION_SUM_AS_STRING = "sommeInscriptionChaine";
 
   /**
    * Nom pour lecture humaine de la classe.
