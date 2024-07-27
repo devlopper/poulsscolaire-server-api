@@ -6,13 +6,13 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.payment.PaymentModeService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.payment.PaymentModeService.PaymentModeGetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class PaymentModeClientTest {
-  
+
   PaymentModeService service;
   PaymentModeClient client;
 
@@ -21,7 +21,7 @@ class PaymentModeClientTest {
     service = Mockito.mock(PaymentModeService.class);
     client = new PaymentModeClient().service(service);
   }
-  
+
   @Test
   void create() {
     Response response = Mockito.mock(Response.class);
@@ -35,18 +35,18 @@ class PaymentModeClientTest {
   void getMany() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(GetManyResponseDto.class))
-        .thenReturn(new GetManyResponseDto());
+    Mockito.when(response.readEntity(PaymentModeGetManyResponseDto.class))
+        .thenReturn(new PaymentModeGetManyResponseDto());
     Mockito.when(service.getMany(any())).thenReturn(response);
-    assertInstanceOf(GetManyResponseDto.class, client.getMany(null, null, null, null, null));
+    assertInstanceOf(PaymentModeGetManyResponseDto.class,
+        client.getMany(null, null, null, null, null));
   }
 
   @Test
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(PaymentModeDto.class))
-        .thenReturn(new PaymentModeDto());
+    Mockito.when(response.readEntity(PaymentModeDto.class)).thenReturn(new PaymentModeDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
     assertInstanceOf(PaymentModeDto.class, client.getOne(null, null, null, null));
   }
@@ -55,8 +55,7 @@ class PaymentModeClientTest {
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(PaymentModeDto.class))
-        .thenReturn(new PaymentModeDto());
+    Mockito.when(response.readEntity(PaymentModeDto.class)).thenReturn(new PaymentModeDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
     assertInstanceOf(PaymentModeDto.class, client.getByIdentifier(null, null, null, null));
   }

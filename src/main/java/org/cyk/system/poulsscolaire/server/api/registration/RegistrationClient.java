@@ -19,8 +19,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.registration.RegistrationService.GetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.RegistrationService.RegistrationCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.registration.RegistrationService.RegistrationGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.RegistrationService.RegistrationUpdateRequestDto;
 
 /**
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.registration.RegistrationService.
 @Setter
 @Accessors(chain = true, fluent = true)
 public class RegistrationClient extends AbstractClient<RegistrationService>
-    implements GetByIdentifier<RegistrationDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<RegistrationDto>, GetMany<RegistrationGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -74,8 +74,8 @@ public class RegistrationClient extends AbstractClient<RegistrationService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public RegistrationGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<RegistrationGetManyResponseDto>(RegistrationGetManyResponseDto.class,
         RegistrationService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -89,8 +89,8 @@ public class RegistrationClient extends AbstractClient<RegistrationService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public RegistrationGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);

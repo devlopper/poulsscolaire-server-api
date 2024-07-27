@@ -139,7 +139,8 @@ public interface RegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<RegistrationDto> {
+  public static class RegistrationGetManyResponseDto
+      extends AbstractGetByPageResponseDto<RegistrationDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<RegistrationDto> datas;

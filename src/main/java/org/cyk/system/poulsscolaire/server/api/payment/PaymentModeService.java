@@ -98,7 +98,8 @@ public interface PaymentModeService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<PaymentModeDto> {
+  public static class PaymentModeGetManyResponseDto
+      extends AbstractGetByPageResponseDto<PaymentModeDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<PaymentModeDto> datas;

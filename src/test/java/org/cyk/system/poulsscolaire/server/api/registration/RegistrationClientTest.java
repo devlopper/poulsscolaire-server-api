@@ -6,7 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.registration.RegistrationService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.registration.RegistrationService.RegistrationGetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,18 +28,18 @@ class RegistrationClientTest {
     Mockito.when(response.getStatus()).thenReturn(Response.Status.CREATED.getStatusCode());
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
-    assertInstanceOf(CreateResponseDto.class,
-        client.create(null, null, null, null, null, null));
+    assertInstanceOf(CreateResponseDto.class, client.create(null, null, null, null, null, null));
   }
 
   @Test
   void getMany() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(GetManyResponseDto.class))
-        .thenReturn(new GetManyResponseDto());
+    Mockito.when(response.readEntity(RegistrationGetManyResponseDto.class))
+        .thenReturn(new RegistrationGetManyResponseDto());
     Mockito.when(service.getMany(any())).thenReturn(response);
-    assertInstanceOf(GetManyResponseDto.class, client.getMany(null, null, null, null, null));
+    assertInstanceOf(RegistrationGetManyResponseDto.class,
+        client.getMany(null, null, null, null, null));
   }
 
   @Test

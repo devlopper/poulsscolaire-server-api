@@ -19,8 +19,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.payment.PaymentModeService.GetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.payment.PaymentModeService.PaymentModeCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.payment.PaymentModeService.PaymentModeGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.payment.PaymentModeService.PaymentModeUpdateRequestDto;
 
 /**
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.payment.PaymentModeService.Paymen
 @Setter
 @Accessors(chain = true, fluent = true)
 public class PaymentModeClient extends AbstractClient<PaymentModeService>
-    implements GetByIdentifier<PaymentModeDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<PaymentModeDto>, GetMany<PaymentModeGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -70,8 +70,8 @@ public class PaymentModeClient extends AbstractClient<PaymentModeService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public PaymentModeGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<PaymentModeGetManyResponseDto>(PaymentModeGetManyResponseDto.class,
         PaymentModeService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -85,8 +85,8 @@ public class PaymentModeClient extends AbstractClient<PaymentModeService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public PaymentModeGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);
