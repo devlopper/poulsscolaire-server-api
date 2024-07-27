@@ -35,6 +35,9 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_DATE_AS_STRING)
   private String dateAsString;
   
+  @JsonbProperty(JSON_CANCELED)
+  private Boolean canceled;
+  
   public static final String FIELD_REGISTRATION_IDENTIFIER = "registrationIdentifier";
   public static final String FIELD_MODE_IDENTIFIER = "modeIdentifier";
   public static final String FIELD_MODE_AS_STRING = "modeAsString";
@@ -48,6 +51,7 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_AMOUNT = "montant";
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
   public static final String JSON_DATE_AS_STRING = "dateChaine";
+  public static final String JSON_CANCELED = "annule";
   
   /**
    * Nom pour lecture humaine de la classe.

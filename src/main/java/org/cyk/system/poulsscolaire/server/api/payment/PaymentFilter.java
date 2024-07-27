@@ -4,7 +4,6 @@ import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeeDto;
 
 /**
  * Cette classe représente le filtre de {@link PaymentDto}.
@@ -17,6 +16,7 @@ import org.cyk.system.poulsscolaire.server.api.fee.AdjustedFeeDto;
 public class PaymentFilter extends AbstractIdentifiableFilter {
 
   String registrationIdentifier;
+  Boolean canceled;
 
   public PaymentFilter(FilterDto dto) {
     super(dto);
@@ -28,12 +28,14 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   protected void doInitialize(FilterDto filter) {
     super.doInitialize(filter);
     registrationIdentifier = getRegistrationIdentifier(filter);
+    canceled = getCanceled(filter);
   }
 
   @Override
   protected void toDto(FilterDto filter) {
     super.toDto(filter);
     setRegistrationIdentifier(filter, registrationIdentifier);
+    setCanceled(filter, canceled);
   }
 
   public static void setRegistrationIdentifier(FilterDto filter, String identifier) {
@@ -45,6 +47,15 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_REGISTRATION_IDENTIFIER));
   }
 
-  public static final String JSON_REGISTRATION_IDENTIFIER =
-      AdjustedFeeDto.JSON_REGISTRATION_IDENTIFIER;
+  public static void setCanceled(FilterDto filter, Boolean value) {
+    set(filter, JSON_CANCELED, f -> f.getValueAsString(), f -> f.setValueAsBoolean(value));
+  }
+
+  public static Boolean getCanceled(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_CANCELED));
+  }
+
+  public static final String JSON_REGISTRATION_IDENTIFIER = PaymentDto.JSON_REGISTRATION_IDENTIFIER;
+
+  public static final String JSON_CANCELED = PaymentDto.JSON_CANCELED;
 }
