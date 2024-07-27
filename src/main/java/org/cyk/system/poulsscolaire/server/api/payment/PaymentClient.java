@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -179,6 +180,27 @@ public class PaymentClient extends AbstractClient<PaymentService>
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return update(request);
+  }
+
+  public IdentifiableResponseDto cancel(ByIdentifierRequestDto request) {
+    return new IdentifiableExecutor(PaymentService.CANCEL_IDENTIFIER)
+        .execute(() -> service().cancel(request));
+  }
+
+  /**
+   * {@link PaymentService#cancel}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto cancel(String identifier, String auditWho, String auditSession) {
+    ByIdentifierRequestDto request = new ByIdentifierRequestDto();
+    request.setIdentifier(identifier);
+    request.setAuditWho(auditWho);
+    request.setAuditSession(auditSession);
+    return cancel(request);
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {

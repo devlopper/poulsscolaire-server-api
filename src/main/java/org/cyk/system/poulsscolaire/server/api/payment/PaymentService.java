@@ -2,7 +2,6 @@ package org.cyk.system.poulsscolaire.server.api.payment;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -11,7 +10,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -62,6 +60,30 @@ public interface PaymentService extends SpecificService {
   Response create(PaymentCreateRequestDto request);
 
   /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveRequestDto {
+    String getRegistrationIdentifier();
+
+    void setRegistrationIdentifier(String identifier);
+
+    String getModeIdentifier();
+
+    void setModeIdentifier(String identifier);
+
+    int getAmount();
+
+    void setAmount(int amount);
+
+    String JSON_REGISTRATION_IDENTIFIER = PaymentDto.JSON_REGISTRATION_IDENTIFIER;
+    String JSON_MODE_IDENTIFIER = PaymentDto.JSON_MODE_IDENTIFIER;
+    String JSON_AMOUNT = PaymentDto.JSON_AMOUNT;
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -69,10 +91,7 @@ public interface PaymentService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {PaymentCreateRequestDto.FIELD_REGISTRATION_IDENTIFIER,
-      PaymentCreateRequestDto.FIELD_MODE_IDENTIFIER, PaymentCreateRequestDto.FIELD_AMOUNT,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class PaymentCreateRequestDto extends AbstractAuditedRequestJsonDto {
+  class PaymentCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
 
@@ -81,15 +100,6 @@ public interface PaymentService extends SpecificService {
 
     @JsonbProperty(JSON_AMOUNT)
     private int amount;
-
-    public static final String FIELD_REGISTRATION_IDENTIFIER = "registrationIdentifier";
-    public static final String FIELD_MODE_IDENTIFIER = "modeIdentifier";
-    public static final String FIELD_AMOUNT = "amount";
-
-    public static final String JSON_REGISTRATION_IDENTIFIER =
-        PaymentDto.JSON_REGISTRATION_IDENTIFIER;
-    public static final String JSON_MODE_IDENTIFIER = PaymentDto.JSON_MODE_IDENTIFIER;
-    public static final String JSON_AMOUNT = PaymentDto.JSON_AMOUNT;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_PAIEMENT";
@@ -162,22 +172,28 @@ public interface PaymentService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      PaymentUpdateRequestDto.FIELD_MODE_IDENTIFIER, PaymentUpdateRequestDto.FIELD_AMOUNT,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class PaymentUpdateRequestDto extends ByIdentifierRequestDto {
+  class PaymentUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {
+    @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
+    private String registrationIdentifier;
+    
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private int amount;
-
-    public static final String FIELD_MODE_IDENTIFIER = "modeIdentifier";
-    public static final String FIELD_AMOUNT = "amount";
-
-    public static final String JSON_MODE_IDENTIFIER = PaymentDto.JSON_MODE_IDENTIFIER;
-    public static final String JSON_AMOUNT = PaymentDto.JSON_AMOUNT;
   }
+  
+  String CANCEL_IDENTIFIER = "ANNULATION_PAIEMENT";
+
+  String CANCEL_PATH = "annulation";
+
+  @Path(CANCEL_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CANCEL_IDENTIFIER,
+      description = "Ce service permet d'annuler un paiement")
+  Response cancel(ByIdentifierRequestDto request);
 
   String DELETE_IDENTIFIER = "SUPPRESSION_PAIEMENT";
 
