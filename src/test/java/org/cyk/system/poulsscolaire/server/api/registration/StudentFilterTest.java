@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 class StudentFilterTest {
   
   @Test
+  void doInitialize() {
+    StudentFilter filter = new StudentFilter(null);
+    filter.doInitialize(new FilterDto());
+    FilterDto dto = filter.toDto();
+    assertNotNull(dto);
+  }
+  
+  @Test
   void toDto() {
     StudentFilter filter = new StudentFilter();
     FilterDto dto = filter.toDto();

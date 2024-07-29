@@ -96,6 +96,7 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
   public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
   public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
+  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   public static final String JSON_SCHOOLING_AS_STRING = "scolariteChaine";
   public static final String JSON_ASSIGNMENT_TYPE_IDENTIFIER = "idTypeAffectation";
   public static final String JSON_ASSIGNMENT_TYPE_AS_STRING = "typeAffectationChaine";

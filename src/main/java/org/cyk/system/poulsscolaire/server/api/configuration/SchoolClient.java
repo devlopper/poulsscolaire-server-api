@@ -13,7 +13,7 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.configuration.SchoolService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolService.SchoolGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolService.SchoolRepatriateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolService.SchoolRepatriateResponseDto;
 
@@ -27,7 +27,7 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SchoolService.Schoo
 @Setter
 @Accessors(chain = true, fluent = true)
 public class SchoolClient extends AbstractClient<SchoolService>
-    implements GetByIdentifier<SchoolDto>, GetMany<GetManyResponseDto> {
+    implements GetByIdentifier<SchoolDto>, GetMany<SchoolGetManyResponseDto> {
 
   @Override
   public SchoolClient service(SchoolService service) {
@@ -53,8 +53,8 @@ public class SchoolClient extends AbstractClient<SchoolService>
     return repatriate(request);
   }
   
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public SchoolGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<SchoolGetManyResponseDto>(SchoolGetManyResponseDto.class,
         SchoolService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -68,7 +68,7 @@ public class SchoolClient extends AbstractClient<SchoolService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public SchoolGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);

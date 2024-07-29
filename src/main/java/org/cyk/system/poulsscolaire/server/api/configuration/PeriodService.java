@@ -45,7 +45,7 @@ public interface PeriodService extends SpecificService {
   @Operation(operationId = REPATRIATE_IDENTIFIER,
       description = "Ce service permet de rapatrier des périodes")
   Response repatriate(PeriodRepatriateRequestDto request);
-  
+
   /**
    * Cette classe représente la requête de rapatriement.
    *
@@ -57,9 +57,9 @@ public interface PeriodService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
   class PeriodRepatriateRequestDto extends AbstractAuditedRequestJsonDto {
-    
+
   }
-  
+
   /**
    * Cette classe représente la réponse de génération.
    *
@@ -74,7 +74,7 @@ public interface PeriodService extends SpecificService {
     @JsonbProperty("nombre")
     int count;
   }
-  
+
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_PERIODE";
 
   String GET_MANY_PATH = "obtention/plusieurs";
@@ -95,7 +95,7 @@ public interface PeriodService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<PeriodDto> {
+  public static class PeriodGetManyResponseDto extends AbstractGetByPageResponseDto<PeriodDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<PeriodDto> datas;
