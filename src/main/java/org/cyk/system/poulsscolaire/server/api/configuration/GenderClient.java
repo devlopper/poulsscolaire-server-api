@@ -20,8 +20,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.configuration.GenderService.GenderCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.GenderService.GenderGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.GenderService.GenderUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.GenderService.GetManyResponseDto;
 
 /**
  * Cette classe représente un client de {@link GenderService}.
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.configuration.GenderService.GetMa
 @Setter
 @Accessors(chain = true, fluent = true)
 public class GenderClient extends AbstractClient<GenderService>
-    implements GetByIdentifier<GenderDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<GenderDto>, GetMany<GenderGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -70,8 +70,8 @@ public class GenderClient extends AbstractClient<GenderService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public GenderGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<GenderGetManyResponseDto>(GenderGetManyResponseDto.class,
         GenderService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -85,7 +85,7 @@ public class GenderClient extends AbstractClient<GenderService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public GenderGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);

@@ -98,7 +98,7 @@ public interface GenderService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<GenderDto> {
+  public static class GenderGetManyResponseDto extends AbstractGetByPageResponseDto<GenderDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<GenderDto> datas;

@@ -62,6 +62,8 @@ public class PeriodDto extends AbstractIdentifiableCodableNamableDto {
   public static final String JSON_PAYABLE_REGISTRATION_AMOUNT_AS_STRING =
       "montantInscriptionPayableChaine";
   
+  public static final String JSON_OPENED = "ouvert";
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

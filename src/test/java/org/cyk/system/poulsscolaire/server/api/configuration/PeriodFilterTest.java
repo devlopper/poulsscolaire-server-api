@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 class PeriodFilterTest {
   
   @Test
+  void doInitialize() {
+    PeriodFilter filter = new PeriodFilter(null);
+    filter.doInitialize(new FilterDto());
+    FilterDto dto = filter.toDto();
+    assertNotNull(dto);
+  }
+  
+  @Test
   void toDto() {
     PeriodFilter filter = new PeriodFilter();
     FilterDto dto = filter.toDto();

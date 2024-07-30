@@ -45,6 +45,8 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String FIELD_AMOUNT_AS_STRING = "amountAsString";
   public static final String FIELD_DATE_AS_STRING = "dateAsString";
   
+  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  public static final String JSON_PERIOD_IDENTIFIER = "idPeriode";
   public static final String JSON_REGISTRATION_IDENTIFIER = "idInscription";
   public static final String JSON_MODE_IDENTIFIER = "idMode";
   public static final String JSON_MODE_AS_STRING = "modeChaine";

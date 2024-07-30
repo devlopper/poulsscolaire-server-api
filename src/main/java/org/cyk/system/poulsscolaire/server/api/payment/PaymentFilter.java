@@ -15,6 +15,8 @@ import lombok.Setter;
 @Setter
 public class PaymentFilter extends AbstractIdentifiableFilter {
 
+  String schoolIdentifier;
+  String periodIdentifier;
   String registrationIdentifier;
   Boolean canceled;
 
@@ -27,6 +29,8 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   @Override
   protected void doInitialize(FilterDto filter) {
     super.doInitialize(filter);
+    schoolIdentifier = getSchoolIdentifier(filter);
+    periodIdentifier = getPeriodIdentifier(filter);
     registrationIdentifier = getRegistrationIdentifier(filter);
     canceled = getCanceled(filter);
   }
@@ -34,8 +38,28 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   @Override
   protected void toDto(FilterDto filter) {
     super.toDto(filter);
+    setSchoolIdentifier(filter, schoolIdentifier);
+    setPeriodIdentifier(filter, periodIdentifier);
     setRegistrationIdentifier(filter, registrationIdentifier);
     setCanceled(filter, canceled);
+  }
+
+  public static void setSchoolIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_SCHOOL_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getSchoolIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOL_IDENTIFIER));
+  }
+  
+  public static void setPeriodIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_PERIOD_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getPeriodIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_PERIOD_IDENTIFIER));
   }
 
   public static void setRegistrationIdentifier(FilterDto filter, String identifier) {
@@ -55,7 +79,8 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_CANCELED));
   }
 
+  public static final String JSON_SCHOOL_IDENTIFIER = PaymentDto.JSON_SCHOOL_IDENTIFIER;
+  public static final String JSON_PERIOD_IDENTIFIER = PaymentDto.JSON_PERIOD_IDENTIFIER;
   public static final String JSON_REGISTRATION_IDENTIFIER = PaymentDto.JSON_REGISTRATION_IDENTIFIER;
-
   public static final String JSON_CANCELED = PaymentDto.JSON_CANCELED;
 }
