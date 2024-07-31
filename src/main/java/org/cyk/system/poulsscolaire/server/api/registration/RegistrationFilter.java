@@ -4,7 +4,6 @@ import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingDto;
 
 /**
  * Cette classe représente le filtre de {@link RegistrationDto}.
@@ -18,6 +17,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
 
   String schoolIdentifier;
   String periodIdentifier;
+  String studentIdentifier;
 
   public RegistrationFilter(FilterDto dto) {
     super(dto);
@@ -30,6 +30,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     super.doInitialize(filter);
     schoolIdentifier = getSchoolIdentifier(filter);
     periodIdentifier = getPeriodIdentifier(filter);
+    studentIdentifier = getStudentIdentifier(filter);
   }
 
   @Override
@@ -37,6 +38,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     super.toDto(filter);
     setSchoolIdentifier(filter, schoolIdentifier);
     setPeriodIdentifier(filter, periodIdentifier);
+    setStudentIdentifier(filter, studentIdentifier);
   }
 
   public static void setSchoolIdentifier(FilterDto filter, String identifier) {
@@ -56,7 +58,17 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
   public static String getPeriodIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_PERIOD_IDENTIFIER));
   }
+  
+  public static void setStudentIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_STUDENT_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
 
-  public static final String JSON_SCHOOL_IDENTIFIER = SchoolingDto.JSON_SCHOOL_IDENTIFIER;
-  public static final String JSON_PERIOD_IDENTIFIER = SchoolingDto.JSON_PERIOD_IDENTIFIER;
+  public static String getStudentIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_STUDENT_IDENTIFIER));
+  }
+
+  public static final String JSON_SCHOOL_IDENTIFIER = RegistrationDto.JSON_SCHOOL_IDENTIFIER;
+  public static final String JSON_PERIOD_IDENTIFIER = RegistrationDto.JSON_PERIOD_IDENTIFIER;
+  public static final String JSON_STUDENT_IDENTIFIER = RegistrationDto.JSON_STUDENT_IDENTIFIER;
 }
