@@ -10,4 +10,13 @@ import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCoda
  */
 public class DeadlineGroupDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "groupe d'échéance";
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = "groupes d'échéance";
 }

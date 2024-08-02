@@ -20,8 +20,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.fee.DeadlineGroupService.DeadlineGroupCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.DeadlineGroupService.DeadlineGroupGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.fee.DeadlineGroupService.DeadlineGroupUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.fee.DeadlineGroupService.GetManyResponseDto;
 
 /**
  * Cette classe représente un client de {@link DeadlineGroupService}.
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.fee.DeadlineGroupService.GetManyR
 @Setter
 @Accessors(chain = true, fluent = true)
 public class DeadlineGroupClient extends AbstractClient<DeadlineGroupService>
-    implements GetByIdentifier<DeadlineGroupDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<DeadlineGroupDto>, GetMany<DeadlineGroupGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -70,9 +70,16 @@ public class DeadlineGroupClient extends AbstractClient<DeadlineGroupService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
-        DeadlineGroupService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
+  /**
+   * {@link DeadlineGroupService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public DeadlineGroupGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<DeadlineGroupGetManyResponseDto>(
+        DeadlineGroupGetManyResponseDto.class, DeadlineGroupService.GET_MANY_IDENTIFIER)
+            .execute(() -> service().getMany(request));
   }
 
   /**
@@ -85,8 +92,8 @@ public class DeadlineGroupClient extends AbstractClient<DeadlineGroupService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public DeadlineGroupGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);

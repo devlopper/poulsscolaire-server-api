@@ -1,11 +1,8 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -13,7 +10,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -65,6 +61,30 @@ public interface DeadlineService extends SpecificService {
   Response create(DeadlineCreateRequestDto request);
 
   /**
+   * Cette interface représente l'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveRequestDto {
+    String getGroupIdentifier();
+
+    void setGroupIdentifier(String groupIdentifier);
+
+    String getSchoolIdentifier();
+
+    void setSchoolIdentifier(String schoolIdentifier);
+
+    LocalDateTime getDate();
+
+    void setDate(LocalDateTime date);
+
+    String JSON_GROUP_IDENTIFIER = "idGroupe";
+    String JSON_SCHOOL_IDENTIFIER = "idEcole";
+    String JSON_DATE = "date";
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -72,21 +92,16 @@ public interface DeadlineService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(
-      value = {DeadlineCreateRequestDto.FIELD_GROUP_IDENTIFIER, DeadlineCreateRequestDto.FIELD_DATE,
-          AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class DeadlineCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
+  class DeadlineCreateRequestDto extends AbstractNamableCreateRequestJsonDto
+      implements SaveRequestDto {
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
 
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+
     @JsonbProperty(JSON_DATE)
     private LocalDateTime date;
-
-    public static final String FIELD_GROUP_IDENTIFIER = "groupIdentifier";
-    public static final String FIELD_DATE = "date";
-
-    public static final String JSON_GROUP_IDENTIFIER = "idGroupe";
-    public static final String JSON_DATE = "date";
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_ECHEANCE";
@@ -159,21 +174,16 @@ public interface DeadlineService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      DeadlineUpdateRequestDto.FIELD_GROUP_IDENTIFIER, DeadlineUpdateRequestDto.FIELD_DATE,
-      AbstractRequestDto.FIELD_AUDIT_WHO, AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class DeadlineUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
+  class DeadlineUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
+      implements SaveRequestDto {
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
 
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+
     @JsonbProperty(JSON_DATE)
     private LocalDateTime date;
-
-    public static final String FIELD_GROUP_IDENTIFIER = "groupIdentifier";
-    public static final String FIELD_DATE = "date";
-
-    public static final String JSON_GROUP_IDENTIFIER = "idGroupe";
-    public static final String JSON_DATE = "date";
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_ECHEANCE";

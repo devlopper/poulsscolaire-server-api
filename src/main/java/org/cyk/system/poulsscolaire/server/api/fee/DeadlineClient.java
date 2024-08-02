@@ -17,7 +17,6 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
-import java.time.LocalDateTime;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.fee.DeadlineService.DeadlineCreateRequestDto;
@@ -51,27 +50,6 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
   public CreateResponseDto create(DeadlineCreateRequestDto request) {
     return new CreateExecutor(DeadlineService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
-  }
-
-  /**
-   * {@link DeadlineService#create}.
-   *
-   * @param groupIdentifier identifiant groupe
-   * @param date date
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public CreateResponseDto create(String code, String name, String groupIdentifier,
-      LocalDateTime date, String auditWho, String auditSession) {
-    DeadlineCreateRequestDto request = new DeadlineCreateRequestDto();
-    request.setCode(code);
-    request.setName(name);
-    request.setGroupIdentifier(groupIdentifier);
-    request.setDate(date);
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return create(request);
   }
 
   public GetManyResponseDto getMany(GetManyRequestDto request) {
@@ -159,29 +137,6 @@ public class DeadlineClient extends AbstractClient<DeadlineService>
   public IdentifiableResponseDto update(DeadlineUpdateRequestDto request) {
     return new IdentifiableExecutor(DeadlineService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
-  }
-
-  /**
-   * {@link DeadlineService#update}.
-   *
-   * @param identifier identifiant
-   * @param groupIdentifier identifiant groupe
-   * @param date date
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public IdentifiableResponseDto update(String identifier, String code, String name,
-      String groupIdentifier, LocalDateTime date, String auditWho, String auditSession) {
-    DeadlineUpdateRequestDto request = new DeadlineUpdateRequestDto();
-    request.setIdentifier(identifier);
-    request.setCode(code);
-    request.setName(name);
-    request.setGroupIdentifier(groupIdentifier);
-    request.setDate(date);
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return update(request);
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {

@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 class DeadlineFilterTest {
   
   @Test
+  void doInitialize() {
+    DeadlineFilter filter = new DeadlineFilter(null);
+    filter.doInitialize(new FilterDto());
+    FilterDto dto = filter.toDto();
+    assertNotNull(dto);
+  }
+  
+  @Test
   void toDto() {
     DeadlineFilter filter = new DeadlineFilter();
     FilterDto dto = filter.toDto();

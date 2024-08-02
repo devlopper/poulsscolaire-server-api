@@ -6,6 +6,8 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
+import org.cyk.system.poulsscolaire.server.api.fee.DeadlineService.DeadlineCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.DeadlineService.DeadlineUpdateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.fee.DeadlineService.GetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +30,7 @@ class DeadlineClientTest {
     Mockito.when(response.getStatus()).thenReturn(Response.Status.CREATED.getStatusCode());
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
-    assertInstanceOf(CreateResponseDto.class, client.create(null, null, null, null, null, null));
+    assertInstanceOf(CreateResponseDto.class, client.create(new DeadlineCreateRequestDto()));
   }
 
   @Test
@@ -67,7 +69,7 @@ class DeadlineClientTest {
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class,
-        client.update(null, null, null, null, null, null, null));
+        client.update(new DeadlineUpdateRequestDto()));
   }
 
   @Test

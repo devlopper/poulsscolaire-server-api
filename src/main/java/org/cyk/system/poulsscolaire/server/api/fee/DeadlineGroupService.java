@@ -98,7 +98,8 @@ public interface DeadlineGroupService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<DeadlineGroupDto> {
+  public static class DeadlineGroupGetManyResponseDto
+      extends AbstractGetByPageResponseDto<DeadlineGroupDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<DeadlineGroupDto> datas;

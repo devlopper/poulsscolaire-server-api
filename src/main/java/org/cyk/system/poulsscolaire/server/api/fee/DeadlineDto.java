@@ -24,19 +24,22 @@ public class DeadlineDto extends AbstractIdentifiableCodableNamableAuditableDto 
   @JsonbProperty(JSON_GROUP_AS_STRING)
   private String groupAsString;
   
+  @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+  private String schoolIdentifier;
+  
+  @JsonbProperty(JSON_SCHOOL_AS_STRING)
+  private String schoolAsString;
+  
   @JsonbProperty(JSON_DATE)
   private LocalDateTime date;
   
   @JsonbProperty(JSON_DATE_AS_STRING)
   private String dateAsString;
   
-  public static final String FIELD_GROUP_IDENTIFIER = "groupIdentifier";
-  public static final String FIELD_GROUP_AS_STRING = "groupAsString";
-  public static final String FIELD_DATE = "date";
-  public static final String FIELD_DATE_AS_STRING = "dateAsString";
-  
   public static final String JSON_GROUP_IDENTIFIER = "idGroupe";
   public static final String JSON_GROUP_AS_STRING = "groupeChaine";
+  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
   public static final String JSON_DATE = "date";
   public static final String JSON_DATE_AS_STRING = "dateChaine";
   
