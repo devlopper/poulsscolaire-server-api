@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.cyk.system.poulsscolaire.server.api.registration.IdentityService.IdentitySaveRequest;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -66,15 +67,18 @@ public interface StudentService extends SpecificService {
    * @author Christian
    *
    */
-  interface SaveRequestDto extends IdentityService.IdentityData {
+  interface StudentSaveRequestDto extends IdentitySaveRequest {
 
-    String getRegistrationNumber();
-    
     String getSchoolIdentifier();
 
-    String JSON_REGISTRATION_NUMBER = StudentDto.JSON_REGISTRATION_NUMBER;
-    
+    void setSchoolIdentifier(String schoolIdentifier);
+
+    String getOriginSchool();
+
+    void setOriginSchool(String originSchool);
+
     String JSON_SCHOOL_IDENTIFIER = StudentDto.JSON_SCHOOL_IDENTIFIER;
+    String JSON_ORIGIN_SCHOOL = StudentDto.JSON_ORIGIN_SCHOOL;
   }
 
   /**
@@ -85,15 +89,56 @@ public interface StudentService extends SpecificService {
    */
   @Getter
   @Setter
-  class StudentCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {
+  class StudentCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements StudentSaveRequestDto {
+
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+
+    @JsonbProperty(JSON_ORIGIN_SCHOOL)
+    private String originSchool;
+
     @JsonbProperty(JSON_REGISTRATION_NUMBER)
     private String registrationNumber;
 
     @JsonbProperty(JSON_FIRST_NAME)
     private String firstName;
 
+    @JsonbProperty(JSON_ARABIC_FIRST_NAME)
+    private String arabicFirstName;
+
     @JsonbProperty(JSON_LAST_NAMES)
     private String lastNames;
+
+    @JsonbProperty(JSON_ARABIC_LAST_NAMES)
+    private String arabicLastNames;
+
+    @JsonbProperty(JSON_GENDER_IDENTIFIER)
+    private String genderIdentifier;
+
+    @JsonbProperty(JSON_BLOOD_GROUP)
+    private BloodGroup bloodGroup;
+
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
+
+    @JsonbProperty(JSON_BIRTH_CERTIFICATE_REFERENCE)
+    private String birthCertificateReference;
+
+    @JsonbProperty(JSON_NATIONALITY)
+    private String nationality;
+
+    @JsonbProperty(JSON_SITUATION)
+    private String situation;
+
+    @JsonbProperty(JSON_PROFESSION)
+    private String profession;
+
+    @JsonbProperty(JSON_RESIDENCE)
+    private String residence;
 
     @JsonbProperty(JSON_EMAIL_ADDRESS)
     private String emailAddress;
@@ -101,17 +146,8 @@ public interface StudentService extends SpecificService {
     @JsonbProperty(JSON_PHONE_NUMBER)
     private String phoneNumber;
 
-    @JsonbProperty(JSON_GENDER_IDENTIFIER)
-    private String genderIdentifier;
-    
-    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
-    private String schoolIdentifier;
-    
-    @JsonbProperty(JSON_BIRTH_DATE)
-    private LocalDateTime birthDate;
-    
-    @JsonbProperty(JSON_BIRTH_PLACE)
-    private String birthPlace;
+    @JsonbProperty(JSON_OTHERS_CONTACTS)
+    private String othersContacts;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_ELEVE";
@@ -183,15 +219,54 @@ public interface StudentService extends SpecificService {
    */
   @Getter
   @Setter
-  class StudentUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {
+  class StudentUpdateRequestDto extends ByIdentifierRequestDto implements StudentSaveRequestDto {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+
+    @JsonbProperty(JSON_ORIGIN_SCHOOL)
+    private String originSchool;
+
     @JsonbProperty(JSON_REGISTRATION_NUMBER)
     private String registrationNumber;
 
     @JsonbProperty(JSON_FIRST_NAME)
     private String firstName;
 
+    @JsonbProperty(JSON_ARABIC_FIRST_NAME)
+    private String arabicFirstName;
+
     @JsonbProperty(JSON_LAST_NAMES)
     private String lastNames;
+
+    @JsonbProperty(JSON_ARABIC_LAST_NAMES)
+    private String arabicLastNames;
+
+    @JsonbProperty(JSON_GENDER_IDENTIFIER)
+    private String genderIdentifier;
+
+    @JsonbProperty(JSON_BLOOD_GROUP)
+    private BloodGroup bloodGroup;
+
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
+
+    @JsonbProperty(JSON_BIRTH_CERTIFICATE_REFERENCE)
+    private String birthCertificateReference;
+
+    @JsonbProperty(JSON_NATIONALITY)
+    private String nationality;
+
+    @JsonbProperty(JSON_SITUATION)
+    private String situation;
+
+    @JsonbProperty(JSON_PROFESSION)
+    private String profession;
+
+    @JsonbProperty(JSON_RESIDENCE)
+    private String residence;
 
     @JsonbProperty(JSON_EMAIL_ADDRESS)
     private String emailAddress;
@@ -199,17 +274,8 @@ public interface StudentService extends SpecificService {
     @JsonbProperty(JSON_PHONE_NUMBER)
     private String phoneNumber;
 
-    @JsonbProperty(JSON_GENDER_IDENTIFIER)
-    private String genderIdentifier;
-    
-    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
-    private String schoolIdentifier;
-    
-    @JsonbProperty(JSON_BIRTH_DATE)
-    private LocalDateTime birthDate;
-    
-    @JsonbProperty(JSON_BIRTH_PLACE)
-    private String birthPlace;
+    @JsonbProperty(JSON_OTHERS_CONTACTS)
+    private String othersContacts;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_ELEVE";

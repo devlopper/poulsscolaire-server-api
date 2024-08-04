@@ -20,8 +20,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGenerateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGenerateResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingService.SchoolingUpdateRequestDto;
 
@@ -52,31 +50,6 @@ public class SchoolingClient extends AbstractClient<SchoolingService>
   public CreateResponseDto create(SchoolingCreateRequestDto request) {
     return new CreateExecutor(SchoolingService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
-  }
-
-  /**
-   * {@link SchoolingService#generate}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  public SchoolingGenerateResponseDto generate(SchoolingGenerateRequestDto request) {
-    return new GetOneExecutor<SchoolingGenerateResponseDto>(SchoolingGenerateResponseDto.class,
-        SchoolingService.GENERATE_IDENTIFIER).execute(() -> service().generate(request));
-  }
-
-  /**
-   * {@link SchoolingService#generate}.
-   *
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public SchoolingGenerateResponseDto generate(String auditWho, String auditSession) {
-    SchoolingGenerateRequestDto request = new SchoolingGenerateRequestDto();
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return generate(request);
   }
 
   public SchoolingGetManyResponseDto getMany(GetManyRequestDto request) {

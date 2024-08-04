@@ -18,11 +18,23 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 public class IdentityDto extends AbstractIdentifiableAuditableDto {
   
+  @JsonbProperty(JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+  
   @JsonbProperty(JSON_FIRST_NAME)
   private String firstName;
   
+  @JsonbProperty(JSON_ARABIC_FIRST_NAME)
+  private String arabicFirstName;
+  
   @JsonbProperty(JSON_LAST_NAMES)
   private String lastNames;
+  
+  @JsonbProperty(JSON_ARABIC_LAST_NAMES)
+  private String arabicLastNames;
+  
+  @JsonbProperty(JSON_BLOOD_GROUP)
+  private BloodGroup bloodGroup;
   
   @JsonbProperty(JSON_EMAIL_ADDRESS)
   private String emailAddress;
@@ -45,13 +57,32 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_BIRTH_PLACE)
   private String birthPlace;
   
+  @JsonbProperty(JSON_BIRTH_CERTIFICATE_REFERENCE)
+  private String birthCertificateReference;
+  
+  public static final String JSON_REGISTRATION_NUMBER = "matricule";
+  
   public static final String JSON_FIRST_NAME = "nom";
+  public static final String JSON_ARABIC_FIRST_NAME = "nomArabe";
   public static final String JSON_LAST_NAMES = "prenoms";
-  public static final String JSON_EMAIL_ADDRESS = "adresseEmail";
-  public static final String JSON_PHONE_NUMBER = "numeroTelephone";
+  public static final String JSON_ARABIC_LAST_NAMES = "prenomsArabe";
+  
+  public static final String JSON_BLOOD_GROUP = "groupeSanguin";
+  
   public static final String JSON_GENDER_IDENTIFIER = "idGenre";
   public static final String JSON_GENDER_AS_STRING = "genreChaine";
   public static final String JSON_IS_MASCULINE = "estMasculin";
+  
   public static final String JSON_BIRTH_DATE = "dateNaissance";
   public static final String JSON_BIRTH_PLACE = "lieuNaissance";
+  public static final String JSON_BIRTH_CERTIFICATE_REFERENCE = "referenceExtraitNaissance";
+  
+  public static final String JSON_NATIONALITY = "nationalite";
+  public static final String JSON_SITUATION = "situation";
+  public static final String JSON_PROFESSION = "profession";
+  public static final String JSON_RESIDENCE = "residence";
+  
+  public static final String JSON_EMAIL_ADDRESS = "adresseEmail";
+  public static final String JSON_PHONE_NUMBER = "numeroTelephone";
+  public static final String JSON_OTHERS_CONTACTS = "autresContacts";
 }

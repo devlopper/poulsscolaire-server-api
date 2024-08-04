@@ -13,9 +13,7 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.configuration.BranchService.BranchRepatriateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.BranchService.BranchRepatriateResponseDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.BranchService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.BranchService.BranchGetManyResponseDto;
 
 /**
  * Cette classe représente un client de {@link BranchService}.
@@ -27,34 +25,15 @@ import org.cyk.system.poulsscolaire.server.api.configuration.BranchService.GetMa
 @Setter
 @Accessors(chain = true, fluent = true)
 public class BranchClient extends AbstractClient<BranchService>
-    implements GetByIdentifier<BranchDto>, GetMany<GetManyResponseDto> {
+    implements GetByIdentifier<BranchDto>, GetMany<BranchGetManyResponseDto> {
 
   @Override
   public BranchClient service(BranchService service) {
     return (BranchClient) super.service(service);
   }
-  
-  public BranchRepatriateResponseDto repatriate(BranchRepatriateRequestDto request) {
-    return new GetOneExecutor<BranchRepatriateResponseDto>(BranchRepatriateResponseDto.class,
-        BranchService.REPATRIATE_IDENTIFIER).execute(() -> service().repatriate(request));
-  }
 
-  /**
-   * {@link BranchService#repatriate}.
-   *
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public BranchRepatriateResponseDto repatriate(String auditWho, String auditSession) {
-    BranchRepatriateRequestDto request = new BranchRepatriateRequestDto();
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return repatriate(request);
-  }
-
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public BranchGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<BranchGetManyResponseDto>(BranchGetManyResponseDto.class,
         BranchService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -68,7 +47,7 @@ public class BranchClient extends AbstractClient<BranchService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public BranchGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);

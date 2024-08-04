@@ -15,6 +15,7 @@ import lombok.Setter;
 @Setter
 public class PeriodFilter extends AbstractIdentifiableFilter {
   
+  String schoolIdentifier;
   Boolean opened;
   
   public PeriodFilter(FilterDto dto) {
@@ -26,13 +27,24 @@ public class PeriodFilter extends AbstractIdentifiableFilter {
   @Override
   protected void doInitialize(FilterDto filter) {
     super.doInitialize(filter);
+    schoolIdentifier = getSchoolIdentifier(filter);
     opened = getOpened(filter);
   }
 
   @Override
   protected void toDto(FilterDto filter) {
     super.toDto(filter);
+    setSchoolIdentifier(filter, schoolIdentifier);
     setOpened(filter, opened);
+  }
+  
+  public static void setSchoolIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_SCHOOL_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getSchoolIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOL_IDENTIFIER));
   }
 
   public static void setOpened(FilterDto filter, Boolean value) {
@@ -44,4 +56,5 @@ public class PeriodFilter extends AbstractIdentifiableFilter {
   }
 
   public static final String JSON_OPENED = PeriodDto.JSON_OPENED;
+  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
 }

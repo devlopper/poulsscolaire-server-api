@@ -61,6 +61,100 @@ public interface IdentityService extends SpecificService {
   Response create(IdentityCreateRequestDto request);
 
   /**
+   * Cette interface représente une reuqête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface IdentitySaveRequest {
+    String getRegistrationNumber();
+
+    void setRegistrationNumber(String registrationNumber);
+
+    String getFirstName();
+
+    void setFirstName(String firstName);
+
+    String getArabicFirstName();
+
+    void setArabicFirstName(String arabicFirstName);
+
+    String getLastNames();
+
+    void setLastNames(String lastNames);
+
+    String getArabicLastNames();
+
+    void setArabicLastNames(String arabicLastNames);
+
+    String getGenderIdentifier();
+
+    void setGenderIdentifier(String genderIdentifier);
+
+    BloodGroup getBloodGroup();
+
+    void setBloodGroup(BloodGroup bloodGroup);
+
+    LocalDateTime getBirthDate();
+
+    void setBirthDate(LocalDateTime birthDate);
+
+    String getBirthPlace();
+
+    void setBirthPlace(String birthPlace);
+
+    String getBirthCertificateReference();
+
+    void setBirthCertificateReference(String birthCertificateReference);
+
+    String getNationality();
+
+    void setNationality(String nationality);
+    
+    String getSituation();
+
+    void setSituation(String situation);
+    
+    String getProfession();
+
+    void setProfession(String profession);
+    
+    String getResidence();
+
+    void setResidence(String residence);
+    
+    String getEmailAddress();
+
+    void setEmailAddress(String emailAddress);
+
+    String getPhoneNumber();
+
+    void setPhoneNumber(String phoneNumber);
+
+    String getOthersContacts();
+
+    void setOthersContacts(String othersContacts);
+    
+    String JSON_REGISTRATION_NUMBER = IdentityDto.JSON_REGISTRATION_NUMBER;
+    String JSON_FIRST_NAME = IdentityDto.JSON_FIRST_NAME;
+    String JSON_ARABIC_FIRST_NAME = IdentityDto.JSON_ARABIC_FIRST_NAME;
+    String JSON_LAST_NAMES = IdentityDto.JSON_LAST_NAMES;
+    String JSON_ARABIC_LAST_NAMES = IdentityDto.JSON_ARABIC_LAST_NAMES;
+    String JSON_GENDER_IDENTIFIER = IdentityDto.JSON_GENDER_IDENTIFIER;
+    String JSON_BLOOD_GROUP = IdentityDto.JSON_BLOOD_GROUP;
+    String JSON_BIRTH_DATE = IdentityDto.JSON_BIRTH_DATE;
+    String JSON_BIRTH_PLACE = IdentityDto.JSON_BIRTH_PLACE;
+    String JSON_BIRTH_CERTIFICATE_REFERENCE = IdentityDto.JSON_BIRTH_CERTIFICATE_REFERENCE;
+    String JSON_NATIONALITY = IdentityDto.JSON_NATIONALITY;
+    String JSON_SITUATION = IdentityDto.JSON_SITUATION;
+    String JSON_PROFESSION = IdentityDto.JSON_PROFESSION;
+    String JSON_RESIDENCE = IdentityDto.JSON_RESIDENCE;
+    String JSON_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS;
+    String JSON_PHONE_NUMBER = IdentityDto.JSON_PHONE_NUMBER;
+    String JSON_OTHERS_CONTACTS = IdentityDto.JSON_OTHERS_CONTACTS;
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -68,57 +162,58 @@ public interface IdentityService extends SpecificService {
    */
   @Getter
   @Setter
-  class IdentityCreateRequestDto extends AbstractAuditedRequestJsonDto implements IdentityData {
+  class IdentityCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements IdentitySaveRequest {
+    @JsonbProperty(JSON_REGISTRATION_NUMBER)
+    private String registrationNumber;
+    
     @JsonbProperty(JSON_FIRST_NAME)
     private String firstName;
+    
+    @JsonbProperty(JSON_ARABIC_FIRST_NAME)
+    private String arabicFirstName;
 
     @JsonbProperty(JSON_LAST_NAMES)
     private String lastNames;
+    
+    @JsonbProperty(JSON_ARABIC_LAST_NAMES)
+    private String arabicLastNames;
 
+    @JsonbProperty(JSON_GENDER_IDENTIFIER)
+    private String genderIdentifier;
+
+    @JsonbProperty(JSON_BLOOD_GROUP)
+    private BloodGroup bloodGroup;
+    
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
+    
+    @JsonbProperty(JSON_BIRTH_CERTIFICATE_REFERENCE)
+    private String birthCertificateReference;
+    
+    @JsonbProperty(JSON_NATIONALITY)
+    private String nationality;
+    
+    @JsonbProperty(JSON_SITUATION)
+    private String situation;
+    
+    @JsonbProperty(JSON_PROFESSION)
+    private String profession;
+    
+    @JsonbProperty(JSON_RESIDENCE)
+    private String residence;
+    
     @JsonbProperty(JSON_EMAIL_ADDRESS)
     private String emailAddress;
 
     @JsonbProperty(JSON_PHONE_NUMBER)
     private String phoneNumber;
-
-    @JsonbProperty(JSON_GENDER_IDENTIFIER)
-    private String genderIdentifier;
-
-    @JsonbProperty(JSON_BIRTH_DATE)
-    private LocalDateTime birthDate;
     
-    @JsonbProperty(JSON_BIRTH_PLACE)
-    private String birthPlace;
-  }
-
-  /**
-   * Cette interface représente les informations d'identité.
-   *
-   * @author Christian
-   *
-   */
-  interface IdentityData {
-    String getFirstName();
-
-    String getLastNames();
-
-    String getEmailAddress();
-
-    String getPhoneNumber();
-
-    String getGenderIdentifier();
-
-    LocalDateTime getBirthDate();
-    
-    String getBirthPlace();
-    
-    String JSON_FIRST_NAME = IdentityDto.JSON_FIRST_NAME;
-    String JSON_LAST_NAMES = IdentityDto.JSON_LAST_NAMES;
-    String JSON_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS;
-    String JSON_PHONE_NUMBER = IdentityDto.JSON_PHONE_NUMBER;
-    String JSON_GENDER_IDENTIFIER = IdentityDto.JSON_GENDER_IDENTIFIER;
-    String JSON_BIRTH_DATE = IdentityDto.JSON_BIRTH_DATE;
-    String JSON_BIRTH_PLACE = IdentityDto.JSON_BIRTH_PLACE;
+    @JsonbProperty(JSON_OTHERS_CONTACTS)
+    private String othersContacts;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_IDENTITE";
@@ -191,27 +286,57 @@ public interface IdentityService extends SpecificService {
    */
   @Getter
   @Setter
-  class IdentityUpdateRequestDto extends ByIdentifierRequestDto implements IdentityData {
+  class IdentityUpdateRequestDto extends ByIdentifierRequestDto implements IdentitySaveRequest {
+    @JsonbProperty(JSON_REGISTRATION_NUMBER)
+    private String registrationNumber;
+    
     @JsonbProperty(JSON_FIRST_NAME)
     private String firstName;
+    
+    @JsonbProperty(JSON_ARABIC_FIRST_NAME)
+    private String arabicFirstName;
 
     @JsonbProperty(JSON_LAST_NAMES)
     private String lastNames;
+    
+    @JsonbProperty(JSON_ARABIC_LAST_NAMES)
+    private String arabicLastNames;
 
+    @JsonbProperty(JSON_GENDER_IDENTIFIER)
+    private String genderIdentifier;
+
+    @JsonbProperty(JSON_BLOOD_GROUP)
+    private BloodGroup bloodGroup;
+    
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
+    
+    @JsonbProperty(JSON_BIRTH_CERTIFICATE_REFERENCE)
+    private String birthCertificateReference;
+    
+    @JsonbProperty(JSON_NATIONALITY)
+    private String nationality;
+    
+    @JsonbProperty(JSON_SITUATION)
+    private String situation;
+    
+    @JsonbProperty(JSON_PROFESSION)
+    private String profession;
+    
+    @JsonbProperty(JSON_RESIDENCE)
+    private String residence;
+    
     @JsonbProperty(JSON_EMAIL_ADDRESS)
     private String emailAddress;
 
     @JsonbProperty(JSON_PHONE_NUMBER)
     private String phoneNumber;
-
-    @JsonbProperty(JSON_GENDER_IDENTIFIER)
-    private String genderIdentifier;
     
-    @JsonbProperty(JSON_BIRTH_DATE)
-    private LocalDateTime birthDate;
-    
-    @JsonbProperty(JSON_BIRTH_PLACE)
-    private String birthPlace;
+    @JsonbProperty(JSON_OTHERS_CONTACTS)
+    private String othersContacts;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_IDENTITE";

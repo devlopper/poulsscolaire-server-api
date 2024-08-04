@@ -19,10 +19,10 @@ public class AssignmentTypeDto extends AbstractIdentifiableCodableNamableAuditab
   /**
    * Nom pour lecture humaine de la classe.
    */
-  public static final String NAME = "type d'affectation";
+  public static final String NAME = "statut";
   
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
-  public static final String PLURAL_NAME = "types d'affectation";
+  public static final String PLURAL_NAME = NAME + "s";
 }

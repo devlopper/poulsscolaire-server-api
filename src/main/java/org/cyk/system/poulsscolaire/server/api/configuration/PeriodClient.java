@@ -14,8 +14,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.configuration.PeriodService.PeriodGetManyResponseDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.PeriodService.PeriodRepatriateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.PeriodService.PeriodRepatriateResponseDto;
 
 /**
  * Cette classe représente un client de {@link PeriodService}.
@@ -32,25 +30,6 @@ public class PeriodClient extends AbstractClient<PeriodService>
   @Override
   public PeriodClient service(PeriodService service) {
     return (PeriodClient) super.service(service);
-  }
-
-  public PeriodRepatriateResponseDto repatriate(PeriodRepatriateRequestDto request) {
-    return new GetOneExecutor<PeriodRepatriateResponseDto>(PeriodRepatriateResponseDto.class,
-        PeriodService.REPATRIATE_IDENTIFIER).execute(() -> service().repatriate(request));
-  }
-
-  /**
-   * {@link PeriodService#repatriate}.
-   *
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public PeriodRepatriateResponseDto repatriate(String auditWho, String auditSession) {
-    PeriodRepatriateRequestDto request = new PeriodRepatriateRequestDto();
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return repatriate(request);
   }
   
   public PeriodGetManyResponseDto getMany(GetManyRequestDto request) {

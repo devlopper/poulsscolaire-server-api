@@ -1,6 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.configuration;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,8 +16,9 @@ import org.cyk.system.poulsscolaire.server.api.fee.AmountStatisticable;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class SchoolDto extends AbstractIdentifiableNamableDto implements AmountStatisticable {
-  
+public class SchoolDto extends AbstractIdentifiableCodableNamableDto
+    implements AmountStatisticable {
+
   /*
    * Amount
    */
@@ -52,7 +53,7 @@ public class SchoolDto extends AbstractIdentifiableNamableDto implements AmountS
       "montantInscriptionPayeChaine";
   public static final String JSON_PAYABLE_REGISTRATION_AMOUNT_AS_STRING =
       "montantInscriptionPayableChaine";
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
