@@ -17,6 +17,12 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 public class FeeCategoryDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
+  @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+  private String schoolIdentifier;
+  
+  @JsonbProperty(JSON_SCHOOL_AS_STRING)
+  private String schoolAsString;
+  
   /*
    * Amount
    */
@@ -41,17 +47,8 @@ public class FeeCategoryDto extends AbstractIdentifiableCodableNamableAuditableD
   @JsonbProperty(JSON_PAYABLE_REGISTRATION_AMOUNT_AS_STRING)
   private String payableRegistrationAmountAsString;
   
-  public static final String FIELD_TOTAL_AMOUNT_AS_STRING = "totalAmountAsString";
-  public static final String FIELD_PAID_AMOUNT_AS_STRING = "paidAmountAsString";
-  public static final String FIELD_PAYABLE_AMOUNT_AS_STRING = "payableAmountAsString";
-
-  public static final String FIELD_TOTAL_REGISTRATION_AMOUNT_AS_STRING =
-      "totalRegistrationAmountAsString";
-  public static final String FIELD_PAID_REGISTRATION_AMOUNT_AS_STRING =
-      "paidRegistrationAmountAsString";
-  public static final String FIELD_PAYABLE_REGISTRATION_AMOUNT_AS_STRING =
-      "payableRegistrationAmountAsString";
-  
+  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
   public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
   public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";

@@ -1,12 +1,8 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -14,7 +10,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -65,6 +60,20 @@ public interface FeeCategoryService extends SpecificService {
   Response create(FeeCategoryCreateRequestDto request);
 
   /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface FeeCategorySaveRequest {
+    String getSchoolIdentifier();
+
+    void setSchoolIdentifier(String schoolIdentifier);
+
+    String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -72,10 +81,10 @@ public interface FeeCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class FeeCategoryCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {
+  class FeeCategoryCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto
+      implements FeeCategorySaveRequest {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_RUBRIQUE";
@@ -149,10 +158,10 @@ public interface FeeCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-  class FeeCategoryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {
+  class FeeCategoryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto
+      implements FeeCategorySaveRequest {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_RUBRIQUE";
