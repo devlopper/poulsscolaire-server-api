@@ -60,43 +60,12 @@ public interface AmountService extends SpecificService {
   Response create(AmountCreateRequestDto request);
 
   /**
-   * Cette classe représente la requête de création.
+   * Cette interface représente la requête d'enregistrement.
    *
    * @author Christian
    *
    */
-  @Getter
-  @Setter
-  class AmountCreateRequestDto extends AbstractAuditedRequestJsonDto implements AmountSaveData {
-    @JsonbProperty(JSON_VALUE)
-    private int value;
-
-    @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
-    private Integer registrationValuePart;
-
-    @JsonbProperty(JSON_OPTIONAL)
-    private Boolean optional;
-
-    @JsonbProperty(JSON_PAYMENT_ORDER_NUMBER)
-    private Integer paymentOrderNumber;
-
-    @JsonbProperty(JSON_RENEWABLE)
-    private Boolean renewable;
-
-    public static final String FIELD_VALUE = "value";
-    public static final String FIELD_REGISTRATION_VALUE_PART = "registrationValuePart";
-    public static final String FIELD_OPTIONAL = "optional";
-    public static final String FIELD_PAYMENT_ORDER_NUMBER = "paymentOrderNumber";
-    public static final String FIELD_RENEWABLE = "renewable";
-  }
-
-  /**
-   * Cette interface représente les informations d'enregistrement d'un montant.
-   *
-   * @author Christian
-   *
-   */
-  interface AmountSaveData {
+  interface AmountSaveRequestDto {
     int getValue();
 
     Integer getRegistrationValuePart();
@@ -112,6 +81,32 @@ public interface AmountService extends SpecificService {
     String JSON_OPTIONAL = AmountDto.JSON_OPTIONAL;
     String JSON_PAYMENT_ORDER_NUMBER = AmountDto.JSON_PAYMENT_ORDER_NUMBER;
     String JSON_RENEWABLE = AmountDto.JSON_RENEWABLE;
+  }
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class AmountCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements AmountSaveRequestDto {
+    @JsonbProperty(JSON_VALUE)
+    private int value;
+
+    @JsonbProperty(JSON_REGISTRATION_VALUE_PART)
+    private Integer registrationValuePart;
+
+    @JsonbProperty(JSON_OPTIONAL)
+    private Boolean optional;
+
+    @JsonbProperty(JSON_PAYMENT_ORDER_NUMBER)
+    private Integer paymentOrderNumber;
+
+    @JsonbProperty(JSON_RENEWABLE)
+    private Boolean renewable;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_MONTANT";
@@ -134,7 +129,7 @@ public interface AmountService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<AmountDto> {
+  public static class AmountGetManyResponseDto extends AbstractGetByPageResponseDto<AmountDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<AmountDto> datas;
@@ -184,7 +179,7 @@ public interface AmountService extends SpecificService {
    */
   @Getter
   @Setter
-  class AmountUpdateRequestDto extends ByIdentifierRequestDto implements AmountSaveData {
+  class AmountUpdateRequestDto extends ByIdentifierRequestDto implements AmountSaveRequestDto {
     @JsonbProperty(JSON_VALUE)
     private int value;
 
@@ -199,12 +194,6 @@ public interface AmountService extends SpecificService {
 
     @JsonbProperty(JSON_RENEWABLE)
     private Boolean renewable;
-
-    public static final String FIELD_VALUE = "value";
-    public static final String FIELD_REGISTRATION_VALUE_PART = "registrationValuePart";
-    public static final String FIELD_OPTIONAL = "optional";
-    public static final String FIELD_PAYMENT_ORDER_NUMBER = "paymentOrderNumber";
-    public static final String FIELD_RENEWABLE = "renewable";
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_MONTANT";

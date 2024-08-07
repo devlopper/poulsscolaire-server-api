@@ -20,8 +20,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.fee.FeeService.FeeCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.FeeService.FeeGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.fee.FeeService.FeeUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.fee.FeeService.GetManyResponseDto;
 
 /**
  * Cette classe représente un client de {@link FeeService}.
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.fee.FeeService.GetManyResponseDto
 @Setter
 @Accessors(chain = true, fluent = true)
 public class FeeClient extends AbstractClient<FeeService>
-    implements GetByIdentifier<FeeDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<FeeDto>, GetMany<FeeGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -52,8 +52,8 @@ public class FeeClient extends AbstractClient<FeeService>
         .execute(() -> service().create(request));
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public FeeGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<FeeGetManyResponseDto>(FeeGetManyResponseDto.class,
         FeeService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -67,7 +67,7 @@ public class FeeClient extends AbstractClient<FeeService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public FeeGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);

@@ -23,6 +23,12 @@ public class FeeCategoryDto extends AbstractIdentifiableCodableNamableAuditableD
   @JsonbProperty(JSON_SCHOOL_AS_STRING)
   private String schoolAsString;
   
+  @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
+  private String schoolingIdentifier;
+  
+  @JsonbProperty(JSON_SCHOOLING_AS_STRING)
+  private String schoolingAsString;
+  
   /*
    * Amount
    */
@@ -48,7 +54,9 @@ public class FeeCategoryDto extends AbstractIdentifiableCodableNamableAuditableD
   private String payableRegistrationAmountAsString;
   
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
   public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
+  public static final String JSON_SCHOOLING_AS_STRING = "scolariteChaine";
   public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
   public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";

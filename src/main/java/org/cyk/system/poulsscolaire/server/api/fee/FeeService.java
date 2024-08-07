@@ -58,6 +58,35 @@ public interface FeeService extends SpecificService {
   Response create(FeeCreateRequestDto request);
 
   /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface FeeSaveRequestDto extends AmountService.AmountSaveRequestDto {
+    String getCategoryIdentifier();
+
+    void setCategoryIdentifier(String categoryIdentifier);
+
+    String getAssignmentTypeIdentifier();
+
+    void setAssignmentTypeIdentifier(String assignmentTypeIdentifier);
+
+    String getSeniorityIdentifier();
+
+    void setSeniorityIdentifier(String seniorityIdentifier);
+
+    String getSchoolingIdentifier();
+
+    void setSchoolingIdentifier(String schoolingIdentifier);
+
+    String JSON_CATEGORY_IDENTIFIER = "idCategorie";
+    String JSON_ASSIGNMENT_TYPE_IDENTIFIER = "idTypeAffectation";
+    String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
+    String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -65,7 +94,8 @@ public interface FeeService extends SpecificService {
    */
   @Getter
   @Setter
-  class FeeCreateRequestDto extends AmountService.AmountCreateRequestDto {
+  class FeeCreateRequestDto extends AmountService.AmountCreateRequestDto
+      implements FeeSaveRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;
 
@@ -77,16 +107,6 @@ public interface FeeService extends SpecificService {
 
     @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
     private String schoolingIdentifier;
-
-    public static final String FIELD_CATEGORY_IDENTIFIER = "categoryIdentifier";
-    public static final String FIELD_ASSIGNMENT_IDENTIFIER = "assignmentTypeIdentifier";
-    public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
-    public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
-
-    public static final String JSON_CATEGORY_IDENTIFIER = "idCategorie";
-    public static final String JSON_ASSIGNMENT_TYPE_IDENTIFIER = "idTypeAffectation";
-    public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
-    public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_FRAIS";
@@ -109,7 +129,7 @@ public interface FeeService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<FeeDto> {
+  public static class FeeGetManyResponseDto extends AbstractGetByPageResponseDto<FeeDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<FeeDto> datas;
@@ -158,7 +178,8 @@ public interface FeeService extends SpecificService {
    */
   @Getter
   @Setter
-  class FeeUpdateRequestDto extends AmountService.AmountUpdateRequestDto {
+  class FeeUpdateRequestDto extends AmountService.AmountUpdateRequestDto
+      implements FeeSaveRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;
 
@@ -170,16 +191,6 @@ public interface FeeService extends SpecificService {
 
     @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
     private String schoolingIdentifier;
-
-    public static final String FIELD_CATEGORY_IDENTIFIER = "categoryIdentifier";
-    public static final String FIELD_ASSIGNMENT_IDENTIFIER = "assignmentTypeIdentifier";
-    public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
-    public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
-
-    public static final String JSON_CATEGORY_IDENTIFIER = "idCategorie";
-    public static final String JSON_ASSIGNMENT_TYPE_IDENTIFIER = "idTypeAffectation";
-    public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
-    public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_FRAIS";

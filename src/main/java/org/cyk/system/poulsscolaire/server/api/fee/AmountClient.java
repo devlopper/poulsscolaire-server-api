@@ -20,8 +20,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.fee.AmountService.AmountCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.AmountService.AmountGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.fee.AmountService.AmountUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.fee.AmountService.GetManyResponseDto;
 
 /**
  * Cette classe représente un client de {@link AmountService}.
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.fee.AmountService.GetManyResponse
 @Setter
 @Accessors(chain = true, fluent = true)
 public class AmountClient extends AbstractClient<AmountService>
-    implements GetByIdentifier<AmountDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<AmountDto>, GetMany<AmountGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -72,8 +72,8 @@ public class AmountClient extends AbstractClient<AmountService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public AmountGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<AmountGetManyResponseDto>(AmountGetManyResponseDto.class,
         AmountService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -87,7 +87,7 @@ public class AmountClient extends AbstractClient<AmountService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public AmountGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);

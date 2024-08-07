@@ -16,6 +16,7 @@ import lombok.Setter;
 public class FeeCategoryFilter extends AbstractIdentifiableFilter {
 
   String schoolIdentifier;
+  String schoolingIdentifier;
   String registrationSchoolingSchoolIdentifier;
   String registrationSchoolingPeriodIdentifier;
 
@@ -29,6 +30,7 @@ public class FeeCategoryFilter extends AbstractIdentifiableFilter {
   protected void doInitialize(FilterDto filter) {
     super.doInitialize(filter);
     schoolIdentifier = getSchoolIdentifier(filter);
+    schoolingIdentifier = getSchoolingIdentifier(filter);
     registrationSchoolingSchoolIdentifier = getRegistrationSchoolingSchoolIdentifier(filter);
     registrationSchoolingPeriodIdentifier = getRegistrationSchoolingPeriodIdentifier(filter);
   }
@@ -36,9 +38,10 @@ public class FeeCategoryFilter extends AbstractIdentifiableFilter {
   @Override
   protected void toDto(FilterDto filter) {
     super.toDto(filter);
+    setSchoolIdentifier(filter, schoolIdentifier);
+    setSchoolingIdentifier(filter, schoolingIdentifier);
     setRegistrationSchoolingSchoolIdentifier(filter, registrationSchoolingSchoolIdentifier);
     setRegistrationSchoolingPeriodIdentifier(filter, registrationSchoolingPeriodIdentifier);
-    setSchoolIdentifier(filter, schoolIdentifier);
   }
   
   public static void setSchoolIdentifier(FilterDto filter, String identifier) {
@@ -48,6 +51,15 @@ public class FeeCategoryFilter extends AbstractIdentifiableFilter {
 
   public static String getSchoolIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOL_IDENTIFIER));
+  }
+  
+  public static void setSchoolingIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_SCHOOLING_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getSchoolingIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOLING_IDENTIFIER));
   }
 
   public static void setRegistrationSchoolingSchoolIdentifier(FilterDto filter, String identifier) {
@@ -71,6 +83,7 @@ public class FeeCategoryFilter extends AbstractIdentifiableFilter {
   }
 
   public static final String JSON_SCHOOL_IDENTIFIER = FeeCategoryDto.JSON_SCHOOL_IDENTIFIER;
+  public static final String JSON_SCHOOLING_IDENTIFIER = FeeCategoryDto.JSON_SCHOOLING_IDENTIFIER;
   
   public static final String JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER =
       AdjustedFeeDto.JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER;
