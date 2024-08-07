@@ -65,7 +65,7 @@ public interface SchoolingService extends SpecificService {
    * @author Christian
    *
    */
-  interface SaveRequestDto {
+  interface SchoolingSaveRequestDto {
     String getSchoolIdentifier();
 
     void setSchoolIdentifier(String schoolIdentifier);
@@ -96,7 +96,8 @@ public interface SchoolingService extends SpecificService {
    */
   @Getter
   @Setter
-  class SchoolingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {
+  class SchoolingCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements SchoolingSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
 
@@ -181,7 +182,8 @@ public interface SchoolingService extends SpecificService {
    */
   @Getter
   @Setter
-  class SchoolingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {
+  class SchoolingUpdateRequestDto extends ByIdentifierRequestDto
+      implements SchoolingSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
 

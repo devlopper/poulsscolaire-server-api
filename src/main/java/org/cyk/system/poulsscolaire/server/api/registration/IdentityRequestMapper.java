@@ -16,7 +16,7 @@ public interface IdentityRequestMapper {
   
   IdentityRequestMapper INSTANCE = Mappers.getMapper(IdentityRequestMapper.class);
 
-  IdentityCreateRequestDto mapCreate(IdentityDto identity);
+  IdentityCreateRequestDto mapCreate(IdentityDto entity);
 
-  IdentityUpdateRequestDto mapUpdate(IdentityDto identity);
+  IdentityUpdateRequestDto mapUpdate(IdentityDto entity);
 }

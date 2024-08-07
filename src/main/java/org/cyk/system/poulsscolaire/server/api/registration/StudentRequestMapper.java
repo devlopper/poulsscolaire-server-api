@@ -16,7 +16,7 @@ public interface StudentRequestMapper {
 
   StudentRequestMapper INSTANCE = Mappers.getMapper(StudentRequestMapper.class);
 
-  StudentCreateRequestDto mapCreate(StudentDto identity);
+  StudentCreateRequestDto mapCreate(StudentDto entity);
 
-  StudentUpdateRequestDto mapUpdate(StudentDto identity);
+  StudentUpdateRequestDto mapUpdate(StudentDto entity);
 }

@@ -16,7 +16,7 @@ public interface FeeCategoryRequestMapper {
   
   FeeCategoryRequestMapper INSTANCE = Mappers.getMapper(FeeCategoryRequestMapper.class);
 
-  FeeCategoryCreateRequestDto mapCreate(FeeCategoryDto identity);
+  FeeCategoryCreateRequestDto mapCreate(FeeCategoryDto entity);
 
-  FeeCategoryUpdateRequestDto mapUpdate(FeeCategoryDto identity);
+  FeeCategoryUpdateRequestDto mapUpdate(FeeCategoryDto entity);
 }
