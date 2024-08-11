@@ -74,9 +74,9 @@ public interface RegistrationService extends SpecificService {
 
     void setSchoolingIdentifier(String schoolingIdentifier);
 
-    String getAssignmnetTypeIdentifier();
+    String getAssignmentTypeIdentifier();
 
-    void setAssignmnetTypeIdentifier(String assignmnetTypeIdentifier);
+    void setAssignmentTypeIdentifier(String assignmentTypeIdentifier);
 
     String getSeniorityIdentifier();
 
@@ -88,7 +88,7 @@ public interface RegistrationService extends SpecificService {
 
     String JSON_STUDENT_IDENTIFIER = "idEleve";
     String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
-    String JSON_ASSIGNMNET_TYPE_IDENTIFIER = "idTypeAffectation";
+    String JSON_ASSIGNMENT_TYPE_IDENTIFIER = "idTypeAffectation";
     String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
     String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
   }
@@ -109,8 +109,8 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
     private String schoolingIdentifier;
 
-    @JsonbProperty(JSON_ASSIGNMNET_TYPE_IDENTIFIER)
-    private String assignmnetTypeIdentifier;
+    @JsonbProperty(JSON_ASSIGNMENT_TYPE_IDENTIFIER)
+    private String assignmentTypeIdentifier;
 
     @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
     private String seniorityIdentifier;
@@ -210,8 +210,8 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
     private String schoolingIdentifier;
 
-    @JsonbProperty(JSON_ASSIGNMNET_TYPE_IDENTIFIER)
-    private String assignmnetTypeIdentifier;
+    @JsonbProperty(JSON_ASSIGNMENT_TYPE_IDENTIFIER)
+    private String assignmentTypeIdentifier;
 
     @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
     private String seniorityIdentifier;

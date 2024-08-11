@@ -68,7 +68,7 @@ public class RegistrationClient extends AbstractClient<RegistrationService>
     RegistrationCreateRequestDto request = new RegistrationCreateRequestDto();
     request.setStudentIdentifier(studentIdentifier);
     request.setSchoolingIdentifier(schoolingIdentifier);
-    request.setAssignmnetTypeIdentifier(assignmentTypeIdentifier);
+    request.setAssignmentTypeIdentifier(assignmentTypeIdentifier);
     request.setSeniorityIdentifier(seniorityIdenfier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
@@ -179,7 +179,7 @@ public class RegistrationClient extends AbstractClient<RegistrationService>
     request.setIdentifier(identifier);
     request.setStudentIdentifier(studentIdentifier);
     request.setSchoolingIdentifier(schoolingIdentifier);
-    request.setAssignmnetTypeIdentifier(assignmentTypeIdentifier);
+    request.setAssignmentTypeIdentifier(assignmentTypeIdentifier);
     request.setSeniorityIdentifier(seniorityIdenfier);
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
