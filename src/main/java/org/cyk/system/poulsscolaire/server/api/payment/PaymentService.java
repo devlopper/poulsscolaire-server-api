@@ -122,7 +122,7 @@ public interface PaymentService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class GetManyResponseDto extends AbstractGetByPageResponseDto<PaymentDto> {
+  public static class PaymentGetManyResponseDto extends AbstractGetByPageResponseDto<PaymentDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<PaymentDto> datas;
@@ -175,14 +175,14 @@ public interface PaymentService extends SpecificService {
   class PaymentUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
-    
+
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private int amount;
   }
-  
+
   String CANCEL_IDENTIFIER = "ANNULATION_PAIEMENT";
 
   String CANCEL_PATH = "annulation";

@@ -190,7 +190,7 @@ public interface RegistrationService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = UPDATE_IDENTIFIER,
+  @Operation(operationId = UPDATE_AMOUNTS_TO_ZERO_IDENTIFIER,
       description = "Ce service permet de mettre à jour les montants à zéro d'une inscription")
   Response updateAmountsToZero(ByIdentifierRequestDto request);
 

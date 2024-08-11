@@ -20,8 +20,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.payment.PaymentService.GetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.payment.PaymentService.PaymentCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.payment.PaymentService.PaymentGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.payment.PaymentService.PaymentUpdateRequestDto;
 
 /**
@@ -34,7 +34,7 @@ import org.cyk.system.poulsscolaire.server.api.payment.PaymentService.PaymentUpd
 @Setter
 @Accessors(chain = true, fluent = true)
 public class PaymentClient extends AbstractClient<PaymentService>
-    implements GetByIdentifier<PaymentDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<PaymentDto>, GetMany<PaymentGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -74,8 +74,8 @@ public class PaymentClient extends AbstractClient<PaymentService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public PaymentGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<PaymentGetManyResponseDto>(PaymentGetManyResponseDto.class,
         PaymentService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -89,7 +89,7 @@ public class PaymentClient extends AbstractClient<PaymentService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public PaymentGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
