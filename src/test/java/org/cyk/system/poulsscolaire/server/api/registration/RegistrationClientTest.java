@@ -72,6 +72,16 @@ class RegistrationClientTest {
   }
 
   @Test
+  void updateAmountsToZero() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiableResponseDto.class))
+        .thenReturn(new IdentifiableResponseDto());
+    Mockito.when(service.updateAmountsToZero(any())).thenReturn(response);
+    assertInstanceOf(IdentifiableResponseDto.class, client.updateAmountsToZero(null, null, null));
+  }
+
+  @Test
   void deleteByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());

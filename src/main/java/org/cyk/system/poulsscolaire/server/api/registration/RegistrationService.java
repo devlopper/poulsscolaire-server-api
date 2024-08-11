@@ -65,7 +65,7 @@ public interface RegistrationService extends SpecificService {
    * @author Christian
    *
    */
-  interface SaveRequestDto {
+  interface RegistrationSaveRequestDto {
     String getStudentIdentifier();
 
     void setStudentIdentifier(String studentIdentifier);
@@ -102,7 +102,7 @@ public interface RegistrationService extends SpecificService {
   @Getter
   @Setter
   class RegistrationCreateRequestDto extends AbstractAuditedRequestJsonDto
-      implements SaveRequestDto {
+      implements RegistrationSaveRequestDto {
     @JsonbProperty(JSON_STUDENT_IDENTIFIER)
     private String studentIdentifier;
 
@@ -182,6 +182,18 @@ public interface RegistrationService extends SpecificService {
       description = "Ce service permet de mettre à jour une inscription")
   Response update(RegistrationUpdateRequestDto request);
 
+  String UPDATE_AMOUNTS_TO_ZERO_IDENTIFIER = "MISE_A_JOUR_MONTANTS_A_ZERO_INSCRIPTION";
+
+  String UPDATE_AMOUNTS_TO_ZERO_PATH = "montants-a-zero";
+
+  @Path(UPDATE_AMOUNTS_TO_ZERO_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER,
+      description = "Ce service permet de mettre à jour les montants à zéro d'une inscription")
+  Response updateAmountsToZero(ByIdentifierRequestDto request);
+
   /**
    * Cette classe représente la requête de mise à jour.
    *
@@ -190,7 +202,8 @@ public interface RegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  class RegistrationUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {
+  class RegistrationUpdateRequestDto extends ByIdentifierRequestDto
+      implements RegistrationSaveRequestDto {
     @JsonbProperty(JSON_STUDENT_IDENTIFIER)
     private String studentIdentifier;
 

@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -183,6 +184,28 @@ public class RegistrationClient extends AbstractClient<RegistrationService>
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return update(request);
+  }
+  
+  public IdentifiableResponseDto updateAmountsToZero(ByIdentifierRequestDto request) {
+    return new IdentifiableExecutor(RegistrationService.UPDATE_AMOUNTS_TO_ZERO_IDENTIFIER)
+        .execute(() -> service().updateAmountsToZero(request));
+  }
+
+  /**
+   * {@link RegistrationService#updateAmountsToZero}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto updateAmountsToZero(String identifier,
+      String auditWho, String auditSession) {
+    ByIdentifierRequestDto request = new ByIdentifierRequestDto();
+    request.setIdentifier(identifier);
+    request.setAuditWho(auditWho);
+    request.setAuditSession(auditSession);
+    return updateAmountsToZero(request);
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
