@@ -29,7 +29,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 public interface UserService extends SpecificService {
 
   String PATH = "utilisateurs";
-
+  
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_UTILISATEUR";
 
   String GET_MANY_PATH = "obtention/plusieurs";
@@ -65,7 +65,7 @@ public interface UserService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = "Ce service permet d'obtenir une utilisateur")
+      description = "Ce service permet d'obtenir un utilisateur")
   Response getOne(GetOneRequestDto request);
 
   String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_UTILISATEUR";
@@ -77,6 +77,6 @@ public interface UserService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
-      description = "Ce service permet d'obtenir par identifiant une utilisateur")
+      description = "Ce service permet d'obtenir par identifiant un utilisateur")
   Response getByIdentifier(GetByIdentifierRequestDto request);
 }

@@ -31,7 +31,7 @@ public class UserClient extends AbstractClient<UserService>
   public UserClient service(UserService service) {
     return (UserClient) super.service(service);
   }
-  
+
   public UserGetManyResponseDto getMany(GetManyRequestDto request) {
     return new GetOneExecutor<UserGetManyResponseDto>(UserGetManyResponseDto.class,
         UserService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
@@ -89,9 +89,8 @@ public class UserClient extends AbstractClient<UserService>
    * @return groupe d'échéance
    */
   public UserDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<UserDto>(UserDto.class,
-        UserService.GET_BY_IDENTIFIER_IDENTIFIER)
-            .execute(() -> service().getByIdentifier(request));
+    return new GetOneExecutor<UserDto>(UserDto.class, UserService.GET_BY_IDENTIFIER_IDENTIFIER)
+        .execute(() -> service().getByIdentifier(request));
   }
 
   /**
