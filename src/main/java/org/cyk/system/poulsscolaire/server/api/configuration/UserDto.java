@@ -2,6 +2,7 @@ package org.cyk.system.poulsscolaire.server.api.configuration;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,7 @@ public class UserDto extends AbstractIdentifiableDto {
   private String pass;
 
   @JsonbProperty(JSON_ROLES)
-  private String roles;
+  private Set<String> roles;
 
   public static final String JSON_PASS = "passe";
   public static final String JSON_ROLES = "roles";
