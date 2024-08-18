@@ -27,6 +27,9 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
 
   @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
   private String schoolingIdentifier;
+  
+  @JsonbProperty(JSON_SCHOOLING_2_IDENTIFIER)
+  private String schooling2Identifier;
 
   @JsonbProperty(JSON_SCHOOLING_AS_STRING)
   private String schoolingAsString;
@@ -96,6 +99,7 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
   public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
   public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
+  public static final String JSON_SCHOOLING_2_IDENTIFIER = "idScolarite2";
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
   public static final String JSON_SCHOOLING_AS_STRING = "scolariteChaine";

@@ -106,17 +106,22 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_STUDENT_IDENTIFIER)
     private String studentIdentifier;
 
-    @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
-    private String schoolingIdentifier;
-
     @JsonbProperty(JSON_ASSIGNMENT_TYPE_IDENTIFIER)
     private String assignmentTypeIdentifier;
 
     @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
     private String seniorityIdentifier;
 
+    @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
+    private String schoolingIdentifier;
+    
+    @JsonbProperty(JSON_SCHOOLING_2_IDENTIFIER)
+    private String schooling2Identifier;
+    
     @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
     private int preRegistrationAmount;
+    
+    public static final String JSON_SCHOOLING_2_IDENTIFIER = "idScolarite2";
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_INSCRIPTION";
