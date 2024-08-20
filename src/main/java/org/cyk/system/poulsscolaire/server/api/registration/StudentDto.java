@@ -120,6 +120,9 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_FATHER_AS_STRING)
   private String fatherAsString;
 
+  @JsonbProperty(JSON_FATHER_IDENTIFIER)
+  private String fatherIdentifier;
+
   /* Mother */
 
   @JsonbProperty(JSON_MOTHER_FIRST_NAME)
@@ -149,6 +152,9 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_MOTHER_AS_STRING)
   private String motherAsString;
 
+  @JsonbProperty(JSON_MOTHER_IDENTIFIER)
+  private String motherIdentifier;
+
   /* Tutor */
 
   @JsonbProperty(JSON_TUTOR_FIRST_NAME)
@@ -177,6 +183,9 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
 
   @JsonbProperty(JSON_TUTOR_AS_STRING)
   private String tutorAsString;
+
+  @JsonbProperty(JSON_TUTOR_IDENTIFIER)
+  private String tutorIdentifier;
 
   /* Schooling */
 
@@ -246,6 +255,7 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_FATHER_OTHERS_CONTACTS =
       JSON_OTHERS_CONTACTS + JSON_FATHER_SUFFIX;
   public static final String JSON_FATHER_RESIDENCE = JSON_RESIDENCE + JSON_FATHER_SUFFIX;
+  public static final String JSON_FATHER_IDENTIFIER = "id" + JSON_FATHER_SUFFIX;
   public static final String JSON_FATHER_AS_STRING = "pereChaine";
 
   private static final String JSON_MOTHER_SUFFIX = "Mere";
@@ -258,6 +268,7 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_MOTHER_OTHERS_CONTACTS =
       JSON_OTHERS_CONTACTS + JSON_MOTHER_SUFFIX;
   public static final String JSON_MOTHER_RESIDENCE = JSON_RESIDENCE + JSON_MOTHER_SUFFIX;
+  public static final String JSON_MOTHER_IDENTIFIER = "id" + JSON_MOTHER_SUFFIX;
   public static final String JSON_MOTHER_AS_STRING = "mereChaine";
 
   private static final String JSON_TUTOR_SUFFIX = "Tuteur";
@@ -269,6 +280,7 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_TUTOR_PHONE_NUMBER = JSON_PHONE_NUMBER + JSON_TUTOR_SUFFIX;
   public static final String JSON_TUTOR_OTHERS_CONTACTS = JSON_OTHERS_CONTACTS + JSON_TUTOR_SUFFIX;
   public static final String JSON_TUTOR_RESIDENCE = JSON_RESIDENCE + JSON_TUTOR_SUFFIX;
+  public static final String JSON_TUTOR_IDENTIFIER = "id" + JSON_TUTOR_SUFFIX;
   public static final String JSON_TUTOR_AS_STRING = "tuteurChaine";
 
   public static final String JSON_BRANCH_AS_STRING = "brancheChaine";

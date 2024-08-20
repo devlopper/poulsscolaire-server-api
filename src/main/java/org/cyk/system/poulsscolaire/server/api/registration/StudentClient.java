@@ -19,6 +19,7 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentCreateParentRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentUpdateRequestDto;
@@ -50,27 +51,6 @@ public class StudentClient extends AbstractClient<StudentService>
   public CreateResponseDto create(StudentCreateRequestDto request) {
     return new CreateExecutor(StudentService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
-  }
-
-  /**
-   * {@link StudentService#create}.
-   *
-   * @param registrationNumber matricule
-   * @param firstName nom
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public CreateResponseDto create(String registrationNumber, String firstName, String lastNames,
-      String genderIdentifier, String auditWho, String auditSession) {
-    StudentCreateRequestDto request = new StudentCreateRequestDto();
-    request.setRegistrationNumber(registrationNumber);
-    request.setFirstName(firstName);
-    request.setLastNames(lastNames);
-    request.setGenderIdentifier(genderIdentifier);
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return create(request);
   }
 
   public StudentGetManyResponseDto getMany(GetManyRequestDto request) {
@@ -159,29 +139,10 @@ public class StudentClient extends AbstractClient<StudentService>
     return new IdentifiableExecutor(StudentService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
-
-  /**
-   * {@link StudentService#update}.
-   *
-   * @param identifier identifiant
-   * @param registrationNumber matricule
-   * @param firstName nom
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public IdentifiableResponseDto update(String identifier, String registrationNumber,
-      String firstName, String lastNames, String genderIdentifier, String auditWho,
-      String auditSession) {
-    StudentUpdateRequestDto request = new StudentUpdateRequestDto();
-    request.setIdentifier(identifier);
-    request.setRegistrationNumber(registrationNumber);
-    request.setFirstName(firstName);
-    request.setLastNames(lastNames);
-    request.setGenderIdentifier(genderIdentifier);
-    request.setAuditWho(auditWho);
-    request.setAuditSession(auditSession);
-    return update(request);
+  
+  public IdentifiableResponseDto createParent(StudentCreateParentRequestDto request) {
+    return new IdentifiableExecutor(StudentService.CREATE_PARENT_IDENTIFIER)
+        .execute(() -> service().createParent(request));
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {

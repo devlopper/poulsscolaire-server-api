@@ -77,6 +77,138 @@ public interface StudentService extends SpecificService {
 
     void setOriginSchool(String originSchool);
 
+    /* Father */
+
+    String getFatherFirstName();
+
+    void setFatherFirstName(String firstName);
+
+    String getFatherLastNames();
+
+    void setFatherLastNames(String lastNames);
+
+    String getFatherSituation();
+
+    void setFatherSituation(String situation);
+
+    String getFatherProfession();
+
+    void setFatherProfession(String profession);
+
+    String getFatherResidence();
+
+    void setFatherResidence(String residence);
+
+    String getFatherEmailAddress();
+
+    void setFatherEmailAddress(String emailAddress);
+
+    String getFatherPhoneNumber();
+
+    void setFatherPhoneNumber(String phoneNumber);
+
+    String getFatherOthersContacts();
+
+    void setFatherOthersContacts(String othersContacts);
+
+    /* Father */
+
+    String getMotherFirstName();
+
+    void setMotherFirstName(String firstName);
+
+    String getMotherLastNames();
+
+    void setMotherLastNames(String lastNames);
+
+    String getMotherSituation();
+
+    void setMotherSituation(String situation);
+
+    String getMotherProfession();
+
+    void setMotherProfession(String profession);
+
+    String getMotherResidence();
+
+    void setMotherResidence(String residence);
+
+    String getMotherEmailAddress();
+
+    void setMotherEmailAddress(String emailAddress);
+
+    String getMotherPhoneNumber();
+
+    void setMotherPhoneNumber(String phoneNumber);
+
+    String getMotherOthersContacts();
+
+    void setMotherOthersContacts(String othersContacts);
+
+    /* Tutor */
+
+    String getTutorFirstName();
+
+    void setTutorFirstName(String firstName);
+
+    String getTutorLastNames();
+
+    void setTutorLastNames(String lastNames);
+
+    String getTutorSituation();
+
+    void setTutorSituation(String situation);
+
+    String getTutorProfession();
+
+    void setTutorProfession(String profession);
+
+    String getTutorResidence();
+
+    void setTutorResidence(String residence);
+
+    String getTutorEmailAddress();
+
+    void setTutorEmailAddress(String emailAddress);
+
+    String getTutorPhoneNumber();
+
+    void setTutorPhoneNumber(String phoneNumber);
+
+    String getTutorOthersContacts();
+
+    void setTutorOthersContacts(String othersContacts);
+
+    String JSON_FATHER_SUFFIX = "Pere";
+    String JSON_FATHER_FIRST_NAME = IdentityDto.JSON_FIRST_NAME + JSON_FATHER_SUFFIX;
+    String JSON_FATHER_LAST_NAMES = IdentityDto.JSON_LAST_NAMES + JSON_FATHER_SUFFIX;
+    String JSON_FATHER_SITUATION = IdentityDto.JSON_SITUATION + JSON_FATHER_SUFFIX;
+    String JSON_FATHER_PROFESSION = IdentityDto.JSON_PROFESSION + JSON_FATHER_SUFFIX;
+    String JSON_FATHER_RESIDENCE = IdentityDto.JSON_RESIDENCE + JSON_FATHER_SUFFIX;
+    String JSON_FATHER_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS + JSON_FATHER_SUFFIX;
+    String JSON_FATHER_PHONE_NUMBER = IdentityDto.JSON_PHONE_NUMBER + JSON_FATHER_SUFFIX;
+    String JSON_FATHER_OTHERS_CONTACTS = IdentityDto.JSON_OTHERS_CONTACTS + JSON_FATHER_SUFFIX;
+
+    String JSON_MOTHER_SUFFIX = "Mere";
+    String JSON_MOTHER_FIRST_NAME = IdentityDto.JSON_FIRST_NAME + JSON_MOTHER_SUFFIX;
+    String JSON_MOTHER_LAST_NAMES = IdentityDto.JSON_LAST_NAMES + JSON_MOTHER_SUFFIX;
+    String JSON_MOTHER_SITUATION = IdentityDto.JSON_SITUATION + JSON_MOTHER_SUFFIX;
+    String JSON_MOTHER_PROFESSION = IdentityDto.JSON_PROFESSION + JSON_MOTHER_SUFFIX;
+    String JSON_MOTHER_RESIDENCE = IdentityDto.JSON_RESIDENCE + JSON_MOTHER_SUFFIX;
+    String JSON_MOTHER_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS + JSON_MOTHER_SUFFIX;
+    String JSON_MOTHER_PHONE_NUMBER = IdentityDto.JSON_PHONE_NUMBER + JSON_MOTHER_SUFFIX;
+    String JSON_MOTHER_OTHERS_CONTACTS = IdentityDto.JSON_OTHERS_CONTACTS + JSON_MOTHER_SUFFIX;
+
+    String JSON_TUTOR_SUFFIX = "Tuteur";
+    String JSON_TUTOR_FIRST_NAME = IdentityDto.JSON_FIRST_NAME + JSON_TUTOR_SUFFIX;
+    String JSON_TUTOR_LAST_NAMES = IdentityDto.JSON_LAST_NAMES + JSON_TUTOR_SUFFIX;
+    String JSON_TUTOR_SITUATION = IdentityDto.JSON_SITUATION + JSON_TUTOR_SUFFIX;
+    String JSON_TUTOR_PROFESSION = IdentityDto.JSON_PROFESSION + JSON_TUTOR_SUFFIX;
+    String JSON_TUTOR_RESIDENCE = IdentityDto.JSON_RESIDENCE + JSON_TUTOR_SUFFIX;
+    String JSON_TUTOR_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS + JSON_TUTOR_SUFFIX;
+    String JSON_TUTOR_PHONE_NUMBER = IdentityDto.JSON_PHONE_NUMBER + JSON_TUTOR_SUFFIX;
+    String JSON_TUTOR_OTHERS_CONTACTS = IdentityDto.JSON_OTHERS_CONTACTS + JSON_TUTOR_SUFFIX;
+
     String JSON_SCHOOL_IDENTIFIER = StudentDto.JSON_SCHOOL_IDENTIFIER;
     String JSON_ORIGIN_SCHOOL = StudentDto.JSON_ORIGIN_SCHOOL;
   }
@@ -148,6 +280,84 @@ public interface StudentService extends SpecificService {
 
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
+
+    /* Father */
+
+    @JsonbProperty(JSON_FATHER_FIRST_NAME)
+    private String fatherFirstName;
+
+    @JsonbProperty(JSON_FATHER_LAST_NAMES)
+    private String fatherLastNames;
+
+    @JsonbProperty(JSON_FATHER_SITUATION)
+    private String fatherSituation;
+
+    @JsonbProperty(JSON_FATHER_PROFESSION)
+    private String fatherProfession;
+
+    @JsonbProperty(JSON_FATHER_RESIDENCE)
+    private String fatherResidence;
+
+    @JsonbProperty(JSON_FATHER_EMAIL_ADDRESS)
+    private String fatherEmailAddress;
+
+    @JsonbProperty(JSON_FATHER_PHONE_NUMBER)
+    private String fatherPhoneNumber;
+
+    @JsonbProperty(JSON_FATHER_OTHERS_CONTACTS)
+    private String fatherOthersContacts;
+
+    /* Mother */
+
+    @JsonbProperty(JSON_MOTHER_FIRST_NAME)
+    private String motherFirstName;
+
+    @JsonbProperty(JSON_MOTHER_LAST_NAMES)
+    private String motherLastNames;
+
+    @JsonbProperty(JSON_MOTHER_SITUATION)
+    private String motherSituation;
+
+    @JsonbProperty(JSON_MOTHER_PROFESSION)
+    private String motherProfession;
+
+    @JsonbProperty(JSON_MOTHER_RESIDENCE)
+    private String motherResidence;
+
+    @JsonbProperty(JSON_MOTHER_EMAIL_ADDRESS)
+    private String motherEmailAddress;
+
+    @JsonbProperty(JSON_MOTHER_PHONE_NUMBER)
+    private String motherPhoneNumber;
+
+    @JsonbProperty(JSON_MOTHER_OTHERS_CONTACTS)
+    private String motherOthersContacts;
+
+    /* Father */
+
+    @JsonbProperty(JSON_TUTOR_FIRST_NAME)
+    private String tutorFirstName;
+
+    @JsonbProperty(JSON_TUTOR_LAST_NAMES)
+    private String tutorLastNames;
+
+    @JsonbProperty(JSON_TUTOR_SITUATION)
+    private String tutorSituation;
+
+    @JsonbProperty(JSON_TUTOR_PROFESSION)
+    private String tutorProfession;
+
+    @JsonbProperty(JSON_TUTOR_RESIDENCE)
+    private String tutorResidence;
+
+    @JsonbProperty(JSON_TUTOR_EMAIL_ADDRESS)
+    private String tutorEmailAddress;
+
+    @JsonbProperty(JSON_TUTOR_PHONE_NUMBER)
+    private String tutorPhoneNumber;
+
+    @JsonbProperty(JSON_TUTOR_OTHERS_CONTACTS)
+    private String tutorOthersContacts;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_ELEVE";
@@ -276,6 +486,171 @@ public interface StudentService extends SpecificService {
 
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
+
+    /* Father */
+
+    @JsonbProperty(JSON_FATHER_FIRST_NAME)
+    private String fatherFirstName;
+
+    @JsonbProperty(JSON_FATHER_LAST_NAMES)
+    private String fatherLastNames;
+
+    @JsonbProperty(JSON_FATHER_SITUATION)
+    private String fatherSituation;
+
+    @JsonbProperty(JSON_FATHER_PROFESSION)
+    private String fatherProfession;
+
+    @JsonbProperty(JSON_FATHER_RESIDENCE)
+    private String fatherResidence;
+
+    @JsonbProperty(JSON_FATHER_EMAIL_ADDRESS)
+    private String fatherEmailAddress;
+
+    @JsonbProperty(JSON_FATHER_PHONE_NUMBER)
+    private String fatherPhoneNumber;
+
+    @JsonbProperty(JSON_FATHER_OTHERS_CONTACTS)
+    private String fatherOthersContacts;
+
+    /* Mother */
+
+    @JsonbProperty(JSON_MOTHER_FIRST_NAME)
+    private String motherFirstName;
+
+    @JsonbProperty(JSON_MOTHER_LAST_NAMES)
+    private String motherLastNames;
+
+    @JsonbProperty(JSON_MOTHER_SITUATION)
+    private String motherSituation;
+
+    @JsonbProperty(JSON_MOTHER_PROFESSION)
+    private String motherProfession;
+
+    @JsonbProperty(JSON_MOTHER_RESIDENCE)
+    private String motherResidence;
+
+    @JsonbProperty(JSON_MOTHER_EMAIL_ADDRESS)
+    private String motherEmailAddress;
+
+    @JsonbProperty(JSON_MOTHER_PHONE_NUMBER)
+    private String motherPhoneNumber;
+
+    @JsonbProperty(JSON_MOTHER_OTHERS_CONTACTS)
+    private String motherOthersContacts;
+
+    /* Father */
+
+    @JsonbProperty(JSON_TUTOR_FIRST_NAME)
+    private String tutorFirstName;
+
+    @JsonbProperty(JSON_TUTOR_LAST_NAMES)
+    private String tutorLastNames;
+
+    @JsonbProperty(JSON_TUTOR_SITUATION)
+    private String tutorSituation;
+
+    @JsonbProperty(JSON_TUTOR_PROFESSION)
+    private String tutorProfession;
+
+    @JsonbProperty(JSON_TUTOR_RESIDENCE)
+    private String tutorResidence;
+
+    @JsonbProperty(JSON_TUTOR_EMAIL_ADDRESS)
+    private String tutorEmailAddress;
+
+    @JsonbProperty(JSON_TUTOR_PHONE_NUMBER)
+    private String tutorPhoneNumber;
+
+    @JsonbProperty(JSON_TUTOR_OTHERS_CONTACTS)
+    private String tutorOthersContacts;
+  }
+
+  String CREATE_PARENT_IDENTIFIER = "CREATION_PARENT_ELEVE";
+
+  String CREATE_PARENT_PATH = "parent";
+
+  @Path(CREATE_PARENT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CREATE_PARENT_IDENTIFIER,
+      description = "Ce service permet de créer un parent d'élève")
+  Response createParent(StudentCreateParentRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class StudentCreateParentRequestDto extends ByIdentifierRequestDto
+      implements IdentitySaveRequest {
+    @JsonbProperty(JSON_REGISTRATION_NUMBER)
+    private String registrationNumber;
+
+    @JsonbProperty(JSON_FIRST_NAME)
+    private String firstName;
+
+    @JsonbProperty(JSON_ARABIC_FIRST_NAME)
+    private String arabicFirstName;
+
+    @JsonbProperty(JSON_LAST_NAMES)
+    private String lastNames;
+
+    @JsonbProperty(JSON_ARABIC_LAST_NAMES)
+    private String arabicLastNames;
+
+    @JsonbProperty(JSON_GENDER_IDENTIFIER)
+    private String genderIdentifier;
+
+    @JsonbProperty(JSON_BLOOD_GROUP)
+    private BloodGroup bloodGroup;
+
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDateTime birthDate;
+
+    @JsonbProperty(JSON_BIRTH_PLACE)
+    private String birthPlace;
+
+    @JsonbProperty(JSON_BIRTH_CERTIFICATE_REFERENCE)
+    private String birthCertificateReference;
+
+    @JsonbProperty(JSON_NATIONALITY)
+    private String nationality;
+
+    @JsonbProperty(JSON_SITUATION)
+    private String situation;
+
+    @JsonbProperty(JSON_PROFESSION)
+    private String profession;
+
+    @JsonbProperty(JSON_RESIDENCE)
+    private String residence;
+
+    @JsonbProperty(JSON_EMAIL_ADDRESS)
+    private String emailAddress;
+
+    @JsonbProperty(JSON_PHONE_NUMBER)
+    private String phoneNumber;
+
+    @JsonbProperty(JSON_OTHERS_CONTACTS)
+    private String othersContacts;
+
+    @JsonbProperty("lien")
+    private ParentalLink link;
+    
+    /**
+     * Cette énumération représente les liens parentaux.
+     *
+     * @author Christian
+     *
+     */
+    public enum ParentalLink {
+      FATHER, MOTHER, TUTOR
+    }
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_ELEVE";
