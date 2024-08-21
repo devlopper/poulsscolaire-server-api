@@ -10,4 +10,13 @@ import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCoda
  */
 public class PaymentModeDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "mode de paiement";
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = "modes de paiement";
 }
