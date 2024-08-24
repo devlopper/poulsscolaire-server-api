@@ -281,6 +281,15 @@ public interface StudentService extends SpecificService {
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
 
+    @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
+    private String relationshipParentIdentifier;
+
+    @JsonbProperty(JSON_RELATIONSHIP_CHILD_IDENTIFIER)
+    private String relationshipChildIdentifier;
+
+    @JsonbProperty(JSON_RELATIONSHIP_TYPE)
+    private IdentityRelationshipType relationshipType;
+    
     /* Father */
 
     @JsonbProperty(JSON_FATHER_FIRST_NAME)
@@ -487,6 +496,15 @@ public interface StudentService extends SpecificService {
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
 
+    @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
+    private String relationshipParentIdentifier;
+
+    @JsonbProperty(JSON_RELATIONSHIP_CHILD_IDENTIFIER)
+    private String relationshipChildIdentifier;
+
+    @JsonbProperty(JSON_RELATIONSHIP_TYPE)
+    private IdentityRelationshipType relationshipType;
+    
     /* Father */
 
     @JsonbProperty(JSON_FATHER_FIRST_NAME)
@@ -639,6 +657,15 @@ public interface StudentService extends SpecificService {
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
 
+    @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
+    private String relationshipParentIdentifier;
+
+    @JsonbProperty(JSON_RELATIONSHIP_CHILD_IDENTIFIER)
+    private String relationshipChildIdentifier;
+
+    @JsonbProperty(JSON_RELATIONSHIP_TYPE)
+    private IdentityRelationshipType relationshipType;
+    
     @JsonbProperty("lien")
     private ParentalLink link;
     

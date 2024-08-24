@@ -18,7 +18,7 @@ class IdentityRelationshipRequestMapperTest {
 
   @Test
   void mapCreation_whenNotNull() {
-    assertNotNull(mapper.mapCreate(new IdentityDto()));
+    assertNotNull(mapper.mapCreate(new IdentityRelationshipDto()));
   }
 
   @Test
@@ -28,7 +28,7 @@ class IdentityRelationshipRequestMapperTest {
 
   @Test
   void mapUpdate_whenNotNull() {
-    assertNotNull(mapper.mapUpdate(new IdentityDto()));
+    assertNotNull(mapper.mapUpdate(new IdentityRelationshipDto()));
   }
 
 }

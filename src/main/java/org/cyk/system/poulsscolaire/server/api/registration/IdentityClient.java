@@ -19,8 +19,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.registration.IdentityService.GetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.IdentityService.IdentityCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.registration.IdentityService.IdentityGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.IdentityService.IdentityUpdateRequestDto;
 
 /**
@@ -33,7 +33,7 @@ import org.cyk.system.poulsscolaire.server.api.registration.IdentityService.Iden
 @Setter
 @Accessors(chain = true, fluent = true)
 public class IdentityClient extends AbstractClient<IdentityService>
-    implements GetByIdentifier<IdentityDto>, GetMany<GetManyResponseDto>,
+    implements GetByIdentifier<IdentityDto>, GetMany<IdentityGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
@@ -72,8 +72,8 @@ public class IdentityClient extends AbstractClient<IdentityService>
     return create(request);
   }
 
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<GetManyResponseDto>(GetManyResponseDto.class,
+  public IdentityGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<IdentityGetManyResponseDto>(IdentityGetManyResponseDto.class,
         IdentityService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
@@ -87,8 +87,8 @@ public class IdentityClient extends AbstractClient<IdentityService>
    * @param auditSession audit session
    * @return réponse
    */
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public IdentityGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);

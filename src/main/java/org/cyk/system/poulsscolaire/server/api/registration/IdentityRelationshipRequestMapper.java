@@ -13,7 +13,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface IdentityRelationshipRequestMapper {
 
-  IdentityRelationshipCreateRequestDto mapCreate(IdentityDto entity);
+  IdentityRelationshipCreateRequestDto mapCreate(IdentityRelationshipDto entity);
 
-  IdentityRelationshipUpdateRequestDto mapUpdate(IdentityDto entity);
+  IdentityRelationshipUpdateRequestDto mapUpdate(IdentityRelationshipDto entity);
 }

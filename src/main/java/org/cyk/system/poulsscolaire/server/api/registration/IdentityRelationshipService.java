@@ -33,7 +33,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  * @author Christian Yao Komenan
  *
  */
-@Path(value = IdentityService.PATH)
+@Path(value = IdentityRelationshipService.PATH)
 @Tag(name = "Gestion des relations père fils entre deux identités")
 public interface IdentityRelationshipService extends SpecificService {
 

@@ -6,7 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.registration.IdentityService.GetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.registration.IdentityService.IdentityGetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -35,10 +35,11 @@ class IdentityClientTest {
   void getMany() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(GetManyResponseDto.class))
-        .thenReturn(new GetManyResponseDto());
+    Mockito.when(response.readEntity(IdentityGetManyResponseDto.class))
+        .thenReturn(new IdentityGetManyResponseDto());
     Mockito.when(service.getMany(any())).thenReturn(response);
-    assertInstanceOf(GetManyResponseDto.class, client.getMany(null, null, null, null, null));
+    assertInstanceOf(IdentityGetManyResponseDto.class,
+        client.getMany(null, null, null, null, null));
   }
 
   @Test

@@ -60,6 +60,15 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_BIRTH_CERTIFICATE_REFERENCE)
   private String birthCertificateReference;
   
+  @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
+  private String relationshipParentIdentifier;
+  
+  @JsonbProperty(JSON_RELATIONSHIP_CHILD_IDENTIFIER)
+  private String relationshipChildIdentifier;
+  
+  @JsonbProperty(JSON_RELATIONSHIP_TYPE)
+  private IdentityRelationshipType relationshipType;
+  
   public static final String JSON_REGISTRATION_NUMBER = "matricule";
   
   public static final String JSON_FIRST_NAME = "nom";
@@ -85,4 +94,18 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_EMAIL_ADDRESS = "adresseEmail";
   public static final String JSON_PHONE_NUMBER = "numeroTelephone";
   public static final String JSON_OTHERS_CONTACTS = "autresContacts";
+  
+  public static final String JSON_RELATIONSHIP_PARENT_IDENTIFIER = "idParentRelation";
+  public static final String JSON_RELATIONSHIP_CHILD_IDENTIFIER = "idEnfantRelation";
+  public static final String JSON_RELATIONSHIP_TYPE = "idTypeRelation";
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = "identité";
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + "s";
 }
