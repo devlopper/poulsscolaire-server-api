@@ -19,6 +19,9 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
 
+  @JsonbProperty(JSON_IDENTITY_IDENTIFIER)
+  private String identityIdentifier;
+  
   @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
   private String schoolIdentifier;
 
@@ -214,6 +217,7 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
         firstName, lastNames);
   }
 
+  public static final String JSON_IDENTITY_IDENTIFIER = "idIdentite";
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
   public static final String JSON_ORIGIN_SCHOOL = "ecoleOrigine";
