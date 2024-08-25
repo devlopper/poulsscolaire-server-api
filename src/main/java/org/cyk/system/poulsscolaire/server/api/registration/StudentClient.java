@@ -19,7 +19,6 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentCreateParentRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentUpdateRequestDto;
@@ -138,11 +137,6 @@ public class StudentClient extends AbstractClient<StudentService>
   public IdentifiableResponseDto update(StudentUpdateRequestDto request) {
     return new IdentifiableExecutor(StudentService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
-  }
-  
-  public IdentifiableResponseDto createParent(StudentCreateParentRequestDto request) {
-    return new IdentifiableExecutor(StudentService.CREATE_PARENT_IDENTIFIER)
-        .execute(() -> service().createParent(request));
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {

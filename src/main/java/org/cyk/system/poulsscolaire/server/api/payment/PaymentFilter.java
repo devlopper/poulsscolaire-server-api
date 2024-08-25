@@ -2,6 +2,7 @@ package org.cyk.system.poulsscolaire.server.api.payment;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,8 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   String periodIdentifier;
   String registrationIdentifier;
   Boolean canceled;
+  LocalDateTime fromDate;
+  LocalDateTime toDate;
 
   public PaymentFilter(FilterDto dto) {
     super(dto);
@@ -33,6 +36,8 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     periodIdentifier = getPeriodIdentifier(filter);
     registrationIdentifier = getRegistrationIdentifier(filter);
     canceled = getCanceled(filter);
+    fromDate = getFromDate(filter);
+    toDate = getToDate(filter);
   }
 
   @Override
@@ -42,6 +47,8 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     setPeriodIdentifier(filter, periodIdentifier);
     setRegistrationIdentifier(filter, registrationIdentifier);
     setCanceled(filter, canceled);
+    setFromDate(filter, fromDate);
+    setToDate(filter, toDate);
   }
 
   public static void setSchoolIdentifier(FilterDto filter, String identifier) {
@@ -52,7 +59,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   public static String getSchoolIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOL_IDENTIFIER));
   }
-  
+
   public static void setPeriodIdentifier(FilterDto filter, String identifier) {
     set(filter, JSON_PERIOD_IDENTIFIER, f -> f.getValueAsString(),
         f -> f.setValueAsString(identifier));
@@ -79,6 +86,24 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_CANCELED));
   }
 
+  public static void setFromDate(FilterDto filter, LocalDateTime fromDate) {
+    set(filter, JSON_FROM_DATE, f -> f.getValueAsDateTime(), f -> f.setValueAsDateTime(fromDate));
+  }
+
+  public static LocalDateTime getFromDate(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsDateTimeByName(JSON_FROM_DATE));
+  }
+
+  public static void setToDate(FilterDto filter, LocalDateTime toDate) {
+    set(filter, JSON_TO_DATE, f -> f.getValueAsDateTime(), f -> f.setValueAsDateTime(toDate));
+  }
+
+  public static LocalDateTime getToDate(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsDateTimeByName(JSON_TO_DATE));
+  }
+
+  public static final String JSON_FROM_DATE = "dateDebut";
+  public static final String JSON_TO_DATE = "dateFin";
   public static final String JSON_SCHOOL_IDENTIFIER = PaymentDto.JSON_SCHOOL_IDENTIFIER;
   public static final String JSON_PERIOD_IDENTIFIER = PaymentDto.JSON_PERIOD_IDENTIFIER;
   public static final String JSON_REGISTRATION_IDENTIFIER = PaymentDto.JSON_REGISTRATION_IDENTIFIER;

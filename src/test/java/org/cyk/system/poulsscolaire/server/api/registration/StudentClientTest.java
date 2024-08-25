@@ -6,8 +6,6 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentCreateParentRequestDto;
-import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentCreateParentRequestDto.ParentalLink;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.StudentService.StudentUpdateRequestDto;
@@ -71,18 +69,6 @@ class StudentClientTest {
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class, client.update(new StudentUpdateRequestDto()));
-  }
-
-  @Test
-  void createParent() {
-    Response response = Mockito.mock(Response.class);
-    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(IdentifiableResponseDto.class))
-        .thenReturn(new IdentifiableResponseDto());
-    Mockito.when(service.createParent(any())).thenReturn(response);
-    StudentCreateParentRequestDto request = new StudentCreateParentRequestDto();
-    request.setLink(ParentalLink.FATHER);
-    assertInstanceOf(IdentifiableResponseDto.class, client.createParent(request));
   }
 
   @Test
