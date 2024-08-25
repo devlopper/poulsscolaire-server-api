@@ -69,6 +69,12 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_RELATIONSHIP_TYPE)
   private IdentityRelationshipType relationshipType;
   
+  @JsonbProperty(JSON_RELATIONSHIP_TYPE_AS_STRING)
+  private String relationshipTypeAsString;
+  
+  @JsonbProperty(JSON_RELATIONSHIP_TYPE_PARENT_AS_STRING)
+  private String relationshipTypeParentAsString;
+  
   public static final String JSON_REGISTRATION_NUMBER = "matricule";
   
   public static final String JSON_FIRST_NAME = "nom";
@@ -98,6 +104,8 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_RELATIONSHIP_PARENT_IDENTIFIER = "idParentRelation";
   public static final String JSON_RELATIONSHIP_CHILD_IDENTIFIER = "idEnfantRelation";
   public static final String JSON_RELATIONSHIP_TYPE = "idTypeRelation";
+  public static final String JSON_RELATIONSHIP_TYPE_AS_STRING = "idTypeRelationChaine";
+  public static final String JSON_RELATIONSHIP_TYPE_PARENT_AS_STRING = "idTypeRelationParentChaine";
   
   /**
    * Nom pour lecture humaine de la classe.
