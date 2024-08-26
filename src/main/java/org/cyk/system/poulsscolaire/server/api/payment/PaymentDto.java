@@ -47,17 +47,8 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_CANCELED)
   private Boolean canceled;
   
-  @JsonbProperty(JSON_CREATION_DATE_AS_STRING)
-  private String creationDateAsString;
-  
-  @JsonbProperty(JSON_CREATION_ACTOR)
-  private String creationActor;
-  
-  @JsonbProperty(JSON_CANCELLATION_DATE_AS_STRING)
-  private String cancellationDateAsString;
-  
-  @JsonbProperty(JSON_CANCELLATION_ACTOR)
-  private String cancellationActor;
+  @JsonbProperty(JSON_AUDIT_CANCELLATION_AS_STRING)
+  private String auditCancellationAsString;
   
   public static final String JSON_INITIATOR = "initiateur";
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
@@ -71,10 +62,7 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
   public static final String JSON_DATE_AS_STRING = "dateChaine";
   public static final String JSON_CANCELED = "annule";
-  public static final String JSON_CREATION_DATE_AS_STRING = "dateCreationChaine";
-  public static final String JSON_CREATION_ACTOR = "creePar";
-  public static final String JSON_CANCELLATION_DATE_AS_STRING = "dateAnnulationChaine";
-  public static final String JSON_CANCELLATION_ACTOR = "annulePar";
+  public static final String JSON_AUDIT_CANCELLATION_AS_STRING = "auditAnnulationChaine";
   
   /**
    * Nom pour lecture humaine de la classe.
