@@ -24,7 +24,9 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   String feeCategoryIdentifier;
 
   Boolean latePayment;
-
+  Integer fromAmount;
+  Integer toAmount;
+  
   public AdjustedFeeFilter(FilterDto dto) {
     super(dto);
   }
@@ -42,6 +44,8 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     feeIdentifier = getFeeIdentifier(filter);
     feeCategoryIdentifier = getFeeCategoryIdentifier(filter);
     latePayment = getLatePayment(filter);
+    fromAmount = getFromAmount(filter);
+    toAmount = getToAmount(filter);
   }
 
   @Override
@@ -55,6 +59,8 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     setFeeIdentifier(filter, feeIdentifier);
     setFeeCategoryIdentifier(filter, feeCategoryIdentifier);
     setLatePayment(filter, latePayment);
+    setFromAmount(filter, fromAmount);
+    setToAmount(filter, toAmount);
   }
 
   public static void setRegistrationIdentifier(FilterDto filter, String identifier) {
@@ -131,6 +137,24 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_LATE_PAYMENT));
   }
 
+  public static void setFromAmount(FilterDto filter, Integer fromAmount) {
+    set(filter, JSON_FROM_AMOUNT, f -> f.getValueAsInteger(), f -> f.setValueAsInteger(fromAmount));
+  }
+
+  public static Integer getFromAmount(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_FROM_AMOUNT));
+  }
+
+  public static void setToAmount(FilterDto filter, Integer toAmount) {
+    set(filter, JSON_TO_AMOUNT, f -> f.getValueAsDateTime(), f -> f.setValueAsInteger(toAmount));
+  }
+
+  public static Integer getToAmount(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_TO_AMOUNT));
+  }
+  
+  public static final String JSON_FROM_AMOUNT = "montantDebut";
+  public static final String JSON_TO_AMOUNT = "montantFin";
   public static final String JSON_REGISTRATION_IDENTIFIER =
       AdjustedFeeDto.JSON_REGISTRATION_IDENTIFIER;
   public static final String JSON_REGISTRATION_SCHOOLING_SCHOOL_IDENTIFIER =

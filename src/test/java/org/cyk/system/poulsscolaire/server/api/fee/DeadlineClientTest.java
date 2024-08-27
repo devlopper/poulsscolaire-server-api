@@ -7,8 +7,8 @@ import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
 import org.cyk.system.poulsscolaire.server.api.fee.DeadlineService.DeadlineCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.DeadlineService.DeadlineGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.fee.DeadlineService.DeadlineUpdateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.fee.DeadlineService.GetManyResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -37,10 +37,11 @@ class DeadlineClientTest {
   void getMany() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(GetManyResponseDto.class))
-        .thenReturn(new GetManyResponseDto());
+    Mockito.when(response.readEntity(DeadlineGetManyResponseDto.class))
+        .thenReturn(new DeadlineGetManyResponseDto());
     Mockito.when(service.getMany(any())).thenReturn(response);
-    assertInstanceOf(GetManyResponseDto.class, client.getMany(null, null, null, null, null));
+    assertInstanceOf(DeadlineGetManyResponseDto.class,
+        client.getMany(null, null, null, null, null));
   }
 
   @Test
@@ -68,8 +69,7 @@ class DeadlineClientTest {
     Mockito.when(response.readEntity(IdentifiableResponseDto.class))
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
-    assertInstanceOf(IdentifiableResponseDto.class,
-        client.update(new DeadlineUpdateRequestDto()));
+    assertInstanceOf(IdentifiableResponseDto.class, client.update(new DeadlineUpdateRequestDto()));
   }
 
   @Test

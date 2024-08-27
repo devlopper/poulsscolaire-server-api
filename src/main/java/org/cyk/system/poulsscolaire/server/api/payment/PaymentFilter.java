@@ -22,6 +22,8 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   Boolean canceled;
   LocalDateTime fromDate;
   LocalDateTime toDate;
+  Integer fromAmount;
+  Integer toAmount;
 
   public PaymentFilter(FilterDto dto) {
     super(dto);
@@ -38,6 +40,8 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     canceled = getCanceled(filter);
     fromDate = getFromDate(filter);
     toDate = getToDate(filter);
+    fromAmount = getFromAmount(filter);
+    toAmount = getToAmount(filter);
   }
 
   @Override
@@ -49,6 +53,8 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     setCanceled(filter, canceled);
     setFromDate(filter, fromDate);
     setToDate(filter, toDate);
+    setFromAmount(filter, fromAmount);
+    setToAmount(filter, toAmount);
   }
 
   public static void setSchoolIdentifier(FilterDto filter, String identifier) {
@@ -101,9 +107,27 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   public static LocalDateTime getToDate(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsDateTimeByName(JSON_TO_DATE));
   }
+  
+  public static void setFromAmount(FilterDto filter, Integer fromAmount) {
+    set(filter, JSON_FROM_AMOUNT, f -> f.getValueAsInteger(), f -> f.setValueAsInteger(fromAmount));
+  }
+
+  public static Integer getFromAmount(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_FROM_AMOUNT));
+  }
+
+  public static void setToAmount(FilterDto filter, Integer toAmount) {
+    set(filter, JSON_TO_AMOUNT, f -> f.getValueAsDateTime(), f -> f.setValueAsInteger(toAmount));
+  }
+
+  public static Integer getToAmount(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_TO_AMOUNT));
+  }
 
   public static final String JSON_FROM_DATE = "dateDebut";
   public static final String JSON_TO_DATE = "dateFin";
+  public static final String JSON_FROM_AMOUNT = "montantDebut";
+  public static final String JSON_TO_AMOUNT = "montantFin";
   public static final String JSON_SCHOOL_IDENTIFIER = PaymentDto.JSON_SCHOOL_IDENTIFIER;
   public static final String JSON_PERIOD_IDENTIFIER = PaymentDto.JSON_PERIOD_IDENTIFIER;
   public static final String JSON_REGISTRATION_IDENTIFIER = PaymentDto.JSON_REGISTRATION_IDENTIFIER;

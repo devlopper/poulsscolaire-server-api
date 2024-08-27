@@ -18,7 +18,9 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
   String schoolIdentifier;
   String periodIdentifier;
   String studentIdentifier;
-
+  Integer fromAmount;
+  Integer toAmount;
+  
   public RegistrationFilter(FilterDto dto) {
     super(dto);
   }
@@ -31,6 +33,8 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     schoolIdentifier = getSchoolIdentifier(filter);
     periodIdentifier = getPeriodIdentifier(filter);
     studentIdentifier = getStudentIdentifier(filter);
+    fromAmount = getFromAmount(filter);
+    toAmount = getToAmount(filter);
   }
 
   @Override
@@ -39,6 +43,8 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     setSchoolIdentifier(filter, schoolIdentifier);
     setPeriodIdentifier(filter, periodIdentifier);
     setStudentIdentifier(filter, studentIdentifier);
+    setFromAmount(filter, fromAmount);
+    setToAmount(filter, toAmount);
   }
 
   public static void setSchoolIdentifier(FilterDto filter, String identifier) {
@@ -67,7 +73,25 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
   public static String getStudentIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_STUDENT_IDENTIFIER));
   }
+  
+  public static void setFromAmount(FilterDto filter, Integer fromAmount) {
+    set(filter, JSON_FROM_AMOUNT, f -> f.getValueAsInteger(), f -> f.setValueAsInteger(fromAmount));
+  }
 
+  public static Integer getFromAmount(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_FROM_AMOUNT));
+  }
+
+  public static void setToAmount(FilterDto filter, Integer toAmount) {
+    set(filter, JSON_TO_AMOUNT, f -> f.getValueAsDateTime(), f -> f.setValueAsInteger(toAmount));
+  }
+
+  public static Integer getToAmount(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_TO_AMOUNT));
+  }
+
+  public static final String JSON_FROM_AMOUNT = "montantDebut";
+  public static final String JSON_TO_AMOUNT = "montantFin";
   public static final String JSON_SCHOOL_IDENTIFIER = RegistrationDto.JSON_SCHOOL_IDENTIFIER;
   public static final String JSON_PERIOD_IDENTIFIER = RegistrationDto.JSON_PERIOD_IDENTIFIER;
   public static final String JSON_STUDENT_IDENTIFIER = RegistrationDto.JSON_STUDENT_IDENTIFIER;
