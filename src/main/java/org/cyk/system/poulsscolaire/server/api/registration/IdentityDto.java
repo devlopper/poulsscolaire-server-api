@@ -63,6 +63,12 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
   private String relationshipParentIdentifier;
   
+  @JsonbProperty(JSON_PROFESSION)
+  private String profession;
+  
+  @JsonbProperty(JSON_RESIDENCE)
+  private String residence;
+  
   @JsonbProperty(JSON_RELATIONSHIP_CHILD_IDENTIFIER)
   private String relationshipChildIdentifier;
   
