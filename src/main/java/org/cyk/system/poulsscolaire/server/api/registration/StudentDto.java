@@ -94,6 +94,9 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_OTHERS_CONTACTS)
   private String othersContacts;
 
+  @JsonbProperty(JSON_HEALTH_STATUS)
+  private String healthStatus;
+  
   /* Father */
 
   @JsonbProperty(JSON_FATHER_FIRST_NAME)
@@ -221,7 +224,8 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
   public static final String JSON_ORIGIN_SCHOOL = "ecoleOrigine";
-
+  public static final String JSON_HEALTH_STATUS = "etatSante";
+  
   public static final String JSON_REGISTRATION_NUMBER = "matricule";
 
   public static final String JSON_FIRST_NAME = "nom";

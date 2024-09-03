@@ -135,6 +135,10 @@ public interface IdentityService extends SpecificService {
 
     void setOthersContacts(String othersContacts);
     
+    String getHealthStatus();
+
+    void setHealthStatus(String healthStatus);
+    
     String getRelationshipParentIdentifier();
 
     void setRelationshipParentIdentifier(String relationshipParentIdentifier);
@@ -164,6 +168,7 @@ public interface IdentityService extends SpecificService {
     String JSON_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS;
     String JSON_PHONE_NUMBER = IdentityDto.JSON_PHONE_NUMBER;
     String JSON_OTHERS_CONTACTS = IdentityDto.JSON_OTHERS_CONTACTS;
+    String JSON_HEALTH_STATUS = IdentityDto.JSON_HEALTH_STATUS;
     String JSON_RELATIONSHIP_PARENT_IDENTIFIER = IdentityDto.JSON_RELATIONSHIP_PARENT_IDENTIFIER;
     String JSON_RELATIONSHIP_CHILD_IDENTIFIER = IdentityDto.JSON_RELATIONSHIP_CHILD_IDENTIFIER;
     String JSON_RELATIONSHIP_TYPE = IdentityDto.JSON_RELATIONSHIP_TYPE;
@@ -230,6 +235,9 @@ public interface IdentityService extends SpecificService {
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
 
+    @JsonbProperty(JSON_HEALTH_STATUS)
+    private String healthStatus;
+    
     @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
     private String relationshipParentIdentifier;
 
@@ -361,6 +369,9 @@ public interface IdentityService extends SpecificService {
 
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
+    
+    @JsonbProperty(JSON_HEALTH_STATUS)
+    private String healthStatus;
     
     @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
     private String relationshipParentIdentifier;

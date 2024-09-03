@@ -69,6 +69,9 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_RESIDENCE)
   private String residence;
   
+  @JsonbProperty(JSON_HEALTH_STATUS)
+  private String healthStatus;
+  
   @JsonbProperty(JSON_RELATIONSHIP_CHILD_IDENTIFIER)
   private String relationshipChildIdentifier;
   
@@ -106,6 +109,7 @@ public class IdentityDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_EMAIL_ADDRESS = "adresseEmail";
   public static final String JSON_PHONE_NUMBER = "numeroTelephone";
   public static final String JSON_OTHERS_CONTACTS = "autresContacts";
+  public static final String JSON_HEALTH_STATUS = "etatSante";
   
   public static final String JSON_RELATIONSHIP_PARENT_IDENTIFIER = "idParentRelation";
   public static final String JSON_RELATIONSHIP_CHILD_IDENTIFIER = "idEnfantRelation";

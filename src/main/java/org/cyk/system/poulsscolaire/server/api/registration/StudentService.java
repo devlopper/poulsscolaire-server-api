@@ -281,6 +281,9 @@ public interface StudentService extends SpecificService {
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
 
+    @JsonbProperty(JSON_HEALTH_STATUS)
+    private String healthStatus;
+    
     @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
     private String relationshipParentIdentifier;
 
@@ -496,6 +499,9 @@ public interface StudentService extends SpecificService {
     @JsonbProperty(JSON_OTHERS_CONTACTS)
     private String othersContacts;
 
+    @JsonbProperty(JSON_HEALTH_STATUS)
+    private String healthStatus;
+    
     @JsonbProperty(JSON_RELATIONSHIP_PARENT_IDENTIFIER)
     private String relationshipParentIdentifier;
 
