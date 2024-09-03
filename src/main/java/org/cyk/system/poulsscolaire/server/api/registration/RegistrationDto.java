@@ -52,8 +52,8 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT_AS_STRING)
   private String preRegistrationAmountAsString;
   
-  @JsonbProperty(JSON_CLASS_NAME)
-  private String className;
+  @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
+  private String branchInstanceAsString;
   
   /*
    * Amount
@@ -118,7 +118,7 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
   public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";
   
-  public static final String JSON_CLASS_NAME = "nomClasse";
+  public static final String JSON_BRANCH_INSTANCE_AS_STRING = "classeChaine";
 
   public static final String JSON_TOTAL_REGISTRATION_AMOUNT_AS_STRING =
       "montantInscriptionTotalChaine";

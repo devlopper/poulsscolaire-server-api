@@ -23,6 +23,9 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
   private String registrationIdentifier;
   
+  @JsonbProperty(JSON_REGISTRATION_AS_STRING)
+  private String registrationAsString;
+  
   @JsonbProperty(JSON_STUDENT_AS_STRING)
   private String studentAsString;
   
@@ -56,6 +59,7 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_PERIOD_AS_STRING = "periodeChaine";
   public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
   public static final String JSON_REGISTRATION_IDENTIFIER = "idInscription";
+  public static final String JSON_REGISTRATION_AS_STRING = "inscriptionChaine";
   public static final String JSON_MODE_IDENTIFIER = "idMode";
   public static final String JSON_MODE_AS_STRING = "modeChaine";
   public static final String JSON_AMOUNT = "montant";
