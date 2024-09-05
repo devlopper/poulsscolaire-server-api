@@ -59,6 +59,9 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   @JsonbProperty(JSON_REGISTRATION_ASSIGNMENT_TYPE_AS_STRING)
   private String registrationAssignmentTypeAsString;
 
+  @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
+  private String branchInstanceAsString;
+  
   /* From Amount */
 
   @JsonbProperty(JSON_AMOUNT_VALUE_TO_PAY)
@@ -109,7 +112,8 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String JSON_REGISTRATION_SENIORITY_AS_STRING = "inscriptionAncienneteChaine";
   public static final String JSON_REGISTRATION_ASSIGNMENT_TYPE_AS_STRING =
       "inscriptionTypeAffectationChaine";
-
+  public static final String JSON_BRANCH_INSTANCE_AS_STRING = "classeChaine";
+  
   /* Amount */
   public static final String JSON_AMOUNT_VALUE_TO_PAY = "valeurAPayerMontant";
   public static final String JSON_AMOUNT_VALUE_TO_PAY_AS_STRING = "valeurAPayerMontantChaine";
