@@ -53,6 +53,9 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_AUDIT_CANCELLATION_AS_STRING)
   private String auditCancellationAsString;
   
+  @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
+  private String branchInstanceIdentifier;
+  
   @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
   private String branchInstanceAsString;
   
@@ -71,6 +74,7 @@ public class PaymentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_CANCELED = "annule";
   public static final String JSON_AUDIT_CANCELLATION_AS_STRING = "auditAnnulationChaine";
   public static final String JSON_BRANCH_INSTANCE_AS_STRING = "classeChaine";
+  public static final String JSON_BRANCH_INSTANCE_IDENTIFIER = "idClasse";
   
   /**
    * Nom pour lecture humaine de la classe.

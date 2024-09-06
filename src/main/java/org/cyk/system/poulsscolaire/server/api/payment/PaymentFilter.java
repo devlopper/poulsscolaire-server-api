@@ -19,6 +19,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   String schoolIdentifier;
   String periodIdentifier;
   String registrationIdentifier;
+  String branchInstanceIdentifier;
   Boolean canceled;
   LocalDateTime fromDate;
   LocalDateTime toDate;
@@ -37,6 +38,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     schoolIdentifier = getSchoolIdentifier(filter);
     periodIdentifier = getPeriodIdentifier(filter);
     registrationIdentifier = getRegistrationIdentifier(filter);
+    branchInstanceIdentifier = getBranchInstanceIdentifier(filter);
     canceled = getCanceled(filter);
     fromDate = getFromDate(filter);
     toDate = getToDate(filter);
@@ -50,6 +52,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     setSchoolIdentifier(filter, schoolIdentifier);
     setPeriodIdentifier(filter, periodIdentifier);
     setRegistrationIdentifier(filter, registrationIdentifier);
+    setBranchInstanceIdentifier(filter, branchInstanceIdentifier);
     setCanceled(filter, canceled);
     setFromDate(filter, fromDate);
     setToDate(filter, toDate);
@@ -82,6 +85,15 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
 
   public static String getRegistrationIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_REGISTRATION_IDENTIFIER));
+  }
+  
+  public static void setBranchInstanceIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_BRANCH_INSTANCE_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getBranchInstanceIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_BRANCH_INSTANCE_IDENTIFIER));
   }
 
   public static void setCanceled(FilterDto filter, Boolean value) {
@@ -132,4 +144,6 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   public static final String JSON_PERIOD_IDENTIFIER = PaymentDto.JSON_PERIOD_IDENTIFIER;
   public static final String JSON_REGISTRATION_IDENTIFIER = PaymentDto.JSON_REGISTRATION_IDENTIFIER;
   public static final String JSON_CANCELED = PaymentDto.JSON_CANCELED;
+  public static final String JSON_BRANCH_INSTANCE_IDENTIFIER =
+      PaymentDto.JSON_BRANCH_INSTANCE_IDENTIFIER;
 }

@@ -19,7 +19,8 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   String registrationSchoolingBranchIdentifier;
   String registrationSchoolingPeriodIdentifier;
   String registrationStudentIdentifier;
-
+  String branchInstanceIdentifier;
+  
   String feeIdentifier;
   String feeCategoryIdentifier;
 
@@ -41,6 +42,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     registrationSchoolingBranchIdentifier = getRegistrationSchoolingBranchIdentifier(filter);
     registrationSchoolingPeriodIdentifier = getRegistrationSchoolingPeriodIdentifier(filter);
     registrationStudentIdentifier = getRegistrationStudentIdentifier(filter);
+    branchInstanceIdentifier = getBranchInstanceIdentifier(filter);
     feeIdentifier = getFeeIdentifier(filter);
     feeCategoryIdentifier = getFeeCategoryIdentifier(filter);
     latePayment = getLatePayment(filter);
@@ -56,6 +58,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     setRegistrationSchoolingBranchIdentifier(filter, registrationSchoolingBranchIdentifier);
     setRegistrationSchoolingPeriodIdentifier(filter, registrationSchoolingPeriodIdentifier);
     setRegistrationStudentIdentifier(filter, registrationStudentIdentifier);
+    setBranchInstanceIdentifier(filter, branchInstanceIdentifier);
     setFeeIdentifier(filter, feeIdentifier);
     setFeeCategoryIdentifier(filter, feeCategoryIdentifier);
     setLatePayment(filter, latePayment);
@@ -128,6 +131,15 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   public static String getFeeCategoryIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_FEE_CATEGORY_IDENTIFIER));
   }
+  
+  public static void setBranchInstanceIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_BRANCH_INSTANCE_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getBranchInstanceIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_BRANCH_INSTANCE_IDENTIFIER));
+  }
 
   public static void setLatePayment(FilterDto filter, Boolean value) {
     set(filter, JSON_LATE_PAYMENT, f -> f.getValueAsString(), f -> f.setValueAsBoolean(value));
@@ -175,4 +187,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
       AdjustedFeeDto.JSON_FEE_CATEGORY_IDENTIFIER;
 
   public static final String JSON_LATE_PAYMENT = "paiementEnRetard";
+  
+  public static final String JSON_BRANCH_INSTANCE_IDENTIFIER =
+      AdjustedFeeDto.JSON_BRANCH_INSTANCE_IDENTIFIER;
 }

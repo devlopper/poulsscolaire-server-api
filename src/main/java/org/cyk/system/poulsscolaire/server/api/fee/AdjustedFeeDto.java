@@ -62,6 +62,9 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
   private String branchInstanceAsString;
   
+  @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
+  private String branchInstanceIdentifier;
+  
   /* From Amount */
 
   @JsonbProperty(JSON_AMOUNT_VALUE_TO_PAY)
@@ -126,6 +129,8 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String JSON_EXPECTED_PAYMENT_AS_STRING = "paiementAttenduChaine";
   public static final String JSON_LATE_PAYMENT = "enRetardDePaiement";
 
+  public static final String JSON_BRANCH_INSTANCE_IDENTIFIER = "idClasse";
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

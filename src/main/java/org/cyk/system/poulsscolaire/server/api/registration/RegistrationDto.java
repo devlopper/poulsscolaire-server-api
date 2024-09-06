@@ -55,6 +55,9 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
   private String branchInstanceAsString;
   
+  @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
+  private String branchInstanceIdentifier;
+  
   /*
    * Amount
    */
@@ -110,7 +113,8 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_ASSIGNMENT_TYPE_AS_STRING = "typeAffectationChaine";
   public static final String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
   public static final String JSON_SENIORITY_AS_STRING = "ancienneteChaine";
-
+  public static final String JSON_BRANCH_INSTANCE_IDENTIFIER = "idClasse";
+  
   public static final String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
   public static final String JSON_PRE_REGISTRATION_AMOUNT_AS_STRING = "montantPreInscriptionChaine";
   
