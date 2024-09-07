@@ -52,11 +52,11 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT_AS_STRING)
   private String preRegistrationAmountAsString;
   
-  @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
-  private String branchInstanceAsString;
-  
   @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
   private String branchInstanceIdentifier;
+  
+  @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
+  private String branchInstanceAsString;
   
   /*
    * Amount

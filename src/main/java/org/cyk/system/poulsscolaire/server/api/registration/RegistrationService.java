@@ -81,6 +81,10 @@ public interface RegistrationService extends SpecificService {
     String getSeniorityIdentifier();
 
     void setSeniorityIdentifier(String seniorityIdentifier);
+    
+    String getBranchInstanceIdentifier();
+
+    void setBranchInstanceIdentifier(String branchInstanceIdentifier);
 
     int getPreRegistrationAmount();
 
@@ -90,6 +94,7 @@ public interface RegistrationService extends SpecificService {
     String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
     String JSON_ASSIGNMENT_TYPE_IDENTIFIER = "idTypeAffectation";
     String JSON_SENIORITY_IDENTIFIER = "idAnciennete";
+    String JSON_BRANCH_INSTANCE_IDENTIFIER = "idClasse";
     String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
   }
 
@@ -117,6 +122,9 @@ public interface RegistrationService extends SpecificService {
     
     @JsonbProperty(JSON_SCHOOLING_2_IDENTIFIER)
     private String schooling2Identifier;
+    
+    @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
+    private String branchInstanceIdentifier;
     
     @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
     private int preRegistrationAmount;
@@ -221,6 +229,9 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_SENIORITY_IDENTIFIER)
     private String seniorityIdentifier;
 
+    @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
+    private String branchInstanceIdentifier;
+    
     @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
     private int preRegistrationAmount;
   }
