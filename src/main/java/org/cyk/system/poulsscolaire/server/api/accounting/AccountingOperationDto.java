@@ -26,4 +26,8 @@ public class AccountingOperationDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_ACCOUNT_IDENTIFIER = "idCompte";
 
   public static final String JSON_ACCOUNT_AS_STRING = "compteChaine";
+
+  public static final String NAME = "opération comptable";
+
+  public static final String PLURAL_NAME = "opérations comptables";
 }

@@ -19,11 +19,15 @@ public class AccountingAccountDto extends AbstractIdentifiableCodableNamableAudi
 
   @JsonbProperty(JSON_PLAN_IDENTIFIER)
   private String planIdentifier;
-  
+
   @JsonbProperty(JSON_PLAN_AS_STRING)
   private String planAsString;
-  
+
   public static final String JSON_PLAN_IDENTIFIER = "idPlanComptable";
-  
+
   public static final String JSON_PLAN_AS_STRING = "planComptableChaine";
+
+  public static final String NAME = "compte de plan comptable";
+
+  public static final String PLURAL_NAME = "comptes de plan comptables";
 }
