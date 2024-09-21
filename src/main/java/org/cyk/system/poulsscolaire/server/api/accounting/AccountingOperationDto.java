@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class AccountingOperationDto extends AbstractIdentifiableAuditableDto {
 
   @JsonbProperty(JSON_ACCOUNT_IDENTIFIER)

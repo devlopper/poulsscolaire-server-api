@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class BranchInstanceDto extends AbstractIdentifiableNamableDto {
   
   @JsonbProperty(JSON_SCHOOL_IDENTIFIER)

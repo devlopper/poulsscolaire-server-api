@@ -13,7 +13,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class BranchDto extends AbstractIdentifiableCodableNamableDto {
   /**
    * Nom pour lecture humaine de la classe.

@@ -25,6 +25,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   String feeCategoryIdentifier;
 
   Boolean latePayment;
+  Boolean reducedAmount;
   Integer fromAmount;
   Integer toAmount;
   
@@ -186,6 +187,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   public static final String JSON_FEE_CATEGORY_IDENTIFIER =
       AdjustedFeeDto.JSON_FEE_CATEGORY_IDENTIFIER;
 
+  public static final String JSON_REDUCED_AMOUNT = "montantReduit";
   public static final String JSON_LATE_PAYMENT = "paiementEnRetard";
   
   public static final String JSON_BRANCH_INSTANCE_IDENTIFIER =

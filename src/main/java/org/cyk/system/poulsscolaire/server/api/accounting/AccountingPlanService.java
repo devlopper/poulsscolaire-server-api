@@ -21,7 +21,6 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -67,21 +66,7 @@ public interface AccountingPlanService extends SpecificService {
    *
    */
   interface AccountingPlanSaveRequestDto {
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link SchoolDto}.
-     *
-     * @return identifiant de {@link SchoolDto}
-     */
-    String getSchoolIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link SchoolDto}.
-     *
-     * @param schoolIdentifier identifiant de {@link SchoolDto}
-     */
-    void setSchoolIdentifier(String schoolIdentifier);
-
-    String JSON_SCHOOL_IDENTIFIER = AccountingPlanDto.JSON_SCHOOL_IDENTIFIER;
+    
   }
 
   /**
@@ -95,8 +80,6 @@ public interface AccountingPlanService extends SpecificService {
   class AccountingPlanCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto
       implements AccountingPlanSaveRequestDto {
 
-    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
-    private String schoolIdentifier;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_PLAN_COMPTABLE";
@@ -172,8 +155,7 @@ public interface AccountingPlanService extends SpecificService {
   @Setter
   class AccountingPlanUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto
       implements AccountingPlanSaveRequestDto {
-    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
-    private String schoolIdentifier;
+    
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_PLAN_COMPTABLE";
