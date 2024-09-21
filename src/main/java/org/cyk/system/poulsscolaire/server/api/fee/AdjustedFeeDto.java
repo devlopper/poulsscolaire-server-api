@@ -30,6 +30,12 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   @JsonbProperty(JSON_FEE_CATEGORY_AS_STRING)
   private String feeCategoryAsString;
 
+  @JsonbProperty(JSON_INITIAL_AMOUNT_TO_PAY_AS_STRING)
+  private String initialAmountToPayAsString;
+
+  @JsonbProperty(JSON_INITIAL_REGISTRATION_AMOUNT_TO_PAY_AS_STRING)
+  private String initialRegistrationAmountToPayAsString;
+
   /* From Registration */
 
   @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
@@ -61,10 +67,10 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
   private String branchInstanceAsString;
-  
+
   @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
   private String branchInstanceIdentifier;
-  
+
   /* From Amount */
 
   @JsonbProperty(JSON_AMOUNT_VALUE_TO_PAY)
@@ -91,12 +97,28 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   @JsonbProperty(JSON_LATE_PAYMENT)
   private Boolean latePayment;
 
+  @JsonbProperty(JSON_REDUCED_AMOUNT_AS_STRING)
+  private String reducedAmountAsString;
+
+  @JsonbProperty(JSON_REDUCED_REGISTRATION_AMOUNT_AS_STRING)
+  private String reducedRegistrationAmountAsString;
+
+  @JsonbProperty(JSON_REDUCED_AMOUNT_IS_ZERO)
+  private Boolean reducedAmountIsZero;
+
+  @JsonbProperty(JSON_REDUCED_REGISTRATION_AMOUNT_IS_ZERO)
+  private Boolean reducedRegistrationAmountIsZero;
+  
   /* Fee */
   public static final String JSON_FEE_IDENTIFIER = "idFrais";
   public static final String JSON_FEE_AS_STRING = "fraisChaine";
   public static final String JSON_FEE_OPTIONAL = "fraisFacultatif";
   public static final String JSON_FEE_CATEGORY_AS_STRING = "categorieFraisChaine";
   public static final String JSON_FEE_CATEGORY_IDENTIFIER = "idCategorieFrais";
+  public static final String JSON_INITIAL_AMOUNT_TO_PAY_AS_STRING = "montantInitialAPayerChaine";
+  public static final String JSON_INITIAL_REGISTRATION_AMOUNT_TO_PAY_AS_STRING =
+      "montantInitialInscriptionAPayerChaine";
+
   /* Registration */
   public static final String JSON_REGISTRATION_IDENTIFIER = "idInscription";
   public static final String JSON_REGISTRATION_AS_STRING = "inscriptionChaine";
@@ -116,7 +138,7 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String JSON_REGISTRATION_ASSIGNMENT_TYPE_AS_STRING =
       "inscriptionTypeAffectationChaine";
   public static final String JSON_BRANCH_INSTANCE_AS_STRING = "classeChaine";
-  
+
   /* Amount */
   public static final String JSON_AMOUNT_VALUE_TO_PAY = "valeurAPayerMontant";
   public static final String JSON_AMOUNT_VALUE_TO_PAY_AS_STRING = "valeurAPayerMontantChaine";
@@ -126,11 +148,19 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String JSON_AMOUNT_VALUE_PAYABLE_AS_STRING =
       JSON_AMOUNT_VALUE_PAYABLE + "Chaine";
 
+  public static final String JSON_REDUCED_AMOUNT_AS_STRING = "montantReduitChaine";
+  public static final String JSON_REDUCED_REGISTRATION_AMOUNT_AS_STRING =
+      "montantReduitInscriptionChaine";
+  
+  public static final String JSON_REDUCED_AMOUNT_IS_ZERO = "montantReduitEstZero";
+  public static final String JSON_REDUCED_REGISTRATION_AMOUNT_IS_ZERO =
+      "montantReduitInscriptionEstZero";
+
   public static final String JSON_EXPECTED_PAYMENT_AS_STRING = "paiementAttenduChaine";
   public static final String JSON_LATE_PAYMENT = "enRetardDePaiement";
 
   public static final String JSON_BRANCH_INSTANCE_IDENTIFIER = "idClasse";
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */

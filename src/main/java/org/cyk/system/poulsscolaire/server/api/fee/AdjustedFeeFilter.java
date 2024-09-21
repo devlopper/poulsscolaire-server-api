@@ -20,15 +20,15 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   String registrationSchoolingPeriodIdentifier;
   String registrationStudentIdentifier;
   String branchInstanceIdentifier;
-  
+
   String feeIdentifier;
   String feeCategoryIdentifier;
 
   Boolean latePayment;
-  Boolean reducedAmount;
+  Boolean reducedAmountIsZero;
   Integer fromAmount;
   Integer toAmount;
-  
+
   public AdjustedFeeFilter(FilterDto dto) {
     super(dto);
   }
@@ -49,6 +49,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     latePayment = getLatePayment(filter);
     fromAmount = getFromAmount(filter);
     toAmount = getToAmount(filter);
+    reducedAmountIsZero = getReducedAmountIsZero(filter);
   }
 
   @Override
@@ -65,6 +66,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
     setLatePayment(filter, latePayment);
     setFromAmount(filter, fromAmount);
     setToAmount(filter, toAmount);
+    setReducedAmountIsZero(filter, reducedAmountIsZero);
   }
 
   public static void setRegistrationIdentifier(FilterDto filter, String identifier) {
@@ -132,7 +134,7 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   public static String getFeeCategoryIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_FEE_CATEGORY_IDENTIFIER));
   }
-  
+
   public static void setBranchInstanceIdentifier(FilterDto filter, String identifier) {
     set(filter, JSON_BRANCH_INSTANCE_IDENTIFIER, f -> f.getValueAsString(),
         f -> f.setValueAsString(identifier));
@@ -165,7 +167,17 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   public static Integer getToAmount(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_TO_AMOUNT));
   }
-  
+
+  public static void setReducedAmountIsZero(FilterDto filter, Boolean value) {
+    set(filter, JSON_REDUCED_AMOUNT_IS_ZERO, f -> f.getValueAsString(),
+        f -> f.setValueAsBoolean(value));
+  }
+
+  public static Boolean getReducedAmountIsZero(FilterDto filter) {
+    return get(filter,
+        d -> d.getFieldValueAsBooleanByName(JSON_REDUCED_AMOUNT_IS_ZERO));
+  }
+
   public static final String JSON_FROM_AMOUNT = "montantDebut";
   public static final String JSON_TO_AMOUNT = "montantFin";
   public static final String JSON_REGISTRATION_IDENTIFIER =
@@ -187,9 +199,9 @@ public class AdjustedFeeFilter extends AbstractAmountContainerFilter {
   public static final String JSON_FEE_CATEGORY_IDENTIFIER =
       AdjustedFeeDto.JSON_FEE_CATEGORY_IDENTIFIER;
 
-  public static final String JSON_REDUCED_AMOUNT = "montantReduit";
+  public static final String JSON_REDUCED_AMOUNT_IS_ZERO = "montantReduitEstZero";
   public static final String JSON_LATE_PAYMENT = "paiementEnRetard";
-  
+
   public static final String JSON_BRANCH_INSTANCE_IDENTIFIER =
       AdjustedFeeDto.JSON_BRANCH_INSTANCE_IDENTIFIER;
 }
