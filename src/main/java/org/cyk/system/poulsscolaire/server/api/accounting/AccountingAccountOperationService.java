@@ -28,18 +28,18 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link AccountingPlanDto}.
+ * Cette interface représente les services de {@link AccountingAccountOperationDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = AccountingPlanService.PATH)
-@Tag(name = "Gestion des plans comptables")
-public interface AccountingPlanService extends SpecificService {
+@Path(value = AccountingAccountOperationService.PATH)
+@Tag(name = "Gestion des opérations de comptes comptables")
+public interface AccountingAccountOperationService extends SpecificService {
 
-  String PATH = "plans-comptables";
+  String PATH = "operations-comptes-comptables";
 
-  String CREATE_IDENTIFIER = "CREATION_PLAN_COMPTABLE";
+  String CREATE_IDENTIFIER = "CREATION_OPERATION_COMPTE_COMPTABLE";
 
   String CREATE_PATH = "";
 
@@ -53,11 +53,12 @@ public interface AccountingPlanService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = CREATE_IDENTIFIER, summary = "Création d'un plan comptable",
-      description = "Ce service permet de créer un plan comptable")
+  @Operation(operationId = CREATE_IDENTIFIER,
+      summary = "Création d'une opération de compte comptable",
+      description = "Ce service permet de créer une opération de compte comptable")
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(AccountingPlanCreateRequestDto request);
+  Response create(AccountingAccountOperationCreateRequestDto request);
 
   /**
    * Cette classe représente une requête d'enregistrement.
@@ -65,8 +66,38 @@ public interface AccountingPlanService extends SpecificService {
    * @author Christian
    *
    */
-  interface AccountingPlanSaveRequestDto {
+  interface AccountingAccountOperationSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link AccountingAccountDto}.
+     *
+     * @return identifiant de {@link AccountingAccountDto}
+     */
+    String getAccountIdentifier();
 
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link AccountingAccountDto}.
+     *
+     * @param accountIdentifier identifiant de {@link AccountingAccountDto}
+     */
+    void setAccountIdentifier(String accountIdentifier);
+    
+    /**
+     * Cette méthode permet d'obtenir le montant.
+     *
+     * @return montant
+     */
+    Integer getAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant.
+     *
+     * @param amount montant
+     */
+    void setAmount(Integer amount);
+
+    String JSON_ACCOUNT_IDENTIFIER = AccountingAccountOperationDto.JSON_ACCOUNT_IDENTIFIER;
+    
+    String JSON_AMOUNT = AccountingAccountOperationDto.JSON_AMOUNT;
   }
 
   /**
@@ -77,12 +108,12 @@ public interface AccountingPlanService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingPlanCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto
-      implements AccountingPlanSaveRequestDto {
+  class AccountingAccountOperationCreateRequestDto
+      extends AbstractCodableNamableCreateRequestJsonDto {
 
   }
 
-  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_PLAN_COMPTABLE";
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_OPERATION_COMPTE_COMPTABLE";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
@@ -91,7 +122,7 @@ public interface AccountingPlanService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = "Ce service permet d'obtenir des plans comptables")
+      description = "Ce service permet d'obtenir des opérations de comptes comptables")
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -102,14 +133,14 @@ public interface AccountingPlanService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class AccountingPlanGetManyResponseDto
-      extends AbstractGetByPageResponseDto<AccountingPlanDto> {
+  public static class AccountingAccountOperationGetManyResponseDto
+      extends AbstractGetByPageResponseDto<AccountingAccountOperationDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<AccountingPlanDto> datas;
+    private List<AccountingAccountOperationDto> datas;
   }
 
-  String GET_ONE_IDENTIFIER = "OBTENTION_UN_PLAN_COMPTABLE";
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_OPERATION_COMPTE_COMPTABLE";
 
   String GET_ONE_PATH = "obtention/un";
 
@@ -118,10 +149,10 @@ public interface AccountingPlanService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = "Ce service permet d'obtenir un plan comptable")
+      description = "Ce service permet d'obtenir une opération de compte comptable")
   Response getOne(GetOneRequestDto request);
 
-  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_PLAN_COMPTABLE";
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_OPERATION_COMPTE_COMPTABLE";
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
@@ -130,10 +161,10 @@ public interface AccountingPlanService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
-      description = "Ce service permet d'obtenir par identifiant un plan comptable")
+      description = "Ce service permet d'obtenir par identifiant une opération de compte comptable")
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
-  String UPDATE_IDENTIFIER = "MISE_A_JOUR_PLAN_COMPTABLE";
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_OPERATION_COMPTE_COMPTABLE";
 
   String UPDATE_PATH = "";
 
@@ -142,8 +173,8 @@ public interface AccountingPlanService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER,
-      description = "Ce service permet de mettre à jour un plan comptable")
-  Response update(AccountingPlanUpdateRequestDto request);
+      description = "Ce service permet de mettre à jour une opération de compte comptable")
+  Response update(AccountingAccountOperationUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -153,12 +184,12 @@ public interface AccountingPlanService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingPlanUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto
-      implements AccountingPlanSaveRequestDto {
+  class AccountingAccountOperationUpdateRequestDto
+      extends AbstractCodableNamableUpdateRequestJsonDto {
 
   }
 
-  String DELETE_IDENTIFIER = "SUPPRESSION_PLAN_COMPTABLE";
+  String DELETE_IDENTIFIER = "SUPPRESSION_OPERATION_COMPTE_COMPTABLE";
 
   String DELETE_PATH = "";
 
@@ -167,6 +198,6 @@ public interface AccountingPlanService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER,
-      description = "Ce service permet de supprimer un plan comptable")
+      description = "Ce service permet de supprimer une opération de compte comptable")
   Response delete(DeleteOneRequestDto request);
 }

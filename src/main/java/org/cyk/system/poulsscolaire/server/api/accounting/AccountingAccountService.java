@@ -107,7 +107,7 @@ public interface AccountingAccountService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = "Ce service permet d'obtenir des caisses enregistreuses")
+      description = "Ce service permet d'obtenir plusieurs comptes comptables")
   Response getMany(GetManyRequestDto request);
 
   /**
