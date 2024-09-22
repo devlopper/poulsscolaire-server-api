@@ -4,16 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-class AccountingAccountTest {
+class AccountingAccountTypeTest {
 
   @Test
-  void getByName() {
+  void getByCode() {
     assertEquals(AccountingAccountType.INCOME,
         AccountingAccountType.getByCode(AccountingAccountType.INCOME.code));
   }
 
   @Test
   void testToString() {
-    assertEquals(AccountingAccountType.INCOME.getCode(), AccountingAccountType.INCOME.toString());
+    assertEquals(AccountingAccountType.INCOME.getName(), AccountingAccountType.INCOME.toString());
   }
 }

@@ -79,8 +79,24 @@ public interface AccountingAccountService extends SpecificService {
      * @param planIdentifier identifiant de {@link AccountingPlanDto}
      */
     void setPlanIdentifier(String planIdentifier);
+    
+    /**
+     * Cette méthode permet d'obtenir {@link AccountingAccountType}.
+     *
+     * @return {@link AccountingAccountType}
+     */
+    AccountingAccountType getType();
+
+    /**
+     * Cette méthode permet d'assigner {@link AccountingAccountType}.
+     *
+     * @param type {@link AccountingAccountType}
+     */
+    void setType(AccountingAccountType type);
 
     String JSON_PLAN_IDENTIFIER = AccountingAccountDto.JSON_PLAN_IDENTIFIER;
+    
+    String JSON_TYPE = AccountingAccountDto.JSON_TYPE;
   }
 
   /**
@@ -96,6 +112,9 @@ public interface AccountingAccountService extends SpecificService {
 
     @JsonbProperty(JSON_PLAN_IDENTIFIER)
     private String planIdentifier;
+    
+    @JsonbProperty(JSON_TYPE)
+    private AccountingAccountType type;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_COMPTE_COMPTABLE";
@@ -173,6 +192,9 @@ public interface AccountingAccountService extends SpecificService {
       implements AccountingAccountSaveRequestDto {
     @JsonbProperty(JSON_PLAN_IDENTIFIER)
     private String planIdentifier;
+    
+    @JsonbProperty(JSON_TYPE)
+    private AccountingAccountType type;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_COMPTE_COMPTABLE";

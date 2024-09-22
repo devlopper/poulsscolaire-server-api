@@ -16,13 +16,13 @@ public class AccountingAccountTypeCode {
    * Terme qui recouvre tous les types de dépenses engagées par une organisation, que ce soit à
    * court ou à long terme.
    */
-  public static final String EXPENDITURE = "DEPENSE";
+  public static final String EXPENDITURE = "D";
 
   /**
    * Terme strictement financier qui désigne les gains monétaires ou les revenus générés par une
    * entreprise ou un individu, après avoir pris en compte toutes les dépenses. Il se réfère à une
    * catégorie spécifique de ressources financières.
    */
-  public static final String INCOME = "REVENU";
+  public static final String INCOME = "R";
 }
 

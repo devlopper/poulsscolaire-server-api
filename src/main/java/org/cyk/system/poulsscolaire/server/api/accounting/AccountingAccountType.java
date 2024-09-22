@@ -12,8 +12,8 @@ import lombok.Getter;
 @Getter
 public enum AccountingAccountType {
 
-  A_PLUS(AccountingAccountTypeCode.EXPENDITURE, "Dépense"), INCOME(AccountingAccountTypeCode.INCOME,
-      "Revenu"),
+  EXPENDITURE(AccountingAccountTypeCode.EXPENDITURE,
+      "Dépense"), INCOME(AccountingAccountTypeCode.INCOME, "Revenu"),
 
   ;
 
@@ -27,7 +27,7 @@ public enum AccountingAccountType {
 
   @Override
   public String toString() {
-    return code;
+    return name;
   }
 
   /**
@@ -40,4 +40,8 @@ public enum AccountingAccountType {
     return Stream.of(AccountingAccountType.values()).filter(status -> status.getCode().equals(code))
         .findFirst().orElseThrow(IllegalArgumentException::new);
   }
+  
+  public static final String LABEL = "type du compte comptable";
+  
+  public static final String PURAL_NAME = "types de comptes comptables";
 }
