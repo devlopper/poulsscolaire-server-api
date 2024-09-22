@@ -1,8 +1,8 @@
 package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -80,7 +80,7 @@ public interface AccountingAccountOperationService extends SpecificService {
      * @param accountIdentifier identifiant de {@link AccountingAccountDto}
      */
     void setAccountIdentifier(String accountIdentifier);
-    
+
     /**
      * Cette méthode permet d'obtenir le montant.
      *
@@ -96,7 +96,7 @@ public interface AccountingAccountOperationService extends SpecificService {
     void setAmount(Integer amount);
 
     String JSON_ACCOUNT_IDENTIFIER = AccountingAccountOperationDto.JSON_ACCOUNT_IDENTIFIER;
-    
+
     String JSON_AMOUNT = AccountingAccountOperationDto.JSON_AMOUNT;
   }
 
@@ -108,9 +108,13 @@ public interface AccountingAccountOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingAccountOperationCreateRequestDto
-      extends AbstractCodableNamableCreateRequestJsonDto {
+  class AccountingAccountOperationCreateRequestDto extends AbstractNamableCreateRequestJsonDto
+      implements AccountingAccountOperationSaveRequestDto {
+    @JsonbProperty(JSON_ACCOUNT_IDENTIFIER)
+    private String accountIdentifier;
 
+    @JsonbProperty(JSON_AMOUNT)
+    private Integer amount;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_OPERATION_COMPTE_COMPTABLE";
@@ -184,9 +188,13 @@ public interface AccountingAccountOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingAccountOperationUpdateRequestDto
-      extends AbstractCodableNamableUpdateRequestJsonDto {
+  class AccountingAccountOperationUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
+      implements AccountingAccountOperationSaveRequestDto {
+    @JsonbProperty(JSON_ACCOUNT_IDENTIFIER)
+    private String accountIdentifier;
 
+    @JsonbProperty(JSON_AMOUNT)
+    private Integer amount;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_OPERATION_COMPTE_COMPTABLE";

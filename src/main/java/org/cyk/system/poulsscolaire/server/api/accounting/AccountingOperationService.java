@@ -1,8 +1,8 @@
 package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -67,20 +67,52 @@ public interface AccountingOperationService extends SpecificService {
    */
   interface AccountingOperationSaveRequestDto {
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link AccountingAccountDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link SchoolDto}.
      *
-     * @return identifiant de {@link AccountingAccountDto}
+     * @return identifiant de {@link SchoolDto}
      */
-    String getAccountIdentifier();
+    String getSchoolIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link AccountingAccountDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link SchoolDto}.
      *
-     * @param accountIdentifier identifiant de {@link AccountingAccountDto}
+     * @param schoolIdentifier identifiant de {@link SchoolDto}
      */
-    void setAccountIdentifier(String accountIdentifier);
+    void setSchoolIdentifier(String schoolIdentifier);
 
-    String JSON_ACCOUNT_IDENTIFIER = AccountingOperationDto.JSON_ACCOUNT_IDENTIFIER;
+    /**
+     * Cette méthode permet d'obtenir {@link AccountingAccountType}.
+     *
+     * @return {@link AccountingAccountType}
+     */
+    AccountingAccountType getAccountType();
+
+    /**
+     * Cette méthode permet d'assigner {@link AccountingAccountType}.
+     *
+     * @param accountType {@link AccountingAccountType}
+     */
+    void setAccountType(AccountingAccountType accountType);
+
+    /**
+     * Cette méthode permet d'obtenir le bénéficiaire.
+     *
+     * @return bénéficiaire
+     */
+    String getBeneficiary();
+
+    /**
+     * Cette méthode permet d'assigner le bénéficiaire.
+     *
+     * @param beneficiary bénéficiaire
+     */
+    void setBeneficiary(String beneficiary);
+
+    String JSON_SCHOOL_IDENTIFIER = AccountingOperationDto.JSON_SCHOOL_IDENTIFIER;
+
+    String JSON_ACCOUNT_TYPE = AccountingOperationDto.JSON_ACCOUNT_TYPE;
+
+    String JSON_BENEFICIARY = AccountingOperationDto.JSON_BENEFICIARY;
   }
 
   /**
@@ -91,9 +123,16 @@ public interface AccountingOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingOperationCreateRequestDto
-      extends AbstractCodableNamableCreateRequestJsonDto {
+  class AccountingOperationCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements AccountingOperationSaveRequestDto {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+    
+    @JsonbProperty(JSON_ACCOUNT_TYPE)
+    private AccountingAccountType accountType;
 
+    @JsonbProperty(JSON_BENEFICIARY)
+    private String beneficiary;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_OPERATION_COMPTABLE";
@@ -167,9 +206,16 @@ public interface AccountingOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingOperationUpdateRequestDto
-      extends AbstractCodableNamableUpdateRequestJsonDto {
+  class AccountingOperationUpdateRequestDto extends ByIdentifierRequestDto
+      implements AccountingOperationSaveRequestDto {
+    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+    private String schoolIdentifier;
+    
+    @JsonbProperty(JSON_ACCOUNT_TYPE)
+    private AccountingAccountType accountType;
 
+    @JsonbProperty(JSON_BENEFICIARY)
+    private String beneficiary;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_OPERATION_COMPTABLE";

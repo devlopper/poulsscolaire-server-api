@@ -17,15 +17,30 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 public class AccountingOperationDto extends AbstractIdentifiableCodableAuditableDto {
 
-  @JsonbProperty(JSON_ACCOUNT_IDENTIFIER)
-  private String accountIdentifier;
+  @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+  private String schoolIdentifier;
+  
+  @JsonbProperty(JSON_SCHOOL_AS_STRING)
+  private String schoolAsString;
+  
+  @JsonbProperty(JSON_ACCOUNT_TYPE)
+  private AccountingAccountType accountType;
 
-  @JsonbProperty(JSON_ACCOUNT_AS_STRING)
-  private String accountsAsString;
+  @JsonbProperty(JSON_ACCOUNT_TYPE_AS_STRING)
+  private String accountTypeAsString;
 
-  public static final String JSON_ACCOUNT_IDENTIFIER = "idCompte";
+  @JsonbProperty(JSON_BENEFICIARY)
+  private String beneficiary;
+  
+  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  
+  public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
+  
+  public static final String JSON_ACCOUNT_TYPE = "typeCompte";
 
-  public static final String JSON_ACCOUNT_AS_STRING = "compteChaine";
+  public static final String JSON_ACCOUNT_TYPE_AS_STRING = "typeCompteChaine";
+  
+  public static final String JSON_BENEFICIARY = "beneficiaire";
 
   public static final String NAME = "opération comptable";
 
