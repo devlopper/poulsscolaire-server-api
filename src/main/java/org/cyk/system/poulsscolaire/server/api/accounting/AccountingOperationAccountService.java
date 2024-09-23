@@ -28,14 +28,14 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link AccountingAccountOperationDto}.
+ * Cette interface représente les services de {@link AccountingOperationAccountDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = AccountingAccountOperationService.PATH)
+@Path(value = AccountingOperationAccountService.PATH)
 @Tag(name = "Gestion des opérations de comptes comptables")
-public interface AccountingAccountOperationService extends SpecificService {
+public interface AccountingOperationAccountService extends SpecificService {
 
   String PATH = "operations-comptes-comptables";
 
@@ -58,7 +58,7 @@ public interface AccountingAccountOperationService extends SpecificService {
       description = "Ce service permet de créer une opération de compte comptable")
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(AccountingAccountOperationCreateRequestDto request);
+  Response create(AccountingOperationAccountCreateRequestDto request);
 
   /**
    * Cette classe représente une requête d'enregistrement.
@@ -66,7 +66,21 @@ public interface AccountingAccountOperationService extends SpecificService {
    * @author Christian
    *
    */
-  interface AccountingAccountOperationSaveRequestDto {
+  interface AccountingOperationAccountSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link AccountingOperationDto}.
+     *
+     * @return identifiant de {@link AccountingOperationDto}
+     */
+    String getOperationIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link AccountingOperationDto}.
+     *
+     * @param accountIdentifier identifiant de {@link AccountingOperationDto}
+     */
+    void setOperationIdentifier(String accountIdentifier);
+
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link AccountingAccountDto}.
      *
@@ -95,9 +109,11 @@ public interface AccountingAccountOperationService extends SpecificService {
      */
     void setAmount(Integer amount);
 
-    String JSON_ACCOUNT_IDENTIFIER = AccountingAccountOperationDto.JSON_ACCOUNT_IDENTIFIER;
+    String JSON_OPERATION_IDENTIFIER = AccountingOperationAccountDto.JSON_OPERATION_IDENTIFIER;
 
-    String JSON_AMOUNT = AccountingAccountOperationDto.JSON_AMOUNT;
+    String JSON_ACCOUNT_IDENTIFIER = AccountingOperationAccountDto.JSON_ACCOUNT_IDENTIFIER;
+
+    String JSON_AMOUNT = AccountingOperationAccountDto.JSON_AMOUNT;
   }
 
   /**
@@ -108,8 +124,11 @@ public interface AccountingAccountOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingAccountOperationCreateRequestDto extends AbstractNamableCreateRequestJsonDto
-      implements AccountingAccountOperationSaveRequestDto {
+  class AccountingOperationAccountCreateRequestDto extends AbstractNamableCreateRequestJsonDto
+      implements AccountingOperationAccountSaveRequestDto {
+    @JsonbProperty(JSON_OPERATION_IDENTIFIER)
+    private String operationIdentifier;
+
     @JsonbProperty(JSON_ACCOUNT_IDENTIFIER)
     private String accountIdentifier;
 
@@ -137,11 +156,11 @@ public interface AccountingAccountOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class AccountingAccountOperationGetManyResponseDto
-      extends AbstractGetByPageResponseDto<AccountingAccountOperationDto> {
+  public static class AccountingOperationAccountGetManyResponseDto
+      extends AbstractGetByPageResponseDto<AccountingOperationAccountDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<AccountingAccountOperationDto> datas;
+    private List<AccountingOperationAccountDto> datas;
   }
 
   String GET_ONE_IDENTIFIER = "OBTENTION_UN_OPERATION_COMPTE_COMPTABLE";
@@ -178,7 +197,7 @@ public interface AccountingAccountOperationService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER,
       description = "Ce service permet de mettre à jour une opération de compte comptable")
-  Response update(AccountingAccountOperationUpdateRequestDto request);
+  Response update(AccountingOperationAccountUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -188,8 +207,11 @@ public interface AccountingAccountOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingAccountOperationUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
-      implements AccountingAccountOperationSaveRequestDto {
+  class AccountingOperationAccountUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
+      implements AccountingOperationAccountSaveRequestDto {
+    @JsonbProperty(JSON_OPERATION_IDENTIFIER)
+    private String operationIdentifier;
+
     @JsonbProperty(JSON_ACCOUNT_IDENTIFIER)
     private String accountIdentifier;
 

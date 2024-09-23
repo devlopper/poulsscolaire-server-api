@@ -6,19 +6,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente le filtre de {@link AccountingAccountOperationDto}.
+ * Cette classe représente le filtre de {@link AccountingOperationAccountDto}.
  *
  * @author Christian
  *
  */
 @Getter
 @Setter
-public class AccountingAccountOperationFilter extends AbstractIdentifiableFilter {
-  public AccountingAccountOperationFilter(FilterDto dto) {
+public class AccountingOperationAccountFilter extends AbstractIdentifiableFilter {
+  public AccountingOperationAccountFilter(FilterDto dto) {
     super(dto);
   }
 
-  public AccountingAccountOperationFilter() {}
+  public AccountingOperationAccountFilter() {}
 
   @Override
   protected void doInitialize(FilterDto filter) {

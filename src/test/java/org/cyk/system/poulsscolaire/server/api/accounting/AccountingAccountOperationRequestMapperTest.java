@@ -8,8 +8,8 @@ import org.mapstruct.factory.Mappers;
 
 class AccountingAccountOperationRequestMapperTest {
 
-  AccountingAccountOperationRequestMapper mapper =
-      Mappers.getMapper(AccountingAccountOperationRequestMapper.class);
+  AccountingOperationAccountRequestMapper mapper =
+      Mappers.getMapper(AccountingOperationAccountRequestMapper.class);
 
   @Test
   void mapCreation_whenNull() {
@@ -18,7 +18,7 @@ class AccountingAccountOperationRequestMapperTest {
 
   @Test
   void mapCreation_whenNotNull() {
-    assertNotNull(mapper.mapCreate(new AccountingAccountOperationDto()));
+    assertNotNull(mapper.mapCreate(new AccountingOperationAccountDto()));
   }
 
   @Test
@@ -28,7 +28,7 @@ class AccountingAccountOperationRequestMapperTest {
 
   @Test
   void mapUpdate_whenNotNull() {
-    assertNotNull(mapper.mapUpdate(new AccountingAccountOperationDto()));
+    assertNotNull(mapper.mapUpdate(new AccountingOperationAccountDto()));
   }
 
 }

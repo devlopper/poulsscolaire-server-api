@@ -19,12 +19,12 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.accounting.AccountingAccountOperationService.AccountingAccountOperationCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.accounting.AccountingAccountOperationService.AccountingAccountOperationGetManyResponseDto;
-import org.cyk.system.poulsscolaire.server.api.accounting.AccountingAccountOperationService.AccountingAccountOperationUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.AccountingOperationAccountService.AccountingOperationAccountCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.AccountingOperationAccountService.AccountingOperationAccountGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.AccountingOperationAccountService.AccountingOperationAccountUpdateRequestDto;
 
 /**
- * Cette classe représente un client de {@link AccountingAccountOperationService}.
+ * Cette classe représente un client de {@link AccountingOperationAccountService}.
  *
  * @author Christian
  *
@@ -32,43 +32,43 @@ import org.cyk.system.poulsscolaire.server.api.accounting.AccountingAccountOpera
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class AccountingAccountOperationClient
-    extends AbstractClient<AccountingAccountOperationService>
-    implements GetByIdentifier<AccountingAccountOperationDto>,
-    GetMany<AccountingAccountOperationGetManyResponseDto>,
+public class AccountingOperationAccountClient
+    extends AbstractClient<AccountingOperationAccountService>
+    implements GetByIdentifier<AccountingOperationAccountDto>,
+    GetMany<AccountingOperationAccountGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public AccountingAccountOperationClient service(AccountingAccountOperationService service) {
-    return (AccountingAccountOperationClient) super.service(service);
+  public AccountingOperationAccountClient service(AccountingOperationAccountService service) {
+    return (AccountingOperationAccountClient) super.service(service);
   }
 
   /**
-   * {@link AccountingAccountOperationService#create}.
+   * {@link AccountingOperationAccountService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(AccountingAccountOperationCreateRequestDto request) {
-    return new CreateExecutor(AccountingAccountOperationService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(AccountingOperationAccountCreateRequestDto request) {
+    return new CreateExecutor(AccountingOperationAccountService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link AccountingAccountOperationService#getMany}.
+   * {@link AccountingOperationAccountService#getMany}.
    *
    * @param request requête
    * @return réponse
    */
-  public AccountingAccountOperationGetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<AccountingAccountOperationGetManyResponseDto>(
-        AccountingAccountOperationGetManyResponseDto.class,
-        AccountingAccountOperationService.GET_MANY_IDENTIFIER)
+  public AccountingOperationAccountGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<AccountingOperationAccountGetManyResponseDto>(
+        AccountingOperationAccountGetManyResponseDto.class,
+        AccountingOperationAccountService.GET_MANY_IDENTIFIER)
             .execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link AccountingAccountOperationService#getMany}.
+   * {@link AccountingOperationAccountService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -77,7 +77,7 @@ public class AccountingAccountOperationClient
    * @param auditSession audit session
    * @return réponse
    */
-  public AccountingAccountOperationGetManyResponseDto getMany(ProjectionDto projection,
+  public AccountingOperationAccountGetManyResponseDto getMany(ProjectionDto projection,
       FilterDto filter, PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
@@ -89,19 +89,19 @@ public class AccountingAccountOperationClient
   }
 
   /**
-   * {@link AccountingAccountOperationService#getOne}.
+   * {@link AccountingOperationAccountService#getOne}.
    *
    * @param request requête
    * @return réponse
    */
-  public AccountingAccountOperationDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<AccountingAccountOperationDto>(AccountingAccountOperationDto.class,
-        AccountingAccountOperationService.GET_ONE_IDENTIFIER)
+  public AccountingOperationAccountDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<AccountingOperationAccountDto>(AccountingOperationAccountDto.class,
+        AccountingOperationAccountService.GET_ONE_IDENTIFIER)
             .execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link AccountingAccountOperationService#getOne}.
+   * {@link AccountingOperationAccountService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -109,7 +109,7 @@ public class AccountingAccountOperationClient
    * @param auditSession audit session
    * @return réponse
    */
-  public AccountingAccountOperationDto getOne(ProjectionDto projection, FilterDto filter,
+  public AccountingOperationAccountDto getOne(ProjectionDto projection, FilterDto filter,
       String auditWho, String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -120,19 +120,19 @@ public class AccountingAccountOperationClient
   }
 
   /**
-   * {@link AccountingAccountOperationService#getByIdentifier}.
+   * {@link AccountingOperationAccountService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public AccountingAccountOperationDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<AccountingAccountOperationDto>(AccountingAccountOperationDto.class,
-        AccountingAccountOperationService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public AccountingOperationAccountDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<AccountingOperationAccountDto>(AccountingOperationAccountDto.class,
+        AccountingOperationAccountService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
   /**
-   * {@link AccountingAccountOperationService#getByIdentifier}.
+   * {@link AccountingOperationAccountService#getByIdentifier}.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -141,7 +141,7 @@ public class AccountingAccountOperationClient
    * @return réponse
    */
   @Override
-  public AccountingAccountOperationDto getByIdentifier(String identifier, ProjectionDto projection,
+  public AccountingOperationAccountDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
@@ -151,18 +151,18 @@ public class AccountingAccountOperationClient
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(AccountingAccountOperationUpdateRequestDto request) {
-    return new IdentifiableExecutor(AccountingAccountOperationService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(AccountingOperationAccountUpdateRequestDto request) {
+    return new IdentifiableExecutor(AccountingOperationAccountService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(AccountingAccountOperationService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(AccountingOperationAccountService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link AccountingAccountOperationService#delete}.
+   * {@link AccountingOperationAccountService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur

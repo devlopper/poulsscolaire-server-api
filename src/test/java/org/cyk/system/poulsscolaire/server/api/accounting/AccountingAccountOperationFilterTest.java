@@ -9,7 +9,7 @@ class AccountingAccountOperationFilterTest {
   
   @Test
   void doInitialize() {
-    AccountingAccountOperationFilter filter = new AccountingAccountOperationFilter(null);
+    AccountingOperationAccountFilter filter = new AccountingOperationAccountFilter(null);
     filter.doInitialize(new FilterDto());
     FilterDto dto = filter.toDto();
     assertNotNull(dto);
@@ -17,7 +17,7 @@ class AccountingAccountOperationFilterTest {
   
   @Test
   void toDto() {
-    AccountingAccountOperationFilter filter = new AccountingAccountOperationFilter();
+    AccountingOperationAccountFilter filter = new AccountingOperationAccountFilter();
     FilterDto dto = filter.toDto();
     assertNotNull(dto);
   }
