@@ -1,8 +1,8 @@
 package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -21,6 +21,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -123,7 +124,7 @@ public interface AccountingOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingOperationCreateRequestDto extends AbstractAuditedRequestJsonDto
+  class AccountingOperationCreateRequestDto extends AbstractNamableCreateRequestJsonDto
       implements AccountingOperationSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
@@ -206,7 +207,7 @@ public interface AccountingOperationService extends SpecificService {
    */
   @Getter
   @Setter
-  class AccountingOperationUpdateRequestDto extends ByIdentifierRequestDto
+  class AccountingOperationUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
       implements AccountingOperationSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;

@@ -1,6 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.accounting;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class AccountingOperationAccountDto extends AbstractIdentifiableNamableAuditableDto {
+public class AccountingOperationAccountDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
   @JsonbProperty(JSON_OPERATION_IDENTIFIER)
   private String operationIdentifier;
