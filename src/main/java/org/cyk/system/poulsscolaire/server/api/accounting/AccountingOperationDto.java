@@ -32,6 +32,9 @@ public class AccountingOperationDto extends AbstractIdentifiableCodableNamableAu
   @JsonbProperty(JSON_BENEFICIARY)
   private String beneficiary;
 
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  private String amountAsString;
+  
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
 
   public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
@@ -42,6 +45,8 @@ public class AccountingOperationDto extends AbstractIdentifiableCodableNamableAu
 
   public static final String JSON_BENEFICIARY = "beneficiaire";
 
+  public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
+  
   public static final String NAME = "opération comptable";
 
   public static final String PLURAL_NAME = "opérations comptables";

@@ -14,6 +14,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AccountingOperationAccountFilter extends AbstractIdentifiableFilter {
+
+  String operationIdentifier;
+
   public AccountingOperationAccountFilter(FilterDto dto) {
     super(dto);
   }
@@ -23,5 +26,24 @@ public class AccountingOperationAccountFilter extends AbstractIdentifiableFilter
   @Override
   protected void doInitialize(FilterDto filter) {
     super.doInitialize(filter);
+    operationIdentifier = getOperationIdentifier(filter);
   }
+
+  @Override
+  protected void toDto(FilterDto filter) {
+    super.toDto(filter);
+    setOperationIdentifier(filter, operationIdentifier);
+  }
+
+  public static void setOperationIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_OPERATION_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getOperationIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_OPERATION_IDENTIFIER));
+  }
+
+  public static final String JSON_OPERATION_IDENTIFIER =
+      AccountingOperationAccountDto.JSON_OPERATION_IDENTIFIER;
 }
