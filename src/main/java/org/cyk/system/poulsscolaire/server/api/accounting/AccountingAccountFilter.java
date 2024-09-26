@@ -15,6 +15,8 @@ import lombok.Setter;
 @Setter
 public class AccountingAccountFilter extends AbstractIdentifiableFilter {
 
+  String planIdentifier;
+
   AccountingAccountType type;
 
   public AccountingAccountFilter(FilterDto dto) {
@@ -27,12 +29,14 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
   protected void doInitialize(FilterDto filter) {
     super.doInitialize(filter);
     type = getType(filter);
+    planIdentifier = getPlanIdentifier(filter);
   }
 
   @Override
   protected void toDto(FilterDto filter) {
     super.toDto(filter);
     setType(filter, type);
+    setPlanIdentifier(filter, planIdentifier);
   }
 
   /**
@@ -54,6 +58,17 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
   public static AccountingAccountType getType(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsEnum(JSON_TYPE, AccountingAccountType.class));
   }
+
+  public static void setPlanIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_PLAN_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getPlanIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_PLAN_IDENTIFIER));
+  }
+
+  public static final String JSON_PLAN_IDENTIFIER = AccountingAccountDto.JSON_PLAN_IDENTIFIER;
 
   public static final String JSON_TYPE = AccountingAccountDto.JSON_TYPE;
 }
