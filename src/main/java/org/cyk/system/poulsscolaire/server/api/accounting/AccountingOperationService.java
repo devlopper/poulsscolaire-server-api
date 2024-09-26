@@ -82,6 +82,20 @@ public interface AccountingOperationService extends SpecificService {
     void setSchoolIdentifier(String schoolIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link AccountingPlanDto}.
+     *
+     * @return identifiant de {@link AccountingPlanDto}
+     */
+    String getPlanIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link AccountingPlanDto}.
+     *
+     * @param planIdentifier identifiant de {@link AccountingPlanDto}
+     */
+    void setPlanIdentifier(String planIdentifier);
+    
+    /**
      * Cette méthode permet d'obtenir {@link AccountingAccountType}.
      *
      * @return {@link AccountingAccountType}
@@ -110,6 +124,8 @@ public interface AccountingOperationService extends SpecificService {
     void setBeneficiary(String beneficiary);
 
     String JSON_SCHOOL_IDENTIFIER = AccountingOperationDto.JSON_SCHOOL_IDENTIFIER;
+    
+    String JSON_PLAN_IDENTIFIER = AccountingOperationDto.JSON_PLAN_IDENTIFIER;
 
     String JSON_ACCOUNT_TYPE = AccountingOperationDto.JSON_ACCOUNT_TYPE;
 
@@ -128,6 +144,9 @@ public interface AccountingOperationService extends SpecificService {
       implements AccountingOperationSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
+    
+    @JsonbProperty(JSON_PLAN_IDENTIFIER)
+    private String planIdentifier;
     
     @JsonbProperty(JSON_ACCOUNT_TYPE)
     private AccountingAccountType accountType;
@@ -211,6 +230,9 @@ public interface AccountingOperationService extends SpecificService {
       implements AccountingOperationSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
+    
+    @JsonbProperty(JSON_PLAN_IDENTIFIER)
+    private String planIdentifier;
     
     @JsonbProperty(JSON_ACCOUNT_TYPE)
     private AccountingAccountType accountType;
