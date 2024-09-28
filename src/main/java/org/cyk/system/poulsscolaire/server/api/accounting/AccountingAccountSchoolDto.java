@@ -23,6 +23,9 @@ public class AccountingAccountSchoolDto extends AbstractIdentifiableAuditableDto
   @JsonbProperty(JSON_ACCOUNT_AS_STRING)
   private String accountAsString;
 
+  @JsonbProperty(JSON_PLAN_AS_STRING)
+  private String planAsString;
+  
   @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
   private String schoolIdentifier;
 
@@ -33,6 +36,8 @@ public class AccountingAccountSchoolDto extends AbstractIdentifiableAuditableDto
 
   public static final String JSON_ACCOUNT_AS_STRING = "compteChaine";
 
+  public static final String JSON_PLAN_AS_STRING = "planChaine";
+  
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
 
   public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
