@@ -3,6 +3,7 @@ package org.cyk.system.poulsscolaire.server.api.accounting;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -252,4 +253,16 @@ public interface AccountingOperationService extends SpecificService {
   @Operation(operationId = DELETE_IDENTIFIER,
       description = "Ce service permet de supprimer une opération comptable")
   Response delete(DeleteOneRequestDto request);
+  
+  String CANCEL_IDENTIFIER = "ANNULATION_OPERATION_COMPTABLE";
+
+  String CANCEL_PATH = "annulation";
+
+  @Path(CANCEL_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CANCEL_IDENTIFIER,
+      description = "Ce service permet d'annuler une opération comptable")
+  Response cancel(ByIdentifierRequestDto request);
 }

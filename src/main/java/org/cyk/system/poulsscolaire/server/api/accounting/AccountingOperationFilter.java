@@ -17,6 +17,8 @@ public class AccountingOperationFilter extends AbstractIdentifiableFilter {
 
   String schoolIdentifier;
   
+  Boolean canceled;
+  
   /**
    * {@link AccountingAccountType}.
    */
@@ -33,6 +35,7 @@ public class AccountingOperationFilter extends AbstractIdentifiableFilter {
     super.doInitialize(filter);
     schoolIdentifier = getSchoolIdentifier(filter);
     accountType = getAccountType(filter);
+    canceled = getCanceled(filter);
   }
 
   @Override
@@ -40,6 +43,7 @@ public class AccountingOperationFilter extends AbstractIdentifiableFilter {
     super.toDto(filter);
     setSchoolIdentifier(filter, schoolIdentifier);
     setAccountType(filter, accountType);
+    setCanceled(filter, canceled);
   }
 
   /**
@@ -70,6 +74,14 @@ public class AccountingOperationFilter extends AbstractIdentifiableFilter {
   public static String getSchoolIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOL_IDENTIFIER));
   }
+  
+  public static void setCanceled(FilterDto filter, Boolean value) {
+    set(filter, JSON_CANCELED, f -> f.getValueAsString(), f -> f.setValueAsBoolean(value));
+  }
+
+  public static Boolean getCanceled(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_CANCELED));
+  }
 
   /**
    * Identifiant json champ {@link AccountingOperationFilter#accountType}.
@@ -77,4 +89,6 @@ public class AccountingOperationFilter extends AbstractIdentifiableFilter {
   public static final String JSON_ACCOUNT_TYPE = AccountingOperationDto.JSON_ACCOUNT_TYPE;
   
   public static final String JSON_SCHOOL_IDENTIFIER = AccountingOperationDto.JSON_SCHOOL_IDENTIFIER;
+  
+  public static final String JSON_CANCELED = AccountingOperationDto.JSON_CANCELED;
 }

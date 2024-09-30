@@ -77,6 +77,16 @@ class AccountingOperationClientTest {
   }
 
   @Test
+  void cancel() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiableResponseDto.class))
+        .thenReturn(new IdentifiableResponseDto());
+    Mockito.when(service.cancel(any())).thenReturn(response);
+    assertInstanceOf(IdentifiableResponseDto.class, client.cancel(null));
+  }
+
+  @Test
   void deleteByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());

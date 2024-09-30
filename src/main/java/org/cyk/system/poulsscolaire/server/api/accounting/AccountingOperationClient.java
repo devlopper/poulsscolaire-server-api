@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -144,6 +145,11 @@ public class AccountingOperationClient extends AbstractClient<AccountingOperatio
   public IdentifiableResponseDto update(AccountingOperationUpdateRequestDto request) {
     return new IdentifiableExecutor(AccountingOperationService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
+  }
+  
+  public IdentifiableResponseDto cancel(ByIdentifierRequestDto request) {
+    return new IdentifiableExecutor(AccountingOperationService.CANCEL_IDENTIFIER)
+        .execute(() -> service().cancel(request));
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
