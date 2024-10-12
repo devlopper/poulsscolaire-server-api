@@ -1,9 +1,9 @@
 package org.cyk.system.poulsscolaire.server.api.payment;
 
+import ci.gouv.dgbf.extension.server.service.api.request.RequestMapper;
 import org.cyk.system.poulsscolaire.server.api.payment.PaymentService.PaymentCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.payment.PaymentService.PaymentUpdateRequestDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 /**
  * Cette interface représente le mapping de requête et {@link PaymentDto}.
@@ -12,11 +12,7 @@ import org.mapstruct.factory.Mappers;
  *
  */
 @Mapper
-public interface PaymentRequestMapper {
-  
-  PaymentRequestMapper INSTANCE = Mappers.getMapper(PaymentRequestMapper.class);
+public interface PaymentRequestMapper
+    extends RequestMapper<PaymentDto, PaymentCreateRequestDto, PaymentUpdateRequestDto> {
 
-  PaymentCreateRequestDto mapCreate(PaymentDto entity);
-
-  PaymentUpdateRequestDto mapUpdate(PaymentDto entity);
 }

@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
 
 class PaymentRequestMapperTest {
 
-  PaymentRequestMapper mapper = PaymentRequestMapper.INSTANCE;
+  PaymentRequestMapper mapper = Mappers.getMapper(PaymentRequestMapper.class);
   
   @Test
   void mapCreation_whenNull() {
