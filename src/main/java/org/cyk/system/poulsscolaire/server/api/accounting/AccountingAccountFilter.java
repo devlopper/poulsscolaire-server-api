@@ -19,6 +19,8 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
 
   AccountingAccountType type;
 
+  String schoolIdentifier;
+  
   public AccountingAccountFilter(FilterDto dto) {
     super(dto);
   }
@@ -30,6 +32,7 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
     super.doInitialize(filter);
     type = getType(filter);
     planIdentifier = getPlanIdentifier(filter);
+    schoolIdentifier = getSchoolIdentifier(filter);
   }
 
   @Override
@@ -37,6 +40,7 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
     super.toDto(filter);
     setType(filter, type);
     setPlanIdentifier(filter, planIdentifier);
+    setSchoolIdentifier(filter, schoolIdentifier);
   }
 
   /**
@@ -67,8 +71,19 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
   public static String getPlanIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_PLAN_IDENTIFIER));
   }
+  
+  public static void setSchoolIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_SCHOOL_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getSchoolIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOL_IDENTIFIER));
+  }
 
   public static final String JSON_PLAN_IDENTIFIER = AccountingAccountDto.JSON_PLAN_IDENTIFIER;
 
   public static final String JSON_TYPE = AccountingAccountDto.JSON_TYPE;
+  
+  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
 }
