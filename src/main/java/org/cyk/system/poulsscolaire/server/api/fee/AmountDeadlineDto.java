@@ -28,19 +28,10 @@ public class AmountDeadlineDto extends AbstractIdentifiableAuditableDto {
   
   @JsonbProperty(JSON_FEE_IDENTIFIER)
   private String feeIdentifier;
-  
-  @JsonbProperty(JSON_FEE_CATEGORY_AS_STRING)
-  private String feeCategoryAsString;
-  
+    
   @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
   private String registrationIdentifier;
-  
-  @JsonbProperty(JSON_BRANCH_AS_STRING)
-  private String branchAsString;
-  
-  @JsonbProperty(JSON_STUDENT_AS_STRING)
-  private String studentAsString;
-  
+      
   @JsonbProperty(JSON_DEADLINE_IDENTIFIER)
   private String deadlineIdentifier;
   
@@ -70,10 +61,7 @@ public class AmountDeadlineDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_ADJUSTED_FEE_IDENTIFIER = "idFraisAjuste";
   public static final String JSON_ADJUSTED_FEE_AS_STRING = "fraisAjusteChaine";
   public static final String JSON_FEE_IDENTIFIER = "idFrais";
-  public static final String JSON_FEE_CATEGORY_AS_STRING = "rubriqueChaine";
   public static final String JSON_REGISTRATION_IDENTIFIER = "idInscription";
-  public static final String JSON_BRANCH_AS_STRING = "brancheChaine";
-  public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
   
   public static final String JSON_DEADLINE_IDENTIFIER = "idEcheance";
   public static final String JSON_DEADLINE_AS_STRING = "echeanceChaine";
