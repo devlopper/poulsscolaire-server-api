@@ -85,18 +85,24 @@ public interface BudgetService extends SpecificService {
      *
      * @return identifiant de {@link AccountingPlanDto}
      */
-    String getPlanIdentifier();
+    String getAccountingPlanIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant de {@link AccountingPlanDto}.
      *
-     * @param planIdentifier identifiant de {@link AccountingPlanDto}
+     * @param accountingPlanIdentifier identifiant de {@link AccountingPlanDto}
      */
-    void setPlanIdentifier(String planIdentifier);
+    void setAccountingPlanIdentifier(String accountingPlanIdentifier);
+
+    Integer getYear();
+
+    void setYear(Integer year);
 
     String JSON_SCHOOL_IDENTIFIER = BudgetDto.JSON_SCHOOL_IDENTIFIER;
-    
-    String JSON_PLAN_IDENTIFIER = BudgetDto.JSON_PLAN_IDENTIFIER;
+
+    String JSON_ACCOUNTING_PLAN_IDENTIFIER = BudgetDto.JSON_ACCOUNTING_PLAN_IDENTIFIER;
+
+    String JSON_YEAR = BudgetDto.JSON_YEAR;
   }
 
   /**
@@ -111,9 +117,12 @@ public interface BudgetService extends SpecificService {
       implements BudgetSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
-    
-    @JsonbProperty(JSON_PLAN_IDENTIFIER)
-    private String planIdentifier;
+
+    @JsonbProperty(JSON_ACCOUNTING_PLAN_IDENTIFIER)
+    private String accountingPlanIdentifier;
+
+    @JsonbProperty(JSON_YEAR)
+    private Integer year;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_BUDGET";
@@ -135,8 +144,7 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class BudgetGetManyResponseDto
-      extends AbstractGetByPageResponseDto<BudgetDto> {
+  public static class BudgetGetManyResponseDto extends AbstractGetByPageResponseDto<BudgetDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<BudgetDto> datas;
@@ -187,9 +195,12 @@ public interface BudgetService extends SpecificService {
       implements BudgetSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
-    
-    @JsonbProperty(JSON_PLAN_IDENTIFIER)
-    private String planIdentifier;
+
+    @JsonbProperty(JSON_ACCOUNTING_PLAN_IDENTIFIER)
+    private String accountingPlanIdentifier;
+
+    @JsonbProperty(JSON_YEAR)
+    private Integer year;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_BUDGET";

@@ -24,15 +24,15 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
   @JsonbProperty(JSON_SCHOOL_AS_STRING)
   private String schoolAsString;
 
-  @JsonbProperty(JSON_PLAN_IDENTIFIER)
-  private String planIdentifier;
+  @JsonbProperty(JSON_ACCOUNTING_PLAN_IDENTIFIER)
+  private String accountingPlanIdentifier;
 
-  @JsonbProperty(JSON_PLAN_AS_STRING)
-  private String planAsString;
+  @JsonbProperty(JSON_ACCOUNTING_PLAN_AS_STRING)
+  private String accountingPlanAsString;
 
   @JsonbProperty(JSON_YEAR)
   private Integer year;
-  
+
   @JsonbProperty(JSON_YEAR_AS_STRING)
   private String yearAsString;
 
@@ -47,12 +47,13 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
   public static final String JSON_SCHOOL_AS_STRING = SchoolDto.JSON_THIS_AS_STRING;
 
-  public static final String JSON_PLAN_IDENTIFIER = AccountingPlanDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_ACCOUNTING_PLAN_IDENTIFIER =
+      AccountingPlanDto.JSON_THIS_IDENTIFIER;
 
-  public static final String JSON_PLAN_AS_STRING = AccountingPlanDto.JSON_THIS_AS_STRING;
+  public static final String JSON_ACCOUNTING_PLAN_AS_STRING = AccountingPlanDto.JSON_THIS_AS_STRING;
 
   public static final String JSON_YEAR = "annee";
-  
+
   public static final String JSON_YEAR_AS_STRING = "anneeChaine";
 
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
