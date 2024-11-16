@@ -49,6 +49,7 @@ public class UserDto extends AbstractIdentifiableDto {
     return hasOneOfRoles(roles == null ? null : Arrays.stream(roles).collect(Collectors.toSet()));
   }
 
+  public static final String JSON_THIS = "idUtilisateur";
   public static final String JSON_PASS = "passe";
   public static final String JSON_ROLES = "roles";
 

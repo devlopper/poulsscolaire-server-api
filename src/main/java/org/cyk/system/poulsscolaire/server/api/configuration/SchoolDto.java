@@ -43,6 +43,10 @@ public class SchoolDto extends AbstractIdentifiableCodableNamableDto
   @JsonbProperty(JSON_PAYABLE_REGISTRATION_AMOUNT_AS_STRING)
   private String payableRegistrationAmountAsString;
 
+  public static final String JSON_THIS_IDENTIFIER = "idEcole";
+
+  public static final String JSON_THIS_AS_STRING = "ecoleChaine";
+
   public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
   public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";

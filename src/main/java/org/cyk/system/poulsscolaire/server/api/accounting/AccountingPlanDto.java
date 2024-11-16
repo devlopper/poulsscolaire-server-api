@@ -16,6 +16,10 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 public class AccountingPlanDto extends AbstractIdentifiableCodableNamableAuditableDto {
   
+  public static final String JSON_THIS_IDENTIFIER = "idPlanComptable";
+
+  public static final String JSON_THIS_AS_STRING = "planComptableChaine";
+  
   public static final String NAME = "plan comptable";
   
   public static final String PLURAL_NAME = "plans comptables";
