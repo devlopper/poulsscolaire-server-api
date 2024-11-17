@@ -1,8 +1,8 @@
 package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -79,7 +79,7 @@ public interface FundingSourceService extends SpecificService {
      * @param schoolIdentifier identifiant de {@link SchoolDto}
      */
     void setSchoolIdentifier(String schoolIdentifier);
-    
+
     String JSON_SCHOOL_IDENTIFIER = FundingSourceDto.JSON_SCHOOL_IDENTIFIER;
   }
 
@@ -91,7 +91,7 @@ public interface FundingSourceService extends SpecificService {
    */
   @Getter
   @Setter
-  class FundingSourceCreateRequestDto extends AbstractNamableCreateRequestJsonDto
+  class FundingSourceCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto
       implements FundingSourceSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
@@ -164,7 +164,7 @@ public interface FundingSourceService extends SpecificService {
    */
   @Getter
   @Setter
-  class FundingSourceUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
+  class FundingSourceUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto
       implements FundingSourceSaveRequestDto {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
