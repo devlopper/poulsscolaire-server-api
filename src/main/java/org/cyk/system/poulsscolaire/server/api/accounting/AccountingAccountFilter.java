@@ -20,7 +20,9 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
   AccountingAccountType type;
 
   String schoolIdentifier;
-  
+
+  String budgetIdentifier;
+
   public AccountingAccountFilter(FilterDto dto) {
     super(dto);
   }
@@ -33,6 +35,7 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
     type = getType(filter);
     planIdentifier = getPlanIdentifier(filter);
     schoolIdentifier = getSchoolIdentifier(filter);
+    budgetIdentifier = getBudgetIdentifier(filter);
   }
 
   @Override
@@ -41,6 +44,7 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
     setType(filter, type);
     setPlanIdentifier(filter, planIdentifier);
     setSchoolIdentifier(filter, schoolIdentifier);
+    setBudgetIdentifier(filter, budgetIdentifier);
   }
 
   /**
@@ -71,7 +75,7 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
   public static String getPlanIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_PLAN_IDENTIFIER));
   }
-  
+
   public static void setSchoolIdentifier(FilterDto filter, String identifier) {
     set(filter, JSON_SCHOOL_IDENTIFIER, f -> f.getValueAsString(),
         f -> f.setValueAsString(identifier));
@@ -81,9 +85,20 @@ public class AccountingAccountFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOL_IDENTIFIER));
   }
 
+  public static void setBudgetIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_BUDGET_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getBudgetIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_BUDGET_IDENTIFIER));
+  }
+
   public static final String JSON_PLAN_IDENTIFIER = AccountingAccountDto.JSON_PLAN_IDENTIFIER;
 
   public static final String JSON_TYPE = AccountingAccountDto.JSON_TYPE;
-  
+
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+
+  public static final String JSON_BUDGET_IDENTIFIER = "idBudget";
 }

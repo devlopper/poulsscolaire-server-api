@@ -85,7 +85,7 @@ public class BudgetLineDto extends AbstractIdentifiableAuditableDto {
 
   public static final String JSON_JUSTIFICATION = "justification";
   
-  public static final String NAME = "budget";
+  public static final String NAME = "financement";
 
   public static final String PLURAL_NAME = NAME + "s";
 }
