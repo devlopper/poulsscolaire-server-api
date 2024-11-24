@@ -2,6 +2,7 @@ package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.Month;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,8 +31,8 @@ public class BudgetLineDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_DEPARTMENT_AS_STRING)
   private String departmentAsString;
 
-  @JsonbProperty(JSON_MONTH_INDEX)
-  private Integer monthIndex;
+  @JsonbProperty(JSON_MONTH)
+  private Month month;
 
   @JsonbProperty(JSON_MONTH_AS_STRING)
   private String monthAsString;
@@ -65,7 +66,7 @@ public class BudgetLineDto extends AbstractIdentifiableAuditableDto {
 
   public static final String JSON_DEPARTMENT_AS_STRING = DepartmentDto.JSON_THIS_AS_STRING;
 
-  public static final String JSON_MONTH_INDEX = "indexMois";
+  public static final String JSON_MONTH = "mois";
 
   public static final String JSON_MONTH_AS_STRING = "moisChaine";
 

@@ -18,6 +18,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.Month;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -94,9 +95,9 @@ public interface BudgetLineService extends SpecificService {
      */
     void setDepartmentIdentifier(String departmentIdentifier);
 
-    Integer getMonthIndex();
+    Month getMonth();
 
-    void setMonthIndex(Integer monthIndex);
+    void setMonth(Month monthIndex);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link AccountingAccountDto}.
@@ -139,7 +140,7 @@ public interface BudgetLineService extends SpecificService {
 
     String JSON_DEPARTMENT_IDENTIFIER = BudgetLineDto.JSON_DEPARTMENT_IDENTIFIER;
 
-    String JSON_MONTH_INDEX = BudgetLineDto.JSON_MONTH_INDEX;
+    String JSON_MONTH = BudgetLineDto.JSON_MONTH;
 
     String JSON_ACCOUNTING_ACCOUNT_IDENTIFIER = BudgetLineDto.JSON_ACCOUNTING_ACCOUNT_IDENTIFIER;
 
@@ -166,8 +167,8 @@ public interface BudgetLineService extends SpecificService {
     @JsonbProperty(JSON_DEPARTMENT_IDENTIFIER)
     private String departmentIdentifier;
     
-    @JsonbProperty(JSON_MONTH_INDEX)
-    private Integer monthIndex;
+    @JsonbProperty(JSON_MONTH)
+    private Month month;
     
     @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_IDENTIFIER)
     private String accountingAccountIdentifier;
@@ -257,8 +258,8 @@ public interface BudgetLineService extends SpecificService {
     @JsonbProperty(JSON_DEPARTMENT_IDENTIFIER)
     private String departmentIdentifier;
     
-    @JsonbProperty(JSON_MONTH_INDEX)
-    private Integer monthIndex;
+    @JsonbProperty(JSON_MONTH)
+    private Month month;
     
     @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_IDENTIFIER)
     private String accountingAccountIdentifier;
