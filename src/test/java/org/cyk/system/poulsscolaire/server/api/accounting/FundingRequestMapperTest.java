@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
-class BudgetLineRequestMapperTest {
+class FundingRequestMapperTest {
 
-  BudgetLineRequestMapper mapper = Mappers.getMapper(BudgetLineRequestMapper.class);
+  FundingRequestMapper mapper = Mappers.getMapper(FundingRequestMapper.class);
 
   @Test
   void mapCreation_whenNull() {
@@ -17,7 +17,7 @@ class BudgetLineRequestMapperTest {
 
   @Test
   void mapCreation_whenNotNull() {
-    assertNotNull(mapper.mapCreate(new BudgetLineDto()));
+    assertNotNull(mapper.mapCreate(new FundingDto()));
   }
 
   @Test
@@ -27,7 +27,7 @@ class BudgetLineRequestMapperTest {
 
   @Test
   void mapUpdate_whenNotNull() {
-    assertNotNull(mapper.mapUpdate(new BudgetLineDto()));
+    assertNotNull(mapper.mapUpdate(new FundingDto()));
   }
 
 }

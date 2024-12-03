@@ -6,22 +6,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente le filtre de {@link BudgetLineDto}.
+ * Cette classe représente le filtre de {@link FundingDto}.
  *
  * @author Christian
  *
  */
 @Getter
 @Setter
-public class BudgetLineFilter extends AbstractIdentifiableFilter {
+public class FundingFilter extends AbstractIdentifiableFilter {
 
   String budgetIdentifier;
 
-  public BudgetLineFilter(FilterDto dto) {
+  public FundingFilter(FilterDto dto) {
     super(dto);
   }
 
-  public BudgetLineFilter() {}
+  public FundingFilter() {}
 
   @Override
   protected void doInitialize(FilterDto filter) {
@@ -44,5 +44,5 @@ public class BudgetLineFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_BUDGET_IDENTIFIER));
   }
 
-  public static final String JSON_BUDGET_IDENTIFIER = BudgetLineDto.JSON_BUDGET_IDENTIFIER; 
+  public static final String JSON_BUDGET_IDENTIFIER = FundingDto.JSON_BUDGET_IDENTIFIER; 
 }

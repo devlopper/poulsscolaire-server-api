@@ -9,7 +9,7 @@ import lombok.Setter;
 import org.cyk.system.poulsscolaire.server.api.configuration.DepartmentDto;
 
 /**
- * Cette classe représente un ligne de budget.
+ * Cette classe représente un financement.
  *
  * @author Christian
  *
@@ -17,7 +17,7 @@ import org.cyk.system.poulsscolaire.server.api.configuration.DepartmentDto;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class BudgetLineDto extends AbstractIdentifiableAuditableDto {
+public class FundingDto extends AbstractIdentifiableAuditableDto {
 
   @JsonbProperty(JSON_BUDGET_IDENTIFIER)
   private String budgetIdentifier;
@@ -43,11 +43,11 @@ public class BudgetLineDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_AS_STRING)
   private String accountingAccountAsString;
 
-  @JsonbProperty(JSON_FUNDING_SOURCE_IDENTIFIER)
-  private String fundingSourceIdentifier;
+  @JsonbProperty(JSON_SOURCE_IDENTIFIER)
+  private String sourceIdentifier;
 
-  @JsonbProperty(JSON_FUNDING_SOURCE_AS_STRING)
-  private String fundingSourceAsString;
+  @JsonbProperty(JSON_SOURCE_AS_STRING)
+  private String sourceAsString;
 
   @JsonbProperty(JSON_AMOUNT)
   private Long amount;
@@ -76,9 +76,9 @@ public class BudgetLineDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_ACCOUNTING_ACCOUNT_AS_STRING =
       AccountingAccountDto.JSON_THIS_AS_STRING;
 
-  public static final String JSON_FUNDING_SOURCE_IDENTIFIER = FundingSourceDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_SOURCE_IDENTIFIER = FundingSourceDto.JSON_THIS_IDENTIFIER;
 
-  public static final String JSON_FUNDING_SOURCE_AS_STRING = FundingSourceDto.JSON_THIS_AS_STRING;
+  public static final String JSON_SOURCE_AS_STRING = FundingSourceDto.JSON_THIS_AS_STRING;
 
   public static final String JSON_AMOUNT = "montant";
   

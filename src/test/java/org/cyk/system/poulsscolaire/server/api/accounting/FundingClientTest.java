@@ -6,22 +6,22 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
-import org.cyk.system.poulsscolaire.server.api.accounting.BudgetLineService.BudgetLineCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.accounting.BudgetLineService.BudgetLineGetManyResponseDto;
-import org.cyk.system.poulsscolaire.server.api.accounting.BudgetLineService.BudgetLineUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class BudgetLineClientTest {
+class FundingClientTest {
 
-  BudgetLineService service;
-  BudgetLineClient client;
+  FundingService service;
+  FundingClient client;
 
   @BeforeEach
   void listenBeforeEach() {
-    service = Mockito.mock(BudgetLineService.class);
-    client = new BudgetLineClient().service(service);
+    service = Mockito.mock(FundingService.class);
+    client = new FundingClient().service(service);
   }
 
   @Test
@@ -31,17 +31,17 @@ class BudgetLineClientTest {
     Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
     assertInstanceOf(CreateResponseDto.class,
-        client.create(new BudgetLineCreateRequestDto()));
+        client.create(new FundingCreateRequestDto()));
   }
 
   @Test
   void getMany() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(BudgetLineGetManyResponseDto.class))
-        .thenReturn(new BudgetLineGetManyResponseDto());
+    Mockito.when(response.readEntity(FundingGetManyResponseDto.class))
+        .thenReturn(new FundingGetManyResponseDto());
     Mockito.when(service.getMany(any())).thenReturn(response);
-    assertInstanceOf(BudgetLineGetManyResponseDto.class,
+    assertInstanceOf(FundingGetManyResponseDto.class,
         client.getMany(null, null, null, null, null));
   }
 
@@ -49,20 +49,20 @@ class BudgetLineClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(BudgetLineDto.class))
-        .thenReturn(new BudgetLineDto());
+    Mockito.when(response.readEntity(FundingDto.class))
+        .thenReturn(new FundingDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
-    assertInstanceOf(BudgetLineDto.class, client.getOne(null, null, null, null));
+    assertInstanceOf(FundingDto.class, client.getOne(null, null, null, null));
   }
 
   @Test
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(BudgetLineDto.class))
-        .thenReturn(new BudgetLineDto());
+    Mockito.when(response.readEntity(FundingDto.class))
+        .thenReturn(new FundingDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
-    assertInstanceOf(BudgetLineDto.class, client.getByIdentifier(null, null, null, null));
+    assertInstanceOf(FundingDto.class, client.getByIdentifier(null, null, null, null));
   }
 
   @Test
@@ -73,7 +73,7 @@ class BudgetLineClientTest {
         .thenReturn(new IdentifiableResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class,
-        client.update(new BudgetLineUpdateRequestDto()));
+        client.update(new FundingUpdateRequestDto()));
   }
 
   @Test

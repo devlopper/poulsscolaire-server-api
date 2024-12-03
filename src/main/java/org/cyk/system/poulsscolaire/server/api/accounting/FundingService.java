@@ -30,18 +30,18 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link BudgetLineDto}.
+ * Cette interface représente les services de {@link FundingDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = BudgetLineService.PATH)
-@Tag(name = "Gestion des lignes de budgets")
-public interface BudgetLineService extends SpecificService {
+@Path(value = FundingService.PATH)
+@Tag(name = "Gestion des financements")
+public interface FundingService extends SpecificService {
 
-  String PATH = "lignes-budgets";
+  String PATH = "financements";
 
-  String CREATE_IDENTIFIER = "CREATION_LIGNE_BUDGET";
+  String CREATE_IDENTIFIER = "CREATION_FINANCEMENT";
 
   String CREATE_PATH = "";
 
@@ -58,7 +58,7 @@ public interface BudgetLineService extends SpecificService {
   @Operation(operationId = CREATE_IDENTIFIER)
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(BudgetLineCreateRequestDto request);
+  Response create(FundingCreateRequestDto request);
 
   /**
    * Cette classe représente une requête d'enregistrement.
@@ -66,7 +66,7 @@ public interface BudgetLineService extends SpecificService {
    * @author Christian
    *
    */
-  interface BudgetLineSaveRequestDto {
+  interface FundingSaveRequestDto {
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link BudgetDto}.
      *
@@ -118,14 +118,14 @@ public interface BudgetLineService extends SpecificService {
      *
      * @return identifiant de {@link FundingSourceDto}
      */
-    String getFundingSourceIdentifier();
+    String getSourceIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant de {@link FundingSourceDto}.
      *
-     * @param fundingSourceIdentifier identifiant de {@link FundingSourceDto}
+     * @param sourceIdentifier identifiant de {@link FundingSourceDto}
      */
-    void setFundingSourceIdentifier(String fundingSourceIdentifier);
+    void setSourceIdentifier(String sourceIdentifier);
 
     Long getAmount();
 
@@ -136,19 +136,19 @@ public interface BudgetLineService extends SpecificService {
     void setJustification(String justification);
 
 
-    String JSON_BUDGET_IDENTIFIER = BudgetLineDto.JSON_BUDGET_IDENTIFIER;
+    String JSON_BUDGET_IDENTIFIER = FundingDto.JSON_BUDGET_IDENTIFIER;
 
-    String JSON_DEPARTMENT_IDENTIFIER = BudgetLineDto.JSON_DEPARTMENT_IDENTIFIER;
+    String JSON_DEPARTMENT_IDENTIFIER = FundingDto.JSON_DEPARTMENT_IDENTIFIER;
 
-    String JSON_MONTH = BudgetLineDto.JSON_MONTH;
+    String JSON_MONTH = FundingDto.JSON_MONTH;
 
-    String JSON_ACCOUNTING_ACCOUNT_IDENTIFIER = BudgetLineDto.JSON_ACCOUNTING_ACCOUNT_IDENTIFIER;
+    String JSON_ACCOUNTING_ACCOUNT_IDENTIFIER = FundingDto.JSON_ACCOUNTING_ACCOUNT_IDENTIFIER;
 
-    String JSON_FUNDING_SOURCE_IDENTIFIER = BudgetLineDto.JSON_FUNDING_SOURCE_IDENTIFIER;
+    String JSON_SOURCE_IDENTIFIER = FundingDto.JSON_SOURCE_IDENTIFIER;
 
-    String JSON_AMOUNT = BudgetLineDto.JSON_AMOUNT;
+    String JSON_AMOUNT = FundingDto.JSON_AMOUNT;
 
-    String JSON_JUSTIFICATION = BudgetLineDto.JSON_JUSTIFICATION;
+    String JSON_JUSTIFICATION = FundingDto.JSON_JUSTIFICATION;
   }
 
   /**
@@ -159,31 +159,31 @@ public interface BudgetLineService extends SpecificService {
    */
   @Getter
   @Setter
-  class BudgetLineCreateRequestDto extends AbstractAuditedRequestJsonDto
-      implements BudgetLineSaveRequestDto {
+  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements FundingSaveRequestDto {
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
     private String budgetIdentifier;
 
     @JsonbProperty(JSON_DEPARTMENT_IDENTIFIER)
     private String departmentIdentifier;
-    
+
     @JsonbProperty(JSON_MONTH)
     private Month month;
-    
+
     @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_IDENTIFIER)
     private String accountingAccountIdentifier;
-    
-    @JsonbProperty(JSON_FUNDING_SOURCE_IDENTIFIER)
-    private String fundingSourceIdentifier;
-    
+
+    @JsonbProperty(JSON_SOURCE_IDENTIFIER)
+    private String sourceIdentifier;
+
     @JsonbProperty(JSON_AMOUNT)
     private Long amount;
-    
+
     @JsonbProperty(JSON_JUSTIFICATION)
     private String justification;
   }
 
-  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_LIGNE_BUDGET";
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_FINANCEMENT";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
@@ -202,14 +202,14 @@ public interface BudgetLineService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class BudgetLineGetManyResponseDto
-      extends AbstractGetByPageResponseDto<BudgetLineDto> {
+  public static class FundingGetManyResponseDto
+      extends AbstractGetByPageResponseDto<FundingDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<BudgetLineDto> datas;
+    private List<FundingDto> datas;
   }
 
-  String GET_ONE_IDENTIFIER = "OBTENTION_UN_LIGNE_BUDGET";
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_FINANCEMENT";
 
   String GET_ONE_PATH = "obtention/un";
 
@@ -220,7 +220,7 @@ public interface BudgetLineService extends SpecificService {
   @Operation(operationId = GET_ONE_IDENTIFIER)
   Response getOne(GetOneRequestDto request);
 
-  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_LIGNE_BUDGET";
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_FINANCEMENT";
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
@@ -231,7 +231,7 @@ public interface BudgetLineService extends SpecificService {
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
-  String UPDATE_IDENTIFIER = "MISE_A_JOUR_LIGNE_BUDGET";
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_FINANCEMENT";
 
   String UPDATE_PATH = "";
 
@@ -240,7 +240,7 @@ public interface BudgetLineService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER)
-  Response update(BudgetLineUpdateRequestDto request);
+  Response update(FundingUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -250,31 +250,30 @@ public interface BudgetLineService extends SpecificService {
    */
   @Getter
   @Setter
-  class BudgetLineUpdateRequestDto extends ByIdentifierRequestDto
-      implements BudgetLineSaveRequestDto {
+  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements FundingSaveRequestDto {
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
     private String budgetIdentifier;
 
     @JsonbProperty(JSON_DEPARTMENT_IDENTIFIER)
     private String departmentIdentifier;
-    
+
     @JsonbProperty(JSON_MONTH)
     private Month month;
-    
+
     @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_IDENTIFIER)
     private String accountingAccountIdentifier;
-    
-    @JsonbProperty(JSON_FUNDING_SOURCE_IDENTIFIER)
-    private String fundingSourceIdentifier;
-    
+
+    @JsonbProperty(JSON_SOURCE_IDENTIFIER)
+    private String sourceIdentifier;
+
     @JsonbProperty(JSON_AMOUNT)
     private Long amount;
-    
+
     @JsonbProperty(JSON_JUSTIFICATION)
     private String justification;
   }
 
-  String DELETE_IDENTIFIER = "SUPPRESSION_LIGNE_BUDGET";
+  String DELETE_IDENTIFIER = "SUPPRESSION_FINANCEMENT";
 
   String DELETE_PATH = "";
 

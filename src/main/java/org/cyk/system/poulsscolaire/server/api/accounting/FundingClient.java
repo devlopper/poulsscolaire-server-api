@@ -19,12 +19,12 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.accounting.BudgetLineService.BudgetLineCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.accounting.BudgetLineService.BudgetLineGetManyResponseDto;
-import org.cyk.system.poulsscolaire.server.api.accounting.BudgetLineService.BudgetLineUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateRequestDto;
 
 /**
- * Cette classe représente un client de {@link BudgetLineService}.
+ * Cette classe représente un client de {@link FundingService}.
  *
  * @author Christian
  *
@@ -32,40 +32,40 @@ import org.cyk.system.poulsscolaire.server.api.accounting.BudgetLineService.Budg
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class BudgetLineClient extends AbstractClient<BudgetLineService>
-    implements GetByIdentifier<BudgetLineDto>,
-    GetMany<BudgetLineGetManyResponseDto>, DeleteByIdentifier<IdentifiableResponseDto> {
+public class FundingClient extends AbstractClient<FundingService>
+    implements GetByIdentifier<FundingDto>,
+    GetMany<FundingGetManyResponseDto>, DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public BudgetLineClient service(BudgetLineService service) {
-    return (BudgetLineClient) super.service(service);
+  public FundingClient service(FundingService service) {
+    return (FundingClient) super.service(service);
   }
 
   /**
-   * {@link BudgetLineService#create}.
+   * {@link FundingService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(BudgetLineCreateRequestDto request) {
-    return new CreateExecutor(BudgetLineService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(FundingCreateRequestDto request) {
+    return new CreateExecutor(FundingService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link BudgetLineService#getMany}.
+   * {@link FundingService#getMany}.
    *
    * @param request requête
    * @return réponse
    */
-  public BudgetLineGetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<BudgetLineGetManyResponseDto>(
-        BudgetLineGetManyResponseDto.class, BudgetLineService.GET_MANY_IDENTIFIER)
+  public FundingGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<FundingGetManyResponseDto>(
+        FundingGetManyResponseDto.class, FundingService.GET_MANY_IDENTIFIER)
             .execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link BudgetLineService#getMany}.
+   * {@link FundingService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -74,7 +74,7 @@ public class BudgetLineClient extends AbstractClient<BudgetLineService>
    * @param auditSession audit session
    * @return réponse
    */
-  public BudgetLineGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+  public FundingGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
@@ -85,13 +85,13 @@ public class BudgetLineClient extends AbstractClient<BudgetLineService>
     return getMany(request);
   }
 
-  public BudgetLineDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<BudgetLineDto>(BudgetLineDto.class,
-        BudgetLineService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
+  public FundingDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<FundingDto>(FundingDto.class,
+        FundingService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link BudgetLineService#getOne}.
+   * {@link FundingService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -99,7 +99,7 @@ public class BudgetLineClient extends AbstractClient<BudgetLineService>
    * @param auditSession audit session
    * @return réponse
    */
-  public BudgetLineDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+  public FundingDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
@@ -110,19 +110,19 @@ public class BudgetLineClient extends AbstractClient<BudgetLineService>
   }
 
   /**
-   * {@link BudgetLineService#getByIdentifier}.
+   * {@link FundingService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public BudgetLineDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<BudgetLineDto>(BudgetLineDto.class,
-        BudgetLineService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public FundingDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<FundingDto>(FundingDto.class,
+        FundingService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
   /**
-   * {@link BudgetLineService#getByIdentifier}.
+   * {@link FundingService#getByIdentifier}.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -131,7 +131,7 @@ public class BudgetLineClient extends AbstractClient<BudgetLineService>
    * @return réponse
    */
   @Override
-  public BudgetLineDto getByIdentifier(String identifier, ProjectionDto projection,
+  public FundingDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
@@ -141,18 +141,18 @@ public class BudgetLineClient extends AbstractClient<BudgetLineService>
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(BudgetLineUpdateRequestDto request) {
-    return new IdentifiableExecutor(BudgetLineService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(FundingUpdateRequestDto request) {
+    return new IdentifiableExecutor(FundingService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
   
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(BudgetLineService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(FundingService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link BudgetLineService#delete}.
+   * {@link FundingService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur

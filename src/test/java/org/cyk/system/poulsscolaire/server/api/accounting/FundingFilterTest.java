@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import org.junit.jupiter.api.Test;
 
-class BudgetLineFilterTest {
+class FundingFilterTest {
   
   @Test
   void doInitialize() {
-    BudgetLineFilter filter = new BudgetLineFilter(null);
+    FundingFilter filter = new FundingFilter(null);
     filter.doInitialize(new FilterDto());
     FilterDto dto = filter.toDto();
     assertNotNull(dto);
@@ -17,7 +17,7 @@ class BudgetLineFilterTest {
   
   @Test
   void toDto() {
-    BudgetLineFilter filter = new BudgetLineFilter();
+    FundingFilter filter = new FundingFilter();
     FilterDto dto = filter.toDto();
     assertNotNull(dto);
   }
