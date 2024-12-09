@@ -8,6 +8,8 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import jakarta.ws.rs.core.Response;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateAmountRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateAmountResponseDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,6 +76,17 @@ class FundingClientTest {
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class,
         client.update(new FundingUpdateRequestDto()));
+  }
+  
+  @Test
+  void updateAmount() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(FundingUpdateAmountResponseDto.class))
+        .thenReturn(new FundingUpdateAmountResponseDto());
+    Mockito.when(service.updateAmount(any())).thenReturn(response);
+    assertInstanceOf(FundingUpdateAmountResponseDto.class,
+        client.updateAmount(new FundingUpdateAmountRequestDto()));
   }
 
   @Test

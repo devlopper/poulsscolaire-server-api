@@ -4,11 +4,13 @@ import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -202,8 +204,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class FundingGetManyResponseDto
-      extends AbstractGetByPageResponseDto<FundingDto> {
+  public static class FundingGetManyResponseDto extends AbstractGetByPageResponseDto<FundingDto> {
 
     @JsonbProperty(JSON_DATAS)
     private List<FundingDto> datas;
@@ -271,6 +272,83 @@ public interface FundingService extends SpecificService {
 
     @JsonbProperty(JSON_JUSTIFICATION)
     private String justification;
+  }
+
+  /**
+   * Identifiant du service de mise à jour de montant.
+   */
+  String UPDATE_AMOUNT_IDENTIFIER = "MISE_A_JOUR_MONTANT_FINANCEMENT";
+
+  /**
+   * Chemin du service de mise à jour de montant.
+   */
+  String UPDATE_AMOUNT_PATH = FundingUpdateAmountRequestDto.JSON_AMOUNT;
+
+  /**
+   * Cette méthode permet de mettre à jour montant de {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_AMOUNT_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_AMOUNT_IDENTIFIER)
+  @APIResponse(responseCode = "200",
+      content = {@Content(schema = @Schema(implementation = FundingUpdateAmountResponseDto.class))})
+  Response updateAmount(FundingUpdateAmountRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour de montant.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {
+    
+    /**
+     * Montant.
+     */
+    @JsonbProperty(JSON_AMOUNT)
+    private long amount;
+
+    /**
+     * Filtre.
+     */
+    @JsonbProperty(JSON_FILTER)
+    private FilterDto filter;
+    
+    /**
+     * Identifiant json {@link #amount}.
+     */
+    public static final String JSON_AMOUNT = "montant";
+    
+    /**
+     * Identifiant json {@link #filter}.
+     */
+    public static final String JSON_FILTER = "filtre";
+  }
+
+  /**
+   * Cette classe représente la réponse de mise à jour de montant.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+  class FundingUpdateAmountResponseDto extends IdentifiableResponseDto {
+    /**
+     * Représentation en chaine de caractères du montant total.
+     */
+    @JsonbProperty(JSON_TOTAL_AMOUNT_AS_STRING)
+    private String totalAmountAsString;
+
+    /**
+     * Identifiant json {@link #totalAmountAsString}.
+     */
+    public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_FINANCEMENT";

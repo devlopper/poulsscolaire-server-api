@@ -21,6 +21,8 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateAmountRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateAmountResponseDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateRequestDto;
 
 /**
@@ -33,8 +35,8 @@ import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.Funding
 @Setter
 @Accessors(chain = true, fluent = true)
 public class FundingClient extends AbstractClient<FundingService>
-    implements GetByIdentifier<FundingDto>,
-    GetMany<FundingGetManyResponseDto>, DeleteByIdentifier<IdentifiableResponseDto> {
+    implements GetByIdentifier<FundingDto>, GetMany<FundingGetManyResponseDto>,
+    DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
   public FundingClient service(FundingService service) {
@@ -59,9 +61,8 @@ public class FundingClient extends AbstractClient<FundingService>
    * @return réponse
    */
   public FundingGetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<FundingGetManyResponseDto>(
-        FundingGetManyResponseDto.class, FundingService.GET_MANY_IDENTIFIER)
-            .execute(() -> service().getMany(request));
+    return new GetOneExecutor<FundingGetManyResponseDto>(FundingGetManyResponseDto.class,
+        FundingService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
   /**
@@ -74,8 +75,8 @@ public class FundingClient extends AbstractClient<FundingService>
    * @param auditSession audit session
    * @return réponse
    */
-  public FundingGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
-      PageDto page, String auditWho, String auditSession) {
+  public FundingGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);
@@ -86,8 +87,8 @@ public class FundingClient extends AbstractClient<FundingService>
   }
 
   public FundingDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<FundingDto>(FundingDto.class,
-        FundingService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
+    return new GetOneExecutor<FundingDto>(FundingDto.class, FundingService.GET_ONE_IDENTIFIER)
+        .execute(() -> service().getOne(request));
   }
 
   /**
@@ -131,8 +132,8 @@ public class FundingClient extends AbstractClient<FundingService>
    * @return réponse
    */
   @Override
-  public FundingDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
+  public FundingDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
     request.setProjection(projection);
@@ -145,7 +146,18 @@ public class FundingClient extends AbstractClient<FundingService>
     return new IdentifiableExecutor(FundingService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
-  
+
+  /**
+   * {@link FundingService#updateAmount}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public FundingUpdateAmountResponseDto updateAmount(FundingUpdateAmountRequestDto request) {
+    return new GetOneExecutor<>(FundingUpdateAmountResponseDto.class,
+        FundingService.UPDATE_AMOUNT_IDENTIFIER).execute(() -> service().updateAmount(request));
+  }
+
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
     return new IdentifiableExecutor(FundingService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
