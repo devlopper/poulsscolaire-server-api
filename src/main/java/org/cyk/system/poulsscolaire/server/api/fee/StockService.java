@@ -1,4 +1,4 @@
-package org.cyk.system.poulsscolaire.server.api.accounting;
+package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
@@ -28,18 +28,18 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link StockMovementDto}.
+ * Cette interface représente les services de {@link StockDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = StockMovementService.PATH)
-@Tag(name = "Gestion des mouvements de stocks")
-public interface StockMovementService extends SpecificService {
+@Path(value = StockService.PATH)
+@Tag(name = "Gestion des stocks")
+public interface StockService extends SpecificService {
 
-  String PATH = "mouvements-stocks";
+  String PATH = "stocks";
 
-  String CREATE_IDENTIFIER = "CREATION_MOUVEMENT_STOCK";
+  String CREATE_IDENTIFIER = "CREATION_STOCK";
 
   String CREATE_PATH = "";
 
@@ -56,7 +56,7 @@ public interface StockMovementService extends SpecificService {
   @Operation(operationId = CREATE_IDENTIFIER)
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(StockMovementCreateRequestDto request);
+  Response create(StockCreateRequestDto request);
 
   /**
    * Cette classe représente une requête d'enregistrement.
@@ -64,28 +64,23 @@ public interface StockMovementService extends SpecificService {
    * @author Christian
    *
    */
-  interface StockMovementSaveRequestDto {
+  interface StockSaveRequestDto {
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link StockDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link FeeCategoryDto}.
      *
-     * @return identifiant de {@link StockDto}
+     * @return identifiant de {@link FeeCategoryDto}
      */
-    String getStockIdentifier();
+    String getFeeCategoryIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link StockDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link FeeCategoryDto}.
      *
-     * @param stockIdentifier identifiant de {@link StockDto}
+     * @param feeCategoryIdentifier identifiant de {@link FeeCategoryDto}
      */
-    void setStockIdentifier(String stockIdentifier);
+    void setFeeCategoryIdentifier(String feeCategoryIdentifier);
 
-    Integer getQuantity();
+    String JSON_FEE_CATEGORY_IDENTIFIER = StockDto.JSON_FEE_CATEGORY_IDENTIFIER;
 
-    void setQuantity(Integer quantity);
-
-    String JSON_STOCK_IDENTIFIER = StockMovementDto.JSON_STOCK_IDENTIFIER;
-
-    String JSON_QUANTITY = StockMovementDto.JSON_QUANTITY;
   }
 
   /**
@@ -96,16 +91,13 @@ public interface StockMovementService extends SpecificService {
    */
   @Getter
   @Setter
-  class StockMovementCreateRequestDto extends AbstractNamableCreateRequestJsonDto
-      implements StockMovementSaveRequestDto {
-    @JsonbProperty(JSON_STOCK_IDENTIFIER)
-    private String stockIdentifier;
-
-    @JsonbProperty(JSON_QUANTITY)
-    private Integer quantity;
+  class StockCreateRequestDto extends AbstractNamableCreateRequestJsonDto
+      implements StockSaveRequestDto {
+    @JsonbProperty(JSON_FEE_CATEGORY_IDENTIFIER)
+    private String feeCategoryIdentifier;
   }
 
-  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_MOUVEMENT_STOCK";
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_STOCK";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
@@ -124,14 +116,13 @@ public interface StockMovementService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class StockMovementGetManyResponseDto
-      extends AbstractGetByPageResponseDto<StockMovementDto> {
+  public static class StockGetManyResponseDto extends AbstractGetByPageResponseDto<StockDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<StockMovementDto> datas;
+    private List<StockDto> datas;
   }
 
-  String GET_ONE_IDENTIFIER = "OBTENTION_UN_MOUVEMENT_STOCK";
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_STOCK";
 
   String GET_ONE_PATH = "obtention/un";
 
@@ -142,7 +133,7 @@ public interface StockMovementService extends SpecificService {
   @Operation(operationId = GET_ONE_IDENTIFIER)
   Response getOne(GetOneRequestDto request);
 
-  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_MOUVEMENT_STOCK";
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_STOCK";
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
@@ -153,7 +144,7 @@ public interface StockMovementService extends SpecificService {
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
-  String UPDATE_IDENTIFIER = "MISE_A_JOUR_MOUVEMENT_STOCK";
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_STOCK";
 
   String UPDATE_PATH = "";
 
@@ -162,7 +153,7 @@ public interface StockMovementService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER)
-  Response update(StockMovementUpdateRequestDto request);
+  Response update(StockUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -172,16 +163,13 @@ public interface StockMovementService extends SpecificService {
    */
   @Getter
   @Setter
-  class StockMovementUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
-      implements StockMovementSaveRequestDto {
-    @JsonbProperty(JSON_STOCK_IDENTIFIER)
-    private String stockIdentifier;
-
-    @JsonbProperty(JSON_QUANTITY)
-    private Integer quantity;
+  class StockUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
+      implements StockSaveRequestDto {
+    @JsonbProperty(JSON_FEE_CATEGORY_IDENTIFIER)
+    private String feeCategoryIdentifier;
   }
 
-  String DELETE_IDENTIFIER = "SUPPRESSION_MOUVEMENT_STOCK";
+  String DELETE_IDENTIFIER = "SUPPRESSION_STOCK";
 
   String DELETE_PATH = "";
 

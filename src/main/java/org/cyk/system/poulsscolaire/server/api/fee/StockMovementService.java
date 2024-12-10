@@ -1,4 +1,4 @@
-package org.cyk.system.poulsscolaire.server.api.accounting;
+package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
@@ -21,7 +21,6 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -29,18 +28,18 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link StockDto}.
+ * Cette interface représente les services de {@link StockMovementDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = StockService.PATH)
-@Tag(name = "Gestion des stocks")
-public interface StockService extends SpecificService {
+@Path(value = StockMovementService.PATH)
+@Tag(name = "Gestion des mouvements de stocks")
+public interface StockMovementService extends SpecificService {
 
-  String PATH = "stocks";
+  String PATH = "mouvements-stocks";
 
-  String CREATE_IDENTIFIER = "CREATION_STOCK";
+  String CREATE_IDENTIFIER = "CREATION_MOUVEMENT_STOCK";
 
   String CREATE_PATH = "";
 
@@ -57,7 +56,7 @@ public interface StockService extends SpecificService {
   @Operation(operationId = CREATE_IDENTIFIER)
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(StockCreateRequestDto request);
+  Response create(StockMovementCreateRequestDto request);
 
   /**
    * Cette classe représente une requête d'enregistrement.
@@ -65,38 +64,28 @@ public interface StockService extends SpecificService {
    * @author Christian
    *
    */
-  interface StockSaveRequestDto {
+  interface StockMovementSaveRequestDto {
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link SchoolDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link StockDto}.
      *
-     * @return identifiant de {@link SchoolDto}
+     * @return identifiant de {@link StockDto}
      */
-    String getSchoolIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link SchoolDto}.
-     *
-     * @param schoolIdentifier identifiant de {@link SchoolDto}
-     */
-    void setSchoolIdentifier(String schoolIdentifier);
+    String getStockIdentifier();
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link AccountingAccountDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link StockDto}.
      *
-     * @return identifiant de {@link AccountingAccountDto}
+     * @param stockIdentifier identifiant de {@link StockDto}
      */
-    String getAccountingAccountIdentifier();
+    void setStockIdentifier(String stockIdentifier);
 
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link AccountingAccountDto}.
-     *
-     * @param accountingAccountIdentifier identifiant de {@link AccountingAccountDto}
-     */
-    void setAccountingAccountIdentifier(String accountingAccountIdentifier);
+    Integer getQuantity();
 
-    String JSON_SCHOOL_IDENTIFIER = StockDto.JSON_SCHOOL_IDENTIFIER;
+    void setQuantity(Integer quantity);
 
-    String JSON_ACCOUNTING_ACCOUNT_IDENTIFIER = StockDto.JSON_ACCOUNTING_ACCOUNT_IDENTIFIER;
+    String JSON_STOCK_IDENTIFIER = StockMovementDto.JSON_STOCK_IDENTIFIER;
+
+    String JSON_QUANTITY = StockMovementDto.JSON_QUANTITY;
   }
 
   /**
@@ -107,16 +96,16 @@ public interface StockService extends SpecificService {
    */
   @Getter
   @Setter
-  class StockCreateRequestDto extends AbstractNamableCreateRequestJsonDto
-      implements StockSaveRequestDto {
-    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
-    private String schoolIdentifier;
+  class StockMovementCreateRequestDto extends AbstractNamableCreateRequestJsonDto
+      implements StockMovementSaveRequestDto {
+    @JsonbProperty(JSON_STOCK_IDENTIFIER)
+    private String stockIdentifier;
 
-    @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_IDENTIFIER)
-    private String accountingAccountIdentifier;
+    @JsonbProperty(JSON_QUANTITY)
+    private Integer quantity;
   }
 
-  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_STOCK";
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_MOUVEMENT_STOCK";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
@@ -135,13 +124,14 @@ public interface StockService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class StockGetManyResponseDto extends AbstractGetByPageResponseDto<StockDto> {
+  public static class StockMovementGetManyResponseDto
+      extends AbstractGetByPageResponseDto<StockMovementDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<StockDto> datas;
+    private List<StockMovementDto> datas;
   }
 
-  String GET_ONE_IDENTIFIER = "OBTENTION_UN_STOCK";
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_MOUVEMENT_STOCK";
 
   String GET_ONE_PATH = "obtention/un";
 
@@ -152,7 +142,7 @@ public interface StockService extends SpecificService {
   @Operation(operationId = GET_ONE_IDENTIFIER)
   Response getOne(GetOneRequestDto request);
 
-  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_STOCK";
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_MOUVEMENT_STOCK";
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
@@ -163,7 +153,7 @@ public interface StockService extends SpecificService {
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
-  String UPDATE_IDENTIFIER = "MISE_A_JOUR_STOCK";
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_MOUVEMENT_STOCK";
 
   String UPDATE_PATH = "";
 
@@ -172,7 +162,7 @@ public interface StockService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER)
-  Response update(StockUpdateRequestDto request);
+  Response update(StockMovementUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -182,16 +172,16 @@ public interface StockService extends SpecificService {
    */
   @Getter
   @Setter
-  class StockUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
-      implements StockSaveRequestDto {
-    @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
-    private String schoolIdentifier;
+  class StockMovementUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
+      implements StockMovementSaveRequestDto {
+    @JsonbProperty(JSON_STOCK_IDENTIFIER)
+    private String stockIdentifier;
 
-    @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_IDENTIFIER)
-    private String accountingAccountIdentifier;
+    @JsonbProperty(JSON_QUANTITY)
+    private Integer quantity;
   }
 
-  String DELETE_IDENTIFIER = "SUPPRESSION_STOCK";
+  String DELETE_IDENTIFIER = "SUPPRESSION_MOUVEMENT_STOCK";
 
   String DELETE_PATH = "";
 

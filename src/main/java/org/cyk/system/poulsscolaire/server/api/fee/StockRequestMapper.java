@@ -1,8 +1,8 @@
-package org.cyk.system.poulsscolaire.server.api.accounting;
+package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.request.RequestMapper;
-import org.cyk.system.poulsscolaire.server.api.accounting.StockService.StockCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.accounting.StockService.StockUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockService.StockCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockService.StockUpdateRequestDto;
 import org.mapstruct.Mapper;
 
 /**

@@ -1,4 +1,4 @@
-package org.cyk.system.poulsscolaire.server.api.accounting;
+package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -18,17 +18,11 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 @EqualsAndHashCode(callSuper = true)
 public class StockDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
-  @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
-  private String schoolIdentifier;
+  @JsonbProperty(JSON_FEE_CATEGORY_IDENTIFIER)
+  private String feeCategoryIdentifier;
 
-  @JsonbProperty(JSON_SCHOOL_AS_STRING)
-  private String schoolAsString;
-
-  @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_IDENTIFIER)
-  private String accountingAccountIdentifier;
-
-  @JsonbProperty(JSON_ACCOUNTING_ACCOUNT_AS_STRING)
-  private String accountingAccountAsString;
+  @JsonbProperty(JSON_FEE_CATEGORY_AS_STRING)
+  private String feeCategoryAsString;
 
   @JsonbProperty(JSON_QUANTITY_AS_STRING)
   private String quantityAsString;
@@ -37,15 +31,9 @@ public class StockDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
   public static final String JSON_THIS_AS_STRING = "stockChaine";
 
-  public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_FEE_CATEGORY_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
 
-  public static final String JSON_SCHOOL_AS_STRING = SchoolDto.JSON_THIS_AS_STRING;
-
-  public static final String JSON_ACCOUNTING_ACCOUNT_IDENTIFIER =
-      AccountingAccountDto.JSON_THIS_IDENTIFIER;
-
-  public static final String JSON_ACCOUNTING_ACCOUNT_AS_STRING =
-      AccountingAccountDto.JSON_THIS_AS_STRING;
+  public static final String JSON_FEE_CATEGORY_AS_STRING = SchoolDto.JSON_THIS_AS_STRING;
 
   public static final String JSON_QUANTITY_AS_STRING = "quantiteChaine";
 

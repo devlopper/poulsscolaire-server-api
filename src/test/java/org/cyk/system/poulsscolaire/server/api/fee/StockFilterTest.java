@@ -1,15 +1,15 @@
-package org.cyk.system.poulsscolaire.server.api.accounting;
+package org.cyk.system.poulsscolaire.server.api.fee;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import org.junit.jupiter.api.Test;
 
-class StockMovementFilterTest {
+class StockFilterTest {
   
   @Test
   void doInitialize() {
-    StockMovementFilter filter = new StockMovementFilter(null);
+    StockFilter filter = new StockFilter(null);
     filter.doInitialize(new FilterDto());
     FilterDto dto = filter.toDto();
     assertNotNull(dto);
@@ -17,7 +17,7 @@ class StockMovementFilterTest {
   
   @Test
   void toDto() {
-    StockMovementFilter filter = new StockMovementFilter();
+    StockFilter filter = new StockFilter();
     FilterDto dto = filter.toDto();
     assertNotNull(dto);
   }
