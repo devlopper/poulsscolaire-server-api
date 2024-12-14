@@ -29,6 +29,9 @@ public class StockMovementDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_QUANTITY_AS_STRING)
   private String quantityAsString;
   
+  @JsonbProperty(JSON_REASON)
+  private String reason;
+  
   public static final String JSON_THIS_IDENTIFIER = "idMouvementStock";
 
   public static final String JSON_THIS_AS_STRING = "mouvementStockChaine";
@@ -40,6 +43,8 @@ public class StockMovementDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_QUANTITY = "quantite";
 
   public static final String JSON_QUANTITY_AS_STRING = "quantiteChaine";
+  
+  public static final String JSON_REASON = "motif";
   
   public static final String NAME = "mouvement de stock";
 

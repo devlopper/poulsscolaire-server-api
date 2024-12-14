@@ -1,8 +1,8 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -82,10 +82,16 @@ public interface StockMovementService extends SpecificService {
     Integer getQuantity();
 
     void setQuantity(Integer quantity);
+    
+    String getReason();
+
+    void setReason(String reason);
 
     String JSON_STOCK_IDENTIFIER = StockMovementDto.JSON_STOCK_IDENTIFIER;
 
     String JSON_QUANTITY = StockMovementDto.JSON_QUANTITY;
+    
+    String JSON_REASON = StockMovementDto.JSON_REASON;
   }
 
   /**
@@ -96,13 +102,16 @@ public interface StockMovementService extends SpecificService {
    */
   @Getter
   @Setter
-  class StockMovementCreateRequestDto extends AbstractNamableCreateRequestJsonDto
+  class StockMovementCreateRequestDto extends AbstractAuditedRequestJsonDto
       implements StockMovementSaveRequestDto {
     @JsonbProperty(JSON_STOCK_IDENTIFIER)
     private String stockIdentifier;
 
     @JsonbProperty(JSON_QUANTITY)
     private Integer quantity;
+    
+    @JsonbProperty(JSON_REASON)
+    private String reason;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_MOUVEMENT_STOCK";
@@ -172,13 +181,16 @@ public interface StockMovementService extends SpecificService {
    */
   @Getter
   @Setter
-  class StockMovementUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto
+  class StockMovementUpdateRequestDto extends ByIdentifierRequestDto
       implements StockMovementSaveRequestDto {
     @JsonbProperty(JSON_STOCK_IDENTIFIER)
     private String stockIdentifier;
 
     @JsonbProperty(JSON_QUANTITY)
     private Integer quantity;
+    
+    @JsonbProperty(JSON_REASON)
+    private String reason;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_MOUVEMENT_STOCK";
