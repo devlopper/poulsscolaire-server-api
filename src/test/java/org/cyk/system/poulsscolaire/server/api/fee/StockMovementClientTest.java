@@ -3,12 +3,13 @@ package org.cyk.system.poulsscolaire.server.api.fee;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.mockito.ArgumentMatchers.any;
 
-import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
-import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
 import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementCreateResponseDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementDeleteResponseDto;
 import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementUpdateResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,9 +29,10 @@ class StockMovementClientTest {
   void create() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.CREATED.getStatusCode());
-    Mockito.when(response.readEntity(CreateResponseDto.class)).thenReturn(new CreateResponseDto());
+    Mockito.when(response.readEntity(StockMovementCreateResponseDto.class))
+        .thenReturn(new StockMovementCreateResponseDto());
     Mockito.when(service.create(any())).thenReturn(response);
-    assertInstanceOf(CreateResponseDto.class,
+    assertInstanceOf(StockMovementCreateResponseDto.class,
         client.create(new StockMovementCreateRequestDto()));
   }
 
@@ -49,8 +51,7 @@ class StockMovementClientTest {
   void getOne() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(StockMovementDto.class))
-        .thenReturn(new StockMovementDto());
+    Mockito.when(response.readEntity(StockMovementDto.class)).thenReturn(new StockMovementDto());
     Mockito.when(service.getOne(any())).thenReturn(response);
     assertInstanceOf(StockMovementDto.class, client.getOne(null, null, null, null));
   }
@@ -59,8 +60,7 @@ class StockMovementClientTest {
   void getByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(StockMovementDto.class))
-        .thenReturn(new StockMovementDto());
+    Mockito.when(response.readEntity(StockMovementDto.class)).thenReturn(new StockMovementDto());
     Mockito.when(service.getByIdentifier(any())).thenReturn(response);
     assertInstanceOf(StockMovementDto.class, client.getByIdentifier(null, null, null, null));
   }
@@ -69,10 +69,10 @@ class StockMovementClientTest {
   void update() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(IdentifiableResponseDto.class))
-        .thenReturn(new IdentifiableResponseDto());
+    Mockito.when(response.readEntity(StockMovementUpdateResponseDto.class))
+        .thenReturn(new StockMovementUpdateResponseDto());
     Mockito.when(service.update(any())).thenReturn(response);
-    assertInstanceOf(IdentifiableResponseDto.class,
+    assertInstanceOf(StockMovementUpdateResponseDto.class,
         client.update(new StockMovementUpdateRequestDto()));
   }
 
@@ -80,9 +80,10 @@ class StockMovementClientTest {
   void deleteByIdentifier() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
-    Mockito.when(response.readEntity(IdentifiableResponseDto.class))
-        .thenReturn(new IdentifiableResponseDto());
+    Mockito.when(response.readEntity(StockMovementDeleteResponseDto.class))
+        .thenReturn(new StockMovementDeleteResponseDto());
     Mockito.when(service.delete(any())).thenReturn(response);
-    assertInstanceOf(IdentifiableResponseDto.class, client.deleteByIdentifier(null, null, null));
+    assertInstanceOf(StockMovementDeleteResponseDto.class,
+        client.deleteByIdentifier(null, null, null));
   }
 }

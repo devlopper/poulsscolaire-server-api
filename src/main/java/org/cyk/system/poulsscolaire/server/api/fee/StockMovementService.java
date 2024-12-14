@@ -9,6 +9,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -82,7 +83,7 @@ public interface StockMovementService extends SpecificService {
     Integer getQuantity();
 
     void setQuantity(Integer quantity);
-    
+
     String getReason();
 
     void setReason(String reason);
@@ -90,7 +91,7 @@ public interface StockMovementService extends SpecificService {
     String JSON_STOCK_IDENTIFIER = StockMovementDto.JSON_STOCK_IDENTIFIER;
 
     String JSON_QUANTITY = StockMovementDto.JSON_QUANTITY;
-    
+
     String JSON_REASON = StockMovementDto.JSON_REASON;
   }
 
@@ -109,9 +110,25 @@ public interface StockMovementService extends SpecificService {
 
     @JsonbProperty(JSON_QUANTITY)
     private Integer quantity;
-    
+
     @JsonbProperty(JSON_REASON)
     private String reason;
+  }
+
+  /**
+   * Cette classe représente la réponse de création.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class StockMovementCreateResponseDto extends CreateResponseDto {
+
+    @JsonbProperty(JSON_STOCK_QUANTITY_AS_STRING)
+    String stockQuantityAsString;
+
+    public static final String JSON_STOCK_QUANTITY_AS_STRING = StockDto.JSON_QUANTITY_AS_STRING;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_MOUVEMENT_STOCK";
@@ -188,9 +205,25 @@ public interface StockMovementService extends SpecificService {
 
     @JsonbProperty(JSON_QUANTITY)
     private Integer quantity;
-    
+
     @JsonbProperty(JSON_REASON)
     private String reason;
+  }
+
+  /**
+   * Cette classe représente la réponse de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class StockMovementUpdateResponseDto extends IdentifiableResponseDto {
+
+    @JsonbProperty(JSON_STOCK_QUANTITY_AS_STRING)
+    String stockQuantityAsString;
+
+    public static final String JSON_STOCK_QUANTITY_AS_STRING = StockDto.JSON_QUANTITY_AS_STRING;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_MOUVEMENT_STOCK";
@@ -203,4 +236,20 @@ public interface StockMovementService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER)
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Cette classe représente la réponse de suppression.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class StockMovementDeleteResponseDto extends IdentifiableResponseDto {
+
+    @JsonbProperty(JSON_STOCK_QUANTITY_AS_STRING)
+    String stockQuantityAsString;
+
+    public static final String JSON_STOCK_QUANTITY_AS_STRING = StockDto.JSON_QUANTITY_AS_STRING;
+  }
 }

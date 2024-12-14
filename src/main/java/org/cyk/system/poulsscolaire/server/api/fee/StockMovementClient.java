@@ -1,9 +1,7 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
-import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
-import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -11,17 +9,20 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
-import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.core.Response;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementCreateResponseDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementDeleteResponseDto;
 import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMovementUpdateResponseDto;
 
 /**
  * Cette classe représente un client de {@link StockMovementService}.
@@ -33,8 +34,8 @@ import org.cyk.system.poulsscolaire.server.api.fee.StockMovementService.StockMov
 @Setter
 @Accessors(chain = true, fluent = true)
 public class StockMovementClient extends AbstractClient<StockMovementService>
-    implements GetByIdentifier<StockMovementDto>,
-    GetMany<StockMovementGetManyResponseDto>, DeleteByIdentifier<IdentifiableResponseDto> {
+    implements GetByIdentifier<StockMovementDto>, GetMany<StockMovementGetManyResponseDto>,
+    DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
   public StockMovementClient service(StockMovementService service) {
@@ -47,9 +48,11 @@ public class StockMovementClient extends AbstractClient<StockMovementService>
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(StockMovementCreateRequestDto request) {
-    return new CreateExecutor(StockMovementService.CREATE_IDENTIFIER)
-        .execute(() -> service().create(request));
+  public StockMovementCreateResponseDto create(StockMovementCreateRequestDto request) {
+    return new GetOneExecutor<>(StockMovementCreateResponseDto.class,
+        StockMovementService.CREATE_IDENTIFIER)
+            .setExpectedResponseStatusCode(Response.Status.CREATED.getStatusCode())
+            .execute(() -> service().create(request));
   }
 
   /**
@@ -141,14 +144,14 @@ public class StockMovementClient extends AbstractClient<StockMovementService>
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(StockMovementUpdateRequestDto request) {
-    return new IdentifiableExecutor(StockMovementService.UPDATE_IDENTIFIER)
-        .execute(() -> service().update(request));
+  public StockMovementUpdateResponseDto update(StockMovementUpdateRequestDto request) {
+    return new GetOneExecutor<>(StockMovementUpdateResponseDto.class,
+        StockMovementService.UPDATE_IDENTIFIER).execute(() -> service().update(request));
   }
-  
-  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(StockMovementService.DELETE_IDENTIFIER)
-        .execute(() -> service().delete(request));
+
+  public StockMovementDeleteResponseDto delete(DeleteOneRequestDto request) {
+    return new GetOneExecutor<>(StockMovementDeleteResponseDto.class,
+        StockMovementService.DELETE_IDENTIFIER).execute(() -> service().delete(request));
   }
 
   /**
