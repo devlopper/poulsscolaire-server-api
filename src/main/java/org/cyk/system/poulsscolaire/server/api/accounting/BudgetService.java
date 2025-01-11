@@ -3,12 +3,14 @@ package org.cyk.system.poulsscolaire.server.api.accounting;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -213,4 +215,216 @@ public interface BudgetService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER)
   Response delete(DeleteOneRequestDto request);
+  
+  /**
+   * Cette classe représente la requête de retour.
+   *
+   * @author AKM
+   *
+   */
+  @Getter
+  @Setter
+  class BudgetReturnRequestDto extends ByIdentifierRequestDto {
+
+    /**
+     * Raison.
+     */
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+
+    /**
+     * {@link #reason}.
+     */
+    public static final String JSON_REASON = "raison";
+  }
+
+  /**
+   * Cette classe représente la réponse de mise à jour du statut.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class BudgetStatusUpdateResponseDto extends IdentifiableResponseDto {
+
+    /**
+     * {@link BudgetDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private BudgetStatus status;
+
+    /**
+     * {@link BudgetDto#getStatusAsString()}.
+     */
+    @JsonbProperty(JSON_STATUS_AS_STRING)
+    private String statusAsString;
+
+    /**
+     * {@link BudgetDto#getStatusReason()}.
+     */
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+
+    /**
+     * {@link BudgetDto#getTransmitable()}.
+     */
+    private Boolean transmitable;
+
+    /**
+     * {@link BudgetDto#getAcceptable()}.
+     */
+    private Boolean acceptable;
+
+    /**
+     * {@link BudgetDto#getReturnable()}.
+     */
+    private Boolean returnable;
+
+    /**
+     * {@link BudgetDto#getApprovable()}.
+     */
+    private Boolean approvable;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status {@link BudgetStatus}
+     * @param statusAsString représentation en chaine de caractères de
+     *        {@link BudgetStatus}
+     * @param reason raison
+     */
+    public void initialize(BudgetStatus status, String statusAsString, String reason) {
+      this.status = status;
+      this.statusAsString = statusAsString;
+      this.reason = reason;
+      transmitable = BudgetStatus.TRANSMITTED.getPrevious().contains(status);
+      acceptable = BudgetStatus.ACCEPTED.getPrevious().contains(status);
+      returnable = BudgetStatus.RETURNED.getPrevious().contains(status);
+      approvable = BudgetStatus.APPROVED.getPrevious().contains(status);
+    }
+
+    /**
+     * {@link BudgetDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = BudgetDto.JSON_STATUS;
+
+    /**
+     * {@link BudgetDto#JSON_STATUS_AS_STRING}.
+     */
+    public static final String JSON_STATUS_AS_STRING = BudgetDto.JSON_STATUS_AS_STRING;
+
+    /**
+     * {@link BudgetDto#JSON_STATUS_REASON}.
+     */
+    public static final String JSON_REASON = BudgetDto.JSON_STATUS_REASON;
+
+    /**
+     * {@link BudgetDto#JSON_TRANSMITABLE}.
+     */
+    public static final String JSON_TRANSMITABLE = BudgetDto.JSON_TRANSMITABLE;
+
+    /**
+     * {@link BudgetDto#JSON_ACCEPTABLE}.
+     */
+    public static final String JSON_ACCEPTABLE = BudgetDto.JSON_ACCEPTABLE;
+
+    /**
+     * {@link BudgetDto#JSON_RETURNABLE}.
+     */
+    public static final String JSON_RETURNABLE = BudgetDto.JSON_RETURNABLE;
+
+    /**
+     * {@link BudgetDto#JSON_APPROVABLE}.
+     */
+    public static final String JSON_APPROVABLE = BudgetDto.JSON_APPROVABLE;
+  }
+
+  /**
+   * Identifiant du service de transmission.
+   */
+  String TRANSMIT_IDENTIFIER = "TRANSMISSION_BUDGET";
+
+  /**
+   * Chemin du service de transmission.
+   */
+  String TRANSMIT_PATH = "transmission";
+
+  /**
+   * Cette méthode permet de transmettre {@link BudgetDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(TRANSMIT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response transmit(ByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service d'acceptation.
+   */
+  String ACCEPT_IDENTIFIER = "ACCEPTATION_BUDGET";
+
+  /**
+   * Chemin du service d'acceptation.
+   */
+  String ACCEPT_PATH = "acceptation";
+
+  /**
+   * Cette méthode permet d'accepter {@link BudgetDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ACCEPT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response accept(ByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service d'approbation.
+   */
+  String APPROVE_IDENTIFIER = "APPROBATION_BUDGET";
+
+  /**
+   * Chemin du service d'approbation.
+   */
+  String APPROVE_PATH = "approbation";
+
+  /**
+   * Cette méthode permet d'accepter {@link BudgetDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(APPROVE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response approve(ByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de retour.
+   */
+  String RETURN_IDENTIFIER = "RETOUR_BUDGET";
+
+  /**
+   * Chemin du service de retour.
+   */
+  String RETURN_PATH = "retour";
+
+  /**
+   * Cette méthode permet de retourner {@link BudgetDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(RETURN_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response returnBack(BudgetReturnRequestDto request);
 }

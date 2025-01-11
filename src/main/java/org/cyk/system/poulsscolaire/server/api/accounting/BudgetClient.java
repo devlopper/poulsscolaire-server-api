@@ -2,8 +2,10 @@ package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.Executor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -21,6 +23,8 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.accounting.BudgetService.BudgetCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.BudgetService.BudgetGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.BudgetService.BudgetReturnRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.BudgetService.BudgetStatusUpdateResponseDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.BudgetService.BudgetUpdateRequestDto;
 
 /**
@@ -33,8 +37,8 @@ import org.cyk.system.poulsscolaire.server.api.accounting.BudgetService.BudgetUp
 @Setter
 @Accessors(chain = true, fluent = true)
 public class BudgetClient extends AbstractClient<BudgetService>
-    implements GetByIdentifier<BudgetDto>,
-    GetMany<BudgetGetManyResponseDto>, DeleteByIdentifier<IdentifiableResponseDto> {
+    implements GetByIdentifier<BudgetDto>, GetMany<BudgetGetManyResponseDto>,
+    DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
   public BudgetClient service(BudgetService service) {
@@ -53,15 +57,58 @@ public class BudgetClient extends AbstractClient<BudgetService>
   }
 
   /**
+   * {@link BudgetService#transmit}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public BudgetStatusUpdateResponseDto transmit(ByIdentifierRequestDto request) {
+    return new BudgetStatusUpdateExecutor(BudgetService.TRANSMIT_IDENTIFIER)
+        .execute(() -> service().transmit(request));
+  }
+
+  /**
+   * {@link BudgetService#accept}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public BudgetStatusUpdateResponseDto accept(ByIdentifierRequestDto request) {
+    return new BudgetStatusUpdateExecutor(BudgetService.ACCEPT_IDENTIFIER)
+        .execute(() -> service().accept(request));
+  }
+
+  /**
+   * {@link BudgetService#approve}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public BudgetStatusUpdateResponseDto approve(ByIdentifierRequestDto request) {
+    return new BudgetStatusUpdateExecutor(BudgetService.APPROVE_IDENTIFIER)
+        .execute(() -> service().approve(request));
+  }
+
+  /**
+   * {@link BudgetService#returnBack}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public BudgetStatusUpdateResponseDto returnBack(BudgetReturnRequestDto request) {
+    return new BudgetStatusUpdateExecutor(BudgetService.RETURN_IDENTIFIER)
+        .execute(() -> service().returnBack(request));
+  }
+
+  /**
    * {@link BudgetService#getMany}.
    *
    * @param request requête
    * @return réponse
    */
   public BudgetGetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<BudgetGetManyResponseDto>(
-        BudgetGetManyResponseDto.class, BudgetService.GET_MANY_IDENTIFIER)
-            .execute(() -> service().getMany(request));
+    return new GetOneExecutor<BudgetGetManyResponseDto>(BudgetGetManyResponseDto.class,
+        BudgetService.GET_MANY_IDENTIFIER).execute(() -> service().getMany(request));
   }
 
   /**
@@ -74,8 +121,8 @@ public class BudgetClient extends AbstractClient<BudgetService>
    * @param auditSession audit session
    * @return réponse
    */
-  public BudgetGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
-      PageDto page, String auditWho, String auditSession) {
+  public BudgetGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);
@@ -86,8 +133,8 @@ public class BudgetClient extends AbstractClient<BudgetService>
   }
 
   public BudgetDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<BudgetDto>(BudgetDto.class,
-        BudgetService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
+    return new GetOneExecutor<BudgetDto>(BudgetDto.class, BudgetService.GET_ONE_IDENTIFIER)
+        .execute(() -> service().getOne(request));
   }
 
   /**
@@ -131,8 +178,8 @@ public class BudgetClient extends AbstractClient<BudgetService>
    * @return réponse
    */
   @Override
-  public BudgetDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
+  public BudgetDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
     request.setProjection(projection);
@@ -145,7 +192,7 @@ public class BudgetClient extends AbstractClient<BudgetService>
     return new IdentifiableExecutor(BudgetService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
-  
+
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
     return new IdentifiableExecutor(BudgetService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
@@ -166,5 +213,23 @@ public class BudgetClient extends AbstractClient<BudgetService>
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return delete(request);
+  }
+
+  /**
+   * Cette classe représente un exécuteur de mise à jour du statut .
+   *
+   * @author Christian
+   *
+   */
+  public class BudgetStatusUpdateExecutor extends Executor<BudgetStatusUpdateResponseDto> {
+
+    /**
+     * Cette méthode permet d'instancier.
+     *
+     * @param identifier identifiant
+     */
+    public BudgetStatusUpdateExecutor(String identifier) {
+      super(BudgetStatusUpdateResponseDto.class, identifier);
+    }
   }
 }
