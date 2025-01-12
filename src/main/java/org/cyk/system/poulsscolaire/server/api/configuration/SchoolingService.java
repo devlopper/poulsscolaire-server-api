@@ -82,10 +82,15 @@ public interface SchoolingService extends SpecificService {
 
     void setPreRegistrationAmount(int preRegistrationAmount);
 
+    Integer getSubsidyAmount();
+
+    void setSubsidyAmount(Integer subsidyAmount);
+    
     String JSON_SCHOOL_IDENTIFIER = "idEcole";
     String JSON_BRANCH_IDENTIFIER = "idBranche";
     String JSON_PERIOD_IDENTIFIER = "idPeriod";
     String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
+    String JSON_SUBSIDY_AMOUNT = "montantSubvention";
   }
 
   /**
@@ -109,6 +114,9 @@ public interface SchoolingService extends SpecificService {
 
     @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
     private int preRegistrationAmount;
+    
+    @JsonbProperty(JSON_SUBSIDY_AMOUNT)
+    private Integer subsidyAmount;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_SCOLARITE";
@@ -195,6 +203,9 @@ public interface SchoolingService extends SpecificService {
 
     @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
     private int preRegistrationAmount;
+    
+    @JsonbProperty(JSON_SUBSIDY_AMOUNT)
+    private Integer subsidyAmount;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_SCOLARITE";

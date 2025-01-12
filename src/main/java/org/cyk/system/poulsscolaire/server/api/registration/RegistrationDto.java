@@ -58,6 +58,12 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT_AS_STRING)
   private String preRegistrationAmountAsString;
   
+  @JsonbProperty(JSON_SUBSIDY_AMOUNT)
+  private Integer subsidyAmount;
+  
+  @JsonbProperty(JSON_SUBSIDY_AMOUNT_AS_STRING)
+  private String subsidyAmountAsString;
+  
   @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
   private String branchInstanceAsString;
   
@@ -94,17 +100,6 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
   public static final String FIELD_SENIORITY_AS_STRING = "seniorityAsString";
 
-  public static final String FIELD_TOTAL_AMOUNT_AS_STRING = "totalAmountAsString";
-  public static final String FIELD_PAID_AMOUNT_AS_STRING = "paidAmountAsString";
-  public static final String FIELD_PAYABLE_AMOUNT_AS_STRING = "payableAmountAsString";
-
-  public static final String FIELD_TOTAL_REGISTRATION_AMOUNT_AS_STRING =
-      "totalRegistrationAmountAsString";
-  public static final String FIELD_PAID_REGISTRATION_AMOUNT_AS_STRING =
-      "paidRegistrationAmountAsString";
-  public static final String FIELD_PAYABLE_REGISTRATION_AMOUNT_AS_STRING =
-      "payableRegistrationAmountAsString";
-
   public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
   public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
   public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
@@ -121,6 +116,8 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   
   public static final String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
   public static final String JSON_PRE_REGISTRATION_AMOUNT_AS_STRING = "montantPreInscriptionChaine";
+  public static final String JSON_SUBSIDY_AMOUNT = "montantSubvention";
+  public static final String JSON_SUBSIDY_AMOUNT_AS_STRING = "montantSubventionChaine";
   
   public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";

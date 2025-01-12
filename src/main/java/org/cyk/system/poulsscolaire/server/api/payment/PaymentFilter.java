@@ -21,6 +21,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   String registrationIdentifier;
   String branchInstanceIdentifier;
   Boolean canceled;
+  Boolean isForSubsidy;
   LocalDateTime fromDate;
   LocalDateTime toDate;
   Integer fromAmount;
@@ -40,6 +41,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     registrationIdentifier = getRegistrationIdentifier(filter);
     branchInstanceIdentifier = getBranchInstanceIdentifier(filter);
     canceled = getCanceled(filter);
+    isForSubsidy = getIsForSubsidy(filter);
     fromDate = getFromDate(filter);
     toDate = getToDate(filter);
     fromAmount = getFromAmount(filter);
@@ -54,6 +56,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     setRegistrationIdentifier(filter, registrationIdentifier);
     setBranchInstanceIdentifier(filter, branchInstanceIdentifier);
     setCanceled(filter, canceled);
+    setIsForSubsidy(filter, isForSubsidy);
     setFromDate(filter, fromDate);
     setToDate(filter, toDate);
     setFromAmount(filter, fromAmount);
@@ -86,7 +89,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   public static String getRegistrationIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_REGISTRATION_IDENTIFIER));
   }
-  
+
   public static void setBranchInstanceIdentifier(FilterDto filter, String identifier) {
     set(filter, JSON_BRANCH_INSTANCE_IDENTIFIER, f -> f.getValueAsString(),
         f -> f.setValueAsString(identifier));
@@ -104,6 +107,14 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_CANCELED));
   }
 
+  public static void setIsForSubsidy(FilterDto filter, Boolean value) {
+    set(filter, JSON_IS_FOR_SUBSIDY, f -> f.getValueAsString(), f -> f.setValueAsBoolean(value));
+  }
+
+  public static Boolean getIsForSubsidy(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_IS_FOR_SUBSIDY));
+  }
+
   public static void setFromDate(FilterDto filter, LocalDateTime fromDate) {
     set(filter, JSON_FROM_DATE, f -> f.getValueAsDateTime(), f -> f.setValueAsDateTime(fromDate));
   }
@@ -119,7 +130,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   public static LocalDateTime getToDate(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsDateTimeByName(JSON_TO_DATE));
   }
-  
+
   public static void setFromAmount(FilterDto filter, Integer fromAmount) {
     set(filter, JSON_FROM_AMOUNT, f -> f.getValueAsInteger(), f -> f.setValueAsInteger(fromAmount));
   }
@@ -144,6 +155,7 @@ public class PaymentFilter extends AbstractIdentifiableFilter {
   public static final String JSON_PERIOD_IDENTIFIER = PaymentDto.JSON_PERIOD_IDENTIFIER;
   public static final String JSON_REGISTRATION_IDENTIFIER = PaymentDto.JSON_REGISTRATION_IDENTIFIER;
   public static final String JSON_CANCELED = PaymentDto.JSON_CANCELED;
+  public static final String JSON_IS_FOR_SUBSIDY = PaymentDto.JSON_IS_FOR_SUBSIDY;
   public static final String JSON_BRANCH_INSTANCE_IDENTIFIER =
       PaymentDto.JSON_BRANCH_INSTANCE_IDENTIFIER;
 }

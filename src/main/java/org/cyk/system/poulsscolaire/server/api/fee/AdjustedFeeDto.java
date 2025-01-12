@@ -108,7 +108,15 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
 
   @JsonbProperty(JSON_REDUCED_REGISTRATION_AMOUNT_IS_ZERO)
   private Boolean reducedRegistrationAmountIsZero;
-  
+
+  /* Stock */
+
+  @JsonbProperty(JSON_STOCK_AS_STRING)
+  private String stockAsString;
+
+  @JsonbProperty(JSON_STOCK_MOVEMENT_AS_STRING)
+  private String stockMovementAsString;
+
   /* Fee */
   public static final String JSON_FEE_IDENTIFIER = "idFrais";
   public static final String JSON_FEE_AS_STRING = "fraisChaine";
@@ -151,7 +159,7 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String JSON_REDUCED_AMOUNT_AS_STRING = "montantReduitChaine";
   public static final String JSON_REDUCED_REGISTRATION_AMOUNT_AS_STRING =
       "montantReduitInscriptionChaine";
-  
+
   public static final String JSON_REDUCED_AMOUNT_IS_ZERO = "montantReduitEstZero";
   public static final String JSON_REDUCED_REGISTRATION_AMOUNT_IS_ZERO =
       "montantReduitInscriptionEstZero";
@@ -160,6 +168,11 @@ public class AdjustedFeeDto extends AbstractAmountContainerDto {
   public static final String JSON_LATE_PAYMENT = "enRetardDePaiement";
 
   public static final String JSON_BRANCH_INSTANCE_IDENTIFIER = "idClasse";
+
+  /* Stock */
+
+  public static final String JSON_STOCK_AS_STRING = "stockChaine";
+  public static final String JSON_STOCK_MOVEMENT_AS_STRING = "mouvementStockChaine";
 
   /**
    * Nom pour lecture humaine de la classe.

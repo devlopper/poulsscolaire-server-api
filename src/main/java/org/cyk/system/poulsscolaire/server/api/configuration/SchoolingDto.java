@@ -41,6 +41,12 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT_AS_STRING)
   private String preRegistrationAmountAsString;
 
+  @JsonbProperty(JSON_SUBSIDY_AMOUNT)
+  private Integer subsidyAmount;
+
+  @JsonbProperty(JSON_SUBSIDY_AMOUNT_AS_STRING)
+  private String subsidyAmountAsString;
+
   @JsonbProperty(JSON_FEE_AMOUNT_VALUE)
   private Integer feeAmountValue;
 
@@ -67,6 +73,8 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
 
   public static final String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
   public static final String JSON_PRE_REGISTRATION_AMOUNT_AS_STRING = "montantPreInscriptionChaine";
+  public static final String JSON_SUBSIDY_AMOUNT = "montantSubvention";
+  public static final String JSON_SUBSIDY_AMOUNT_AS_STRING = "montantSubventionChaine";
   public static final String JSON_FEE_AMOUNT_VALUE = "montantFrais";
   public static final String JSON_FEE_AMOUNT_VALUE_AS_STRING = "montantFraisChaine";
   public static final String JSON_NOT_OPTIONAL_FEE_AMOUNT_VALUE = "montantFraisNonFacultatif";
