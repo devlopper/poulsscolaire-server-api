@@ -40,6 +40,9 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
 
+  @JsonbProperty(JSON_COMMITMENT_AMOUNT_AS_STRING)
+  private String commitmentAmountAsString;
+  
   /**
    * Statut du programme triennal.
    */
@@ -116,6 +119,8 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
 
+  public static final String JSON_COMMITMENT_AMOUNT_AS_STRING = "montantEngageChaine";
+  
   /**
    * Identifiant json champ {@link #status}.
    */

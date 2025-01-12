@@ -61,6 +61,9 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_JUSTIFICATION)
   private String justification;
   
+  @JsonbProperty(JSON_COMMITMENT_AMOUNT_AS_STRING)
+  private String commitmentAmountAsString;
+  
   public static final String JSON_THIS_IDENTIFIER = "idFinancement";
 
   public static final String JSON_THIS_AS_STRING = "financementChaine";
@@ -92,6 +95,8 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
 
   public static final String JSON_AMOUNT_INPUTABLE = "montantSaisissable";
+  
+  public static final String JSON_COMMITMENT_AMOUNT_AS_STRING = "montantEngageChaine";
   
   public static final String JSON_JUSTIFICATION = "justification";
   
