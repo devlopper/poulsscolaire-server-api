@@ -82,10 +82,15 @@ public interface PaymentService extends SpecificService {
 
     void setInitiator(String identifier);
     
+    Boolean getIsForSubsidy();
+
+    void setIsForSubsidy(Boolean isForSubsidy);
+    
     String JSON_REGISTRATION_IDENTIFIER = PaymentDto.JSON_REGISTRATION_IDENTIFIER;
     String JSON_MODE_IDENTIFIER = PaymentDto.JSON_MODE_IDENTIFIER;
     String JSON_AMOUNT = PaymentDto.JSON_AMOUNT;
     String JSON_INITIATOR = PaymentDto.JSON_INITIATOR;
+    String JSON_IS_FOR_SUBSIDY = PaymentDto.JSON_IS_FOR_SUBSIDY;
   }
 
   /**
@@ -108,6 +113,9 @@ public interface PaymentService extends SpecificService {
     
     @JsonbProperty(JSON_INITIATOR)
     private String initiator;
+    
+    @JsonbProperty(JSON_IS_FOR_SUBSIDY)
+    private Boolean isForSubsidy;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_PAIEMENT";
@@ -192,6 +200,9 @@ public interface PaymentService extends SpecificService {
     
     @JsonbProperty(JSON_INITIATOR)
     private String initiator;
+    
+    @JsonbProperty(JSON_IS_FOR_SUBSIDY)
+    private Boolean isForSubsidy;
   }
 
   String CANCEL_IDENTIFIER = "ANNULATION_PAIEMENT";
