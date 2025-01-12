@@ -1,0 +1,194 @@
+package org.cyk.system.poulsscolaire.server.api.accounting;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link FundingExecutionDto}.
+ *
+ * @author Christian Yao Komenan
+ *
+ */
+@Path(value = FundingExecutionService.PATH)
+@Tag(name = "Gestion des exécutions de financements")
+public interface FundingExecutionService extends SpecificService {
+
+  String PATH = "executions-financements";
+
+  String CREATE_IDENTIFIER = "CREATION_EXECUTION_FINANCEMENT";
+
+  String CREATE_PATH = "";
+
+  /**
+   * Cette méthode permet de créer.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = "201",
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(FundingExecutionCreateRequestDto request);
+
+  /**
+   * Cette classe représente une requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface FundingExecutionSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link FundingDto}.
+     *
+     * @return identifiant de {@link FundingDto}
+     */
+    String getFundingIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link FundingDto}.
+     *
+     * @param budgetIdentifier identifiant de {@link FundingDto}
+     */
+    void setFundingIdentifier(String budgetIdentifier);
+
+    Integer getAmount();
+
+    void setAmount(Integer amount);
+
+    String JSON_FUNDING_IDENTIFIER = FundingExecutionDto.JSON_FUNDING_IDENTIFIER;
+
+    String JSON_AMOUNT = FundingExecutionDto.JSON_AMOUNT;
+  }
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class FundingExecutionCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements FundingExecutionSaveRequestDto {
+    @JsonbProperty(JSON_FUNDING_IDENTIFIER)
+    private String fundingIdentifier;
+
+    @JsonbProperty(JSON_AMOUNT)
+    private Integer amount;
+  }
+
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_EXECUTION_FINANCEMENT";
+
+  String GET_MANY_PATH = "obtention/plusieurs";
+
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  public static class FundingExecutionGetManyResponseDto
+      extends AbstractGetByPageResponseDto<FundingExecutionDto> {
+
+    @JsonbProperty(JSON_DATAS)
+    private List<FundingExecutionDto> datas;
+  }
+
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_EXECUTION_FINANCEMENT";
+
+  String GET_ONE_PATH = "obtention/un";
+
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  Response getOne(GetOneRequestDto request);
+
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_EXECUTION_FINANCEMENT";
+
+  String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
+
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_EXECUTION_FINANCEMENT";
+
+  String UPDATE_PATH = "";
+
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  Response update(FundingExecutionUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class FundingExecutionUpdateRequestDto extends ByIdentifierRequestDto
+      implements FundingExecutionSaveRequestDto {
+    @JsonbProperty(JSON_FUNDING_IDENTIFIER)
+    private String fundingIdentifier;
+
+    @JsonbProperty(JSON_AMOUNT)
+    private Integer amount;
+  }
+
+  String DELETE_IDENTIFIER = "SUPPRESSION_EXECUTION_FINANCEMENT";
+
+  String DELETE_PATH = "";
+
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  Response delete(DeleteOneRequestDto request);
+}
