@@ -295,6 +295,10 @@ public class StudentDto extends AbstractIdentifiableCodableAuditableDto {
   public static final String JSON_ASSIGNMENT_TYPE_AS_STRING = "typeAffectationChaine";
   public static final String JSON_SENIORITY_AS_STRING = "ancienneteChaine";
 
+  public static final String JSON_THIS_IDENTIFIER = "idEleve";
+
+  public static final String JSON_THIS_AS_STRING = "eleveChaine";
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

@@ -64,6 +64,10 @@ public class PeriodDto extends AbstractIdentifiableCodableNamableDto {
   
   public static final String JSON_OPENED = "ouvert";
   
+  public static final String JSON_THIS_IDENTIFIER = "idPeriode";
+
+  public static final String JSON_THIS_AS_STRING = "periodeChaine";
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

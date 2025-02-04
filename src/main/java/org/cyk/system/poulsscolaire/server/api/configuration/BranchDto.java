@@ -15,6 +15,11 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 public class BranchDto extends AbstractIdentifiableCodableNamableDto {
+  
+  public static final String JSON_THIS_IDENTIFIER = "idBranche";
+  
+  public static final String JSON_THIS_AS_STRING = "brancheChaine";
+  
   /**
    * Nom pour lecture humaine de la classe.
    */
