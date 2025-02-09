@@ -16,11 +16,11 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 @Getter
 @Setter
 public class SubsidyDecisionPaymentFilter extends AbstractIdentifiableFilter {
-  
+
   String schoolIdentifier;
   String periodIdentifier;
   String studentIdentifier;
-  String schoolingIdentifier;
+  String subsidyDecisionIdentifier;
   Integer fromAmount;
   Integer toAmount;
 
@@ -36,7 +36,7 @@ public class SubsidyDecisionPaymentFilter extends AbstractIdentifiableFilter {
     schoolIdentifier = getSchoolIdentifier(filter);
     periodIdentifier = getPeriodIdentifier(filter);
     studentIdentifier = getStudentIdentifier(filter);
-    schoolingIdentifier = getSchoolingIdentifier(filter);
+    subsidyDecisionIdentifier = getSubsidyDecisionIdentifier(filter);
     fromAmount = getFromAmount(filter);
     toAmount = getToAmount(filter);
   }
@@ -47,7 +47,7 @@ public class SubsidyDecisionPaymentFilter extends AbstractIdentifiableFilter {
     setSchoolIdentifier(filter, schoolIdentifier);
     setPeriodIdentifier(filter, periodIdentifier);
     setStudentIdentifier(filter, studentIdentifier);
-    setSchoolingIdentifier(filter, schoolingIdentifier);
+    setSubsidyDecisionIdentifier(filter, subsidyDecisionIdentifier);
     setFromAmount(filter, fromAmount);
     setToAmount(filter, toAmount);
   }
@@ -79,13 +79,13 @@ public class SubsidyDecisionPaymentFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_STUDENT_IDENTIFIER));
   }
 
-  public static void setSchoolingIdentifier(FilterDto filter, String identifier) {
-    set(filter, JSON_SCHOOLING_IDENTIFIER, f -> f.getValueAsString(),
+  public static void setSubsidyDecisionIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_SUBSIDY_DECISION_IDENTIFIER, f -> f.getValueAsString(),
         f -> f.setValueAsString(identifier));
   }
 
-  public static String getSchoolingIdentifier(FilterDto filter) {
-    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOLING_IDENTIFIER));
+  public static String getSubsidyDecisionIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SUBSIDY_DECISION_IDENTIFIER));
   }
 
   public static void setFromAmount(FilterDto filter, Integer fromAmount) {
@@ -109,6 +109,6 @@ public class SubsidyDecisionPaymentFilter extends AbstractIdentifiableFilter {
   public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_PERIOD_IDENTIFIER = PeriodDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_STUDENT_IDENTIFIER = StudentDto.JSON_THIS_IDENTIFIER;
-  public static final String JSON_SCHOOLING_IDENTIFIER =
-      SubsidyDecisionDto.JSON_SCHOOLING_IDENTIFIER;
+  public static final String JSON_SUBSIDY_DECISION_IDENTIFIER =
+      SubsidyDecisionPaymentDto.JSON_SUBSIDY_DECISION_IDENTIFIER;
 }
