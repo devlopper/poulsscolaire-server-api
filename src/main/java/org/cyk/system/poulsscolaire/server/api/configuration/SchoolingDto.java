@@ -71,6 +71,9 @@ public class SchoolingDto extends AbstractIdentifiableCodableAuditableDto {
   @JsonbProperty(JSON_NOT_OPTIONAL_FEE_AMOUNT_REGISTRATION_VALUE_PART_AS_STRING)
   private String notOptionalFeeAmountRegistrationValuePartAsString;
 
+  public static final String JSON_THIS_IDENTIFIER = "idScolarite";
+  public static final String JSON_THIS_AS_STRING = "scolariteChaine";
+  
   public static final String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
   public static final String JSON_PRE_REGISTRATION_AMOUNT_AS_STRING = "montantPreInscriptionChaine";
   public static final String JSON_SUBSIDY_AMOUNT = "montantSubvention";

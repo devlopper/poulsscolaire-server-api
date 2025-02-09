@@ -5,7 +5,7 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.configuration.BranchDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingDto;
 
 /**
  * Cette classe représente une décision de subvention.
@@ -18,11 +18,11 @@ import org.cyk.system.poulsscolaire.server.api.configuration.BranchDto;
 @EqualsAndHashCode(callSuper = false)
 public class SubsidyDecisionDto extends AbstractIdentifiableCodableAuditableDto {
   
-  @JsonbProperty(JSON_BRANCH_IDENTIFIER)
-  private String branchIdentifier;
+  @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
+  private String schoolingIdentifier;
 
-  @JsonbProperty(JSON_BRANCH_AS_STRING)
-  private String branchAsString;
+  @JsonbProperty(JSON_SCHOOLING_AS_STRING)
+  private String schoolingAsString;
   
   @JsonbProperty(JSON_AMOUNT)
   private Integer amount;
@@ -30,8 +30,8 @@ public class SubsidyDecisionDto extends AbstractIdentifiableCodableAuditableDto 
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
   
-  public static final String JSON_BRANCH_IDENTIFIER = BranchDto.JSON_THIS_IDENTIFIER;
-  public static final String JSON_BRANCH_AS_STRING = BranchDto.JSON_THIS_AS_STRING;
+  public static final String JSON_SCHOOLING_IDENTIFIER = SchoolingDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_SCHOOLING_AS_STRING = SchoolingDto.JSON_THIS_AS_STRING;
   public static final String JSON_AMOUNT = "montant";
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
   

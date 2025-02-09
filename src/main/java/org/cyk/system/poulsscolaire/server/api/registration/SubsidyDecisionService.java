@@ -65,15 +65,15 @@ public interface SubsidyDecisionService extends SpecificService {
    *
    */
   interface SubsidyDecisionSaveRequest {
-    String getBranchIdentifier();
+    String getSchoolingIdentifier();
 
-    void setBranchIdentifier(String branchIdentifier);
+    void setSchoolingIdentifier(String schoolingIdentifier);
 
     int getAmount();
 
     void setAmount(int amount);
 
-    String JSON_BRANCH_IDENTIFIER = SubsidyDecisionDto.JSON_BRANCH_IDENTIFIER;
+    String JSON_SCHOOLING_IDENTIFIER = SubsidyDecisionDto.JSON_SCHOOLING_IDENTIFIER;
     String JSON_AMOUNT = SubsidyDecisionDto.JSON_AMOUNT;
   }
 
@@ -87,8 +87,8 @@ public interface SubsidyDecisionService extends SpecificService {
   @Setter
   class SubsidyDecisionCreateRequestDto extends AbstractCodableCreateRequestJsonDto
       implements SubsidyDecisionSaveRequest {
-    @JsonbProperty(JSON_BRANCH_IDENTIFIER)
-    private String branchIdentifier;
+    @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
+    private String schoolingIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private int amount;
@@ -163,8 +163,8 @@ public interface SubsidyDecisionService extends SpecificService {
   @Setter
   class SubsidyDecisionUpdateRequestDto extends AbstractCodableUpdateRequestJsonDto
       implements SubsidyDecisionSaveRequest {
-    @JsonbProperty(JSON_BRANCH_IDENTIFIER)
-    private String branchIdentifier;
+    @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
+    private String schoolingIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private int amount;

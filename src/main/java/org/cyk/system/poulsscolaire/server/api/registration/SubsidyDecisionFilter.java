@@ -20,7 +20,7 @@ public class SubsidyDecisionFilter extends AbstractIdentifiableFilter {
   String schoolIdentifier;
   String periodIdentifier;
   String studentIdentifier;
-  String branchIdentifier;
+  String schoolingIdentifier;
   Integer fromAmount;
   Integer toAmount;
 
@@ -36,7 +36,7 @@ public class SubsidyDecisionFilter extends AbstractIdentifiableFilter {
     schoolIdentifier = getSchoolIdentifier(filter);
     periodIdentifier = getPeriodIdentifier(filter);
     studentIdentifier = getStudentIdentifier(filter);
-    branchIdentifier = getBranchIdentifier(filter);
+    schoolingIdentifier = getSchoolingIdentifier(filter);
     fromAmount = getFromAmount(filter);
     toAmount = getToAmount(filter);
   }
@@ -47,7 +47,7 @@ public class SubsidyDecisionFilter extends AbstractIdentifiableFilter {
     setSchoolIdentifier(filter, schoolIdentifier);
     setPeriodIdentifier(filter, periodIdentifier);
     setStudentIdentifier(filter, studentIdentifier);
-    setBranchIdentifier(filter, branchIdentifier);
+    setSchoolingIdentifier(filter, schoolingIdentifier);
     setFromAmount(filter, fromAmount);
     setToAmount(filter, toAmount);
   }
@@ -79,13 +79,13 @@ public class SubsidyDecisionFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_STUDENT_IDENTIFIER));
   }
 
-  public static void setBranchIdentifier(FilterDto filter, String identifier) {
-    set(filter, JSON_BRANCH_IDENTIFIER, f -> f.getValueAsString(),
+  public static void setSchoolingIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_SCHOOLING_IDENTIFIER, f -> f.getValueAsString(),
         f -> f.setValueAsString(identifier));
   }
 
-  public static String getBranchIdentifier(FilterDto filter) {
-    return get(filter, d -> d.getFieldValueAsStringByName(JSON_BRANCH_IDENTIFIER));
+  public static String getSchoolingIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOLING_IDENTIFIER));
   }
 
   public static void setFromAmount(FilterDto filter, Integer fromAmount) {
@@ -109,6 +109,6 @@ public class SubsidyDecisionFilter extends AbstractIdentifiableFilter {
   public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_PERIOD_IDENTIFIER = PeriodDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_STUDENT_IDENTIFIER = StudentDto.JSON_THIS_IDENTIFIER;
-  public static final String JSON_BRANCH_IDENTIFIER =
-      SubsidyDecisionDto.JSON_BRANCH_IDENTIFIER;
+  public static final String JSON_SCHOOLING_IDENTIFIER =
+      SubsidyDecisionDto.JSON_SCHOOLING_IDENTIFIER;
 }
