@@ -33,4 +33,8 @@ public class SubsidyDecisionPaymentDto extends AbstractIdentifiableAuditableDto 
   public static final String JSON_SUBSIDY_DECISION_AS_STRING = "paiementChaine";
   public static final String JSON_AMOUNT = "montant";
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
+  
+  public static final String NAME = "paiement de décision de subvention";
+  
+  public static final String PLURAL_NAME = "paiements de décision de subvention";
 }
