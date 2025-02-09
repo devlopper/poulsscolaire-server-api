@@ -1,8 +1,8 @@
 package org.cyk.system.poulsscolaire.server.api.registration;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -85,7 +85,7 @@ public interface SubsidyDecisionService extends SpecificService {
    */
   @Getter
   @Setter
-  class SubsidyDecisionCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto
+  class SubsidyDecisionCreateRequestDto extends AbstractCodableCreateRequestJsonDto
       implements SubsidyDecisionSaveRequest {
     @JsonbProperty(JSON_BRANCH_IDENTIFIER)
     private String branchIdentifier;
@@ -161,7 +161,7 @@ public interface SubsidyDecisionService extends SpecificService {
    */
   @Getter
   @Setter
-  class SubsidyDecisionUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto
+  class SubsidyDecisionUpdateRequestDto extends AbstractCodableUpdateRequestJsonDto
       implements SubsidyDecisionSaveRequest {
     @JsonbProperty(JSON_BRANCH_IDENTIFIER)
     private String branchIdentifier;

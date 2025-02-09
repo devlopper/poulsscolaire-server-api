@@ -1,6 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.registration;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import org.cyk.system.poulsscolaire.server.api.configuration.BranchDto;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class SubsidyDecisionDto extends AbstractIdentifiableCodableNamableAuditableDto {
+public class SubsidyDecisionDto extends AbstractIdentifiableCodableAuditableDto {
   
   @JsonbProperty(JSON_BRANCH_IDENTIFIER)
   private String branchIdentifier;
