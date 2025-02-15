@@ -21,6 +21,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
   String branchInstanceIdentifier;
   String subsidyDecisionIdentifier;
   String doesNotBelongsToSubsidyDecisionIdentifier;
+  Boolean subsidyRefused;
   Integer fromAmount;
   Integer toAmount;
 
@@ -40,6 +41,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     subsidyDecisionIdentifier = getSubsidyDecisionIdentifier(filter);
     doesNotBelongsToSubsidyDecisionIdentifier =
         getDoesNotBelongsToSubsidyDecisionIdentifier(filter);
+    subsidyRefused = getSubsidyRefused(filter);
     fromAmount = getFromAmount(filter);
     toAmount = getToAmount(filter);
   }
@@ -53,6 +55,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     setBranchInstanceIdentifier(filter, branchInstanceIdentifier);
     setSubsidyDecisionIdentifier(filter, subsidyDecisionIdentifier);
     setDoesNotBelongsToSubsidyDecisionIdentifier(filter, doesNotBelongsToSubsidyDecisionIdentifier);
+    setSubsidyRefused(filter, subsidyRefused);
     setFromAmount(filter, fromAmount);
     setToAmount(filter, toAmount);
   }
@@ -117,6 +120,14 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
         d -> d.getFieldValueAsStringByName(JSON_DOES_NOT_BELONGS_TO_SUBSIDY_DECISION_IDENTIFIER));
   }
 
+  public static void setSubsidyRefused(FilterDto filter, Boolean value) {
+    set(filter, JSON_SUBSIDY_REFUSED, f -> f.getValueAsString(), f -> f.setValueAsBoolean(value));
+  }
+
+  public static Boolean getSubsidyRefused(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_SUBSIDY_REFUSED));
+  }
+
   public static Integer getFromAmount(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_FROM_AMOUNT));
   }
@@ -140,4 +151,6 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
       RegistrationDto.JSON_SUBSIDY_DECISION_IDENTIFIER;
   public static final String JSON_DOES_NOT_BELONGS_TO_SUBSIDY_DECISION_IDENTIFIER =
       RegistrationDto.JSON_SUBSIDY_DECISION_IDENTIFIER + "Non";
+
+  public static final String JSON_SUBSIDY_REFUSED = RegistrationDto.JSON_SUBSIDY_REFUSED;
 }
