@@ -1,6 +1,7 @@
 package org.cyk.system.poulsscolaire.server.api.registration;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
@@ -92,6 +93,15 @@ class SubsidyDecisionClientTest {
     assertInstanceOf(IdentifiableResponseDto.class, client.updateSubsidies(request));
   }
 
+  @Test
+  void getSubsidy() {
+    SubsidyDecisionUpdateSubsidiesRequestDto request =
+        new SubsidyDecisionUpdateSubsidiesRequestDto();
+    request.setSubsidies(new ArrayList<>());
+    request.getSubsidies().add(new SubsidyDto());
+    assertNull(request.getSubsidy("1"));
+  }
+  
   @Test
   void deleteByIdentifier() {
     Response response = Mockito.mock(Response.class);

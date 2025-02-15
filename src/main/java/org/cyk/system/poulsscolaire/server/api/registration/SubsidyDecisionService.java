@@ -20,7 +20,10 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -197,7 +200,19 @@ public interface SubsidyDecisionService extends SpecificService {
     private Collection<SubsidyDto> subsidies;
 
     /**
-     * Cette classe représente une décision de subvention d'une inscription.
+     * Cette méthode permet d'obtenir {@link SubsidyDto} par identifiant {@link RegistrationDto}.
+     *
+     * @param registrationIdentifier identifiant {@link RegistrationDto}
+     * @return {@link SubsidyDto}
+     */
+    public SubsidyDto getSubsidy(String registrationIdentifier) {
+      return Optional.ofNullable(subsidies).orElse(Collections.emptyList()).stream()
+          .filter(s -> Objects.equals(s.registrationIdentifier, registrationIdentifier)).findFirst()
+          .orElse(null);
+    }
+
+    /**
+     * Cette classe représente une décision de subvention.
      *
      * @author Christian
      *
@@ -211,8 +226,8 @@ public interface SubsidyDecisionService extends SpecificService {
       @JsonbProperty("refuse")
       private Boolean refused;
 
-      @JsonbProperty("motif")
-      private String reason;
+      @JsonbProperty("motif_refus")
+      private String refusalReason;
     }
   }
 
