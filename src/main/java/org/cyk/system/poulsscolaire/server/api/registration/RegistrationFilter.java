@@ -16,6 +16,7 @@ import lombok.Setter;
 public class RegistrationFilter extends AbstractIdentifiableFilter {
 
   String schoolIdentifier;
+  String subsidyDecisionIdentifier;
   String periodIdentifier;
   String studentIdentifier;
   String branchInstanceIdentifier;
@@ -35,6 +36,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     periodIdentifier = getPeriodIdentifier(filter);
     studentIdentifier = getStudentIdentifier(filter);
     branchInstanceIdentifier = getBranchInstanceIdentifier(filter);
+    subsidyDecisionIdentifier = getSubsidyDecisionIdentifier(filter);
     fromAmount = getFromAmount(filter);
     toAmount = getToAmount(filter);
   }
@@ -46,6 +48,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     setPeriodIdentifier(filter, periodIdentifier);
     setStudentIdentifier(filter, studentIdentifier);
     setBranchInstanceIdentifier(filter, branchInstanceIdentifier);
+    setSubsidyDecisionIdentifier(filter, subsidyDecisionIdentifier);
     setFromAmount(filter, fromAmount);
     setToAmount(filter, toAmount);
   }
@@ -90,6 +93,15 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     set(filter, JSON_FROM_AMOUNT, f -> f.getValueAsInteger(), f -> f.setValueAsInteger(fromAmount));
   }
 
+  public static void setSubsidyDecisionIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_SUBSIDY_DECISION_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getSubsidyDecisionIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SUBSIDY_DECISION_IDENTIFIER));
+  }
+
   public static Integer getFromAmount(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_FROM_AMOUNT));
   }
@@ -109,4 +121,6 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
   public static final String JSON_STUDENT_IDENTIFIER = RegistrationDto.JSON_STUDENT_IDENTIFIER;
   public static final String JSON_BRANCH_INSTANCE_IDENTIFIER =
       RegistrationDto.JSON_BRANCH_INSTANCE_IDENTIFIER;
+  public static final String JSON_SUBSIDY_DECISION_IDENTIFIER =
+      RegistrationDto.JSON_SUBSIDY_DECISION_IDENTIFIER;
 }
