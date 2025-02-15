@@ -27,16 +27,22 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
 
   @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
   private String schoolingIdentifier;
-  
+
+  @JsonbProperty(JSON_SUBSIDY_DECISION_IDENTIFIER)
+  private String subsidyDecisionIdentifier;
+
+  @JsonbProperty(JSON_SUBSIDY_DECISION_AS_STRING)
+  private String subsidyDecisionAsString;
+
   @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
   private String branchInstanceIdentifier;
-  
+
   @JsonbProperty(JSON_SCHOOLING_2_IDENTIFIER)
   private String schooling2Identifier;
 
   @JsonbProperty(JSON_BRANCH_INSTANCE_2_IDENTIFIER)
   private String branchInstance2Identifier;
-  
+
   @JsonbProperty(JSON_SCHOOLING_AS_STRING)
   private String schoolingAsString;
 
@@ -57,16 +63,16 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
 
   @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT_AS_STRING)
   private String preRegistrationAmountAsString;
-  
+
   @JsonbProperty(JSON_SUBSIDY_AMOUNT)
   private Integer subsidyAmount;
-  
+
   @JsonbProperty(JSON_SUBSIDY_AMOUNT_AS_STRING)
   private String subsidyAmountAsString;
-  
+
   @JsonbProperty(JSON_BRANCH_INSTANCE_AS_STRING)
   private String branchInstanceAsString;
-  
+
   /*
    * Amount
    */
@@ -91,18 +97,17 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   @JsonbProperty(JSON_PAYABLE_REGISTRATION_AMOUNT_AS_STRING)
   private String payableRegistrationAmountAsString;
 
-  public static final String FIELD_STUDENT_IDENTIFIER = "studentIdentifier";
-  public static final String FIELD_STUDENT_AS_STRING = "studentAsString";
-  public static final String FIELD_SCHOOLING_IDENTIFIER = "schoolingIdentifier";
-  public static final String FIELD_SCHOOLING_AS_STRING = "schoolingAsString";
-  public static final String FIELD_ASSIGNMENT_TYPE_IDENTIFIER = "assignmentTypeIdentifier";
-  public static final String FIELD_ASSIGNMENT_TYPE_AS_STRING = "assignmentTypeAsString";
-  public static final String FIELD_SENIORITY_IDENTIFIER = "seniorityIdentifier";
-  public static final String FIELD_SENIORITY_AS_STRING = "seniorityAsString";
+  public static final String JSON_THIS_IDENTIFIER = "idInscription";
 
+  public static final String JSON_THIS_AS_STRING = "inscriptionChaine";
+  
   public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
   public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
   public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
+  public static final String JSON_SUBSIDY_DECISION_IDENTIFIER =
+      SubsidyDecisionDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_SUBSIDY_DECISION_AS_STRING =
+      SubsidyDecisionDto.JSON_THIS_AS_STRING;
   public static final String JSON_SCHOOLING_2_IDENTIFIER = "idScolarite2";
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
@@ -113,16 +118,16 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_SENIORITY_AS_STRING = "ancienneteChaine";
   public static final String JSON_BRANCH_INSTANCE_IDENTIFIER = "idClasse";
   public static final String JSON_BRANCH_INSTANCE_2_IDENTIFIER = "idClasse2";
-  
+
   public static final String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
   public static final String JSON_PRE_REGISTRATION_AMOUNT_AS_STRING = "montantPreInscriptionChaine";
   public static final String JSON_SUBSIDY_AMOUNT = "montantSubvention";
   public static final String JSON_SUBSIDY_AMOUNT_AS_STRING = "montantSubventionChaine";
-  
+
   public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
   public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";
-  
+
   public static final String JSON_BRANCH_INSTANCE_AS_STRING = "classeChaine";
 
   public static final String JSON_TOTAL_REGISTRATION_AMOUNT_AS_STRING =

@@ -3,6 +3,7 @@ package org.cyk.system.poulsscolaire.server.api.registration;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -18,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.Collection;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -168,6 +170,50 @@ public interface SubsidyDecisionService extends SpecificService {
 
     @JsonbProperty(JSON_AMOUNT)
     private int amount;
+  }
+
+  String UPDATE_SUBSIDIES_IDENTIFIER = "MISE_A_JOUR_SUBVENTIONS_DECISION_SUBVENTION";
+
+  String UPDATE_SUBSIDIES_PATH = "subventions";
+
+  @Path(UPDATE_SUBSIDIES_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_SUBSIDIES_IDENTIFIER,
+      description = "Ce service permet de mettre à jour les subventions")
+  Response updateSubsidies(SubsidyDecisionUpdateSubsidiesRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour des décisions de subvention d'inscriptions.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class SubsidyDecisionUpdateSubsidiesRequestDto extends ByIdentifierRequestDto {
+    @JsonbProperty("subventions")
+    private Collection<SubsidyDto> subsidies;
+
+    /**
+     * Cette classe représente une décision de subvention d'une inscription.
+     *
+     * @author Christian
+     *
+     */
+    @Getter
+    @Setter
+    public static class SubsidyDto {
+      @JsonbProperty(RegistrationDto.JSON_THIS_IDENTIFIER)
+      private String registrationIdentifier;
+
+      @JsonbProperty("refuse")
+      private Boolean refused;
+
+      @JsonbProperty("motif")
+      private String reason;
+    }
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_DECISION_SUBVENTION";

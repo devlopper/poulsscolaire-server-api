@@ -30,6 +30,10 @@ public class SubsidyDecisionDto extends AbstractIdentifiableCodableAuditableDto 
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
   
+  public static final String JSON_THIS_IDENTIFIER = "idDecisionSubvention";
+
+  public static final String JSON_THIS_AS_STRING = "decisionSubventionChaine";
+  
   public static final String JSON_SCHOOLING_IDENTIFIER = SchoolingDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_SCHOOLING_AS_STRING = SchoolingDto.JSON_THIS_AS_STRING;
   public static final String JSON_AMOUNT = "montant";

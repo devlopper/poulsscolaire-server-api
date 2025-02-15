@@ -6,9 +6,12 @@ import static org.mockito.ArgumentMatchers.any;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.ws.rs.core.Response;
+import java.util.ArrayList;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateSubsidiesRequestDto;
+import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateSubsidiesRequestDto.SubsidyDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -73,6 +76,20 @@ class SubsidyDecisionClientTest {
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class,
         client.update(new SubsidyDecisionUpdateRequestDto()));
+  }
+
+  @Test
+  void updateSubsidies() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiableResponseDto.class))
+        .thenReturn(new IdentifiableResponseDto());
+    Mockito.when(service.updateSubsidies(any())).thenReturn(response);
+    SubsidyDecisionUpdateSubsidiesRequestDto request =
+        new SubsidyDecisionUpdateSubsidiesRequestDto();
+    request.setSubsidies(new ArrayList<>());
+    request.getSubsidies().add(new SubsidyDto());
+    assertInstanceOf(IdentifiableResponseDto.class, client.updateSubsidies(request));
   }
 
   @Test

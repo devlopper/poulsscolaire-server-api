@@ -44,22 +44,6 @@ public interface RegistrationService extends SpecificService {
   String CREATE_PATH = "";
 
   /**
-   * Cette méthode permet de créer une inscription.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(CREATE_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = CREATE_IDENTIFIER, summary = "Création d'une inscription",
-      description = "Ce service permet de créer une inscription")
-  @APIResponse(responseCode = "201",
-      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(RegistrationCreateRequestDto request);
-
-  /**
    * Cette classe représente la requête d'enregistrement.
    *
    * @author Christian
@@ -97,6 +81,22 @@ public interface RegistrationService extends SpecificService {
     String JSON_BRANCH_INSTANCE_IDENTIFIER = "idClasse";
     String JSON_PRE_REGISTRATION_AMOUNT = "montantPreInscription";
   }
+  
+  /**
+   * Cette méthode permet de créer une inscription.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER, summary = "Création d'une inscription",
+      description = "Ce service permet de créer une inscription")
+  @APIResponse(responseCode = "201",
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(RegistrationCreateRequestDto request);
 
   /**
    * Cette classe représente la requête de création.
@@ -199,18 +199,6 @@ public interface RegistrationService extends SpecificService {
       description = "Ce service permet de mettre à jour une inscription")
   Response update(RegistrationUpdateRequestDto request);
 
-  String UPDATE_AMOUNTS_TO_ZERO_IDENTIFIER = "MISE_A_JOUR_MONTANTS_A_ZERO_INSCRIPTION";
-
-  String UPDATE_AMOUNTS_TO_ZERO_PATH = "montants-a-zero";
-
-  @Path(UPDATE_AMOUNTS_TO_ZERO_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = UPDATE_AMOUNTS_TO_ZERO_IDENTIFIER,
-      description = "Ce service permet de mettre à jour les montants à zéro d'une inscription")
-  Response updateAmountsToZero(ByIdentifierRequestDto request);
-
   /**
    * Cette classe représente la requête de mise à jour.
    *
@@ -239,6 +227,18 @@ public interface RegistrationService extends SpecificService {
     @JsonbProperty(JSON_PRE_REGISTRATION_AMOUNT)
     private int preRegistrationAmount;
   }
+  
+  String UPDATE_AMOUNTS_TO_ZERO_IDENTIFIER = "MISE_A_JOUR_MONTANTS_A_ZERO_INSCRIPTION";
+
+  String UPDATE_AMOUNTS_TO_ZERO_PATH = "montants-a-zero";
+
+  @Path(UPDATE_AMOUNTS_TO_ZERO_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_AMOUNTS_TO_ZERO_IDENTIFIER,
+      description = "Ce service permet de mettre à jour les montants à zéro d'une inscription")
+  Response updateAmountsToZero(ByIdentifierRequestDto request);
 
   String DELETE_IDENTIFIER = "SUPPRESSION_INSCRIPTION";
 

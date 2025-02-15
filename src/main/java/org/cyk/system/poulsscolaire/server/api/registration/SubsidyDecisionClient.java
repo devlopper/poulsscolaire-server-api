@@ -22,6 +22,7 @@ import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateSubsidiesRequestDto;
 
 /**
  * Cette classe représente un client de {@link SubsidyDecisionService}.
@@ -144,6 +145,11 @@ public class SubsidyDecisionClient extends AbstractClient<SubsidyDecisionService
   public IdentifiableResponseDto update(SubsidyDecisionUpdateRequestDto request) {
     return new IdentifiableExecutor(SubsidyDecisionService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
+  }
+
+  public IdentifiableResponseDto updateSubsidies(SubsidyDecisionUpdateSubsidiesRequestDto request) {
+    return new IdentifiableExecutor(SubsidyDecisionService.UPDATE_SUBSIDIES_IDENTIFIER)
+        .execute(() -> service().updateSubsidies(request));
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
