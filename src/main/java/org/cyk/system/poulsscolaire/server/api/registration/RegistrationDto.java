@@ -34,6 +34,15 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   @JsonbProperty(JSON_SUBSIDY_DECISION_AS_STRING)
   private String subsidyDecisionAsString;
 
+  @JsonbProperty(JSON_SUBSIDY_REFUSED)
+  public Boolean subsidyRefused;
+  
+  @JsonbProperty(JSON_SUBSIDY_REFUSED_AS_STRING)
+  public String subsidyRefusedAsString;
+  
+  @JsonbProperty(JSON_SUBSIDY_REFUSAL_REASON)
+  public String subsidyRefusalReason;
+  
   @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
   private String branchInstanceIdentifier;
 
@@ -124,6 +133,10 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_SUBSIDY_AMOUNT = "montantSubvention";
   public static final String JSON_SUBSIDY_AMOUNT_AS_STRING = "montantSubventionChaine";
 
+  public static final String JSON_SUBSIDY_REFUSED = "subventionRefusee";
+  public static final String JSON_SUBSIDY_REFUSED_AS_STRING = JSON_SUBSIDY_REFUSED + "Chaine";
+  public static final String JSON_SUBSIDY_REFUSAL_REASON = "motifRefusSubvention";
+  
   public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
   public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";

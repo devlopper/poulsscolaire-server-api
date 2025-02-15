@@ -16,10 +16,11 @@ import lombok.Setter;
 public class RegistrationFilter extends AbstractIdentifiableFilter {
 
   String schoolIdentifier;
-  String subsidyDecisionIdentifier;
   String periodIdentifier;
   String studentIdentifier;
   String branchInstanceIdentifier;
+  String subsidyDecisionIdentifier;
+  String doesNotBelongsToSubsidyDecisionIdentifier;
   Integer fromAmount;
   Integer toAmount;
 
@@ -37,6 +38,8 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     studentIdentifier = getStudentIdentifier(filter);
     branchInstanceIdentifier = getBranchInstanceIdentifier(filter);
     subsidyDecisionIdentifier = getSubsidyDecisionIdentifier(filter);
+    doesNotBelongsToSubsidyDecisionIdentifier =
+        getDoesNotBelongsToSubsidyDecisionIdentifier(filter);
     fromAmount = getFromAmount(filter);
     toAmount = getToAmount(filter);
   }
@@ -49,6 +52,7 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     setStudentIdentifier(filter, studentIdentifier);
     setBranchInstanceIdentifier(filter, branchInstanceIdentifier);
     setSubsidyDecisionIdentifier(filter, subsidyDecisionIdentifier);
+    setDoesNotBelongsToSubsidyDecisionIdentifier(filter, doesNotBelongsToSubsidyDecisionIdentifier);
     setFromAmount(filter, fromAmount);
     setToAmount(filter, toAmount);
   }
@@ -102,6 +106,17 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_SUBSIDY_DECISION_IDENTIFIER));
   }
 
+  public static void setDoesNotBelongsToSubsidyDecisionIdentifier(FilterDto filter,
+      String identifier) {
+    set(filter, JSON_DOES_NOT_BELONGS_TO_SUBSIDY_DECISION_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getDoesNotBelongsToSubsidyDecisionIdentifier(FilterDto filter) {
+    return get(filter,
+        d -> d.getFieldValueAsStringByName(JSON_DOES_NOT_BELONGS_TO_SUBSIDY_DECISION_IDENTIFIER));
+  }
+
   public static Integer getFromAmount(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_FROM_AMOUNT));
   }
@@ -123,4 +138,6 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
       RegistrationDto.JSON_BRANCH_INSTANCE_IDENTIFIER;
   public static final String JSON_SUBSIDY_DECISION_IDENTIFIER =
       RegistrationDto.JSON_SUBSIDY_DECISION_IDENTIFIER;
+  public static final String JSON_DOES_NOT_BELONGS_TO_SUBSIDY_DECISION_IDENTIFIER =
+      RegistrationDto.JSON_SUBSIDY_DECISION_IDENTIFIER + "Non";
 }
