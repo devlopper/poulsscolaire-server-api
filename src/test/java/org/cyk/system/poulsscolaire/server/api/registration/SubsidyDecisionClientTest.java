@@ -13,6 +13,7 @@ import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionServi
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateSubsidiesRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateSubsidiesRequestDto.SubsidyDto;
+import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateSubsidiesToNullRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -94,6 +95,18 @@ class SubsidyDecisionClientTest {
   }
 
   @Test
+  void updateSubsidiesToNull() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiableResponseDto.class))
+        .thenReturn(new IdentifiableResponseDto());
+    Mockito.when(service.updateSubsidiesToNull(any())).thenReturn(response);
+    SubsidyDecisionUpdateSubsidiesToNullRequestDto request =
+        new SubsidyDecisionUpdateSubsidiesToNullRequestDto();
+    assertInstanceOf(IdentifiableResponseDto.class, client.updateSubsidiesToNull(request));
+  }
+
+  @Test
   void getSubsidy() {
     SubsidyDecisionUpdateSubsidiesRequestDto request =
         new SubsidyDecisionUpdateSubsidiesRequestDto();
@@ -101,7 +114,7 @@ class SubsidyDecisionClientTest {
     request.getSubsidies().add(new SubsidyDto());
     assertNull(request.getSubsidy("1"));
   }
-  
+
   @Test
   void deleteByIdentifier() {
     Response response = Mockito.mock(Response.class);

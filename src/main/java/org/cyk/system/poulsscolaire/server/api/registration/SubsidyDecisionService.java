@@ -231,6 +231,32 @@ public interface SubsidyDecisionService extends SpecificService {
     }
   }
 
+  String UPDATE_SUBSIDIES_TO_NULL_IDENTIFIER =
+      "MISE_A_JOUR_SUBVENTIONS_A_NULLE_DECISION_SUBVENTION";
+
+  String UPDATE_SUBSIDIES_TO_NULL_PATH = "subventions-a-nulle";
+
+  @Path(UPDATE_SUBSIDIES_TO_NULL_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_SUBSIDIES_TO_NULL_IDENTIFIER,
+      description = "Ce service permet de mettre à jour les subventions à nulle")
+  Response updateSubsidiesToNull(SubsidyDecisionUpdateSubsidiesToNullRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour des subvention à nulle.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class SubsidyDecisionUpdateSubsidiesToNullRequestDto extends ByIdentifierRequestDto {
+    @JsonbProperty(RegistrationDto.JSON_THIS_IDENTIFIER)
+    private Collection<String> registrationsIdentifiers;
+  }
+
   String DELETE_IDENTIFIER = "SUPPRESSION_DECISION_SUBVENTION";
 
   String DELETE_PATH = "";

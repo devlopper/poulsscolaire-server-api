@@ -23,6 +23,7 @@ import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionServi
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateSubsidiesRequestDto;
+import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionService.SubsidyDecisionUpdateSubsidiesToNullRequestDto;
 
 /**
  * Cette classe représente un client de {@link SubsidyDecisionService}.
@@ -150,6 +151,12 @@ public class SubsidyDecisionClient extends AbstractClient<SubsidyDecisionService
   public IdentifiableResponseDto updateSubsidies(SubsidyDecisionUpdateSubsidiesRequestDto request) {
     return new IdentifiableExecutor(SubsidyDecisionService.UPDATE_SUBSIDIES_IDENTIFIER)
         .execute(() -> service().updateSubsidies(request));
+  }
+
+  public IdentifiableResponseDto updateSubsidiesToNull(
+      SubsidyDecisionUpdateSubsidiesToNullRequestDto request) {
+    return new IdentifiableExecutor(SubsidyDecisionService.UPDATE_SUBSIDIES_TO_NULL_IDENTIFIER)
+        .execute(() -> service().updateSubsidiesToNull(request));
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
