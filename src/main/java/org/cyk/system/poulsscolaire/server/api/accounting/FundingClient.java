@@ -2,8 +2,10 @@ package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.Executor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -21,6 +23,8 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingReturnRequestDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingStatusUpdateResponseDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateAmountRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateAmountResponseDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingUpdateRequestDto;
@@ -54,6 +58,50 @@ public class FundingClient extends AbstractClient<FundingService>
         .execute(() -> service().create(request));
   }
 
+  /**
+   * {@link FundingService#transmit}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public FundingStatusUpdateResponseDto transmit(ByIdentifierRequestDto request) {
+    return new FundingStatusUpdateExecutor(FundingService.TRANSMIT_IDENTIFIER)
+        .execute(() -> service().transmit(request));
+  }
+
+  /**
+   * {@link FundingService#accept}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public FundingStatusUpdateResponseDto accept(ByIdentifierRequestDto request) {
+    return new FundingStatusUpdateExecutor(FundingService.ACCEPT_IDENTIFIER)
+        .execute(() -> service().accept(request));
+  }
+
+  /**
+   * {@link FundingService#approve}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public FundingStatusUpdateResponseDto approve(ByIdentifierRequestDto request) {
+    return new FundingStatusUpdateExecutor(FundingService.APPROVE_IDENTIFIER)
+        .execute(() -> service().approve(request));
+  }
+
+  /**
+   * {@link FundingService#returnBack}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public FundingStatusUpdateResponseDto returnBack(FundingReturnRequestDto request) {
+    return new FundingStatusUpdateExecutor(FundingService.RETURN_IDENTIFIER)
+        .execute(() -> service().returnBack(request));
+  }
+  
   /**
    * {@link FundingService#getMany}.
    *
@@ -178,5 +226,23 @@ public class FundingClient extends AbstractClient<FundingService>
     request.setAuditWho(auditWho);
     request.setAuditSession(auditSession);
     return delete(request);
+  }
+  
+  /**
+   * Cette classe représente un exécuteur de mise à jour du statut .
+   *
+   * @author Christian
+   *
+   */
+  public class FundingStatusUpdateExecutor extends Executor<FundingStatusUpdateResponseDto> {
+
+    /**
+     * Cette méthode permet d'instancier.
+     *
+     * @param identifier identifiant
+     */
+    public FundingStatusUpdateExecutor(String identifier) {
+      super(FundingStatusUpdateResponseDto.class, identifier);
+    }
   }
 }

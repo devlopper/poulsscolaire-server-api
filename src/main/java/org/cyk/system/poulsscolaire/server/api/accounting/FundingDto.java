@@ -2,10 +2,12 @@ package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDateTime;
 import java.time.Month;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingStatusUpdateResponseDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.DepartmentDto;
 
 /**
@@ -64,6 +66,9 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_COMMITMENT_AMOUNT_AS_STRING)
   private String commitmentAmountAsString;
 
+  @JsonbProperty(JSON_INPUT_DEADLINE)
+  private LocalDateTime inputDeadline;
+  
   @JsonbProperty(JSON_INPUT_DEADLINE_AS_STRING)
   private String inputDeadlineAsString;
   
@@ -113,6 +118,21 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
 
   /* Status End */
 
+  /**
+   * Cette méthode permet de copier à partir d'une réponse de changement de statut.
+   *
+   * @param statusUpdateResponse {@link FundingStatusUpdateResponseDto}
+   */
+  public void copy(FundingStatusUpdateResponseDto statusUpdateResponse) {
+    status = statusUpdateResponse.getStatus();
+    statusAsString = statusUpdateResponse.getStatusAsString();
+    statusReason = statusUpdateResponse.getReason();
+    transmitable = statusUpdateResponse.getTransmitable();
+    acceptable = statusUpdateResponse.getAcceptable();
+    approvable = statusUpdateResponse.getApprovable();
+    returnable = statusUpdateResponse.getReturnable();
+  }
+  
   public static final String JSON_THIS_IDENTIFIER = "idFinancement";
 
   public static final String JSON_THIS_AS_STRING = "financementChaine";
@@ -149,6 +169,8 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
 
   public static final String JSON_JUSTIFICATION = "justification";
 
+  public static final String JSON_INPUT_DEADLINE = "delaiSaisie";
+  
   public static final String JSON_INPUT_DEADLINE_AS_STRING = "delaiSaisieChaine";
   
   /**

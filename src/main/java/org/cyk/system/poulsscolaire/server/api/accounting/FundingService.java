@@ -361,4 +361,216 @@ public interface FundingService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER)
   Response delete(DeleteOneRequestDto request);
+  
+  /**
+   * Cette classe représente la requête de retour.
+   *
+   * @author AKM
+   *
+   */
+  @Getter
+  @Setter
+  class FundingReturnRequestDto extends ByIdentifierRequestDto {
+
+    /**
+     * Raison.
+     */
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+
+    /**
+     * {@link #reason}.
+     */
+    public static final String JSON_REASON = "raison";
+  }
+
+  /**
+   * Cette classe représente la réponse de mise à jour du statut.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class FundingStatusUpdateResponseDto extends IdentifiableResponseDto {
+
+    /**
+     * {@link FundingDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private FundingStatus status;
+
+    /**
+     * {@link FundingDto#getStatusAsString()}.
+     */
+    @JsonbProperty(JSON_STATUS_AS_STRING)
+    private String statusAsString;
+
+    /**
+     * {@link FundingDto#getStatusReason()}.
+     */
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+
+    /**
+     * {@link FundingDto#getTransmitable()}.
+     */
+    private Boolean transmitable;
+
+    /**
+     * {@link FundingDto#getAcceptable()}.
+     */
+    private Boolean acceptable;
+
+    /**
+     * {@link FundingDto#getReturnable()}.
+     */
+    private Boolean returnable;
+
+    /**
+     * {@link FundingDto#getApprovable()}.
+     */
+    private Boolean approvable;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status {@link FundingStatus}
+     * @param statusAsString représentation en chaine de caractères de
+     *        {@link FundingStatus}
+     * @param reason raison
+     */
+    public void initialize(FundingStatus status, String statusAsString, String reason) {
+      this.status = status;
+      this.statusAsString = statusAsString;
+      this.reason = reason;
+      transmitable = FundingStatus.TRANSMITTED.getPrevious().contains(status);
+      acceptable = FundingStatus.ACCEPTED.getPrevious().contains(status);
+      returnable = FundingStatus.RETURNED.getPrevious().contains(status);
+      approvable = FundingStatus.APPROVED.getPrevious().contains(status);
+    }
+
+    /**
+     * {@link FundingDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = FundingDto.JSON_STATUS;
+
+    /**
+     * {@link FundingDto#JSON_STATUS_AS_STRING}.
+     */
+    public static final String JSON_STATUS_AS_STRING = FundingDto.JSON_STATUS_AS_STRING;
+
+    /**
+     * {@link FundingDto#JSON_STATUS_REASON}.
+     */
+    public static final String JSON_REASON = FundingDto.JSON_STATUS_REASON;
+
+    /**
+     * {@link FundingDto#JSON_TRANSMITABLE}.
+     */
+    public static final String JSON_TRANSMITABLE = FundingDto.JSON_TRANSMITABLE;
+
+    /**
+     * {@link FundingDto#JSON_ACCEPTABLE}.
+     */
+    public static final String JSON_ACCEPTABLE = FundingDto.JSON_ACCEPTABLE;
+
+    /**
+     * {@link FundingDto#JSON_RETURNABLE}.
+     */
+    public static final String JSON_RETURNABLE = FundingDto.JSON_RETURNABLE;
+
+    /**
+     * {@link FundingDto#JSON_APPROVABLE}.
+     */
+    public static final String JSON_APPROVABLE = FundingDto.JSON_APPROVABLE;
+  }
+
+  /**
+   * Identifiant du service de transmission.
+   */
+  String TRANSMIT_IDENTIFIER = "TRANSMISSION_BUDGET";
+
+  /**
+   * Chemin du service de transmission.
+   */
+  String TRANSMIT_PATH = "transmission";
+
+  /**
+   * Cette méthode permet de transmettre {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(TRANSMIT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response transmit(ByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service d'acceptation.
+   */
+  String ACCEPT_IDENTIFIER = "ACCEPTATION_BUDGET";
+
+  /**
+   * Chemin du service d'acceptation.
+   */
+  String ACCEPT_PATH = "acceptation";
+
+  /**
+   * Cette méthode permet d'accepter {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ACCEPT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response accept(ByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service d'approbation.
+   */
+  String APPROVE_IDENTIFIER = "APPROBATION_BUDGET";
+
+  /**
+   * Chemin du service d'approbation.
+   */
+  String APPROVE_PATH = "approbation";
+
+  /**
+   * Cette méthode permet d'accepter {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(APPROVE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response approve(ByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de retour.
+   */
+  String RETURN_IDENTIFIER = "RETOUR_BUDGET";
+
+  /**
+   * Chemin du service de retour.
+   */
+  String RETURN_PATH = "retour";
+
+  /**
+   * Cette méthode permet de retourner {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(RETURN_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response returnBack(FundingReturnRequestDto request);
 }
