@@ -2,6 +2,7 @@ package org.cyk.system.poulsscolaire.server.api.accounting;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByFilterRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
@@ -489,7 +490,7 @@ public interface FundingService extends SpecificService {
   /**
    * Identifiant du service de transmission.
    */
-  String TRANSMIT_IDENTIFIER = "TRANSMISSION_BUDGET";
+  String TRANSMIT_IDENTIFIER = "TRANSMISSION_FINANCEMENT";
 
   /**
    * Chemin du service de transmission.
@@ -509,9 +510,31 @@ public interface FundingService extends SpecificService {
   Response transmit(ByIdentifierRequestDto request);
 
   /**
+   * Identifiant du service de transmission par filtre.
+   */
+  String TRANSMIT_BY_FILTER_IDENTIFIER = "TRANSMISSION_PAR_FILTRE_FINANCEMENT";
+
+  /**
+   * Chemin du service de transmission par filtre.
+   */
+  String TRANSMIT_BY_FILTER_PATH = "transmission-par-filtre";
+
+  /**
+   * Cette méthode permet de transmettre par filtre {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(TRANSMIT_BY_FILTER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response transmitByFilter(ByFilterRequestDto request);
+  
+  /**
    * Identifiant du service d'acceptation.
    */
-  String ACCEPT_IDENTIFIER = "ACCEPTATION_BUDGET";
+  String ACCEPT_IDENTIFIER = "ACCEPTATION_FINANCEMENT";
 
   /**
    * Chemin du service d'acceptation.
@@ -531,9 +554,31 @@ public interface FundingService extends SpecificService {
   Response accept(ByIdentifierRequestDto request);
 
   /**
+   * Identifiant du service d'acceptation par filtre.
+   */
+  String ACCEPT_BY_FILTER_IDENTIFIER = "ACCEPTATION_PAR_FILTRE_FINANCEMENT";
+
+  /**
+   * Chemin du service d'acceptation par filtre.
+   */
+  String ACCEPT_BY_FILTER_PATH = "acceptation-par-filtre";
+
+  /**
+   * Cette méthode permet d'accepter par filtre {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ACCEPT_BY_FILTER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response acceptByFilter(ByFilterRequestDto request);
+  
+  /**
    * Identifiant du service d'approbation.
    */
-  String APPROVE_IDENTIFIER = "APPROBATION_BUDGET";
+  String APPROVE_IDENTIFIER = "APPROBATION_FINANCEMENT";
 
   /**
    * Chemin du service d'approbation.
@@ -541,7 +586,7 @@ public interface FundingService extends SpecificService {
   String APPROVE_PATH = "approbation";
 
   /**
-   * Cette méthode permet d'accepter {@link FundingDto}.
+   * Cette méthode permet d'approuver {@link FundingDto}.
    *
    * @param request requête
    * @return réponse
@@ -553,9 +598,31 @@ public interface FundingService extends SpecificService {
   Response approve(ByIdentifierRequestDto request);
 
   /**
+   * Identifiant du service d'approbation par filtre.
+   */
+  String APPROVE_BY_FILTER_IDENTIFIER = "APPROBATION_PAR_FILTRE_FINANCEMENT";
+
+  /**
+   * Chemin du service d'approbation par filtre.
+   */
+  String APPROVE_BY_FILTER_PATH = "approbation-par-filtre";
+
+  /**
+   * Cette méthode permet d'approuver par filtre {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(APPROVE_BY_FILTER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response approveByFilter(ByFilterRequestDto request);
+  
+  /**
    * Identifiant du service de retour.
    */
-  String RETURN_IDENTIFIER = "RETOUR_BUDGET";
+  String RETURN_IDENTIFIER = "RETOUR_FINANCEMENT";
 
   /**
    * Chemin du service de retour.
@@ -573,4 +640,48 @@ public interface FundingService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response returnBack(FundingReturnRequestDto request);
+  
+  /**
+   * Identifiant du service de retour par filtre.
+   */
+  String RETURN_BY_FILTER_IDENTIFIER = "RETOUR_PAR_FILTRE_FINANCEMENT";
+
+  /**
+   * Chemin du service de retour par filtre.
+   */
+  String RETURN_BY_FILTER_PATH = "retour-par-filtre";
+
+  /**
+   * Cette méthode permet de retourner {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(RETURN_BY_FILTER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response returnBackByFilter(ByFilterWithReasonRequestDto request);
+  
+  /**
+   * Cette classe représente un requête par filtre motivée.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+  class ByFilterWithReasonRequestDto extends ByFilterRequestDto {
+
+    /**
+     * Raison.
+     */
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+
+    /**
+     * {@link #reason}.
+     */
+    public static final String JSON_REASON = "raison";
+  }
 }

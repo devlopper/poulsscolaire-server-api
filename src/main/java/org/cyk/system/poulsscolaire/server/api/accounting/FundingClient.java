@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.Executor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByFilterRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
@@ -15,12 +16,14 @@ import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiablesResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.ByFilterWithReasonRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingReturnRequestDto;
@@ -70,6 +73,17 @@ public class FundingClient extends AbstractClient<FundingService>
   }
 
   /**
+   * {@link FundingService#transmitByFilter}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiablesResponseDto transmitByFilter(ByFilterRequestDto request) {
+    return new FundingStatusUpdateByFilterExecutor(FundingService.TRANSMIT_BY_FILTER_IDENTIFIER)
+        .execute(() -> service().transmitByFilter(request));
+  }
+
+  /**
    * {@link FundingService#accept}.
    *
    * @param request requête
@@ -78,6 +92,17 @@ public class FundingClient extends AbstractClient<FundingService>
   public FundingStatusUpdateResponseDto accept(ByIdentifierRequestDto request) {
     return new FundingStatusUpdateExecutor(FundingService.ACCEPT_IDENTIFIER)
         .execute(() -> service().accept(request));
+  }
+
+  /**
+   * {@link FundingService#acceptByFilter}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiablesResponseDto acceptByFilter(ByFilterRequestDto request) {
+    return new FundingStatusUpdateByFilterExecutor(FundingService.ACCEPT_BY_FILTER_IDENTIFIER)
+        .execute(() -> service().acceptByFilter(request));
   }
 
   /**
@@ -92,6 +117,17 @@ public class FundingClient extends AbstractClient<FundingService>
   }
 
   /**
+   * {@link FundingService#approveByFilter}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiablesResponseDto approveByFilter(ByFilterRequestDto request) {
+    return new FundingStatusUpdateByFilterExecutor(FundingService.APPROVE_BY_FILTER_IDENTIFIER)
+        .execute(() -> service().approveByFilter(request));
+  }
+
+  /**
    * {@link FundingService#returnBack}.
    *
    * @param request requête
@@ -102,6 +138,17 @@ public class FundingClient extends AbstractClient<FundingService>
         .execute(() -> service().returnBack(request));
   }
   
+  /**
+   * {@link FundingService#returnBackByFilter}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiablesResponseDto returnBackByFilter(ByFilterWithReasonRequestDto request) {
+    return new FundingStatusUpdateByFilterExecutor(FundingService.RETURN_BY_FILTER_IDENTIFIER)
+        .execute(() -> service().returnBackByFilter(request));
+  }
+
   /**
    * {@link FundingService#getMany}.
    *
@@ -227,9 +274,9 @@ public class FundingClient extends AbstractClient<FundingService>
     request.setAuditSession(auditSession);
     return delete(request);
   }
-  
+
   /**
-   * Cette classe représente un exécuteur de mise à jour du statut .
+   * Cette classe représente un exécuteur de mise à jour du statut.
    *
    * @author Christian
    *
@@ -243,6 +290,24 @@ public class FundingClient extends AbstractClient<FundingService>
      */
     public FundingStatusUpdateExecutor(String identifier) {
       super(FundingStatusUpdateResponseDto.class, identifier);
+    }
+  }
+
+  /**
+   * Cette classe représente un exécuteur de mise à jour par filtre du statut.
+   *
+   * @author Christian
+   *
+   */
+  public class FundingStatusUpdateByFilterExecutor extends Executor<IdentifiablesResponseDto> {
+
+    /**
+     * Cette méthode permet d'instancier.
+     *
+     * @param identifier identifiant
+     */
+    public FundingStatusUpdateByFilterExecutor(String identifier) {
+      super(IdentifiablesResponseDto.class, identifier);
     }
   }
 }

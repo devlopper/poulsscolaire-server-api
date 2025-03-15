@@ -7,7 +7,9 @@ import static org.mockito.ArgumentMatchers.any;
 
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiablesResponseDto;
 import jakarta.ws.rs.core.Response;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.ByFilterWithReasonRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingGetManyResponseDto;
 import org.cyk.system.poulsscolaire.server.api.accounting.FundingService.FundingReturnRequestDto;
@@ -50,6 +52,16 @@ class FundingClientTest {
   }
 
   @Test
+  void transmitByFilter() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiablesResponseDto.class))
+        .thenReturn(new IdentifiablesResponseDto());
+    Mockito.when(service.transmitByFilter(any())).thenReturn(response);
+    assertInstanceOf(IdentifiablesResponseDto.class, client.transmitByFilter(null));
+  }
+
+  @Test
   void accept() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
@@ -57,6 +69,16 @@ class FundingClientTest {
         .thenReturn(new FundingStatusUpdateResponseDto());
     Mockito.when(service.accept(any())).thenReturn(response);
     assertInstanceOf(FundingStatusUpdateResponseDto.class, client.accept(null));
+  }
+
+  @Test
+  void acceptByFilter() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiablesResponseDto.class))
+        .thenReturn(new IdentifiablesResponseDto());
+    Mockito.when(service.acceptByFilter(any())).thenReturn(response);
+    assertInstanceOf(IdentifiablesResponseDto.class, client.acceptByFilter(null));
   }
 
   @Test
@@ -72,6 +94,16 @@ class FundingClientTest {
   }
 
   @Test
+  void approveByFilter() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiablesResponseDto.class))
+        .thenReturn(new IdentifiablesResponseDto());
+    Mockito.when(service.approveByFilter(any())).thenReturn(response);
+    assertInstanceOf(IdentifiablesResponseDto.class, client.approveByFilter(null));
+  }
+
+  @Test
   void returnBack() {
     Response response = Mockito.mock(Response.class);
     Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
@@ -80,6 +112,17 @@ class FundingClientTest {
     Mockito.when(service.returnBack(any())).thenReturn(response);
     assertInstanceOf(FundingStatusUpdateResponseDto.class,
         client.returnBack(new FundingReturnRequestDto()));
+  }
+
+  @Test
+  void returnBackByFilter() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiablesResponseDto.class))
+        .thenReturn(new IdentifiablesResponseDto());
+    Mockito.when(service.returnBackByFilter(any())).thenReturn(response);
+    assertInstanceOf(IdentifiablesResponseDto.class,
+        client.returnBackByFilter(new ByFilterWithReasonRequestDto()));
   }
 
   @Test
