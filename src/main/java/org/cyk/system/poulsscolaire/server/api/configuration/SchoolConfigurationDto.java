@@ -5,6 +5,8 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.cyk.system.poulsscolaire.server.api.accounting.AccountingAccountDto;
+import org.cyk.system.poulsscolaire.server.api.accounting.FundingSourceDto;
 
 /**
  * Cette classe représente une configuration de {@link SchoolConfigurationDto}.
@@ -28,16 +30,28 @@ public class SchoolConfigurationDto extends AbstractIdentifiableAuditableDto {
 
   @JsonbProperty(JSON_PAYMENT_ACCOUNTING_ACCOUNT_AS_STRING)
   private String paymentAccountingAccountAsString;
-  
+
+  @JsonbProperty(JSON_PAYMENT_FUNDING_SOURCE_IDENTIFIER)
+  private String paymentFundingSourceIdentifier;
+
+  @JsonbProperty(JSON_PAYMENT_FUNDING_SOURCE_AS_STRING)
+  private String paymentFundingSourceAsString;
+
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
 
   public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
 
   public static final String JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER =
-      "idCompteComptablePaiement";
+      AccountingAccountDto.JSON_THIS_IDENTIFIER + "Paiement";
 
   public static final String JSON_PAYMENT_ACCOUNTING_ACCOUNT_AS_STRING =
       "compteComptablePaiementChaine";
+
+  public static final String JSON_PAYMENT_FUNDING_SOURCE_IDENTIFIER =
+      FundingSourceDto.JSON_THIS_IDENTIFIER + "Paiement";
+
+  public static final String JSON_PAYMENT_FUNDING_SOURCE_AS_STRING =
+      "sourceFinancementPaiementChaine";
 
   /**
    * Nom pour lecture humaine de la classe.

@@ -74,9 +74,15 @@ public interface SchoolConfigurationService extends SpecificService {
 
     void setPaymentAccountingAccountIdentifier(String paymentAccountingAccountIdentifier);
 
+    String getPaymentFundingSourceIdentifier();
+
+    void setPaymentFundingSourceIdentifier(String paymentFundingSourceIdentifier);
+
     String JSON_SCHOOL_IDENTIFIER = SchoolConfigurationDto.JSON_SCHOOL_IDENTIFIER;
     String JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER =
         SchoolConfigurationDto.JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER;
+    String JSON_PAYMENT_FUNDING_SOURCE_IDENTIFIER =
+        SchoolConfigurationDto.JSON_PAYMENT_FUNDING_SOURCE_IDENTIFIER;
   }
 
   /**
@@ -94,6 +100,9 @@ public interface SchoolConfigurationService extends SpecificService {
 
     @JsonbProperty(JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER)
     private String paymentAccountingAccountIdentifier;
+
+    @JsonbProperty(JSON_PAYMENT_FUNDING_SOURCE_IDENTIFIER)
+    private String paymentFundingSourceIdentifier;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_CONFIGURATION_ECOLE";
@@ -174,6 +183,9 @@ public interface SchoolConfigurationService extends SpecificService {
 
     @JsonbProperty(JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER)
     private String paymentAccountingAccountIdentifier;
+
+    @JsonbProperty(JSON_PAYMENT_FUNDING_SOURCE_IDENTIFIER)
+    private String paymentFundingSourceIdentifier;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_CONFIGURATION_ECOLE";
