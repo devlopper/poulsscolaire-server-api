@@ -3,6 +3,7 @@ package org.cyk.system.poulsscolaire.server.api.accounting;
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import java.time.Month;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -91,6 +92,11 @@ public class FundingFilter extends AbstractIdentifiableFilter {
 
   public static Integer getMonthIndex(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsIntegerByName(JSON_MONTH_INDEX));
+  }
+
+  public static Month getMonthFromIndex(FilterDto filter) {
+    return Optional.ofNullable(getMonthIndex(filter)).filter(index -> index > -1 && index < 13)
+        .map(index -> Month.values()[index]).orElse(null);
   }
 
   public static void setDepartmentIdentifier(FilterDto filter, String identifier) {
