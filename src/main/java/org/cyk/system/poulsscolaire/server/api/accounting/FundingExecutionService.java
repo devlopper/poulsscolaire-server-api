@@ -18,6 +18,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -79,12 +80,18 @@ public interface FundingExecutionService extends SpecificService {
      */
     void setFundingIdentifier(String budgetIdentifier);
 
+    LocalDateTime getDate();
+
+    void setDate(LocalDateTime date);
+    
     Integer getAmount();
 
     void setAmount(Integer amount);
 
     String JSON_FUNDING_IDENTIFIER = FundingExecutionDto.JSON_FUNDING_IDENTIFIER;
 
+    String JSON_DATE = FundingExecutionDto.JSON_DATE;
+    
     String JSON_AMOUNT = FundingExecutionDto.JSON_AMOUNT;
   }
 
@@ -101,6 +108,9 @@ public interface FundingExecutionService extends SpecificService {
     @JsonbProperty(JSON_FUNDING_IDENTIFIER)
     private String fundingIdentifier;
 
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
+    
     @JsonbProperty(JSON_AMOUNT)
     private Integer amount;
   }
@@ -177,6 +187,9 @@ public interface FundingExecutionService extends SpecificService {
     @JsonbProperty(JSON_FUNDING_IDENTIFIER)
     private String fundingIdentifier;
 
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
+    
     @JsonbProperty(JSON_AMOUNT)
     private Integer amount;
   }

@@ -18,6 +18,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -90,6 +91,7 @@ public interface PaymentService extends SpecificService {
     String JSON_MODE_IDENTIFIER = PaymentDto.JSON_MODE_IDENTIFIER;
     String JSON_AMOUNT = PaymentDto.JSON_AMOUNT;
     String JSON_INITIATOR = PaymentDto.JSON_INITIATOR;
+    String JSON_DATE = "date";
     String JSON_IS_FOR_SUBSIDY = PaymentDto.JSON_IS_FOR_SUBSIDY;
   }
 
@@ -113,6 +115,9 @@ public interface PaymentService extends SpecificService {
     
     @JsonbProperty(JSON_INITIATOR)
     private String initiator;
+    
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
     
     @JsonbProperty(JSON_IS_FOR_SUBSIDY)
     private Boolean isForSubsidy;
