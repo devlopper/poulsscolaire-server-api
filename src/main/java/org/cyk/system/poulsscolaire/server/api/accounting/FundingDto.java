@@ -24,6 +24,9 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_BUDGET_IDENTIFIER)
   private String budgetIdentifier;
 
+  @JsonbProperty(JSON_BUDGET_YEAR)
+  private Integer budgetYear;
+  
   @JsonbProperty(JSON_BUDGET_AS_STRING)
   private String budgetAsString;
 
@@ -36,6 +39,9 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_MONTH)
   private Month month;
 
+  @JsonbProperty(JSON_MONTH_INDEX)
+  private Integer monthIndex;
+  
   @JsonbProperty(JSON_MONTH_AS_STRING)
   private String monthAsString;
 
@@ -139,6 +145,8 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
 
   public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
 
+  public static final String JSON_BUDGET_YEAR = BudgetDto.JSON_THIS_YEAR;
+  
   public static final String JSON_BUDGET_AS_STRING = BudgetDto.JSON_THIS_AS_STRING;
 
   public static final String JSON_DEPARTMENT_IDENTIFIER = DepartmentDto.JSON_THIS_IDENTIFIER;
@@ -147,6 +155,8 @@ public class FundingDto extends AbstractIdentifiableAuditableDto {
 
   public static final String JSON_MONTH = "mois";
 
+  public static final String JSON_MONTH_INDEX = "indexMois";
+  
   public static final String JSON_MONTH_AS_STRING = "moisChaine";
 
   public static final String JSON_ACCOUNTING_ACCOUNT_IDENTIFIER =

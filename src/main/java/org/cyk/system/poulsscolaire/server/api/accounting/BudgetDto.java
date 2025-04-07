@@ -102,6 +102,8 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
   
   public static final String JSON_THIS_IDENTIFIER = "idBudget";
 
+  public static final String JSON_THIS_YEAR = "annee";
+  
   public static final String JSON_THIS_AS_STRING = "budgetChaine";
 
   public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
