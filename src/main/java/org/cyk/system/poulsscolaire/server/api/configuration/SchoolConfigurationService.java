@@ -70,6 +70,10 @@ public interface SchoolConfigurationService extends SpecificService {
 
     void setSchoolIdentifier(String schoolIdentifier);
 
+    String getPaymentDepartmentIdentifier();
+
+    void setPaymentDepartmentIdentifier(String paymentDepartmentIdentifier);
+
     String getPaymentAccountingAccountIdentifier();
 
     void setPaymentAccountingAccountIdentifier(String paymentAccountingAccountIdentifier);
@@ -79,6 +83,8 @@ public interface SchoolConfigurationService extends SpecificService {
     void setPaymentFundingSourceIdentifier(String paymentFundingSourceIdentifier);
 
     String JSON_SCHOOL_IDENTIFIER = SchoolConfigurationDto.JSON_SCHOOL_IDENTIFIER;
+    String JSON_PAYMENT_DEPARTMENT_IDENTIFIER =
+        SchoolConfigurationDto.JSON_PAYMENT_DEPARTMENT_IDENTIFIER;
     String JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER =
         SchoolConfigurationDto.JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER;
     String JSON_PAYMENT_FUNDING_SOURCE_IDENTIFIER =
@@ -98,6 +104,9 @@ public interface SchoolConfigurationService extends SpecificService {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
 
+    @JsonbProperty(JSON_PAYMENT_DEPARTMENT_IDENTIFIER)
+    private String paymentDepartmentIdentifier;
+    
     @JsonbProperty(JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER)
     private String paymentAccountingAccountIdentifier;
 
@@ -181,6 +190,9 @@ public interface SchoolConfigurationService extends SpecificService {
     @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
     private String schoolIdentifier;
 
+    @JsonbProperty(JSON_PAYMENT_DEPARTMENT_IDENTIFIER)
+    private String paymentDepartmentIdentifier;
+    
     @JsonbProperty(JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER)
     private String paymentAccountingAccountIdentifier;
 

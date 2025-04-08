@@ -25,6 +25,12 @@ public class SchoolConfigurationDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_SCHOOL_AS_STRING)
   private String schoolAsString;
 
+  @JsonbProperty(JSON_PAYMENT_DEPARTMENT_IDENTIFIER)
+  private String paymentDepartmentIdentifier;
+
+  @JsonbProperty(JSON_PAYMENT_DEPARTMENT_AS_STRING)
+  private String paymentDepartmentAsString;
+  
   @JsonbProperty(JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER)
   private String paymentAccountingAccountIdentifier;
 
@@ -37,10 +43,16 @@ public class SchoolConfigurationDto extends AbstractIdentifiableAuditableDto {
   @JsonbProperty(JSON_PAYMENT_FUNDING_SOURCE_AS_STRING)
   private String paymentFundingSourceAsString;
 
-  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
 
-  public static final String JSON_SCHOOL_AS_STRING = "ecoleChaine";
+  public static final String JSON_SCHOOL_AS_STRING = SchoolDto.JSON_THIS_AS_STRING;
 
+  public static final String JSON_PAYMENT_DEPARTMENT_IDENTIFIER =
+      DepartmentDto.JSON_THIS_IDENTIFIER + "Paiement";
+
+  public static final String JSON_PAYMENT_DEPARTMENT_AS_STRING =
+      "departementPaiementChaine";
+  
   public static final String JSON_PAYMENT_ACCOUNTING_ACCOUNT_IDENTIFIER =
       AccountingAccountDto.JSON_THIS_IDENTIFIER + "Paiement";
 
