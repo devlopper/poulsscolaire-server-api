@@ -26,6 +26,10 @@ public class BranchInstanceDto extends AbstractIdentifiableNamableDto {
   public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
   public static final String JSON_BRANCH_IDENTIFIER = "idBranche";
   
+  public static final String JSON_THIS_IDENTIFIER = "idClasse";
+
+  public static final String JSON_THIS_AS_STRING = "classeChaine";
+  
   /**
    * Nom pour lecture humaine de la classe.
    */
