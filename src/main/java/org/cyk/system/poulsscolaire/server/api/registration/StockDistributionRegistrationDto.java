@@ -1,5 +1,7 @@
 package org.cyk.system.poulsscolaire.server.api.registration;
 
+import ci.gouv.dgbf.extension.core.segregation.HasDistributionAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDistributionIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasQuantityAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasQuantityDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRegistrationAsStringDto;
@@ -9,8 +11,6 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.configuration.HasStockDistributionAsStringDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.HasStockDistributionIdentifierDto;
 
 /**
  * Cette classe représente une distribution de stock à une inscription.
@@ -22,15 +22,15 @@ import org.cyk.system.poulsscolaire.server.api.configuration.HasStockDistributio
 @Setter
 @EqualsAndHashCode(callSuper = false)
 public class StockDistributionRegistrationDto extends AbstractIdentifiableAuditableDto
-    implements HasStockDistributionIdentifierDto, HasStockDistributionAsStringDto,
+    implements HasDistributionIdentifierDto, HasDistributionAsStringDto,
     HasRegistrationIdentifierDto, HasRegistrationAsStringDto, HasQuantityDto,
     HasQuantityAsStringDto {
 
-  @JsonbProperty(JSON_STOCK_DISTRIBUTION_IDENTIFIER)
-  String stockDistributionIdentifier;
+  @JsonbProperty(JSON_DISTRIBUTION_IDENTIFIER)
+  String distributionIdentifier;
 
-  @JsonbProperty(JSON_STOCK_DISTRIBUTION_AS_STRING)
-  String stockDistributionAsString;
+  @JsonbProperty(JSON_DISTRIBUTION_AS_STRING)
+  String distributionAsString;
 
   @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
   String registrationIdentifier;

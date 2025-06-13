@@ -21,8 +21,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.configuration.BranchInstanceDto;
-import org.cyk.system.poulsscolaire.server.api.fee.StockDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockMovementDto;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -67,16 +66,21 @@ public interface StockDistributionRegistrationService extends SpecificService {
    *
    */
   interface StockDistributionRegistrationSaveRequest {
-    String getStockIdentifier();
+    String getStockDistributionIdentifier();
 
-    void setStockIdentifier(String stockIdentifier);
+    void setStockDistributionIdentifier(String stockDistributionIdentifier);
 
-    String getBranchInstanceIdentifier();
+    String getRegistrationIdentifier();
 
-    void setBranchInstanceIdentifier(String branchInstanceIdentifier);
+    void setRegistrationIdentifier(String registrationIdentifier);
 
-    String JSON_STOCK_IDENTIFIER = StockDto.JSON_THIS_IDENTIFIER;
-    String JSON_BRANCH_INSTANCE_IDENTIFIER = BranchInstanceDto.JSON_THIS_IDENTIFIER;
+    Integer getQuantity();
+
+    void setQuantity(Integer quantity);
+    
+    String JSON_STOCK_DISTRIBUTION_IDENTIFIER = StockDistributionDto.JSON_THIS_IDENTIFIER;
+    String JSON_REGISTRATION_IDENTIFIER = RegistrationDto.JSON_THIS_IDENTIFIER;
+    String JSON_QUANTITY = StockMovementDto.JSON_QUANTITY;
   }
 
   /**
@@ -89,11 +93,14 @@ public interface StockDistributionRegistrationService extends SpecificService {
   @Setter
   class StockDistributionRegistrationCreateRequestDto extends AbstractAuditedRequestJsonDto
       implements StockDistributionRegistrationSaveRequest {
-    @JsonbProperty(JSON_STOCK_IDENTIFIER)
-    private String stockIdentifier;
+    @JsonbProperty(JSON_STOCK_DISTRIBUTION_IDENTIFIER)
+    private String stockDistributionIdentifier;
 
-    @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
-    private String branchInstanceIdentifier;
+    @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
+    private String registrationIdentifier;
+    
+    @JsonbProperty(JSON_QUANTITY)
+    private Integer quantity;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_DISTRIBUTION_STOCK_INSCRIPTION";
@@ -165,11 +172,14 @@ public interface StockDistributionRegistrationService extends SpecificService {
   @Setter
   class StockDistributionRegistrationUpdateRequestDto extends ByIdentifierRequestDto
       implements StockDistributionRegistrationSaveRequest {
-    @JsonbProperty(JSON_STOCK_IDENTIFIER)
-    private String stockIdentifier;
+    @JsonbProperty(JSON_STOCK_DISTRIBUTION_IDENTIFIER)
+    private String stockDistributionIdentifier;
 
-    @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
-    private String branchInstanceIdentifier;
+    @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
+    private String registrationIdentifier;
+    
+    @JsonbProperty(JSON_QUANTITY)
+    private Integer quantity;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_DISTRIBUTION_STOCK_INSCRIPTION";
