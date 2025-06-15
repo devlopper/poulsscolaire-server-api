@@ -1,4 +1,4 @@
-package org.cyk.system.poulsscolaire.server.api.registration;
+package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
@@ -19,12 +19,12 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.cyk.system.poulsscolaire.server.api.registration.StockDistributionService.StockDistributionCreateRequestDto;
-import org.cyk.system.poulsscolaire.server.api.registration.StockDistributionService.StockDistributionGetManyResponseDto;
-import org.cyk.system.poulsscolaire.server.api.registration.StockDistributionService.StockDistributionUpdateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationCreateRequestDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationUpdateRequestDto;
 
 /**
- * Cette classe représente un client de {@link StockDistributionService}.
+ * Cette classe représente un client de {@link StockDistributionRegistrationService}.
  *
  * @author Christian
  *
@@ -32,40 +32,43 @@ import org.cyk.system.poulsscolaire.server.api.registration.StockDistributionSer
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-public class StockDistributionClient extends AbstractClient<StockDistributionService>
-    implements GetByIdentifier<StockDistributionDto>, GetMany<StockDistributionGetManyResponseDto>,
+public class StockDistributionRegistrationClient
+    extends AbstractClient<StockDistributionRegistrationService>
+    implements GetByIdentifier<StockDistributionRegistrationDto>,
+    GetMany<StockDistributionRegistrationGetManyResponseDto>,
     DeleteByIdentifier<IdentifiableResponseDto> {
 
   @Override
-  public StockDistributionClient service(StockDistributionService service) {
-    return (StockDistributionClient) super.service(service);
+  public StockDistributionRegistrationClient service(StockDistributionRegistrationService service) {
+    return (StockDistributionRegistrationClient) super.service(service);
   }
 
   /**
-   * {@link StockDistributionService#create}.
+   * {@link StockDistributionRegistrationService#create}.
    *
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(StockDistributionCreateRequestDto request) {
-    return new CreateExecutor(StockDistributionService.CREATE_IDENTIFIER)
+  public CreateResponseDto create(StockDistributionRegistrationCreateRequestDto request) {
+    return new CreateExecutor(StockDistributionRegistrationService.CREATE_IDENTIFIER)
         .execute(() -> service().create(request));
   }
 
   /**
-   * {@link StockDistributionService#getMany}.
+   * {@link StockDistributionRegistrationService#getMany}.
    *
    * @param request requête
    * @return réponse
    */
-  public StockDistributionGetManyResponseDto getMany(GetManyRequestDto request) {
-    return new GetOneExecutor<StockDistributionGetManyResponseDto>(
-        StockDistributionGetManyResponseDto.class, StockDistributionService.GET_MANY_IDENTIFIER)
+  public StockDistributionRegistrationGetManyResponseDto getMany(GetManyRequestDto request) {
+    return new GetOneExecutor<StockDistributionRegistrationGetManyResponseDto>(
+        StockDistributionRegistrationGetManyResponseDto.class,
+        StockDistributionRegistrationService.GET_MANY_IDENTIFIER)
             .execute(() -> service().getMany(request));
   }
 
   /**
-   * {@link StockDistributionService#getMany}.
+   * {@link StockDistributionRegistrationService#getMany}.
    *
    * @param projection projection
    * @param filter filtre
@@ -74,8 +77,8 @@ public class StockDistributionClient extends AbstractClient<StockDistributionSer
    * @param auditSession audit session
    * @return réponse
    */
-  public StockDistributionGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
-      PageDto page, String auditWho, String auditSession) {
+  public StockDistributionRegistrationGetManyResponseDto getMany(ProjectionDto projection,
+      FilterDto filter, PageDto page, String auditWho, String auditSession) {
     GetManyRequestDto request = new GetManyRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);
@@ -85,13 +88,21 @@ public class StockDistributionClient extends AbstractClient<StockDistributionSer
     return getMany(request);
   }
 
-  public StockDistributionDto getOne(GetOneRequestDto request) {
-    return new GetOneExecutor<StockDistributionDto>(StockDistributionDto.class,
-        StockDistributionService.GET_ONE_IDENTIFIER).execute(() -> service().getOne(request));
+  /**
+   * {@link StockDistributionRegistrationService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public StockDistributionRegistrationDto getOne(GetOneRequestDto request) {
+    return new GetOneExecutor<StockDistributionRegistrationDto>(
+        StockDistributionRegistrationDto.class,
+        StockDistributionRegistrationService.GET_ONE_IDENTIFIER)
+            .execute(() -> service().getOne(request));
   }
 
   /**
-   * {@link StockDistributionService#getOne}.
+   * {@link StockDistributionRegistrationService#getOne}.
    *
    * @param projection projection
    * @param filter filtre
@@ -99,8 +110,8 @@ public class StockDistributionClient extends AbstractClient<StockDistributionSer
    * @param auditSession audit session
    * @return réponse
    */
-  public StockDistributionDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
-      String auditSession) {
+  public StockDistributionRegistrationDto getOne(ProjectionDto projection, FilterDto filter,
+      String auditWho, String auditSession) {
     GetOneRequestDto request = new GetOneRequestDto();
     request.setProjection(projection);
     request.setFilter(filter);
@@ -110,19 +121,20 @@ public class StockDistributionClient extends AbstractClient<StockDistributionSer
   }
 
   /**
-   * {@link StockDistributionService#getByIdentifier}.
+   * {@link StockDistributionRegistrationService#getByIdentifier}.
    *
    * @param request requête
    * @return groupe d'échéance
    */
-  public StockDistributionDto getByIdentifier(GetByIdentifierRequestDto request) {
-    return new GetOneExecutor<StockDistributionDto>(StockDistributionDto.class,
-        StockDistributionService.GET_BY_IDENTIFIER_IDENTIFIER)
+  public StockDistributionRegistrationDto getByIdentifier(GetByIdentifierRequestDto request) {
+    return new GetOneExecutor<StockDistributionRegistrationDto>(
+        StockDistributionRegistrationDto.class,
+        StockDistributionRegistrationService.GET_BY_IDENTIFIER_IDENTIFIER)
             .execute(() -> service().getByIdentifier(request));
   }
 
   /**
-   * {@link StockDistributionService#getByIdentifier}.
+   * {@link StockDistributionRegistrationService#getByIdentifier}.
    *
    * @param identifier identifiant
    * @param projection projection
@@ -131,8 +143,8 @@ public class StockDistributionClient extends AbstractClient<StockDistributionSer
    * @return réponse
    */
   @Override
-  public StockDistributionDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
+  public StockDistributionRegistrationDto getByIdentifier(String identifier,
+      ProjectionDto projection, String auditWho, String auditSession) {
     GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();
     request.setIdentifier(identifier);
     request.setProjection(projection);
@@ -141,18 +153,18 @@ public class StockDistributionClient extends AbstractClient<StockDistributionSer
     return getByIdentifier(request);
   }
 
-  public IdentifiableResponseDto update(StockDistributionUpdateRequestDto request) {
-    return new IdentifiableExecutor(StockDistributionService.UPDATE_IDENTIFIER)
+  public IdentifiableResponseDto update(StockDistributionRegistrationUpdateRequestDto request) {
+    return new IdentifiableExecutor(StockDistributionRegistrationService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-    return new IdentifiableExecutor(StockDistributionService.DELETE_IDENTIFIER)
+    return new IdentifiableExecutor(StockDistributionRegistrationService.DELETE_IDENTIFIER)
         .execute(() -> service().delete(request));
   }
 
   /**
-   * {@link StockDistributionService#delete}.
+   * {@link StockDistributionRegistrationService#delete}.
    *
    * @param identifier identifiant
    * @param auditWho audit acteur

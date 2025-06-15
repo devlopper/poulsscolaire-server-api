@@ -1,5 +1,6 @@
-package org.cyk.system.poulsscolaire.server.api.registration;
+package org.cyk.system.poulsscolaire.server.api.fee;
 
+import ci.gouv.dgbf.extension.core.segregation.HasDateDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -18,10 +19,11 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.fee.StockMovementDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.BranchInstanceDto;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -29,18 +31,18 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 /**
- * Cette interface représente les services de {@link StockDistributionRegistrationDto}.
+ * Cette interface représente les services de {@link StockDistributionDto}.
  *
  * @author Christian Yao Komenan
  *
  */
-@Path(value = StockDistributionRegistrationService.PATH)
-@Tag(name = "Gestion des distributions de stock à inscription")
-public interface StockDistributionRegistrationService extends SpecificService {
+@Path(value = StockDistributionService.PATH)
+@Tag(name = "Gestion des distributions de stock")
+public interface StockDistributionService extends SpecificService {
 
-  String PATH = "distributions-stock-inscription";
+  String PATH = "distributions-stock";
 
-  String CREATE_IDENTIFIER = "CREATION_DISTRIBUTION_STOCK_INSCRIPTION";
+  String CREATE_IDENTIFIER = "CREATION_DISTRIBUTION_STOCK";
 
   String CREATE_PATH = "";
 
@@ -57,7 +59,7 @@ public interface StockDistributionRegistrationService extends SpecificService {
   @Operation(operationId = CREATE_IDENTIFIER)
   @APIResponse(responseCode = "201",
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(StockDistributionRegistrationCreateRequestDto request);
+  Response create(StockDistributionCreateRequestDto request);
 
   /**
    * Cette interface représente une reuqête d'enregistrement.
@@ -65,22 +67,22 @@ public interface StockDistributionRegistrationService extends SpecificService {
    * @author Christian
    *
    */
-  interface StockDistributionRegistrationSaveRequest {
-    String getStockDistributionIdentifier();
+  interface StockDistributionSaveRequest {
+    String getStockIdentifier();
 
-    void setStockDistributionIdentifier(String stockDistributionIdentifier);
+    void setStockIdentifier(String stockIdentifier);
 
-    String getRegistrationIdentifier();
+    String getBranchInstanceIdentifier();
 
-    void setRegistrationIdentifier(String registrationIdentifier);
+    void setBranchInstanceIdentifier(String branchInstanceIdentifier);
 
-    Integer getQuantity();
+    LocalDateTime getDate();
 
-    void setQuantity(Integer quantity);
-    
-    String JSON_STOCK_DISTRIBUTION_IDENTIFIER = StockDistributionDto.JSON_THIS_IDENTIFIER;
-    String JSON_REGISTRATION_IDENTIFIER = RegistrationDto.JSON_THIS_IDENTIFIER;
-    String JSON_QUANTITY = StockMovementDto.JSON_QUANTITY;
+    void setDate(LocalDateTime date);
+
+    String JSON_STOCK_IDENTIFIER = StockDto.JSON_THIS_IDENTIFIER;
+    String JSON_BRANCH_INSTANCE_IDENTIFIER = BranchInstanceDto.JSON_THIS_IDENTIFIER;
+    String JSON_DATE = HasDateDto.JSON_DATE;
   }
 
   /**
@@ -91,19 +93,19 @@ public interface StockDistributionRegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  class StockDistributionRegistrationCreateRequestDto extends AbstractAuditedRequestJsonDto
-      implements StockDistributionRegistrationSaveRequest {
-    @JsonbProperty(JSON_STOCK_DISTRIBUTION_IDENTIFIER)
-    private String stockDistributionIdentifier;
+  class StockDistributionCreateRequestDto extends AbstractAuditedRequestJsonDto
+      implements StockDistributionSaveRequest {
+    @JsonbProperty(JSON_STOCK_IDENTIFIER)
+    private String stockIdentifier;
 
-    @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
-    private String registrationIdentifier;
-    
-    @JsonbProperty(JSON_QUANTITY)
-    private Integer quantity;
+    @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
+    private String branchInstanceIdentifier;
+
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
   }
 
-  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_DISTRIBUTION_STOCK_INSCRIPTION";
+  String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_DISTRIBUTION_STOCK";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
@@ -122,14 +124,14 @@ public interface StockDistributionRegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  public static class StockDistributionRegistrationGetManyResponseDto
-      extends AbstractGetByPageResponseDto<StockDistributionRegistrationDto> {
+  public static class StockDistributionGetManyResponseDto
+      extends AbstractGetByPageResponseDto<StockDistributionDto> {
 
     @JsonbProperty(JSON_DATAS)
-    private List<StockDistributionRegistrationDto> datas;
+    private List<StockDistributionDto> datas;
   }
 
-  String GET_ONE_IDENTIFIER = "OBTENTION_UN_DISTRIBUTION_STOCK_INSCRIPTION";
+  String GET_ONE_IDENTIFIER = "OBTENTION_UN_DISTRIBUTION_STOCK";
 
   String GET_ONE_PATH = "obtention/un";
 
@@ -140,7 +142,7 @@ public interface StockDistributionRegistrationService extends SpecificService {
   @Operation(operationId = GET_ONE_IDENTIFIER)
   Response getOne(GetOneRequestDto request);
 
-  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_DISTRIBUTION_STOCK_INSCRIPTION";
+  String GET_BY_IDENTIFIER_IDENTIFIER = "OBTENTION_PAR_IDENTIFIANT_DISTRIBUTION_STOCK";
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
@@ -151,7 +153,7 @@ public interface StockDistributionRegistrationService extends SpecificService {
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
-  String UPDATE_IDENTIFIER = "MISE_A_JOUR_DISTRIBUTION_STOCK_INSCRIPTION";
+  String UPDATE_IDENTIFIER = "MISE_A_JOUR_DISTRIBUTION_STOCK";
 
   String UPDATE_PATH = "";
 
@@ -160,7 +162,7 @@ public interface StockDistributionRegistrationService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER)
-  Response update(StockDistributionRegistrationUpdateRequestDto request);
+  Response update(StockDistributionUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -170,19 +172,19 @@ public interface StockDistributionRegistrationService extends SpecificService {
    */
   @Getter
   @Setter
-  class StockDistributionRegistrationUpdateRequestDto extends ByIdentifierRequestDto
-      implements StockDistributionRegistrationSaveRequest {
-    @JsonbProperty(JSON_STOCK_DISTRIBUTION_IDENTIFIER)
-    private String stockDistributionIdentifier;
+  class StockDistributionUpdateRequestDto extends ByIdentifierRequestDto
+      implements StockDistributionSaveRequest {
+    @JsonbProperty(JSON_STOCK_IDENTIFIER)
+    private String stockIdentifier;
 
-    @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
-    private String registrationIdentifier;
-    
-    @JsonbProperty(JSON_QUANTITY)
-    private Integer quantity;
+    @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
+    private String branchInstanceIdentifier;
+
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
   }
 
-  String DELETE_IDENTIFIER = "SUPPRESSION_DISTRIBUTION_STOCK_INSCRIPTION";
+  String DELETE_IDENTIFIER = "SUPPRESSION_DISTRIBUTION_STOCK";
 
   String DELETE_PATH = "";
 

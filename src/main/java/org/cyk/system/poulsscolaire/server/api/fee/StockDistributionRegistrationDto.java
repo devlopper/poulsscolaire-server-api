@@ -1,4 +1,4 @@
-package org.cyk.system.poulsscolaire.server.api.registration;
+package org.cyk.system.poulsscolaire.server.api.fee;
 
 import ci.gouv.dgbf.extension.core.segregation.HasDistributionAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDistributionIdentifierDto;
