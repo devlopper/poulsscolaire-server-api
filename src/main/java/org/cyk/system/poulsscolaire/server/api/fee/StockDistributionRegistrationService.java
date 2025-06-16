@@ -1,5 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
+import ci.gouv.dgbf.extension.core.segregation.HasQuantityDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -9,6 +10,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -77,7 +79,7 @@ public interface StockDistributionRegistrationService extends SpecificService {
     Integer getQuantity();
 
     void setQuantity(Integer quantity);
-    
+
     String JSON_DISTRIBUTION_IDENTIFIER = StockDistributionDto.JSON_THIS_IDENTIFIER;
     String JSON_REGISTRATION_IDENTIFIER = RegistrationDto.JSON_THIS_IDENTIFIER;
     String JSON_QUANTITY = StockMovementDto.JSON_QUANTITY;
@@ -98,7 +100,7 @@ public interface StockDistributionRegistrationService extends SpecificService {
 
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
-    
+
     @JsonbProperty(JSON_QUANTITY)
     private Integer quantity;
   }
@@ -177,7 +179,48 @@ public interface StockDistributionRegistrationService extends SpecificService {
 
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
-    
+
+    @JsonbProperty(JSON_QUANTITY)
+    private Integer quantity;
+  }
+
+  /**
+   * Identifiant du service de mise à jour de quantité.
+   */
+  String UPDATE_QUANTITY_IDENTIFIER = "MISE_A_JOUR_QUANTITE_DISTRIBUTION_STOCK_INSCRIPTION";
+
+  /**
+   * Chemin du service de mise à jour de quantité.
+   */
+  String UPDATE_QUANTITY_PATH = HasQuantityDto.JSON_QUANTITY;
+
+  /**
+   * Cette méthode permet de mettre à jour la quantité.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_QUANTITY_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_QUANTITY_IDENTIFIER)
+  @APIResponse(responseCode = "200",
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateQuantity(StockDistributionRegistrationUpdateQuantityRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour de quantité.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+  class StockDistributionRegistrationUpdateQuantityRequestDto extends ByIdentifierRequestDto
+      implements HasQuantityDto {
+    /**
+     * Montant.
+     */
     @JsonbProperty(JSON_QUANTITY)
     private Integer quantity;
   }

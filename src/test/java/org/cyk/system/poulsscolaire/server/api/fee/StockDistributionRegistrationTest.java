@@ -11,6 +11,7 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import jakarta.ws.rs.core.Response;
 import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationUpdateQuantityRequestDto;
 import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationUpdateRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -81,6 +82,17 @@ class StockDistributionRegistrationTest {
     Mockito.when(service.update(any())).thenReturn(response);
     assertInstanceOf(IdentifiableResponseDto.class,
         client.update(new StockDistributionRegistrationUpdateRequestDto()));
+  }
+
+  @Test
+  void updateQuantity() {
+    Response response = Mockito.mock(Response.class);
+    Mockito.when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+    Mockito.when(response.readEntity(IdentifiableResponseDto.class))
+        .thenReturn(new IdentifiableResponseDto());
+    Mockito.when(service.updateQuantity(any())).thenReturn(response);
+    assertInstanceOf(IdentifiableResponseDto.class,
+        client.updateQuantity(new StockDistributionRegistrationUpdateQuantityRequestDto()));
   }
 
   @Test

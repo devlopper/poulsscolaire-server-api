@@ -21,6 +21,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationCreateRequestDto;
 import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationGetManyResponseDto;
+import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationUpdateQuantityRequestDto;
 import org.cyk.system.poulsscolaire.server.api.fee.StockDistributionRegistrationService.StockDistributionRegistrationUpdateRequestDto;
 
 /**
@@ -156,6 +157,12 @@ public class StockDistributionRegistrationClient
   public IdentifiableResponseDto update(StockDistributionRegistrationUpdateRequestDto request) {
     return new IdentifiableExecutor(StockDistributionRegistrationService.UPDATE_IDENTIFIER)
         .execute(() -> service().update(request));
+  }
+
+  public IdentifiableResponseDto updateQuantity(
+      StockDistributionRegistrationUpdateQuantityRequestDto request) {
+    return new IdentifiableExecutor(StockDistributionRegistrationService.UPDATE_QUANTITY_IDENTIFIER)
+        .execute(() -> service().updateQuantity(request));
   }
 
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
