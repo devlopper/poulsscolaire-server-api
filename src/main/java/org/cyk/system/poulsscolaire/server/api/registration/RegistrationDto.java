@@ -5,6 +5,8 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.cyk.system.poulsscolaire.server.api.configuration.BranchDto;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 import org.cyk.system.poulsscolaire.server.api.fee.AmountStatisticable;
 
 /**
@@ -28,6 +30,12 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
   private String schoolingIdentifier;
 
+  @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+  private String schoolIdentifier;
+  
+  @JsonbProperty(JSON_BRANCH_IDENTIFIER)
+  private String branchIdentifier;
+  
   @JsonbProperty(JSON_SUBSIDY_DECISION_IDENTIFIER)
   private String subsidyDecisionIdentifier;
 
@@ -36,13 +44,13 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
 
   @JsonbProperty(JSON_SUBSIDY_REFUSED)
   public Boolean subsidyRefused;
-  
+
   @JsonbProperty(JSON_SUBSIDY_REFUSED_AS_STRING)
   public String subsidyRefusedAsString;
-  
+
   @JsonbProperty(JSON_SUBSIDY_REFUSAL_REASON)
   public String subsidyRefusalReason;
-  
+
   @JsonbProperty(JSON_BRANCH_INSTANCE_IDENTIFIER)
   private String branchInstanceIdentifier;
 
@@ -109,7 +117,7 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_THIS_IDENTIFIER = "idInscription";
 
   public static final String JSON_THIS_AS_STRING = "inscriptionChaine";
-  
+
   public static final String JSON_STUDENT_IDENTIFIER = "idEleve";
   public static final String JSON_STUDENT_AS_STRING = "eleveChaine";
   public static final String JSON_SCHOOLING_IDENTIFIER = "idScolarite";
@@ -118,7 +126,8 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_SUBSIDY_DECISION_AS_STRING =
       SubsidyDecisionDto.JSON_THIS_AS_STRING;
   public static final String JSON_SCHOOLING_2_IDENTIFIER = "idScolarite2";
-  public static final String JSON_SCHOOL_IDENTIFIER = "idEcole";
+  public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_BRANCH_IDENTIFIER = BranchDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_PERIOD_IDENTIFIER = "idPeriod";
   public static final String JSON_SCHOOLING_AS_STRING = "scolariteChaine";
   public static final String JSON_ASSIGNMENT_TYPE_IDENTIFIER = "idTypeAffectation";
@@ -136,7 +145,7 @@ public class RegistrationDto extends AbstractIdentifiableCodableAuditableDto
   public static final String JSON_SUBSIDY_REFUSED = "subventionRefusee";
   public static final String JSON_SUBSIDY_REFUSED_AS_STRING = JSON_SUBSIDY_REFUSED + "Chaine";
   public static final String JSON_SUBSIDY_REFUSAL_REASON = "motifRefusSubvention";
-  
+
   public static final String JSON_TOTAL_AMOUNT_AS_STRING = "montantTotalChaine";
   public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
   public static final String JSON_PAYABLE_AMOUNT_AS_STRING = "montantPayableChaine";

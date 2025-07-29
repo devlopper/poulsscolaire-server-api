@@ -15,10 +15,12 @@ import lombok.Setter;
 @Setter
 public class RegistrationFilter extends AbstractIdentifiableFilter {
 
+  String schoolingIdentifier;
   String schoolIdentifier;
   String periodIdentifier;
   String studentIdentifier;
   String branchInstanceIdentifier;
+  String branchIdentifier;
   String subsidyDecisionIdentifier;
   String doesNotBelongsToSubsidyDecisionIdentifier;
   Boolean subsidyRefused;
@@ -34,7 +36,9 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
   @Override
   protected void doInitialize(FilterDto filter) {
     super.doInitialize(filter);
+    schoolingIdentifier = getSchoolingIdentifier(filter);
     schoolIdentifier = getSchoolIdentifier(filter);
+    branchIdentifier = getBranchIdentifier(filter);
     periodIdentifier = getPeriodIdentifier(filter);
     studentIdentifier = getStudentIdentifier(filter);
     branchInstanceIdentifier = getBranchInstanceIdentifier(filter);
@@ -49,7 +53,9 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
   @Override
   protected void toDto(FilterDto filter) {
     super.toDto(filter);
+    setSchoolingIdentifier(filter, schoolingIdentifier);
     setSchoolIdentifier(filter, schoolIdentifier);
+    setBranchIdentifier(filter, branchIdentifier);
     setPeriodIdentifier(filter, periodIdentifier);
     setStudentIdentifier(filter, studentIdentifier);
     setBranchInstanceIdentifier(filter, branchInstanceIdentifier);
@@ -60,6 +66,15 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
     setToAmount(filter, toAmount);
   }
 
+  public static void setSchoolingIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_SCHOOLING_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getSchoolingIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOLING_IDENTIFIER));
+  }
+
   public static void setSchoolIdentifier(FilterDto filter, String identifier) {
     set(filter, JSON_SCHOOL_IDENTIFIER, f -> f.getValueAsString(),
         f -> f.setValueAsString(identifier));
@@ -67,6 +82,15 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
 
   public static String getSchoolIdentifier(FilterDto filter) {
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_SCHOOL_IDENTIFIER));
+  }
+
+  public static void setBranchIdentifier(FilterDto filter, String identifier) {
+    set(filter, JSON_BRANCH_IDENTIFIER, f -> f.getValueAsString(),
+        f -> f.setValueAsString(identifier));
+  }
+
+  public static String getBranchIdentifier(FilterDto filter) {
+    return get(filter, d -> d.getFieldValueAsStringByName(JSON_BRANCH_IDENTIFIER));
   }
 
   public static void setPeriodIdentifier(FilterDto filter, String identifier) {
@@ -142,7 +166,9 @@ public class RegistrationFilter extends AbstractIdentifiableFilter {
 
   public static final String JSON_FROM_AMOUNT = "montantDebut";
   public static final String JSON_TO_AMOUNT = "montantFin";
+  public static final String JSON_SCHOOLING_IDENTIFIER = RegistrationDto.JSON_SCHOOLING_IDENTIFIER;
   public static final String JSON_SCHOOL_IDENTIFIER = RegistrationDto.JSON_SCHOOL_IDENTIFIER;
+  public static final String JSON_BRANCH_IDENTIFIER = RegistrationDto.JSON_BRANCH_IDENTIFIER;
   public static final String JSON_PERIOD_IDENTIFIER = RegistrationDto.JSON_PERIOD_IDENTIFIER;
   public static final String JSON_STUDENT_IDENTIFIER = RegistrationDto.JSON_STUDENT_IDENTIFIER;
   public static final String JSON_BRANCH_INSTANCE_IDENTIFIER =

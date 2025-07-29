@@ -5,6 +5,7 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingDto;
 
 /**
@@ -17,6 +18,9 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SchoolingDto;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 public class SubsidyDecisionDto extends AbstractIdentifiableCodableAuditableDto {
+
+  @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
+  private String schoolIdentifier;
   
   @JsonbProperty(JSON_SCHOOLING_IDENTIFIER)
   private String schoolingIdentifier;
@@ -30,14 +34,31 @@ public class SubsidyDecisionDto extends AbstractIdentifiableCodableAuditableDto 
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
   
+  @JsonbProperty(JSON_REGISTRATION_COUNT_AS_STRING)
+  private String registrationCountAsString;
+  
+  @JsonbProperty(JSON_PAYMENT_COUNT_AS_STRING)
+  private String paymentCountAsString;
+  
+  @JsonbProperty(JSON_PAID_AMOUNT_AS_STRING)
+  private String paidAmountAsString;
+  
+  @JsonbProperty(JSON_REMAINING_AMOUNT_TO_PAY_AS_STRING)
+  private String remainingAmountToPayAsString;
+  
   public static final String JSON_THIS_IDENTIFIER = "idDecisionSubvention";
 
   public static final String JSON_THIS_AS_STRING = "decisionSubventionChaine";
   
+  public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_SCHOOLING_IDENTIFIER = SchoolingDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_SCHOOLING_AS_STRING = SchoolingDto.JSON_THIS_AS_STRING;
   public static final String JSON_AMOUNT = "montant";
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
+  public static final String JSON_REGISTRATION_COUNT_AS_STRING = "nombreInscriptionChaine";
+  public static final String JSON_PAYMENT_COUNT_AS_STRING = "nombrePaiementChaine";
+  public static final String JSON_PAID_AMOUNT_AS_STRING = "montantPayeChaine";
+  public static final String JSON_REMAINING_AMOUNT_TO_PAY_AS_STRING = "restePayeChaine";
   
   /**
    * Nom pour lecture humaine de la classe.
