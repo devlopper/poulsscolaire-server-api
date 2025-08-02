@@ -1,7 +1,10 @@
 package org.cyk.system.poulsscolaire.server.api.accounting;
 
+import ci.gouv.dgbf.extension.core.segregation.HasDeadlineAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDeadlineDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +20,8 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
+public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto
+    implements HasDeadlineDto<LocalDateTime>, HasDeadlineAsStringDto {
 
   @JsonbProperty(JSON_SCHOOL_IDENTIFIER)
   private String schoolIdentifier;
@@ -42,7 +46,13 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
   @JsonbProperty(JSON_COMMITMENT_AMOUNT_AS_STRING)
   private String commitmentAmountAsString;
-  
+
+  @JsonbProperty(JSON_DEADLINE)
+  private LocalDateTime deadline;
+
+  @JsonbProperty(JSON_DEADLINE_AS_STRING)
+  private String deadlineAsString;
+
   /**
    * Statut du programme triennal.
    */
@@ -60,7 +70,7 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
    */
   @JsonbProperty(JSON_STATUS_REASON)
   private String statusReason;
-  
+
   /**
    * Transmittable.
    */
@@ -99,11 +109,11 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
     approvable = statusUpdateResponse.getApprovable();
     returnable = statusUpdateResponse.getReturnable();
   }
-  
+
   public static final String JSON_THIS_IDENTIFIER = "idBudget";
 
   public static final String JSON_THIS_YEAR = "annee";
-  
+
   public static final String JSON_THIS_AS_STRING = "budgetChaine";
 
   public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
@@ -122,7 +132,7 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
   public static final String JSON_AMOUNT_AS_STRING = "montantChaine";
 
   public static final String JSON_COMMITMENT_AMOUNT_AS_STRING = "montantEngageChaine";
-  
+
   /**
    * Identifiant json champ {@link #status}.
    */
@@ -132,7 +142,7 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
    * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = "statutChaine";
-  
+
   /**
    * Identifiant json champ {@link #acceptable}.
    */
@@ -157,7 +167,7 @@ public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {
    * Identifiant json champ {@link #statusReason}.
    */
   public static final String JSON_STATUS_REASON = "raisonStatut";
-  
+
   public static final String NAME = "budget";
 
   public static final String PLURAL_NAME = NAME + "s";

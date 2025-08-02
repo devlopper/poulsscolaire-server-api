@@ -1,5 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.accounting;
 
+import ci.gouv.dgbf.extension.core.segregation.HasDeadlineDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
@@ -20,6 +21,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -100,11 +102,30 @@ public interface BudgetService extends SpecificService {
 
     void setYear(Integer year);
 
+    /**
+     * Cette méthode permet d'obtenir la date butoir.
+     *
+     * @return la date butoir
+     */
+    LocalDateTime getDeadline();
+
+    /**
+     * Cette méthode permet d'assigner la date butoir.
+     *
+     * @param deadline la date butoir
+     */
+    void setDeadline(LocalDateTime deadline);
+
     String JSON_SCHOOL_IDENTIFIER = BudgetDto.JSON_SCHOOL_IDENTIFIER;
 
     String JSON_ACCOUNTING_PLAN_IDENTIFIER = BudgetDto.JSON_ACCOUNTING_PLAN_IDENTIFIER;
 
     String JSON_YEAR = BudgetDto.JSON_YEAR;
+
+    /**
+     * {@link HasDeadlineDto#JSON_DEADLINE}.
+     */
+    String JSON_DEADLINE = HasDeadlineDto.JSON_DEADLINE;
   }
 
   /**
@@ -125,6 +146,9 @@ public interface BudgetService extends SpecificService {
 
     @JsonbProperty(JSON_YEAR)
     private Integer year;
+
+    @JsonbProperty(JSON_DEADLINE)
+    private LocalDateTime deadline;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_BUDGET";
@@ -203,6 +227,9 @@ public interface BudgetService extends SpecificService {
 
     @JsonbProperty(JSON_YEAR)
     private Integer year;
+
+    @JsonbProperty(JSON_DEADLINE)
+    private LocalDateTime deadline;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_BUDGET";
@@ -215,7 +242,7 @@ public interface BudgetService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER)
   Response delete(DeleteOneRequestDto request);
-  
+
   /**
    * Cette classe représente la requête de retour.
    *
@@ -290,8 +317,7 @@ public interface BudgetService extends SpecificService {
      * Cette méthode permet d'initialiser la réponse à partir du statut.
      *
      * @param status {@link BudgetStatus}
-     * @param statusAsString représentation en chaine de caractères de
-     *        {@link BudgetStatus}
+     * @param statusAsString représentation en chaine de caractères de {@link BudgetStatus}
      * @param reason raison
      */
     public void initialize(BudgetStatus status, String statusAsString, String reason) {
