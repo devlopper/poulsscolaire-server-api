@@ -1,5 +1,7 @@
 package org.cyk.system.poulsscolaire.server.api.fee;
 
+import ci.gouv.dgbf.extension.core.segregation.HasBranchInstanceAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasBranchInstanceIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDateAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDateDto;
 import ci.gouv.dgbf.extension.core.segregation.HasQuantityAsStringDto;
@@ -11,8 +13,6 @@ import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.cyk.system.poulsscolaire.server.api.configuration.HasBranchInstanceAsStringDto;
-import org.cyk.system.poulsscolaire.server.api.configuration.HasBranchInstanceIdentifierDto;
 
 /**
  * Cette classe représente une distribution de stock.
