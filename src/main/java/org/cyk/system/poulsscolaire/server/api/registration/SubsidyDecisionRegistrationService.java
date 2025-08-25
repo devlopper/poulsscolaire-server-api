@@ -54,15 +54,15 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
 
     void setRegistrationIdentifier(String registrationIdentifier);
 
-    Boolean getAccepted();
+    Boolean getRejected();
 
-    void setAccepted(Boolean accepted);
+    void setRejected(Boolean rejected);
 
     String JSON_SUBSIDY_DECISION_IDENTIFIER =
         SubsidyDecisionRegistrationDto.JSON_SUBSIDY_DECISION_IDENTIFIER;
     String JSON_REGISTRATION_IDENTIFIER =
         SubsidyDecisionRegistrationDto.JSON_REGISTRATION_IDENTIFIER;
-    String JSON_ACCEPTED = SubsidyDecisionRegistrationDto.JSON_ACCEPTED;
+    String JSON_REJECTED = SubsidyDecisionRegistrationDto.JSON_REJECTED;
   }
 
   String CREATE_IDENTIFIER = "CREATION_INSCRIPTION_DECISION_SUBVENTION";
@@ -94,15 +94,15 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
   @Setter
   class SubsidyDecisionRegistrationCreateRequestDto extends AbstractAuditedRequestJsonDto
       implements SubsidyDecisionRegistrationSaveRequest {
-    
+
     @JsonbProperty(JSON_SUBSIDY_DECISION_IDENTIFIER)
     private String subsidyDecisionIdentifier;
-    
+
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
 
-    @JsonbProperty(JSON_ACCEPTED)
-    private Boolean accepted;
+    @JsonbProperty(JSON_REJECTED)
+    private Boolean rejected;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_INSCRIPTION_DECISION_SUBVENTION";
@@ -174,15 +174,15 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
   @Setter
   class SubsidyDecisionRegistrationUpdateRequestDto extends ByIdentifierRequestDto
       implements SubsidyDecisionRegistrationSaveRequest {
-    
+
     @JsonbProperty(JSON_SUBSIDY_DECISION_IDENTIFIER)
     private String subsidyDecisionIdentifier;
-    
+
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
 
-    @JsonbProperty(JSON_ACCEPTED)
-    private Boolean accepted;
+    @JsonbProperty(JSON_REJECTED)
+    private Boolean rejected;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_INSCRIPTION_DECISION_SUBVENTION";

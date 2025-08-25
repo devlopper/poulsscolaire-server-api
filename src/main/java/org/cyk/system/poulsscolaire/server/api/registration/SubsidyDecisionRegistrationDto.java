@@ -30,18 +30,18 @@ public class SubsidyDecisionRegistrationDto extends AbstractIdentifiableAuditabl
   @JsonbProperty(JSON_REGISTRATION_AS_STRING)
   private String registrationAsString;
 
-  @JsonbProperty(JSON_ACCEPTED)
-  private Boolean accepeted;
+  @JsonbProperty(JSON_REJECTED)
+  private Boolean rejected;
 
-  @JsonbProperty(JSON_ACCEPTED_AS_STRING)
-  private String accepetedAsString;
+  @JsonbProperty(JSON_REJECTED_AS_STRING)
+  private String rejectedAsString;
 
   public static final String JSON_SUBSIDY_DECISION_IDENTIFIER = "idPaiement";
   public static final String JSON_SUBSIDY_DECISION_AS_STRING = "paiementChaine";
   public static final String JSON_REGISTRATION_IDENTIFIER = RegistrationDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_REGISTRATION_AS_STRING = RegistrationDto.JSON_THIS_AS_STRING;
-  public static final String JSON_ACCEPTED = "accepte";
-  public static final String JSON_ACCEPTED_AS_STRING = "accepteChaine";
+  public static final String JSON_REJECTED = "rejetee";
+  public static final String JSON_REJECTED_AS_STRING = "rejeteeChaine";
 
   public static final String NAME = "inscription de décision de subvention";
 
