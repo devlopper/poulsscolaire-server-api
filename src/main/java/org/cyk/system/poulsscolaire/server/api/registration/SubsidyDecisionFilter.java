@@ -23,11 +23,18 @@ public class SubsidyDecisionFilter extends AbstractIdentifiableFilter {
   String schoolingIdentifier;
   Integer fromAmount;
   Integer toAmount;
+  
 
+  /**
+   * Cette méthode permet de construire.
+   */
   public SubsidyDecisionFilter(FilterDto dto) {
     super(dto);
   }
 
+  /**
+   * Cette méthode permet de construire.
+   */
   public SubsidyDecisionFilter() {}
 
   @Override

@@ -140,6 +140,12 @@ public interface RegistrationService extends SpecificService {
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
+  /**
+   * Cette méthode permet d'obtenir plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_MANY_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -167,6 +173,12 @@ public interface RegistrationService extends SpecificService {
 
   String GET_ONE_PATH = "obtention/un";
 
+  /**
+   * Cette méthode permet d'obtenir un.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_ONE_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -179,6 +191,12 @@ public interface RegistrationService extends SpecificService {
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
+  /**
+   * Cette méthode permet d'obtenir un par identifiant.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_BY_IDENTIFIER_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -191,6 +209,12 @@ public interface RegistrationService extends SpecificService {
 
   String UPDATE_PATH = "";
 
+  /**
+   * Cette méthode permet de mettre à jour.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(UPDATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
@@ -232,6 +256,12 @@ public interface RegistrationService extends SpecificService {
 
   String UPDATE_AMOUNTS_TO_ZERO_PATH = "montants-a-zero";
 
+  /**
+   * Cette méthode permet de mettre à jour les montants à zéro.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(UPDATE_AMOUNTS_TO_ZERO_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -244,6 +274,12 @@ public interface RegistrationService extends SpecificService {
 
   String DELETE_PATH = "";
 
+  /**
+   * Cette méthode permet de supprimer.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(DELETE_PATH)
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)

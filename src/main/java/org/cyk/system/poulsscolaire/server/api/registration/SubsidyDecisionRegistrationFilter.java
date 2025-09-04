@@ -1,6 +1,7 @@
 package org.cyk.system.poulsscolaire.server.api.registration;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasIsRejected;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,13 +16,14 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
  */
 @Getter
 @Setter
-public class SubsidyDecisionRegistrationFilter extends AbstractIdentifiableFilter {
+public class SubsidyDecisionRegistrationFilter extends AbstractIdentifiableFilter
+    implements FilterHasIsRejected {
 
   String schoolIdentifier;
   String periodIdentifier;
   String studentIdentifier;
   String subsidyDecisionIdentifier;
-  Boolean accepted;
+  Boolean isRejected;
 
   public SubsidyDecisionRegistrationFilter(FilterDto dto) {
     super(dto);
@@ -36,7 +38,7 @@ public class SubsidyDecisionRegistrationFilter extends AbstractIdentifiableFilte
     periodIdentifier = getPeriodIdentifier(filter);
     studentIdentifier = getStudentIdentifier(filter);
     subsidyDecisionIdentifier = getSubsidyDecisionIdentifier(filter);
-    accepted = getAccepted(filter);
+    updateIsRejected(filter);
   }
 
   @Override
@@ -46,7 +48,7 @@ public class SubsidyDecisionRegistrationFilter extends AbstractIdentifiableFilte
     setPeriodIdentifier(filter, periodIdentifier);
     setStudentIdentifier(filter, studentIdentifier);
     setSubsidyDecisionIdentifier(filter, subsidyDecisionIdentifier);
-    setAccepeted(filter, accepted);
+    updateFilterIsRejected(filter);
   }
 
   public static void setSchoolIdentifier(FilterDto filter, String identifier) {
@@ -85,15 +87,6 @@ public class SubsidyDecisionRegistrationFilter extends AbstractIdentifiableFilte
     return get(filter, d -> d.getFieldValueAsStringByName(JSON_SUBSIDY_DECISION_IDENTIFIER));
   }
 
-  public static void setAccepeted(FilterDto filter, Boolean accepted) {
-    set(filter, JSON_ACCEPETED, f -> f.getValueAsBoolean(), f -> f.setValueAsBoolean(accepted));
-  }
-
-  public static Boolean getAccepted(FilterDto filter) {
-    return get(filter, d -> d.getFieldValueAsBooleanByName(JSON_ACCEPETED));
-  }
-
-  public static final String JSON_ACCEPETED = "accepte";
   public static final String JSON_SCHOOL_IDENTIFIER = SchoolDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_PERIOD_IDENTIFIER = PeriodDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_STUDENT_IDENTIFIER = StudentDto.JSON_THIS_IDENTIFIER;

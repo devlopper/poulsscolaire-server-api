@@ -1,5 +1,7 @@
 package org.cyk.system.poulsscolaire.server.api.registration;
 
+import ci.gouv.dgbf.extension.core.segregation.HasIsRejectedAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasIsRejectedDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -16,7 +18,8 @@ import org.cyk.system.poulsscolaire.server.api.registration.SubsidyDecisionServi
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class SubsidyDecisionRegistrationDto extends AbstractIdentifiableAuditableDto {
+public class SubsidyDecisionRegistrationDto extends AbstractIdentifiableAuditableDto
+    implements HasIsRejectedDto, HasIsRejectedAsStringDto {
 
   @JsonbProperty(JSON_SUBSIDY_DECISION_IDENTIFIER)
   private String subsidyDecisionIdentifier;
@@ -30,18 +33,16 @@ public class SubsidyDecisionRegistrationDto extends AbstractIdentifiableAuditabl
   @JsonbProperty(JSON_REGISTRATION_AS_STRING)
   private String registrationAsString;
 
-  @JsonbProperty(JSON_REJECTED)
-  private Boolean rejected;
+  @JsonbProperty(JSON_IS_REJECTED)
+  private Boolean isRejected;
 
-  @JsonbProperty(JSON_REJECTED_AS_STRING)
-  private String rejectedAsString;
+  @JsonbProperty(JSON_IS_REJECTED_AS_STRING)
+  private String isRejectedAsString;
 
   public static final String JSON_SUBSIDY_DECISION_IDENTIFIER = "idPaiement";
   public static final String JSON_SUBSIDY_DECISION_AS_STRING = "paiementChaine";
   public static final String JSON_REGISTRATION_IDENTIFIER = RegistrationDto.JSON_THIS_IDENTIFIER;
   public static final String JSON_REGISTRATION_AS_STRING = RegistrationDto.JSON_THIS_AS_STRING;
-  public static final String JSON_REJECTED = "rejetee";
-  public static final String JSON_REJECTED_AS_STRING = "rejeteeChaine";
 
   public static final String NAME = "inscription de décision de subvention";
 

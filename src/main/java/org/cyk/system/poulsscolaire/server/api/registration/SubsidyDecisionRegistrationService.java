@@ -1,5 +1,6 @@
 package org.cyk.system.poulsscolaire.server.api.registration;
 
+import ci.gouv.dgbf.extension.core.segregation.HasIsRejectedDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -54,15 +55,15 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
 
     void setRegistrationIdentifier(String registrationIdentifier);
 
-    Boolean getRejected();
+    Boolean getIsRejected();
 
-    void setRejected(Boolean rejected);
+    void setIsRejected(Boolean isRejected);
 
     String JSON_SUBSIDY_DECISION_IDENTIFIER =
         SubsidyDecisionRegistrationDto.JSON_SUBSIDY_DECISION_IDENTIFIER;
     String JSON_REGISTRATION_IDENTIFIER =
         SubsidyDecisionRegistrationDto.JSON_REGISTRATION_IDENTIFIER;
-    String JSON_REJECTED = SubsidyDecisionRegistrationDto.JSON_REJECTED;
+    String JSON_IS_REJECTED = HasIsRejectedDto.JSON_IS_REJECTED;
   }
 
   String CREATE_IDENTIFIER = "CREATION_INSCRIPTION_DECISION_SUBVENTION";
@@ -70,7 +71,7 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
   String CREATE_PATH = "";
 
   /**
-   * Cette méthode permet de créer un paiement de frais ajusté.
+   * Cette méthode permet de créer.
    *
    * @param request requête
    * @return réponse
@@ -101,14 +102,20 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
 
-    @JsonbProperty(JSON_REJECTED)
-    private Boolean rejected;
+    @JsonbProperty(JSON_IS_REJECTED)
+    private Boolean isRejected;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_INSCRIPTION_DECISION_SUBVENTION";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
+  /**
+   * Cette méthode permet d'obtenir plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_MANY_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -135,6 +142,12 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
 
   String GET_ONE_PATH = "obtention/un";
 
+  /**
+   * Cette méthode permet d'obtenir un.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_ONE_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -146,6 +159,12 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
+  /**
+   * Cette méthode permet d'obtenir par identifiant.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_BY_IDENTIFIER_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -157,6 +176,12 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
 
   String UPDATE_PATH = "";
 
+  /**
+   * Cette méthode permet de mettre à jour.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(UPDATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
@@ -181,14 +206,20 @@ public interface SubsidyDecisionRegistrationService extends SpecificService {
     @JsonbProperty(JSON_REGISTRATION_IDENTIFIER)
     private String registrationIdentifier;
 
-    @JsonbProperty(JSON_REJECTED)
-    private Boolean rejected;
+    @JsonbProperty(JSON_IS_REJECTED)
+    private Boolean isRejected;
   }
 
   String DELETE_IDENTIFIER = "SUPPRESSION_INSCRIPTION_DECISION_SUBVENTION";
 
   String DELETE_PATH = "";
 
+  /**
+   * Cette méthode permet de supprimer.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(DELETE_PATH)
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)

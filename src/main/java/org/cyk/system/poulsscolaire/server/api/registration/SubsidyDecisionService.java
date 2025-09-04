@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -74,12 +75,27 @@ public interface SubsidyDecisionService extends SpecificService {
 
     void setSchoolingIdentifier(String schoolingIdentifier);
 
-    int getAmount();
+    Integer getAmount();
 
-    void setAmount(int amount);
+    void setAmount(Integer amount);
+
+    /**
+     * Cette méthode permet d'obtenir la date.
+     *
+     * @return la date
+     */
+    LocalDateTime getDate();
+
+    /**
+     * Cette méthode permet d'assigner la date.
+     *
+     * @param date la date
+     */
+    void setDate(LocalDateTime date);
 
     String JSON_SCHOOLING_IDENTIFIER = SubsidyDecisionDto.JSON_SCHOOLING_IDENTIFIER;
     String JSON_AMOUNT = SubsidyDecisionDto.JSON_AMOUNT;
+    String JSON_DATE = SubsidyDecisionDto.JSON_DATE;
   }
 
   /**
@@ -96,13 +112,22 @@ public interface SubsidyDecisionService extends SpecificService {
     private String schoolingIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
-    private int amount;
+    private Integer amount;
+
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
   }
 
   String GET_MANY_IDENTIFIER = "OBTENTION_PLUSIEURS_DECISION_SUBVENTION";
 
   String GET_MANY_PATH = "obtention/plusieurs";
 
+  /**
+   * Cette méthode permet d'obtenir plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_MANY_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -129,6 +154,12 @@ public interface SubsidyDecisionService extends SpecificService {
 
   String GET_ONE_PATH = "obtention/un";
 
+  /**
+   * Cette méthode permet d'obtenir un.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_ONE_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -140,6 +171,12 @@ public interface SubsidyDecisionService extends SpecificService {
 
   String GET_BY_IDENTIFIER_PATH = "obtention/par-identifiant";
 
+  /**
+   * Cette méthode permet d'obtenir un par identifiant.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(GET_BY_IDENTIFIER_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -151,6 +188,12 @@ public interface SubsidyDecisionService extends SpecificService {
 
   String UPDATE_PATH = "";
 
+  /**
+   * Cette méthode permet de mettre à jour.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(UPDATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
@@ -172,13 +215,22 @@ public interface SubsidyDecisionService extends SpecificService {
     private String schoolingIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
-    private int amount;
+    private Integer amount;
+
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
   }
 
   String UPDATE_SUBSIDIES_IDENTIFIER = "MISE_A_JOUR_SUBVENTIONS_DECISION_SUBVENTION";
 
   String UPDATE_SUBSIDIES_PATH = "subventions";
 
+  /**
+   * Cette méthode permet de mettre à jour plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(UPDATE_SUBSIDIES_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -236,6 +288,12 @@ public interface SubsidyDecisionService extends SpecificService {
 
   String UPDATE_SUBSIDIES_TO_NULL_PATH = "subventions-a-nulle";
 
+  /**
+   * Cette méthode permet de mettre à jour plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(UPDATE_SUBSIDIES_TO_NULL_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -261,6 +319,12 @@ public interface SubsidyDecisionService extends SpecificService {
 
   String DELETE_PATH = "";
 
+  /**
+   * Cette méthode permet de supprimer.
+   *
+   * @param request requête
+   * @return réponse
+   */
   @Path(DELETE_PATH)
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
