@@ -15,6 +15,8 @@ import lombok.Setter;
 @Setter
 public class StockFeeCategoryFilter extends AbstractIdentifiableFilter {
 
+  String stockIdentifier;
+  
   String feeCategoryIdentifier;
 
   /**
