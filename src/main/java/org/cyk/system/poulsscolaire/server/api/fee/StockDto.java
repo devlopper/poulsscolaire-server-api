@@ -18,12 +18,6 @@ import org.cyk.system.poulsscolaire.server.api.configuration.SchoolDto;
 @EqualsAndHashCode(callSuper = true)
 public class StockDto extends AbstractIdentifiableCodableNamableAuditableDto {
 
-  @JsonbProperty(JSON_FEE_CATEGORY_IDENTIFIER)
-  private String feeCategoryIdentifier;
-
-  @JsonbProperty(JSON_FEE_CATEGORY_AS_STRING)
-  private String feeCategoryAsString;
-
   @JsonbProperty(JSON_QUANTITY_AS_STRING)
   private String quantityAsString;
 
